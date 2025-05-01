@@ -1,0 +1,29 @@
+.nav_container {
+  display: flex;
+  background-color: #feeac1;
+  padding: 1.6rem 0 0;
+  align-items: center;
+  margin-bottom: 2.4rem;
+}
+
+.search_container {
+  color: #1d2123;
+  font-size: 1rem;
+  border-radius: 8px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  margin-right: 5rem;
+  outline: none;
+}
+
+.search_container input {
+  flex: 0 0 46%;
+  background-color: #fff;
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-right: 5rem;
+  outline: none;
+}
