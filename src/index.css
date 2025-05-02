@@ -7,3 +7,33 @@
 body {
   font-family: "Euclid Circular A", sans-serif;
 }
+
+.react-multi-carousel-dot-list .react-multi-carousel-dot button {
+  border: none;
+  background-color: rgba(255, 255, 255, 0.4);
+  width: 8px;
+  height: 8px;
+  margin: 0 6px;
+  margin-bottom: 1.6rem;
+}
+
+.react-multi-carousel-dot-list .react-multi-carousel-dot--active button {
+  background-color: white !important;
+}
+
+.react-multiple-carousel__arrow {
+  background-color: white !important;
+}
+
+.react-multiple-carousel__arrow::before {
+  color: #000 !important;
+}
+
+.react-multiple-carousel__arrow {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background-color: #fff;
+  background-size: 16%;
+  box-shadow: 0 4px 8px 0 rgba(29, 33, 35, 0.08);
+}

@@ -12,5 +12,13 @@
     "FAQ": "Часто задаваемые вопросы",
     "Endirimlər": "Скидки",
     "Bonus mağaza": "Бонусный магазин"
+  },
+  "slider1": {
+    "firstImage": "/src/assets/images/home/slider1Ru/acana-mehsullar-site-ru.png",
+    "secondImage": "/src/assets/images/home/slider1Ru/biokats-tofu-desk-slider-ru.png",
+    "thirdImage": "/src/assets/images/home/slider1Ru/703250040-web-banner-blue-ru.jpg",
+    "fourthImage": "/src/assets/images/home/slider1Ru/mehsul-econature-plus-site-ru.png",
+    "fifthImage": "/src/assets/images/home/slider1Ru/slider-web-ru.jpg",
+    "sixthImage": "/src/assets/images/home/slider1Ru/orijen-mehsullar-site-ru.png"
   }
 }
