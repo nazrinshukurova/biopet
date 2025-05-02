@@ -1,0 +1,16 @@
+{
+  "navbar": {
+    "searchPlaceholder": "Я ищу, напр.: Royal Canin, Sanicat, от глистов",
+    "searchResult": "По вашему запросу ничего не найдено"
+  },
+  "navbarLinks": {
+    "Pişiklər": "Кошки",
+    "İtlər": "Собаки",
+    "Digər heyvanlar": "Другие питомцы",
+    "Brendlər": "Бренды",
+    "Bloqlar": "Статьи",
+    "FAQ": "Часто задаваемые вопросы",
+    "Endirimlər": "Скидки",
+    "Bonus mağaza": "Бонусный магазин"
+  }
+}

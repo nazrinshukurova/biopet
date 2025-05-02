@@ -1,0 +1,16 @@
+{
+  "navbar": {
+      "searchPlaceholder": "Axtar. məs: Royal Canin, Sanicat, qurd dərmanı...",
+      "searchResult": "Axtarışa uyğun nəticə tapılmadı... "
+  },
+  "navbarLinks": {
+    "Pişiklər": "Pişiklər",
+    "İtlər": "İtlər",
+    "Digər heyvanlar": "Digər heyvanlar",
+    "Brendlər": "Brendlər",
+    "Bloqlar": "Bloqlar",
+    "FAQ": "FAQ",
+    "Endirimlər": "Endirimlər",
+    "Bonus mağaza": "Bonus mağaza"
+  }
+}

@@ -1,25 +1,106 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Navbar.module.css";
 import logo from "../../assets/svg/biopet_blue_logo.svg";
 import phone from "../../assets/svg/876-black.svg";
+import search from "../../assets/svg/search.svg";
+import azFlag from "../../assets/svg/az.svg";
+import ruFlag from "../../assets/svg/ru.svg";
+import { FiUser } from "react-icons/fi";
+import { FaRegHeart } from "react-icons/fa";
+import { LuShoppingCart } from "react-icons/lu";
+import { IoIosArrowDown } from "react-icons/io";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
+  const { t, i18n } = useTranslation();
+  const [selectedLang, setSelectedLang] = useState("az");
+
+  const changeLang = (myLang) => {
+    i18n.changeLanguage(myLang);
+    setSelectedLang(myLang);
+  };
+
   return (
-    <div>
+    <div className={styles.common_navbar_container}>
       <nav className={styles.nav_container}>
-        <img width="82" height="56" src={logo}></img>
-        <img width="76" height="28" src={phone}></img>
+        <img width="82" height="56" src={logo} alt="logo" />
+        <img width="76" height="28" src={phone} alt="phone" />
+
         <div className={styles.search_container}>
+          <span>
+            <img width="16" height="16" src={search} alt="search icon" />
+          </span>
           <input
-            autocomplete="off"
-            id="search-auto"
-            value=""
-            name="q"
+            className={styles.search_input}
             type="text"
-            placeholder="Axtar. məs: Royal Canin, Sanicat, qurd dərmanı..."
+            placeholder={t("navbar.searchPlaceholder")}
           />
         </div>
+
+        <div className={styles.language_box}>
+          <div className={styles.selected_language}>
+            <div className={styles.az_flag_and_name}>
+              <img
+                width="30"
+                height="20"
+                src={selectedLang === "az" ? azFlag : ruFlag}
+                alt="flag"
+              />
+              <span>{selectedLang === "az" ? "Az" : "Ru"}</span>
+            </div>
+            <IoIosArrowDown
+              style={{
+                fontWeight: "400",
+                color: "#1d2123",
+              }}
+            />
+          </div>
+
+          <div
+            className={styles.selected_language_2}
+            onClick={() => changeLang(selectedLang === "az" ? "ru" : "az")}
+          >
+            <div className={styles.ru_flag_and_name}>
+              <img
+                width="30"
+                height="20"
+                src={selectedLang === "az" ? ruFlag : azFlag}
+                alt="alt flag"
+              />
+              <span>{selectedLang === "az" ? "Ru" : "Az"}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.header}>
+          <FiUser style={{ fontSize: "20px" }} />
+          <div className={styles.wish_and_count}>
+            <FaRegHeart style={{ fontSize: "20px" }} />
+            <div className={styles.wishlist_count}>
+              <span>0</span>
+            </div>
+          </div>
+          <div className={styles.wish_and_count}>
+            <LuShoppingCart style={{ fontSize: "20px" }} />
+            <div className={styles.wishlist_count}>
+              <span>0</span>
+            </div>
+          </div>
+        </div>
       </nav>
+
+      <div className={styles.navbar_down_part}>
+        <ul>
+          <li>{t("navbarLinks.Pişiklər")}</li>
+          <li>{t("navbarLinks.İtlər")}</li>
+          <li>{t("navbarLinks.Digər heyvanlar")}</li>
+          <li>{t("navbarLinks.Brendlər")}</li>
+          <li>{t("navbarLinks.Bloqlar")}</li>
+          <li>{t("navbarLinks.FAQ")}</li>
+          <li>{t("navbarLinks.Endirimlər")}</li>
+          <li>{t("navbarLinks.Bonus mağaza")}</li>
+        </ul>
+      </div>
     </div>
   );
 };
