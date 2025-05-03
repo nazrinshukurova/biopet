@@ -13,95 +13,109 @@ import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
   const { t, i18n } = useTranslation();
-  const [selectedLang, setSelectedLang] = useState("az");
+  const [selectedLang, setSelectedLang] = useState(i18n.language);
 
   const changeLang = (myLang) => {
     i18n.changeLanguage(myLang);
     setSelectedLang(myLang);
   };
 
+
   return (
-    <div className={styles.common_navbar_container}>
-      <nav className={styles.nav_container}>
-        <img width="82" height="56" src={logo} alt="logo" />
-        <img width="76" height="28" src={phone} alt="phone" />
-
-        <div className={styles.search_container}>
-          <span>
-            <img width="16" height="16" src={search} alt="search icon" />
-          </span>
-          <input
-            className={styles.search_input}
-            type="text"
-            placeholder={t("navbar.searchPlaceholder")}
+    <>
+      {" "}
+      <div className={styles.common_navbar_container}>
+        <nav className={styles.nav_container}>
+          <img
+            className={styles.logo}
+       
+            src={logo}
+            alt="logo"
           />
-        </div>
+          <img
+            className={styles.phone}
+        
+            src={phone}
+            alt="phone"
+          />
 
-        <div className={styles.language_box}>
-          <div className={styles.selected_language}>
-            <div className={styles.az_flag_and_name}>
-              <img
-                width="30"
-                height="20"
-                src={selectedLang === "az" ? azFlag : ruFlag}
-                alt="flag"
-              />
-              <span>{selectedLang === "az" ? "Az" : "Ru"}</span>
-            </div>
-            <IoIosArrowDown
-              style={{
-                fontWeight: "400",
-                color: "#1d2123",
-              }}
+          <div className={styles.search_container}>
+            <span>
+              <img width="16" height="16" src={search} alt="search icon" />
+            </span>
+            <input
+              className={styles.search_input}
+              type="text"
+              placeholder={t("navbar.searchPlaceholder")}
             />
           </div>
 
-          <div
-            className={styles.selected_language_2}
-            onClick={() => changeLang(selectedLang === "az" ? "ru" : "az")}
-          >
-            <div className={styles.ru_flag_and_name}>
-              <img
-                width="30"
-                height="20"
-                src={selectedLang === "az" ? ruFlag : azFlag}
-                alt="alt flag"
+          <div className={styles.language_box}>
+            <div className={styles.selected_language}>
+              <div className={styles.az_flag_and_name}>
+                <img
+                  width="30"
+                  height="20"
+                  src={selectedLang === "az" ? azFlag : ruFlag}
+                  alt="flag"
+                />
+                <span>{selectedLang === "az" ? "Az" : "Ru"}</span>
+              </div>
+              <IoIosArrowDown
+                style={{
+                  fontWeight: "400",
+                  color: "#1d2123",
+                }}
               />
-              <span>{selectedLang === "az" ? "Ru" : "Az"}</span>
             </div>
-          </div>
-        </div>
 
-        <div className={styles.header}>
-          <FiUser style={{ fontSize: "20px" }} />
-          <div className={styles.wish_and_count}>
-            <FaRegHeart style={{ fontSize: "20px" }} />
-            <div className={styles.wishlist_count}>
-              <span>0</span>
+            <div
+              className={styles.selected_language_2}
+             search
+            >
+              <div className={styles.ru_flag_and_name}>
+                <img
+                  width="30"
+                  height="20"
+                  src={selectedLang === "az" ? ruFlag : azFlag}
+                  alt="alt flag"
+                />
+                <span>{selectedLang === "az" ? "Ru" : "Az"}</span>
+              </div>
             </div>
           </div>
-          <div className={styles.wish_and_count}>
-            <LuShoppingCart style={{ fontSize: "20px" }} />
-            <div className={styles.wishlist_count}>
-              <span>0</span>
-            </div>
-          </div>
-        </div>
-      </nav>
 
-      <div className={styles.navbar_down_part}>
-        <ul>
-          <li>{t("navbarLinks.Pişiklər")}</li>
-          <li>{t("navbarLinks.İtlər")}</li>
-          <li>{t("navbarLinks.Digər heyvanlar")}</li>
-          <li>{t("navbarLinks.Brendlər")}</li>
-          <li>{t("navbarLinks.Bloqlar")}</li>
-          <li>{t("navbarLinks.FAQ")}</li>
-          <li>{t("navbarLinks.Endirimlər")}</li>
-          <li>{t("navbarLinks.Bonus mağaza")}</li>
-        </ul>
+          <div className={styles.header}>
+            <FiUser className={styles.user}  />
+            <div className={styles.wish_and_count}>
+              <FaRegHeart className={styles.heart} />
+              <div className={styles.wishlist_count}>
+                <span>0</span>
+              </div>
+            </div>
+            <div className={styles.wish_and_count}>
+              <LuShoppingCart className={styles.shopping_cart}/>
+              <div className={styles.wishlist_count}>
+                <span>0</span>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <div className={styles.navbar_down_part}>
+          <ul>
+            <li>{t("navbarLinks.Pişiklər")}</li>
+            <li>{t("navbarLinks.İtlər")}</li>
+            <li>{t("navbarLinks.Digər heyvanlar")}</li>
+            <li>{t("navbarLinks.Brendlər")}</li>
+            <li>{t("navbarLinks.Bloqlar")}</li>
+            <li>{t("navbarLinks.FAQ")}</li>
+            <li>{t("navbarLinks.Endirimlər")}</li>
+            <li>{t("navbarLinks.Bonus mağaza")}</li>
+          </ul>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

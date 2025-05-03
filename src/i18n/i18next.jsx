@@ -12,6 +12,8 @@ const resources = {
   ru: { translation: ruTranslate },
 };
 
+
+
 // i18n initialization
 i18n
   .use(LanguageDetector) // Detects browser language

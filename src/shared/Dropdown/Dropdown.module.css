@@ -1,0 +1,140 @@
+.dropdown {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: calc(100% - 65px);
+  display: none;
+  flex-direction: column;
+  width: 274px;
+  padding-bottom: 32px;
+  position: fixed;
+  z-index: 6666666;
+  opacity: 1;
+  padding: 16px;
+  background-color: white;
+}
+
+.logo_container {
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.logo {
+  height: 32px;
+  width: 46px;
+}
+
+.link {
+  cursor: pointer;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 8px;
+  display: block;
+  color: #1d2123;
+  font-size: 14px;
+}
+
+.link_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.arrow {
+  cursor: pointer;
+  width: 8px;
+  height: 15px;
+  margin-right: 10px;
+}
+
+.navbar_scroll {
+  max-height: 180px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
+}
+
+.navbar_scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.navbar_scroll::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 0;
+}
+
+.link_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+}
+
+.language_container {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 32px;
+}
+
+.language {
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.2s;
+  color: #1d2123;
+}
+
+.inactive {
+  color: #828282;
+}
+
+.header__nav__btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  display: inline-flex;
+  background: #00b5a4;
+  color: #fff;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 9px;
+  width: 129px;
+  height: 41px;
+}
+
+.register {
+  color: #1d2123;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .dropdown {
+    display: flex;
+  }
+}

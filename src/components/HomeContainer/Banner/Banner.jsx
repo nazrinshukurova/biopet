@@ -77,7 +77,7 @@ const Banner = () => {
       {/* Weekly Discount Carousel */}
       <div className={styles.weeklyDiscount}>
         <div className={styles.header}>
-          <p>Həftənin endirimi</p>
+          <p>{t("slider2.discountOfweek")}</p>
           <div className={styles.countdown}>
             <div className={styles.count_container}>
               {" "}
@@ -85,7 +85,7 @@ const Banner = () => {
                 <div className={styles.time}>04</div>
                 <div className={styles.two_dots}>:</div>
               </div>
-              <div className={styles.timer}>Gün</div>
+              <div className={styles.timer}>{t("slider2.day")}</div>
             </div>
             <div className={styles.count_container}>
               {" "}
@@ -93,7 +93,7 @@ const Banner = () => {
                 <div className={styles.time}>01</div>
                 <div className={styles.two_dots}>:</div>
               </div>
-              <div className={styles.timer}>Saat</div>
+              <div className={styles.timer}>{t("slider2.hour")}</div>
             </div>
 
             <div className={styles.count_container}>
@@ -101,15 +101,14 @@ const Banner = () => {
                 <div className={styles.time}>59</div>
                 <div className={styles.two_dots}>:</div>
               </div>
-              <div className={styles.timer}>Dəqiqə</div>
+              <div className={styles.timer}>{t("slider2.minute")}</div>
             </div>
 
-            <div className={styles.count_container}>
-              {" "}
+            <div className={styles.count_container_last}>
               <div className={styles.count}>
-                <div className={styles.time}>38</div>
+                <span className={styles.time}>38</span>
               </div>
-              <div className={styles.timer}>Saniyə</div>
+                <div className={styles.timer}>{t("slider2.second")}</div>
             </div>
           </div>
         </div>
@@ -122,7 +121,7 @@ const Banner = () => {
                 className={styles.slider_1_image}
                 src={slider1}
                 alt="Elanco Advantage Multi"
-                style={{ height: "172px", width: "170px" }}
+                
               />
             </div>
 

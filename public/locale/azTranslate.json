@@ -20,5 +20,16 @@
     "fourthImage": "/src/assets/images/home/slider1Az/slider-web-az.jpg",
     "fifthImage": "/src/assets/images/home/slider1Az/mehsul-econature-plus-site-az.png",
     "sixthImage": "/src/assets/images/home/slider1Az/703242558-web-banner-blue.jpg"
+  },
+  "slider2": {
+    "discountOfweek": "Həftənin endirimi",
+    "day": "Gün",
+    "hour": "Saat",
+    "minute": "Dəqiqə",
+    "second": "Saniyə"
+  },
+  "buttons": {
+    "login": "Daxil ol",
+    "register": "Qeydiyyat"
   }
 }

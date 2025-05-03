@@ -20,5 +20,16 @@
     "fourthImage": "/src/assets/images/home/slider1Ru/mehsul-econature-plus-site-ru.png",
     "fifthImage": "/src/assets/images/home/slider1Ru/slider-web-ru.jpg",
     "sixthImage": "/src/assets/images/home/slider1Ru/orijen-mehsullar-site-ru.png"
+  },
+  "slider2": {
+    "discountOfweek": "Скидка недели",
+    "day": "День",
+    "hour": "Часы",
+    "minute": "минута",
+    "second": "секунда"
+  },
+  "buttons": {
+    "login": "Войти",
+    "register": "Регистрация"
   }
 }
