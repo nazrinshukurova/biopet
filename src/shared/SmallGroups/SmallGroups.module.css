@@ -1,0 +1,39 @@
+.group_item {
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  flex: 0 0 auto;
+  width: 32%;
+  color: #1d2123;
+  margin-top: 48px;
+  position: relative;
+  flex-direction: row;
+  border-radius: 8px;
+  background: #cce3ed;
+  padding: 18px 20px;
+  height: 64px;
+  border: 0;
+  transition: all 0.3s ease-in;
+}
+
+.group_item:hover {
+  background-color: rgb(166.3043478261, 206.3043478261, 223.6956521739);
+  cursor: pointer;
+}
+
+.group_img {
+  position: absolute;
+  right: 20px;
+  bottom: 0;
+  height: 80px;
+  width: fit-content;
+}
+
+.title {
+  color: #1d2123;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+}

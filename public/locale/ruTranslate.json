@@ -31,5 +31,22 @@
   "buttons": {
     "login": "Войти",
     "register": "Регистрация"
+  },
+  "category": {
+    "category_1": "Товары для собак",
+    "category_2": "Товары для щенков",
+    "category_3": "Товары для кошек",
+    "category_4": "Товары для котят"
+  },
+  "sub_category": {
+    "sub_category_1": "Корма",
+    "sub_category_2": "Лакомства",
+    "sub_category_3": "Аксессуары",
+    "sub_category_4": "Средства по уходу"
+  },
+  "small_groups": {
+    "birds": "Птицы",
+    "rabbits": "Грызуны и кролики",
+    "other_animals": "Другие животные"
   }
 }

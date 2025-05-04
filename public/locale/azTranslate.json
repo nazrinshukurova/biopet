@@ -31,5 +31,22 @@
   "buttons": {
     "login": "Daxil ol",
     "register": "Qeydiyyat"
+  },
+  "category": {
+    "category_1": "İt üçün məhsullar",
+    "category_2": "Bala it üçün",
+    "category_3": "Pişik üçün məhsullar",
+    "category_4": "Bala pişik"
+  },
+  "sub_category": {
+    "sub_category_1": "Yeməklər",
+    "sub_category_2": "Çərəzlər",
+    "sub_category_3": "Aksesuarlar",
+    "sub_category_4": "Qulluq vasitələri"
+  },
+  "small_groups": {
+    "birds": "Quşlar",
+    "rabbits": "Gəmirici və dovşanlar",
+    "other_animals": "Digər heyvanlar"
   }
 }
