@@ -1,0 +1,39 @@
+.categories_item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100px;
+  width: 350px;
+}
+
+.box {
+  background-color: #73dbcf;
+  height: 64px;
+  width: 100%;
+  border-radius: 8px 0 0 0;
+  position: relative;
+
+  clip-path: polygon(0% 0%, 100% 0%, calc(100% - 20px) 100%, 0% 100%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 24px;
+  z-index: 1;
+}
+
+.header {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 400;
+  z-index: 2;
+}
+
+.image1 {
+  position: absolute;
+  right: 0;
+  bottom: 18px;
+  width: 88px;
+  height: 88px;
+  z-index: 3;
+}

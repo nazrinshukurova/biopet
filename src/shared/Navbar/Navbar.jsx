@@ -20,24 +20,12 @@ const Navbar = () => {
     setSelectedLang(myLang);
   };
 
-
   return (
     <>
-      {" "}
       <div className={styles.common_navbar_container}>
         <nav className={styles.nav_container}>
-          <img
-            className={styles.logo}
-       
-            src={logo}
-            alt="logo"
-          />
-          <img
-            className={styles.phone}
-        
-            src={phone}
-            alt="phone"
-          />
+          <img className={styles.logo} src={logo} alt="logo" />
+          <img className={styles.phone} src={phone} alt="phone" />
 
           <div className={styles.search_container}>
             <span>
@@ -71,7 +59,7 @@ const Navbar = () => {
 
             <div
               className={styles.selected_language_2}
-             search
+              onClick={() => changeLang(selectedLang === "az" ? "ru" : "az")}
             >
               <div className={styles.ru_flag_and_name}>
                 <img
@@ -86,7 +74,7 @@ const Navbar = () => {
           </div>
 
           <div className={styles.header}>
-            <FiUser className={styles.user}  />
+            <FiUser className={styles.user} />
             <div className={styles.wish_and_count}>
               <FaRegHeart className={styles.heart} />
               <div className={styles.wishlist_count}>
@@ -94,7 +82,7 @@ const Navbar = () => {
               </div>
             </div>
             <div className={styles.wish_and_count}>
-              <LuShoppingCart className={styles.shopping_cart}/>
+              <LuShoppingCart className={styles.shopping_cart} />
               <div className={styles.wishlist_count}>
                 <span>0</span>
               </div>
