@@ -48,5 +48,23 @@
     "birds": "Quşlar",
     "rabbits": "Gəmirici və dovşanlar",
     "other_animals": "Digər heyvanlar"
+  },
+  "advertising": {
+    "advertise1": "../../src/assets/images/home/categoriesİtem/aze-cover-1-yeni-ev-heyvani-sahibinin-beledcisi-1-0.png",
+    "advertise2": "../../src/assets/images/home/categoriesİtem/rus-cover-1-ev-heyvani-cinsleri-1.png"
+  },
+  "services": {
+    "card_title": "Ödəniş rahatlığı",
+    "card": "Sifarişlərinizi istər çatdırılma zamanı nəğd, istər onlayn, istərsə də hissə-hissə ödəyin",
+    "flash_title": "Sürətli çatdırılma",
+    "flash": "Həftənin 7 günü saat 17:00-dək etdiyiniz sifarişlər eyni gün çatdırılır.",
+    "car_title": "Pulsuz çatdırılma",
+    "car": "9 AZN üzərində olan bütün sifarişlər şirkətimiz tərəfindən Pulsuz çatdırılır.",
+    "message_circle_title": "Dəstək xidməti",
+    "message_circle": "876 qısa nömrəsinə zəng edərək suallarınızı soruşa bilərsiniz."
+  },
+  "brands": {
+    "brands_title": "Mağazamızda 50-dən çox brendin məhsulları mövcuddur",
+    "brands": "Brendler"
   }
 }

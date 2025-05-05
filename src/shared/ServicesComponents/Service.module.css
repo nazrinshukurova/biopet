@@ -1,0 +1,27 @@
+.service_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 8px;
+  height: calc(100% - 24px);
+  text-align: center;
+  padding: 24px;
+  margin-bottom: 24px;
+  font-weight: 400;
+  color: #1d2123;
+}
+
+.title {
+  font-size: 16px;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #1d2123;
+  line-height: 1.5;
+}
+
+.text {
+  font-size: 14px;
+  line-height: 20px;
+}

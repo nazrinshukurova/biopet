@@ -16,21 +16,29 @@ import category8 from "../assets/images/home/categoriesİtem/hp-category-cat-car
 import group1 from "../assets/images/home/categoriesİtem/hp-category-birds-products.png";
 import group2 from "../assets/images/home/categoriesİtem/hp-category-rabbits-and-rodents-products.png";
 import group3 from "../assets/images/home/categoriesİtem/group-9352.png";
+import car from "../assets/svg/car.svg";
+import flash from "../assets/svg/flash.svg";
+import credit_card from "../assets/svg/credit-card.svg";
+import message_circle from "../assets/svg/message-circle.svg";
 
 import { useTranslation } from "react-i18next";
 import SmallGroups from "../shared/SmallGroups/SmallGroups";
+import Advertising from "../components/HomeContainer/Advertising/Advertising";
+import Service from "../shared/ServicesComponents/Service";
+import BrandSlider from "../shared/Brands/Brands";
 
 const Home = () => {
   const { t } = useTranslation();
 
   return (
-    <div>
+    <div style={{ backgroundColor: "#fafafa", minHeight: "100vh" }}>
       <Banner />
       <div
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          padding: "0 26px",
         }}
       >
         <CategoriesItem
@@ -61,12 +69,37 @@ const Home = () => {
           alignItems: "center",
           gap: "32px",
           margin: "0 32px",
+          padding: "0 26px",
         }}
       >
         <SmallGroups title={t("small_groups.birds")} src={group1} />
         <SmallGroups title={t("small_groups.rabbits")} src={group2} />
         <SmallGroups title={t("small_groups.other_animals")} src={group3} />
       </div>
+      <Advertising />
+      <div className="service_container">
+        <Service
+          src={credit_card}
+          text={t("services.card")}
+          title={t("services.card_title")}
+        />
+        <Service
+          src={flash}
+          text={t("services.flash")}
+          title={t("services.flash_title")}
+        />
+        <Service
+          src={car}
+          text={t("services.car")}
+          title={t("services.car_title")}
+        />
+        <Service
+          src={message_circle}
+          text={t("services.message_circle")}
+          title={t("services.message_circle_title")}
+        />
+      </div>
+      <BrandSlider />
     </div>
   );
 };

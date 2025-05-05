@@ -22,6 +22,7 @@
   align-items: center;
   height: 100px;
   width: 100%;
+  
 }
 
 .box {
@@ -95,7 +96,7 @@
   position: absolute;
   right: 0;
   bottom: 18px;
-width: fit-content;
+  width: fit-content;
   height: 88px;
   z-index: 3;
 }

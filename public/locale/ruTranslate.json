@@ -48,5 +48,23 @@
     "birds": "Птицы",
     "rabbits": "Грызуны и кролики",
     "other_animals": "Другие животные"
+  },
+  "advertising": {
+    "advertise1": "../../src/assets/images/home/categoriesİtem/rus-cover-1-yeni-ev-heyvani-sahibinin-beledcisi.png",
+    "advertise2": "../../src/assets/images/home/categoriesİtem/rus-cover-1-ev-heyvani-cinsleri-1-1.png"
+  },
+  "services": {
+    "card_title": "Удобство оплаты",
+    "card": "Оплачивайте заказы наличными при получении, онлайн или в рассрочку.",
+    "flash_title": "Быстрая доставка",
+    "flash": "Заказы, оформленные до 17:00, будут доставлены в тот же день.",
+    "car_title": "Бесплатная доставка",
+    "car": "Все заказы на сумму более 9 AZN доставляются бесплатно.",
+    "message_circle_title": "Служба поддержки",
+    "message_circle": "Задать свои вопросы вы можете позвонив на короткий номер 876."
+  },
+  "brands": {
+    "brands_title": "Наш магазин, в котором представлены более 50 торговых марок, удивит вас широким ассортиментом товаров.",
+    "brands": "Бренды"
   }
 }
