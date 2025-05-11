@@ -1,0 +1,144 @@
+.left_filter {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  flex: 1;
+  width: 20.13%;
+  overflow-y: auto; 
+  height: 100%; 
+}
+
+.filter_list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #f7f9fc;
+}
+
+.category {
+  color: #1d2123;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  transition: all 0.3s ease-in;
+}
+
+.category:hover {
+  color: #00b5a4;
+  cursor: pointer;
+}
+
+.category_title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  margin-bottom: 16px;
+  color: #1d2123;
+}
+
+.filter__search {
+  background-color: #f6f6f8;
+  border: 1px solid #f7f9fc;
+  border-radius: 4px;
+  width: 100%;
+  padding: 6px 12px;
+  font-size: 14px;
+  margin-bottom: 12px;
+  outline: none;
+  max-width: 175px;
+}
+
+.brands_list,
+.aromas_list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.filter__list {
+  max-height: 158px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #111 #f7f9fc;
+}
+
+.filter__list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.filter__list::-webkit-scrollbar-thumb {
+  background-color: #111;
+  transition: background-color 0.3s;
+}
+
+
+
+.filter__list::-webkit-scrollbar-thumb:hover {
+  background-color: #005f89;
+}
+
+.filter__list::-webkit-scrollbar-track {
+  background-color: #f7f9fc;
+}
+
+.form_group label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.hidden_checkbox {
+  display: none;
+}
+
+.check_box {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  margin-right: 12px;
+  transition: 0.3s ease-in-out;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.check_box::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 4px;
+  background-image: url("../assets/svg/checked.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 65%;
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+}
+
+.hidden_checkbox:checked + .check_box {
+  border: 1px solid #36f;
+}
+
+.hidden_checkbox:checked + .check_box::after {
+  opacity: 1;
+  color: #36f;
+}
+
+.label_text {
+  font-size: 14px;
+  color: #111;
+}
+

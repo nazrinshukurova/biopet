@@ -26,6 +26,7 @@ import SmallGroups from "../shared/SmallGroups/SmallGroups";
 import Advertising from "../components/HomeContainer/Advertising/Advertising";
 import Service from "../shared/ServicesComponents/Service";
 import BrandSlider from "../shared/Brands/Brands";
+import Footer from "../shared/Footer/Footer";
 
 const Home = () => {
   const { t } = useTranslation();
@@ -33,7 +34,7 @@ const Home = () => {
   return (
     <div style={{ backgroundColor: "#fafafa", minHeight: "100vh" }}>
       <Banner />
-      <div
+      {/* <div
         style={{
           display: "flex",
           justifyContent: "space-between",
@@ -61,8 +62,8 @@ const Home = () => {
           sub_category_3={category7}
           sub_category_4={category8}
         />
-      </div>
-      <div
+      </div> */}
+      {/* <div
         style={{
           display: "flex",
           justifyContent: "space-between",
@@ -75,7 +76,7 @@ const Home = () => {
         <SmallGroups title={t("small_groups.birds")} src={group1} />
         <SmallGroups title={t("small_groups.rabbits")} src={group2} />
         <SmallGroups title={t("small_groups.other_animals")} src={group3} />
-      </div>
+      </div> */}
       <Advertising />
       <div className="service_container">
         <Service
@@ -100,6 +101,7 @@ const Home = () => {
         />
       </div>
       <BrandSlider />
+      <Footer />
     </div>
   );
 };

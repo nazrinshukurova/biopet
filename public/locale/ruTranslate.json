@@ -5,7 +5,7 @@
   },
   "navbarLinks": {
     "Pişiklər": "Кошки",
-    "İtlər": "Собаки",
+    "Məhsullar": "Продукция",
     "Digər heyvanlar": "Другие питомцы",
     "Brendlər": "Бренды",
     "Bloqlar": "Статьи",
@@ -66,5 +66,131 @@
   "brands": {
     "brands_title": "Наш магазин, в котором представлены более 50 торговых марок, удивит вас широким ассортиментом товаров.",
     "brands": "Бренды"
+  },
+  "biopetStore": "Магазин Biopet",
+  "about": "О компании",
+  "delivery": "Доставка и возврат",
+  "privacy": "Политика конфиденциальности",
+  "agreement": "Пользовательское соглашение",
+  "feedback": "Жалобы и предложения",
+
+  "popularCategories": "Популярные категории",
+  "catFood": "Корм для кошек",
+  "catLitter": "Кошачий наполнитель",
+  "sterilizedCatFood": "Корм для стерилизованных кошек",
+  "deworming": "Дегельминтизация для кошек",
+  "carriers": "Переноски для кошек",
+  "dogFood": "Корм для собак",
+  "dogToys": "Игрушки для собак",
+  "dogVitamins": "Витамины для собак",
+  "catBreeds": "Породы кошек",
+  "dogBreeds": "Породы собак",
+
+  "popularBrands": "Популярные бренды",
+
+  "help": "Помощь",
+  "faq": "Часто задаваемые вопросы",
+  "pricing": "Правила ценообразования",
+  "branches": "Филиалы",
+  "relatedCategories": {
+    "title": "Связанные категории",
+    "Quru_yem": "Сухой корм",
+    "Nəm_yem": "Влажный корм",
+    "Bala_itlər_üçün": "Для щенков",
+    "Hamilə_və_südverən_itlər_üçün": "Для беременных и кормящих собак",
+    "Müalicəvi_yemlər": "Лечебные корма"
+  },
+  "brend": "Бренд",
+  "sterilized": "cтерилизована",
+  "search_placeholders_0": "Искать Вид животного...",
+  "search_placeholders_1": "Искать Бренд...",
+  "search_placeholders_2": "Искать Вкус...",
+  "search_placeholders_3": "Искать Возраст собаки...",
+  "search_placeholders_4": "Искать Стерилизована...",
+  "search_placeholders_5": "Искать Профилактика заболеваний...",
+  "search_placeholders_6": "Искать Ветеринарная диета",
+  "search_placeholders_7": "Искать Возраст кошки",
+  "search_placeholders_8": "Искать Вид корма...",
+
+  "aroma": {
+    "title": "Вкус",
+    "toyuq": "Курица",
+    "qızıl_balıq": "Золотая рыба",
+    "quzu_əti": "Ягнятина",
+    "hind_quşu": "Индейка"
+  },
+  "sizeOfDog": {
+    "title": "Размер собаки",
+    "size1": "Маленький (до 10 кг)",
+    "size2": "Средний (10-25 кг)",
+    "size3": "Большой (26-44 кг)",
+    "size4": "Гигантский (45+ кг)"
+  },
+  "bəli": "Да",
+  "xeyr": "Нет",
+  "sicknesses": {
+    "title": "Профилактика заболеваний",
+    "disease_prevention": "Профилактика заболеваний",
+    "search_disease_prevention": "Поиск профилактики заболеваний",
+    "urinary_system": "Мочевыделительная система",
+    "overweight": "Избыточный вес",
+    "hairballs_removal": "Удаление комков шерсти",
+    "hair_skin_health": "Здоровье шерсти и кожи",
+    "dental_calculus": "Зубной камень и налёт"
+  },
+  "ingredients": {
+    "ev_qusu": "Курица",
+    "mal_eti": "Говядина",
+    "qizilbaliq": "Лосось",
+    "diger": "Другое",
+    "dovsan_eti": "Кролик",
+    "quzu_eti": "Баранина",
+    "hind_qusu": "Индейка",
+    "ordek": "Утка",
+    "sardina": "Сардина",
+    "xek": "Хек",
+    "qus_eti": "Птица",
+    "baliq": "Рыба",
+    "maral_eti": "Оленина",
+    "duyu": "Рис",
+    "yumurta": "Яйцо",
+    "siyenek": "Сельдь",
+    "kambala": "Камбала",
+    "bizon": "Бизон"
+  },
+  "vetDiets": {
+    "title": "Ветеринарная диета",
+    "hezm_saglamligi": "Здоровье пищеварительной системы",
+    "deri_ve_tuk_saglamligi": "Здоровье кожи и шерсти",
+    "artiq_cekinin_profilaktikasi": "Профилактика лишнего веса",
+    "sidik_dasi_xesteliyi": "Мочекаменная болезнь",
+    "berpa_dovru": "Период восстановления",
+    "hipoallergik": "Гипоаллергенный",
+    "boyrek_xesteliyi": "Заболевание почек",
+    "qaraciyer_catismamazligi": "Печёночная недостаточность",
+    "qebizliye_qarsi": "Против запора"
+  },
+  "ageGroups": {
+    "title": "Возраст кошки",
+    "yeni_dogulmus": "Отъем от матери (0–4 мес.)",
+    "anadan_ayrilmis": "Щенок (4–12 мес.)",
+    "yetkin": "Взрослый (1–7 лет)",
+    "yasli": "Пожилой (7+ лет)"
+  },
+  "foodTypes": {
+    "title": "Вид корма",
+    "quru": "Сухой",
+    "nem_pauc": "Влажный (пауч)",
+    "yas": "Консервы"
+  },
+  "animalTypes": {
+    "title": "Вид животного",
+    "it": "Собака",
+    "pisik": "Кошка",
+    "gemirici": "Грызуны",
+    "dovsan": "Кролик",
+    "qus": "Птица",
+    "dagsican": "Горная свинья",
+    "deniz_donuzu": "Морская свинка"
   }
 }

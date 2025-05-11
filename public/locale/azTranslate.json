@@ -5,7 +5,7 @@
   },
   "navbarLinks": {
     "Pişiklər": "Pişiklər",
-    "İtlər": "İtlər",
+    "Məhsullar": "Məhsullar",
     "Digər heyvanlar": "Digər heyvanlar",
     "Brendlər": "Brendlər",
     "Bloqlar": "Bloqlar",
@@ -66,5 +66,131 @@
   "brands": {
     "brands_title": "Mağazamızda 50-dən çox brendin məhsulları mövcuddur",
     "brands": "Brendler"
+  },
+  "biopetStore": "Biopet mağazası",
+  "about": "Şirkət haqqında",
+  "delivery": "Çatdırılma və geri qaytarma",
+  "privacy": "Məxfilik Siyasəti",
+  "agreement": "İstifadəçi Müqaviləsi",
+  "feedback": "Şikayətlər və təkliflər",
+
+  "popularCategories": "Populyar kateqoriyalar",
+  "catFood": "Pişik yeməyi",
+  "catLitter": "Pişik zibil",
+  "sterilizedCatFood": "Sterilizasiya edilmiş pişiklər üçün yem",
+  "deworming": "Pişiklər üçün deqelmintizasiya",
+  "carriers": "Pişik daşıyıcıları",
+  "dogFood": "İt yeməyi",
+  "dogToys": "İtlər üçün oyuncaqlar",
+  "dogVitamins": "İtlər üçün vitaminlər",
+  "catBreeds": "Pişik cinsləri",
+  "dogBreeds": "İt cinsləri",
+
+  "popularBrands": "Populyar brendlər",
+
+  "help": "Kömək edin",
+  "faq": "Tez-tez verilən suallar",
+  "pricing": "Məhsulun qiymətləndirilməsi qaydaları",
+  "branches": "Filiallar",
+  "relatedCategories": {
+    "title": "Əlaqəli kateqoriyalar",
+    "Quru_yem": "Quru yem",
+    "Nəm_yem": "Nəm yem",
+    "Bala_itlər_üçün": "Bala itlər üçün",
+    "Hamilə_və_südverən_itlər_üçün": "Hamilə və südverən itlər üçün",
+    "Müalicəvi_yemlər": "Müalicəvi yemlər"
+  },
+  "brend": "Brend",
+  "search_placeholders_0": "Heyvanın növü axtar...",
+  "search_placeholders_1": "Brend axtar...",
+  "search_placeholders_2": "Dad axtar...",
+  "search_placeholders_3": "İtin yaşını axtar...",
+  "search_placeholders_4": "Qısırlaşdırılıb axtar...",
+  "search_placeholders_5": "Xəstəliklərin profilaktikası axtar...",
+  "search_placeholders_6": "Baytarlıq pəhrizi axtar...",
+  "search_placeholders_7": "Pişiyin yaşı axtar...",
+  "search_placeholders_8": "Yemin növü axtar...",
+
+  "aroma": {
+    "title": "Dad",
+    "toyuq": "Toyuq",
+    "qızıl_balıq": "Qızılbalıq",
+    "quzu_əti": "Quzu əti",
+    "hind_quşu": "Hind quşu"
+  },
+  "sizeOfDog": {
+    "title": "Itin ölçüsü",
+    "size1": "Kiçik (10 kg-dək)",
+    "size2": "Orta (11 kg-25 kg)",
+    "size3": "Böyük (26-44 kq)",
+    "size4": "Nəhəng (45+ kq)"
+  },
+  "sterilized": "Qısırlaşdırılıb",
+  "bəli": "Bəli",
+  "xeyr": "Xeyr",
+  "sicknesses": {
+    "title": "Xəstəliklərin profilaktikası",
+    "disease_prevention": "Xəstəliklərin profilaktikası",
+    "search_disease_prevention": "Xəstəliklərin profilaktikası axtar",
+    "urinary_system": "Sidik ifrazat sistemi",
+    "overweight": "Artıq çəki",
+    "hairballs_removal": "Tük topaqlarının çıxarılması",
+    "hair_skin_health": "Tük və dərinin sağlamlığı",
+    "dental_calculus": "Diş daşı və diş ərpi"
+  },
+  "ingredients": {
+    "ev_qusu": "Toyuq",
+    "mal_eti": "Mal əti",
+    "qizilbaliq": "Qızılbalıq",
+    "diger": "Digər",
+    "dovsan_eti": "Dovşan əti",
+    "quzu_eti": "Quzu əti",
+    "hind_qusu": "Hind quşu",
+    "ordek": "Ördək",
+    "sardina": "Sardina",
+    "xek": "Xek",
+    "qus_eti": "Quş əti",
+    "baliq": "Balıq",
+    "maral_eti": "Maral əti",
+    "duyu": "Düyü",
+    "yumurta": "Yumurta",
+    "siyenek": "Siyənək",
+    "kambala": "Kambala",
+    "bizon": "Bizon"
+  },
+  "vetDiets": {
+    "title": "Baytarlıq pəhrizi",
+    "hezm_saglamligi": "Həzm sisteminin sağlamlığı",
+    "deri_ve_tuk_saglamligi": "Dəri və tük sağlamlığı",
+    "artiq_cekinin_profilaktikasi": "Artıq çəkinin profilaktikası",
+    "sidik_dasi_xesteliyi": "Sidik daşı xəstəliyi",
+    "berpa_dovru": "Bərpa dövrü",
+    "hipoallergik": "Hipoallergik",
+    "boyrek_xesteliyi": "Böyrək xəstəliyi",
+    "qaraciyer_catismamazligi": "Qaraciyər çatışmazlığı",
+    "qebizliye_qarsi": "Qəbizliyə qarşı"
+  },
+  "ageGroups": {
+    "title": "Pişiyin yaşı",
+    "yeni_dogulmus": "Anadan ayrılma (0-4 ay)",
+    "anadan_ayrilmis": "Bala (4-12 ay)",
+    "yetkin": "Yetkin (1-7 yaş)",
+    "yasli": "Yaşlı (7 yaş+)"
+  },
+  "foodTypes": {
+    "title": "Yemin növü",
+    "quru": "Quru",
+    "nem_pauc": "Nəm (pauç)",
+    "yas": "Konserv"
+  },
+  "animalTypes": {
+    "title": "Heyvanın növü",
+    "it": "İt",
+    "pisik": "Pişik",
+    "gemirici": "Gəmirici",
+    "dovsan": "Dovşan",
+    "qus": "Quş",
+    "dagsican": "Dağsiçan",
+    "deniz_donuzu": "Dəniz donuzu"
   }
 }

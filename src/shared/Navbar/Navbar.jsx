@@ -10,6 +10,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
 import { IoIosArrowDown } from "react-icons/io";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const { t, i18n } = useTranslation();
@@ -93,7 +94,14 @@ const Navbar = () => {
         <div className={styles.navbar_down_part}>
           <ul>
             <li>{t("navbarLinks.Pişiklər")}</li>
-            <li>{t("navbarLinks.İtlər")}</li>
+            <li>
+              <Link
+                to={`/${i18n.language}/products`}
+                style={{ textDecoration: "none", color: "#1d2123" }}
+              >
+                {t("navbarLinks.Məhsullar")}
+              </Link>
+            </li>
             <li>{t("navbarLinks.Digər heyvanlar")}</li>
             <li>{t("navbarLinks.Brendlər")}</li>
             <li>{t("navbarLinks.Bloqlar")}</li>

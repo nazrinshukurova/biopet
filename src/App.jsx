@@ -5,6 +5,7 @@ import Navbar from "./shared/Navbar/Navbar";
 import i18next from "i18next";
 import Dropdown from "./shared/Dropdown/Dropdown";
 import NavbarMobile from "./shared/NavbarMobile/NavbarMobile";
+import Products from "./pages/Products";
 
 const App = () => {
   const [savedLang, setSavedLang] = useState(null);
@@ -32,7 +33,8 @@ const App = () => {
       <Dropdown />
       <NavbarMobile />
       <Routes>
-        <Route path={`/${savedLang}`} element={<Home />} />
+        <Route path="/:lang" element={<Home />} />
+        <Route path="/:lang/products" element={<Products />} />
         <Route path="*" element={<Navigate to={`/${savedLang}`} replace />} />
       </Routes>
     </BrowserRouter>
