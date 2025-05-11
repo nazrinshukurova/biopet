@@ -1,5 +1,5 @@
 import React from "react";
-import FilterCategory from "../FilterCategories/FilterCategory";
+import FilterCategory from "../components/FilterCategories/FilterCategory";
 
 const Products = () => {
   return (
