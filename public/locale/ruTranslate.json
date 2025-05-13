@@ -160,37 +160,37 @@
   },
   "vetDiets": {
     "title": "Ветеринарная диета",
-    "hezm_saglamligi": "Здоровье пищеварительной системы",
-    "deri_ve_tuk_saglamligi": "Здоровье кожи и шерсти",
-    "artiq_cekinin_profilaktikasi": "Профилактика лишнего веса",
-    "sidik_dasi_xesteliyi": "Мочекаменная болезнь",
-    "berpa_dovru": "Период восстановления",
-    "hipoallergik": "Гипоаллергенный",
-    "boyrek_xesteliyi": "Заболевание почек",
-    "qaraciyer_catismamazligi": "Печёночная недостаточность",
-    "qebizliye_qarsi": "Против запора"
+    "Həzm sisteminin sağlamlığı": "Здоровье пищеварительной системы",
+    "Dəri və tük sağlamlığı": "Здоровье кожи и шерсти",
+    "Artıq çəkinin profilaktikası": "Профилактика лишнего веса",
+    "Sidik daşı xəstəliyi": "Мочекаменная болезнь",
+    "Bərpa dövrü": "Период восстановления",
+    "Hipoallergik": "Гипоаллергенный",
+    "Böyrək xəstəliyi": "Заболевание почек",
+    "Qaraciyər çatışmazlığı": "Печёночная недостаточность",
+    "Qəbizliyə qarşı": "Против запора"
   },
   "ageGroups": {
     "title": "Возраст кошки",
-    "yeni_dogulmus": "Отъем от матери (0–4 мес.)",
-    "anadan_ayrilmis": "Щенок (4–12 мес.)",
-    "yetkin": "Взрослый (1–7 лет)",
+    "Anadan ayrılma (0-4 ay)": "Отъем от матери (0–4 мес.)",
+    "Bala (4-12 ay)": "Щенок (4–12 мес.)",
+    "Yetkin (1-7 yaş)": "Взрослый (1–7 лет)",
     "yasli": "Пожилой (7+ лет)"
   },
   "foodTypes": {
     "title": "Вид корма",
-    "quru": "Сухой",
-    "nem_pauc": "Влажный (пауч)",
-    "yas": "Консервы"
+    "Quru": "Сухой",
+    "Nəm": "Влажный (пауч)",
+    "Konserv": "Консервы"
   },
   "animalTypes": {
     "title": "Вид животного",
-    "it": "Собака",
-    "pisik": "Кошка",
-    "gemirici": "Грызуны",
-    "dovsan": "Кролик",
-    "qus": "Птица",
-    "dagsican": "Горная свинья",
-    "deniz_donuzu": "Морская свинка"
+    "İt": "Собака",
+    "Pişik": "Кошка",
+    "Gəmirici": "Грызуны",
+    "Dovşan": "Кролик",
+    "Quş": "Птица",
+    "Dağsiçan": "Горная свинья",
+    "Dəniz donuzu": "Морская свинка"
   }
 }

@@ -160,37 +160,37 @@
   },
   "vetDiets": {
     "title": "Baytarlıq pəhrizi",
-    "hezm_saglamligi": "Həzm sisteminin sağlamlığı",
-    "deri_ve_tuk_saglamligi": "Dəri və tük sağlamlığı",
-    "artiq_cekinin_profilaktikasi": "Artıq çəkinin profilaktikası",
-    "sidik_dasi_xesteliyi": "Sidik daşı xəstəliyi",
-    "berpa_dovru": "Bərpa dövrü",
-    "hipoallergik": "Hipoallergik",
-    "boyrek_xesteliyi": "Böyrək xəstəliyi",
-    "qaraciyer_catismamazligi": "Qaraciyər çatışmazlığı",
-    "qebizliye_qarsi": "Qəbizliyə qarşı"
+    "Həzm sisteminin sağlamlığı": "Həzm sisteminin sağlamlığı",
+    "Dəri və tük sağlamlığı": "Dəri və tük sağlamlığı",
+    "Artıq çəkinin profilaktikası": "Artıq çəkinin profilaktikası",
+    "Sidik daşı xəstəliyi": "Sidik daşı xəstəliyi",
+    "Bərpa dövrü": "Bərpa dövrü",
+    "Hipoallergik": "Hipoallergik",
+    "Böyrək xəstəliyi": "Böyrək xəstəliyi",
+    "Qaraciyər çatışmazlığı": "Qaraciyər çatışmazlığı",
+    "Qəbizliyə qarşı": "Qəbizliyə qarşı"
   },
   "ageGroups": {
     "title": "Pişiyin yaşı",
-    "yeni_dogulmus": "Anadan ayrılma (0-4 ay)",
-    "anadan_ayrilmis": "Bala (4-12 ay)",
-    "yetkin": "Yetkin (1-7 yaş)",
+    "Anadan ayrılma (0-4 ay)": "Anadan ayrılma (0-4 ay)",
+    "Bala (4-12 ay)": "Bala (4-12 ay)",
+    "Yetkin (1-7 yaş)": "Yetkin (1-7 yaş)",
     "yasli": "Yaşlı (7 yaş+)"
   },
   "foodTypes": {
     "title": "Yemin növü",
-    "quru": "Quru",
-    "nem_pauc": "Nəm (pauç)",
-    "yas": "Konserv"
+    "Quru": "Quru",
+    "Nəm": "Nəm (pauç)",
+    "Konserv": "Konserv"
   },
   "animalTypes": {
     "title": "Heyvanın növü",
-    "it": "İt",
-    "pisik": "Pişik",
-    "gemirici": "Gəmirici",
-    "dovsan": "Dovşan",
-    "qus": "Quş",
-    "dagsican": "Dağsiçan",
-    "deniz_donuzu": "Dəniz donuzu"
+    "İt": "İt",
+    "Pişik": "Pişik",
+    "Gəmirici": "Gəmirici",
+    "Dovşan": "Dovşan",
+    "Quş": "Quş",
+    "Dağsiçan": "Dağsiçan",
+    "Dəniz donuzu": "Dəniz donuzu"
   }
 }

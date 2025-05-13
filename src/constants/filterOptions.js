@@ -1,4 +1,3 @@
-
 export const brands = [
   { value: "royal-canin", label: "Royal Canin" },
   { value: "acana", label: "Acana" },
@@ -48,32 +47,32 @@ export const aromaKeys = [
 ];
 
 export const vetDietKeys = [
-  "hezm_saglamligi",
-  "deri_ve_tuk_saglamligi",
-  "artiq_cekinin_profilaktikasi",
-  "sidik_dasi_xesteliyi",
-  "berpa_dovru",
-  "hipoallergik",
-  "boyrek_xesteliyi",
-  "qaraciyer_catismamazligi",
-  "qebizliye_qarsi",
+  "Həzm sisteminin sağlamlığı",
+  "Dəri və tük sağlamlığı",
+  "Artıq çəkinin profilaktikası",
+  "Sidik daşı xəstəliyi",
+  "Bərpa dövrü",
+  "Hipoallergik",
+  "Böyrək xəstəliyi",
+  "Qaraciyər çatışmazlığı",
+  "Qəbizliyə qarşı",
 ];
 
 export const ageGroupKeys = [
-  "yeni_dogulmus",
-  "anadan_ayrilmis",
-  "yetkin",
+  "Anadan ayrılma (0-4 ay)",
+  "Bala (4-12 ay)",
+  "Yetkin (1-7 yaş)",
   "yasli",
 ];
 
-export const foodTypeKeys = ["quru", "nem_pauc", "yas"];
+export const foodTypeKeys = ["Quru", "Nəm", "Konserv"];
 
 export const animalTypeKeys = [
-  "it",
-  "pisik",
-  "gemirici",
-  "dovsan",
-  "qus",
-  "dagsican",
-  "deniz_donuzu",
+  "İt",
+  "Pişik",
+  "Gəmirici",
+  "Dovşan",
+  "Quş",
+  "Dağsiçan",
+  "Dəniz donuzu",
 ];

@@ -1,3 +1,8 @@
+.common_container{
+  display: flex;
+}
+
+
 .left_filter {
   background-color: #fff;
   border-radius: 8px;
