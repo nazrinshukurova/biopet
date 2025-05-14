@@ -7,23 +7,24 @@ import {
   sizeKeys,
   sterilizedKeys,
   sicknessKeys,
-  aromaKeys,
+  ingredientsKeys,
   vetDietKeys,
   ageGroupKeys,
   foodTypeKeys,
   animalTypeKeys,
 } from "../../constants/filterOptions";
 import FilterSection from "../SelectedProducts/FilterSection";
+import { EmptyStarSvg, FullFilledStarSvg } from "../../assets/svg";
+import { AddToCart } from "../../shared/assets/Buttons/Buttons";
 
 const FilterCategory = () => {
   const { t, i18n } = useTranslation();
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedSicknesses, setSelectedSicknesses] = useState([]);
-  const [selectedAromas, setSelectedAromas] = useState([]);
+  const [selectedIngredients, setSelectedIngredients] = useState([]);
   const [selectedSterilized, setSelectedSterilized] = useState([]);
   const [selectedAgeGroups, setSelectedAgeGroups] = useState([]);
   const [selectedFoodTypes, setSelectedFoodTypes] = useState([]);
@@ -32,7 +33,7 @@ const FilterCategory = () => {
 
   const [searchValues, setSearchValues] = useState({
     brand: "",
-    aroma: "",
+    ingredients: "",
     size: "",
     ill: "",
     age: "",
@@ -45,7 +46,7 @@ const FilterCategory = () => {
   const handleResetSearch = () => {
     setSearchValues({
       brand: "",
-      aroma: "",
+      ingredients: "",
       size: "",
       ill: "",
       age: "",
@@ -67,7 +68,7 @@ const FilterCategory = () => {
 
   const sizes = generateOptions(sizeKeys, "sizeOfDog");
   const sicknesses = generateOptions(sicknessKeys, "sicknesses");
-  const aromas = generateOptions(aromaKeys, "ingredients");
+  const ingredients = generateOptions(ingredientsKeys, "ingredients");
   const vetDiets = generateOptions(vetDietKeys, "vetDiets");
   const ageGroups = generateOptions(ageGroupKeys, "ageGroups");
   const foodTypes = generateOptions(foodTypeKeys, "foodTypes");
@@ -122,7 +123,18 @@ const FilterCategory = () => {
 
     if (selectedBrands.length > 0) {
       filtered = filtered.filter((item) =>
-        selectedBrands.includes(getValue(item, "Brand"))
+        selectedBrands.includes(item.BrandAz?.toString(), "BrandAz")
+      );
+      console.log(filtered);
+    }
+
+    // console.log(
+    //   filtered.filter((el) => el.BrandAz === selectedBrands.toString())
+    // );
+
+    if (selectedIngredients.length > 0) {
+      filtered = filtered.filter((item) =>
+        selectedIngredients.includes(getValue(item, "Ingredients"))
       );
     }
 
@@ -140,15 +152,9 @@ const FilterCategory = () => {
       );
     }
 
-    if (selectedAromas.length > 0) {
-      filtered = filtered.filter((item) =>
-        selectedAromas.includes(getValue(item, "Aroma"))
-      );
-    }
-
     if (selectedSterilized.length > 0) {
       filtered = filtered.filter((item) =>
-        selectedSterilized.includes(item.isSterilized?.toString())
+        selectedSterilized.includes(item.İsSterilised?.toString())
       );
     }
 
@@ -183,7 +189,7 @@ const FilterCategory = () => {
     selectedBrands,
     selectedSizes,
     selectedSicknesses,
-    selectedAromas,
+    selectedIngredients,
     selectedSterilized,
     selectedAgeGroups,
     selectedFoodTypes,
@@ -231,12 +237,12 @@ const FilterCategory = () => {
           setSelectedBrands
         )}
         {renderFilter(
-          "aroma.title",
-          "aroma",
-          aromas,
+          "ingredients.title",
+          "ingredients",
+          ingredients,
           "search_placeholders_2",
-          selectedAromas,
-          setSelectedAromas
+          selectedIngredients,
+          setSelectedIngredients
         )}
         {renderFilter(
           "sizeOfDog.title",
@@ -290,7 +296,28 @@ const FilterCategory = () => {
       <div className={styles.filtered_result}>
         {filteredData.map((item) => (
           <div key={item.id} className={styles.filtered_item}>
-            {i18n.language === "az" ? item.NameAz : item.NameRu}
+            <div className={styles.item_image}>
+              {" "}
+              <img height="172px" width="172px" src={item.İmage}></img>
+            </div>
+            <div className={styles.item_desc}>
+              {" "}
+              <div className={styles.price}>{item.Price} AZN</div>
+              <div className={styles.item_title}>
+                {" "}
+                {i18n.language === "az" ? item.NameAz : item.NameRu}
+              </div>
+              <div className={styles.rating}>
+                {item?.Rating === 0 ? <EmptyStarSvg /> : <FullFilledStarSvg />}
+                {item.Rating}
+              </div>
+              <div className={styles.item_package}>
+                {i18n.language === "az"
+                  ? `${item.Package}q`
+                  : `${item.Package}г`}
+              </div>
+            </div>
+            <AddToCart/>
           </div>
         ))}
       </div>

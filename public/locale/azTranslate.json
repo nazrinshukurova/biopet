@@ -111,13 +111,6 @@
   "search_placeholders_7": "Pişiyin yaşı axtar...",
   "search_placeholders_8": "Yemin növü axtar...",
 
-  "aroma": {
-    "title": "Dad",
-    "toyuq": "Toyuq",
-    "qızıl_balıq": "Qızılbalıq",
-    "quzu_əti": "Quzu əti",
-    "hind_quşu": "Hind quşu"
-  },
   "sizeOfDog": {
     "title": "Itin ölçüsü",
     "size1": "Kiçik (10 kg-dək)",
@@ -139,24 +132,25 @@
     "dental_calculus": "Diş daşı və diş ərpi"
   },
   "ingredients": {
-    "ev_qusu": "Toyuq",
-    "mal_eti": "Mal əti",
-    "qizilbaliq": "Qızılbalıq",
-    "diger": "Digər",
-    "dovsan_eti": "Dovşan əti",
-    "quzu_eti": "Quzu əti",
-    "hind_qusu": "Hind quşu",
-    "ordek": "Ördək",
-    "sardina": "Sardina",
-    "xek": "Xek",
-    "qus_eti": "Quş əti",
-    "baliq": "Balıq",
-    "maral_eti": "Maral əti",
-    "duyu": "Düyü",
-    "yumurta": "Yumurta",
-    "siyenek": "Siyənək",
-    "kambala": "Kambala",
-    "bizon": "Bizon"
+    "title": "Dad",
+    "Toyuq": "Toyuq",
+    "Mal əti": "Mal əti",
+    "Qızılbalıq": "Qızılbalıq",
+    "Digər": "Digər",
+    "Dovşan əti": "Dovşan əti",
+    "Quzu əti": "Quzu əti",
+    "Hind quşu": "Hind quşu",
+    "Ördək": "Ördək",
+    "Sardina": "Sardina",
+    "Xek": "Xek",
+    "Quş əti": "Quş əti",
+    "Balıq": "Balıq",
+    "Maral əti": "Maral əti",
+    "Düyü": "Düyü",
+    "Yumurta": "Yumurta",
+    "Siyənək": "Siyənək",
+    "Kambala": "Kambala",
+    "Bizon": "Bizon"
   },
   "vetDiets": {
     "title": "Baytarlıq pəhrizi",

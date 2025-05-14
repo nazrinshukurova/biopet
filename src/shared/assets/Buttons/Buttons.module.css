@@ -1,0 +1,25 @@
+.addToCart {
+  display: flex;
+  border: 0;
+  border-radius: 8px;
+  background-color: #00bda7;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: center;
+  padding: 14px;
+  width: 100%;
+  justify-content: center;
+  position: relative;
+  align-items: center;
+  white-space: nowrap;
+  max-height: 47px;
+}
+
+.addToCart_desc {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}

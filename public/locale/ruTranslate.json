@@ -112,13 +112,6 @@
   "search_placeholders_7": "Искать Возраст кошки",
   "search_placeholders_8": "Искать Вид корма...",
 
-  "aroma": {
-    "title": "Вкус",
-    "toyuq": "Курица",
-    "qızıl_balıq": "Золотая рыба",
-    "quzu_əti": "Ягнятина",
-    "hind_quşu": "Индейка"
-  },
   "sizeOfDog": {
     "title": "Размер собаки",
     "size1": "Маленький (до 10 кг)",
@@ -139,24 +132,25 @@
     "dental_calculus": "Зубной камень и налёт"
   },
   "ingredients": {
-    "ev_qusu": "Курица",
-    "mal_eti": "Говядина",
-    "qizilbaliq": "Лосось",
-    "diger": "Другое",
-    "dovsan_eti": "Кролик",
-    "quzu_eti": "Баранина",
-    "hind_qusu": "Индейка",
-    "ordek": "Утка",
-    "sardina": "Сардина",
-    "xek": "Хек",
-    "qus_eti": "Птица",
-    "baliq": "Рыба",
-    "maral_eti": "Оленина",
-    "duyu": "Рис",
-    "yumurta": "Яйцо",
-    "siyenek": "Сельдь",
-    "kambala": "Камбала",
-    "bizon": "Бизон"
+    "title": "Вкус",
+    "Toyuq": "Курица",
+    "Mal əti": "Говядина",
+    "Qızılbalıq": "Лосось",
+    "Digər": "Другое",
+    "Dovşan əti": "Кролик",
+    "Quzu əti": "Баранина",
+    "Hind quşu": "Индейка",
+    "Ördək": "Утка",
+    "Sardina": "Сардина",
+    "Xek": "Хек",
+    "Quş əti": "Птица",
+    "Balıq": "Рыба",
+    "Maral əti": "Оленина",
+    "Düyü": "Рис",
+    "Yumurta": "Яйцо",
+    "Siyənək": "Сельдь",
+    "Kambala": "Камбала",
+    "Bizon": "Бизон"
   },
   "vetDiets": {
     "title": "Ветеринарная диета",
