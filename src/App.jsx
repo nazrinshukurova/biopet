@@ -10,7 +10,6 @@ import Products from "./pages/Products";
 const App = () => {
   const [savedLang, setSavedLang] = useState(null);
 
-
   useEffect(() => {
     const lang = localStorage.getItem("i18nextLng") || "az";
     setSavedLang(lang);
@@ -24,7 +23,7 @@ const App = () => {
     return () => {
       i18next.off("languageChanged", handleLangChange);
     }; //&clean up function
-  }, []);
+  }, [savedLang]);
 
   if (!savedLang) return null;
 

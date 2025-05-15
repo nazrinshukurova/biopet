@@ -110,6 +110,7 @@
   "search_placeholders_6": "Baytarlıq pəhrizi axtar...",
   "search_placeholders_7": "Pişiyin yaşı axtar...",
   "search_placeholders_8": "Yemin növü axtar...",
+  "search_placeholders_9": "Stoku axtar...",
 
   "sizeOfDog": {
     "title": "Itin ölçüsü",
@@ -121,6 +122,7 @@
   "sterilized": "Qısırlaşdırılıb",
   "bəli": "Bəli",
   "xeyr": "Xeyr",
+  "isAvailable": "Mövcuddur",
   "sicknesses": {
     "title": "Xəstəliklərin profilaktikası",
     "disease_prevention": "Xəstəliklərin profilaktikası",
@@ -176,6 +178,14 @@
     "Quru": "Quru",
     "Nəm": "Nəm (pauç)",
     "Konserv": "Konserv"
+  },
+  "productTypes": {
+    "title":"Kategoriya",
+    "Yemlər": "Yemlər",
+    "Qumlar": "Qumlar",
+    "Çərəzlər": "Çərəzlər",
+    "Aksesuarlar": "Aksesuarlar",
+    "Aptek": "Aptek"
   },
   "animalTypes": {
     "title": "Heyvanın növü",

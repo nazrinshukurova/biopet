@@ -5,8 +5,7 @@ const Products = () => {
   return (
     <div
       style={{
-        backgroundColor: "#f8f8f8",
-        minHeight: "100vh",
+        height: "auto",
         padding: "25px",
       }}
     >

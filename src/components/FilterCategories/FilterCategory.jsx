@@ -12,6 +12,7 @@ import {
   ageGroupKeys,
   foodTypeKeys,
   animalTypeKeys,
+  productTypeKeys,
 } from "../../constants/filterOptions";
 import FilterSection from "../SelectedProducts/FilterSection";
 import { EmptyStarSvg, FullFilledStarSvg } from "../../assets/svg";
@@ -26,10 +27,12 @@ const FilterCategory = () => {
   const [selectedSicknesses, setSelectedSicknesses] = useState([]);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
   const [selectedSterilized, setSelectedSterilized] = useState([]);
+  const [selectedIsAvailable, setSelectedIsAvailable] = useState([]);
   const [selectedAgeGroups, setSelectedAgeGroups] = useState([]);
   const [selectedFoodTypes, setSelectedFoodTypes] = useState([]);
   const [selectedAnimalTypes, setSelectedAnimalTypes] = useState([]);
   const [selectedVetDiets, setSelectedVetDiets] = useState([]);
+  const [selectedProductType, setSelectedProductType] = useState([]);
 
   const [searchValues, setSearchValues] = useState({
     brand: "",
@@ -40,7 +43,9 @@ const FilterCategory = () => {
     diets: "",
     foodType: "",
     sterilized: "",
+    isAvailable: "",
     animal: "",
+    productType: "",
   });
 
   const handleResetSearch = () => {
@@ -53,7 +58,9 @@ const FilterCategory = () => {
       diets: "",
       foodType: "",
       sterilized: "",
+      isAvailable: "",
       animal: "",
+      productType: "",
     });
   };
 
@@ -66,6 +73,8 @@ const FilterCategory = () => {
       label: t(`${translationKeyPrefix}.${key}`),
     }));
 
+  console.log(ingredientsKeys.map((el) => el));
+
   const sizes = generateOptions(sizeKeys, "sizeOfDog");
   const sicknesses = generateOptions(sicknessKeys, "sicknesses");
   const ingredients = generateOptions(ingredientsKeys, "ingredients");
@@ -73,8 +82,18 @@ const FilterCategory = () => {
   const ageGroups = generateOptions(ageGroupKeys, "ageGroups");
   const foodTypes = generateOptions(foodTypeKeys, "foodTypes");
   const animalTypes = generateOptions(animalTypeKeys, "animalTypes");
+  const productTypes = generateOptions(productTypeKeys, "productTypes");
+
+  console.log(animalTypes)
+    console.log(animalTypes.map((el)=>el.value.value))
+
 
   const sterilized = sterilizedKeys.map((key) => ({
+    value: key,
+    label: t(key === "true" ? "bəli" : "xeyr"),
+  }));
+
+  const available = sterilizedKeys.map((key) => ({
     value: key,
     label: t(key === "true" ? "bəli" : "xeyr"),
   }));
@@ -108,8 +127,18 @@ const FilterCategory = () => {
       if (error) {
         console.error("Error fetching products:", error);
       } else {
-        setData(data);
-        setFilteredData(data);
+        // string sahələri trim etmək
+        const trimmedData = data.map((item) => {
+          const trimmedItem = {};
+          for (const key in item) {
+            const value = item[key];
+            trimmedItem[key] = typeof value === "string" ? value.trim() : value;
+          }
+          return trimmedItem;
+        });
+
+        setData(trimmedData);
+        setFilteredData(trimmedData);
       }
     };
     fetchProducts();
@@ -123,20 +152,27 @@ const FilterCategory = () => {
 
     if (selectedBrands.length > 0) {
       filtered = filtered.filter((item) =>
-        selectedBrands.includes(item.BrandAz?.toString(), "BrandAz")
+        selectedBrands.includes(item?.BrandAz, "BrandAz")
       );
       console.log(filtered);
     }
 
-    // console.log(
-    //   filtered.filter((el) => el.BrandAz === selectedBrands.toString())
-    // );
+    console.log(filtered);
+    console.log(selectedBrands);
+
+    console.log(filtered.filter((el) => el.BrandAz === "Royal Canin"));
 
     if (selectedIngredients.length > 0) {
       filtered = filtered.filter((item) =>
-        selectedIngredients.includes(getValue(item, "Ingredients"))
+        selectedIngredients.includes(getValue(item, "İngredients"))
       );
     }
+
+    // console.log(selectedIngredients);
+    // console.log(filtered);
+    // console.log(filtered);
+
+    // console.log(filtered.filter((item) => item.İngredientsAz === "Mal əti"));
 
     if (selectedSizes.length > 0) {
       filtered = filtered.filter((item) =>
@@ -158,6 +194,14 @@ const FilterCategory = () => {
       );
     }
 
+    //!Stoku yoxlayacam
+
+    if (selectedIsAvailable.length > 0) {
+      filtered = filtered.filter((item) =>
+        selectedIsAvailable.includes(item.InStock?.toString())
+      );
+    }
+
     if (selectedAgeGroups.length > 0) {
       filtered = filtered.filter((item) =>
         selectedAgeGroups.includes(getValue(item, "Age"))
@@ -170,10 +214,22 @@ const FilterCategory = () => {
       );
     }
 
-    if (selectedAnimalTypes.length > 0) {
+    if (selectedProductType.length > 0) {
       filtered = filtered.filter((item) =>
-        selectedAnimalTypes.includes(getValue(item, "AnimalType"))
+        selectedProductType.includes(getValue(item, "ProductType"))
       );
+    }
+
+    // if (selectedAnimalTypes.length > 0) {
+    //   filtered = filtered.filter((item) =>
+    //     selectedAnimalTypes.includes(getValue(item, "AnimalType"))
+    //   );
+    // }
+
+    if (selectedAnimalTypes.length > 0) {
+      const keys = selectedAnimalTypes.map((el) => el.key);
+
+      filtered = filtered.filter((item) => keys.includes(item.AnimalKey));
     }
 
     if (selectedVetDiets.length > 0) {
@@ -195,9 +251,13 @@ const FilterCategory = () => {
     selectedFoodTypes,
     selectedAnimalTypes,
     selectedVetDiets,
+    selectedIsAvailable,
+    selectedProductType,
     data,
     i18n.language, // re-run when language changes
   ]);
+
+  console.log(animalTypeKeys.map((el) => el.value));
 
   return (
     <div className={styles.common_container}>
@@ -243,6 +303,14 @@ const FilterCategory = () => {
           "search_placeholders_2",
           selectedIngredients,
           setSelectedIngredients
+        )}
+        {renderFilter(
+          "isAvailable",
+          "isAvailable",
+          available,
+          "search_placeholders_9",
+          selectedIsAvailable,
+          setSelectedIsAvailable
         )}
         {renderFilter(
           "sizeOfDog.title",
@@ -292,6 +360,14 @@ const FilterCategory = () => {
           selectedFoodTypes,
           setSelectedFoodTypes
         )}
+        {renderFilter(
+          "productTypes.title",
+          "productType",
+          productTypes,
+          "search_placeholders_8",
+          selectedProductType,
+          setSelectedProductType
+        )}
       </div>{" "}
       <div className={styles.filtered_result}>
         {filteredData.map((item) => (
@@ -311,13 +387,15 @@ const FilterCategory = () => {
                 {item?.Rating === 0 ? <EmptyStarSvg /> : <FullFilledStarSvg />}
                 {item.Rating}
               </div>
-              <div className={styles.item_package}>
-                {i18n.language === "az"
-                  ? `${item.Package}q`
-                  : `${item.Package}г`}
-              </div>
+              {item.Package && (
+                <div className={styles.item_package}>
+                  {i18n.language === "az"
+                    ? `${item.Package}q`
+                    : `${item.Package}г`}
+                </div>
+              )}
             </div>
-            <AddToCart/>
+            <AddToCart />
           </div>
         ))}
       </div>

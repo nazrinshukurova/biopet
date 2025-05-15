@@ -101,7 +101,7 @@
     "Müalicəvi_yemlər": "Лечебные корма"
   },
   "brend": "Бренд",
-  "sterilized": "cтерилизована",
+  "sterilized": "Cтерилизована",
   "search_placeholders_0": "Искать Вид животного...",
   "search_placeholders_1": "Искать Бренд...",
   "search_placeholders_2": "Искать Вкус...",
@@ -121,6 +121,7 @@
   },
   "bəli": "Да",
   "xeyr": "Нет",
+  "isAvailable": "Доступный",
   "sicknesses": {
     "title": "Профилактика заболеваний",
     "disease_prevention": "Профилактика заболеваний",
@@ -132,7 +133,6 @@
     "dental_calculus": "Зубной камень и налёт"
   },
   "ingredients": {
-    "title": "Вкус",
     "Toyuq": "Курица",
     "Mal əti": "Говядина",
     "Qızılbalıq": "Лосось",
@@ -176,6 +176,14 @@
     "Quru": "Сухой",
     "Nəm": "Влажный (пауч)",
     "Konserv": "Консервы"
+  },
+  "productTypes": {
+    "title": "Категория",
+    "Yemlər": "Корма",
+    "Qumlar": "Наполнители",
+    "Çərəzlər": "Лакомства",
+    "Aksesuarlar": "Аксессуары",
+    "Aptek": "Аптека"
   },
   "animalTypes": {
     "title": "Вид животного",

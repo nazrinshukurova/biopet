@@ -1,14 +1,14 @@
 export const brands = [
-  { value: "royal-canin", label: "Royal Canin" },
-  { value: "acana", label: "Acana" },
-  { value: "monge", label: "Monge" },
-  { value: "pro-plan", label: "Pro Plan" },
-  { value: "gemon", label: "Gemon" },
-  { value: "topline", label: "TopLine" },
-  { value: "darling", label: "Darling" },
-  { value: "natures-protection", label: "Nature's Protection" },
-  { value: "grandorf", label: "Grandorf" },
-  { value: "econature-plus", label: "Econature Plus" },
+  { value: "Royal Canin", label: "Royal Canin" },
+  { value: "Acana", label: "Acana" },
+  { value: "Monge", label: "Monge" },
+  { value: "Pro Plan", label: "Pro Plan" },
+  { value: "Gemon", label: "Gemon" },
+  { value: "TopLine", label: "TopLine" },
+  { value: "Darling", label: "Darling" },
+  { value: "Nature's Protection", label: "Nature's Protection" },
+  { value: "Grandorf", label: "Grandorf" },
+  { value: "Econature Plus", label: "Econature Plus" },
 ];
 
 export const sizeKeys = ["size1", "size2", "size3", "size4"];
@@ -29,7 +29,6 @@ export const ingredientsKeys = [
   "Toyuq",
   "Mal əti",
   "Qızılbalıq",
-  "Digər",
   "Dovşan əti",
   "Quzu əti",
   "Hind quşu",
@@ -44,6 +43,7 @@ export const ingredientsKeys = [
   "Siyənək",
   "Kambala",
   "Bizon",
+  "Digər",
 ];
 
 export const vetDietKeys = [
@@ -67,12 +67,31 @@ export const ageGroupKeys = [
 
 export const foodTypeKeys = ["Quru", "Nəm", "Konserv"];
 
+// export const animalTypeKeys = [
+//   "İt",
+//   "Pişik",
+//   "Gəmirici",
+//   "Dovşan",
+//   "Quş",
+//   "Dağsiçan",
+//   "Dəniz donuzu",
+// ];
+
 export const animalTypeKeys = [
-  "İt",
-  "Pişik",
-  "Gəmirici",
-  "Dovşan",
-  "Quş",
-  "Dağsiçan",
-  "Dəniz donuzu",
+  { value: "İt", key: "İt" },
+  { value: "Pişik", key: "Pişik" },
+  { value: "Gəmirici", key: "Gəmirici" },
+  { value: "Dovşan", key: "Dovşan" },
+  { value: "Quş", key: "Quş" },
+  { value: "Dağsiçan", key: "Dağsiçan" },
+  { value: "Dəniz donuzu", key: "Dəniz donuzu" },
+]
+
+
+export const productTypeKeys = [
+  "Yemlər",
+  "Qumlar",
+  "Çərəzlər",
+  "Aksesuarlar",
+  "Aptek",
 ];

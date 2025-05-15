@@ -2,11 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
 }
 
 body {
   font-family: "Euclid Circular A", sans-serif;
+  background-color: "#f8f8f8";
 }
 
 .react-multi-carousel-dot-list .react-multi-carousel-dot button {
@@ -48,5 +48,3 @@ body {
   margin: 25px;
   gap: 32px;
 }
-
-

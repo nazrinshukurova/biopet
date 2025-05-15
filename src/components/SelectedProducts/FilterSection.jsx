@@ -22,6 +22,13 @@ const FilterSection = ({
     }
   };
 
+  console.log(
+    "ITEM VALUES:",
+    items.map((item) => item.value)
+  );
+
+  
+
   return (
     <div className={styles.brands_list}>
       <p className={styles.title}>{t(title)}</p>
@@ -48,7 +55,7 @@ const FilterSection = ({
                   className={styles.hidden_checkbox}
                 />
                 <span className={styles.check_box}></span>
-                <span className={styles.label_text}>{item.label}</span>
+                <span className={styles.label_text}>{item.value.value}</span>
               </label>
             </div>
           </li>
