@@ -48,3 +48,23 @@ body {
   margin: 25px;
   gap: 32px;
 }
+
+.css-r64h58-MuiSlider-rail,
+.css-xvk2i-MuiSlider-track {
+  max-height: 2px;
+  border: 1px solid currentColor;
+  color: #00bda7;
+}
+
+.css-1xcmt9q-MuiSlider-thumb {
+  background-color: white !important;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+

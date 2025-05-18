@@ -197,5 +197,8 @@
   "Dəniz donuzu": "Dəniz donuzu",
   "animalTypes": {
     "title": "Heyvanın növü"
-  }
+  },
+  "price": "Qiymət",
+  "ratingForFilterTitle": "Yüksək reytinqli məhsullar",
+  "ratingForFilterText": "Reytinqi 4 və 5 ulduz olan məhsullar"
 }

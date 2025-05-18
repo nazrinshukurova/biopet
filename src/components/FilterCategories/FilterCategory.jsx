@@ -14,8 +14,10 @@ import {
   productTypeKeys,
 } from "../../constants/filterOptions";
 import FilterSection from "../SelectedProducts/FilterSection";
-import { EmptyStarSvg, FullFilledStarSvg } from "../../assets/svg";
+import { EmptyStarSvg, FullFilledStarSvg, Manat } from "../../assets/Svg";
 import { AddToCart } from "../../shared/assets/Buttons/Buttons";
+import RangeSlider from "../../assets/sliders/RangeSlider";
+import IOSSwitch from "../../assets/sliders/Toggle";
 
 const FilterCategory = () => {
   const { t, i18n } = useTranslation();
@@ -31,6 +33,8 @@ const FilterCategory = () => {
   const [selectedAnimalTypes, setSelectedAnimalTypes] = useState([]);
   const [selectedVetDiets, setSelectedVetDiets] = useState([]);
   const [selectedProductType, setSelectedProductType] = useState([]);
+
+  const maxPrice = Math.max(...data.map((el) => el.Price)) + 50;
 
   const [searchValues, setSearchValues] = useState({
     brand: "",
@@ -86,6 +90,28 @@ const FilterCategory = () => {
 
   console.log(animalTypes);
   console.log(animalTypes.map((el) => el.value.value));
+
+  const [priceRange, setPriceRange] = useState([0, 0]);
+
+  useEffect(() => {
+    if (maxPrice > 0) {
+      setPriceRange([0, maxPrice]);
+    }
+  }, [maxPrice]);
+
+  const handleInputChange = (index, value) => {
+    const updatedRange = [...priceRange];
+
+    if (value === "") {
+      updatedRange[index] = value; // boş buraxmağa icazə ver
+    } else {
+      updatedRange[index] = Number(value);
+    }
+
+    setPriceRange(updatedRange);
+  };
+
+  console.log(priceRange, "Updated range");
 
   const renderFilter = (
     titleKey,
@@ -220,12 +246,6 @@ const FilterCategory = () => {
       console.log(selectedProductType);
     }
 
-    // if (selectedAnimalTypes.length > 0) {
-    //   filtered = filtered.filter((item) =>
-    //     selectedAnimalTypes.includes(getValue(item, "AnimalType"))
-    //   );
-    // }
-
     if (selectedAnimalTypes.length > 0) {
       const keys = selectedAnimalTypes.map((el) => el.key);
 
@@ -245,8 +265,51 @@ const FilterCategory = () => {
     selectedIsAvailable,
     selectedProductType,
     data,
-    i18n.language, // re-run when language changes
+    i18n.language,
   ]);
+
+  //&CHECK FOR PRICE RANGE
+
+  let finalPrice;
+
+  const calculateFinalPrice = (product) => {
+    if (product.isDiscount && product.Price) {
+      return product.Price - (product.Price / 100) * product.PercentOfDiscount;
+    }
+    return product.Price;
+  };
+
+  const determinePricesWithRange = () => {
+    return data.filter((item) => {
+      const finalPrice = calculateFinalPrice(item);
+      return finalPrice >= priceRange[0] && finalPrice <= priceRange[1];
+    });
+  };
+
+  determinePricesWithRange();
+
+  //&FILTER FOR RATING 4 AND 5
+
+  const [showFiltered, setShowFiltered] = useState(false);
+
+  const handleToggle = (event) => {
+    setShowFiltered(event.target.checked);
+  };
+
+  const filteredProducts = showFiltered
+    ? data.filter((p) => p.Rating >= 4 && p.Rating <= 5)
+    : data;
+  console.log(filteredProducts, "RATING");
+
+  useEffect(() => {
+    const filtered = determinePricesWithRange();
+    setFilteredData(filtered);
+  }, [priceRange, data]);
+
+    useEffect(() => {
+    // const filtered = handleToggle();
+    setFilteredData(filteredProducts);
+  }, [showFiltered, data]);
 
   return (
     <div className={styles.common_container}>
@@ -350,7 +413,56 @@ const FilterCategory = () => {
           selectedProductType,
           setSelectedProductType
         )}
-      </div>{" "}
+        {/* Filtering for price */}
+
+        <div className={styles.filter_list}>
+          <p className={styles.price}>Qiymət</p>
+          <div className={styles.input_prices}>
+            <div className={styles.min_price}>
+              {" "}
+              <input
+                className={styles.price_range_input}
+                type="number"
+                value={priceRange[0]}
+                onChange={(e) => handleInputChange(0, e.target.value)}
+              ></input>
+              <span className={styles.manat_svg}>
+                <Manat />
+              </span>
+            </div>
+            <div className={styles.max_price}>
+              {" "}
+              <input
+                className={styles.price_range_input}
+                type="number"
+                value={priceRange[1]}
+                onChange={(e) => handleInputChange(1, e.target.value)}
+              ></input>
+              <span className={styles.manat_svg}>
+                <Manat />
+              </span>
+            </div>
+          </div>
+          <RangeSlider
+            min={0}
+            max={maxPrice}
+            value={priceRange}
+            onChange={setPriceRange}
+          />
+        </div>
+        {/* Filtering for RATING */}
+        <div className={styles.rating_desc_box}>
+          <div className={styles.rating_left}>
+            <p className={styles.price}>{t("ratingForFilterTitle")}</p>
+            <span className={styles.rating_text}>
+              {t("ratingForFilterText")}
+            </span>
+          </div>
+          <div className={styles.rating_right}>
+            <IOSSwitch onChange={handleToggle} />
+          </div>
+        </div>
+      </div>
       <div className={styles.filtered_result}>
         {filteredData.map((item) => (
           <div key={item.id} className={styles.filtered_item}>

@@ -71,10 +71,11 @@
   flex-direction: column;
   gap: 8px;
   list-style: none;
-  padding: 0;
-  margin: 0;
   scrollbar-width: thin;
   scrollbar-color: #111 #f7f9fc;
+  border-bottom: 1px solid #f7f9fc;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
 }
 
 .filter__list::-webkit-scrollbar {
@@ -233,4 +234,60 @@
   position: relative;
   width: 50px;
   height: 30px;
+}
+
+.price {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #1d2123;
+}
+
+.input_prices {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+.min_price,
+.max_price {
+  position: relative;
+}
+
+.manat_svg {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+
+.price_range_input {
+  border: 0 !important;
+  background-color: #f7f7f7;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #000;
+  border-radius: 8px;
+  padding: 5px;
+  width: 75px;
+  height: 40px;
+  -webkit-appearance: none;
+  outline: none;
+}
+
+.rating_text {
+  color: #828282;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.rating_desc_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #f7f9fc;
 }
