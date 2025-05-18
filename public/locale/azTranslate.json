@@ -107,7 +107,7 @@
   "search_placeholders_3": "İtin yaşını axtar...",
   "search_placeholders_4": "Qısırlaşdırılıb axtar...",
   "search_placeholders_5": "Xəstəliklərin profilaktikası axtar...",
-  "search_placeholders_6": "Baytarlıq pəhrizi axtar...",
+  "search_placeholders_6": "Aptek göstərişi axtar...",
   "search_placeholders_7": "Pişiyin yaşı axtar...",
   "search_placeholders_8": "Yemin növü axtar...",
   "search_placeholders_9": "Stoku axtar...",
@@ -154,10 +154,11 @@
     "Kambala": "Kambala",
     "Bizon": "Bizon"
   },
-  "vetDiets": {
-    "title": "Baytarlıq pəhrizi",
+  "pharmacyAppointment": {
+    "title": "Aptek göstərişi",
     "Həzm sisteminin sağlamlığı": "Həzm sisteminin sağlamlığı",
     "Dəri və tük sağlamlığı": "Dəri və tük sağlamlığı",
+    "Bit və birə əleyhinə": "Bit və birə əleyhinə",
     "Artıq çəkinin profilaktikası": "Artıq çəkinin profilaktikası",
     "Sidik daşı xəstəliyi": "Sidik daşı xəstəliyi",
     "Bərpa dövrü": "Bərpa dövrü",
@@ -180,21 +181,21 @@
     "Konserv": "Konserv"
   },
   "productTypes": {
-    "title":"Kategoriya",
+    "title": "Kategoriya",
     "Yemlər": "Yemlər",
     "Qumlar": "Qumlar",
     "Çərəzlər": "Çərəzlər",
     "Aksesuarlar": "Aksesuarlar",
     "Aptek": "Aptek"
   },
+  "İt": "İt",
+  "Pişik": "Pişik",
+  "Gəmirici": "Gəmirici",
+  "Dovşan": "Dovşan",
+  "Quş": "Quş",
+  "Dağsiçan": "Dağsiçan",
+  "Dəniz donuzu": "Dəniz donuzu",
   "animalTypes": {
-    "title": "Heyvanın növü",
-    "İt": "İt",
-    "Pişik": "Pişik",
-    "Gəmirici": "Gəmirici",
-    "Dovşan": "Dovşan",
-    "Quş": "Quş",
-    "Dağsiçan": "Dağsiçan",
-    "Dəniz donuzu": "Dəniz donuzu"
+    "title": "Heyvanın növü"
   }
 }

@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import styles from "../FilterCategories/FilterCategory.module.css";
+import i18n from "i18next";
 
 const FilterSection = ({
   title,
@@ -22,12 +23,15 @@ const FilterSection = ({
     }
   };
 
-  console.log(
-    "ITEM VALUES:",
-    items.map((item) => item.value)
-  );
+  // console.log(
+  //   "ITEM VALUES:",
+  //   items.map((item) => item.value)
+  // );
 
-  
+  // console.log(
+  //   "ITEM VALUES:",
+  //   items.map((item) => item.value.value)
+  // );
 
   return (
     <div className={styles.brands_list}>
@@ -43,8 +47,8 @@ const FilterSection = ({
         }}
       />
       <ul className={styles.filter__list}>
-        {items.filter(matches).map((item) => (
-          <li key={item.value}>
+        {items.filter(matches).map((item, idx) => (
+          <li key={idx}>
             <div className={styles.form_group}>
               <label>
                 <input
@@ -55,7 +59,12 @@ const FilterSection = ({
                   className={styles.hidden_checkbox}
                 />
                 <span className={styles.check_box}></span>
-                <span className={styles.label_text}>{item.value.value}</span>
+                <span className={styles.label_text}>
+                  {" "}
+                  {i18n.language === "az"
+                    ? item.value.valueAz
+                    : item.value.valueRu}
+                </span>
               </label>
             </div>
           </li>

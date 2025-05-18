@@ -108,8 +108,8 @@
   "search_placeholders_3": "Искать Возраст собаки...",
   "search_placeholders_4": "Искать Стерилизована...",
   "search_placeholders_5": "Искать Профилактика заболеваний...",
-  "search_placeholders_6": "Искать Ветеринарная диета",
-  "search_placeholders_7": "Искать Возраст кошки",
+  "search_placeholders_6": "Искать aптека гость...",
+  "search_placeholders_7": "Искать Возраст кошки...",
   "search_placeholders_8": "Искать Вид корма...",
 
   "sizeOfDog": {
@@ -133,6 +133,7 @@
     "dental_calculus": "Зубной камень и налёт"
   },
   "ingredients": {
+    "title": "Bкус",
     "Toyuq": "Курица",
     "Mal əti": "Говядина",
     "Qızılbalıq": "Лосось",
@@ -152,10 +153,11 @@
     "Kambala": "Камбала",
     "Bizon": "Бизон"
   },
-  "vetDiets": {
-    "title": "Ветеринарная диета",
+  "pharmacyAppointment": {
+    "title": "Аптека гость",
     "Həzm sisteminin sağlamlığı": "Здоровье пищеварительной системы",
     "Dəri və tük sağlamlığı": "Здоровье кожи и шерсти",
+    "Bit və birə əleyhinə": "Против блох, вшей и клещей",
     "Artıq çəkinin profilaktikası": "Профилактика лишнего веса",
     "Sidik daşı xəstəliyi": "Мочекаменная болезнь",
     "Bərpa dövrü": "Период восстановления",

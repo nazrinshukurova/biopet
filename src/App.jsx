@@ -12,6 +12,7 @@ const App = () => {
 
   useEffect(() => {
     const lang = localStorage.getItem("i18nextLng") || "az";
+    console.log(lang, "lang");
     setSavedLang(lang);
 
     const handleLangChange = (lng) => {
