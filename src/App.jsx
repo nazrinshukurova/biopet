@@ -10,9 +10,10 @@ import Products from "./pages/Products";
 const App = () => {
   const [savedLang, setSavedLang] = useState(null);
 
+  
+
   useEffect(() => {
     const lang = localStorage.getItem("i18nextLng") || "az";
-    console.log(lang, "lang");
     setSavedLang(lang);
 
     const handleLangChange = (lng) => {
@@ -28,15 +29,18 @@ const App = () => {
 
   if (!savedLang) return null;
 
+  console.log(savedLang);
+
+  const language = savedLang;
+
   return (
     <BrowserRouter>
-      <Navbar />
+      <Navbar lang={language} />
       <Dropdown />
       <NavbarMobile />
       <Routes>
-        <Route path="/:lang" element={<Home />} />
-        <Route path="/:lang/products" element={<Products />} />
-        <Route path="*" element={<Navigate to={`/${savedLang}`} replace />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Products />} />
       </Routes>
     </BrowserRouter>
   );

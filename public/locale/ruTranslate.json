@@ -199,5 +199,11 @@
   },
   "price": "Цена",
   "ratingForFilterTitle": "Высоко оцененные продукты",
-  "ratingForFilterText": "Продукты с рейтингом 4 и 5 звезд"
+  "ratingForFilterText": "Продукты с рейтингом 4 и 5 звезд",
+  "select_values": {
+    "priceWithIncrease": "По цене (возрастание)",
+    "priceWithDecrease": "По цене (убывание)",
+    "AtoZ": "А-Я",
+    "ZtoA": "Я-А"
+  }
 }

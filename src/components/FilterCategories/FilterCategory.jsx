@@ -18,6 +18,7 @@ import { EmptyStarSvg, FullFilledStarSvg, Manat } from "../../assets/Svg";
 import { AddToCart } from "../../shared/assets/Buttons/Buttons";
 import RangeSlider from "../../assets/sliders/RangeSlider";
 import IOSSwitch from "../../assets/sliders/Toggle";
+import { useNavigate } from "react-router-dom";
 
 const FilterCategory = () => {
   const { t, i18n } = useTranslation();
@@ -160,47 +161,66 @@ const FilterCategory = () => {
   }, []);
 
   useEffect(() => {
-    // const suffix = i18n.language === "az" ? "Az" : "Ru";
-    // const getValue = (item, key) => item[`${key}${suffix}`];
-
     let filtered = data;
 
     if (selectedBrands.length > 0) {
       const keys = selectedBrands.map((el) => el.key);
+      if (keys.length > 0) {
+        const baseUrl = window.location.origin + window.location.pathname;
+        const queryString = `?brand=${keys.join("&")}`;
+
+        window.history.replaceState({}, "", baseUrl + queryString);
+      }
 
       filtered = filtered.filter((item) => keys.includes(item.BrandKey));
       console.log(filtered);
       console.log(keys);
+    } else {
+      const baseUrl = window.location.origin + window.location.pathname;
+      window.history.replaceState({}, "", baseUrl);
     }
-
-    console.log(filtered.filter((el) => el.BrandAz === "Royal Canin"));
 
     if (selectedIngredients.length > 0) {
       const keys = selectedIngredients.map((el) => el.key);
+
+      if (keys.length > 0) {
+        const baseUrl = window.location.origin + window.location.pathname;
+        const queryString = `?ingedient=${keys.join("&")}`;
+
+        window.history.replaceState({}, "", baseUrl + queryString);
+      }
       filtered = filtered.filter((item) => keys.includes(item.IngredientsKey));
-    }
+    } 
 
     if (selectedVetDiets.length > 0) {
       const keys = selectedVetDiets.map((el) => el.key);
+
+      if (keys.length > 0) {
+        const baseUrl = window.location.origin + window.location.pathname;
+        const queryString = `?animal=${keys.join("&")}`;
+
+        window.history.replaceState({}, "", baseUrl + queryString);
+      }
       filtered = filtered.filter((item) =>
         keys.includes(item.PharmacyAppointmentKey)
       );
-    }
-
-    if (selectedAnimalTypes.length > 0) {
-      const keys = selectedAnimalTypes.map((el) => el.key);
-
-      filtered = filtered.filter((item) => keys.includes(item.AnimalKey));
-    }
+    } 
 
     if (selectedSizes.length > 0) {
       const keys = selectedSizes.map((el) => el.key);
+
+      if (keys.length > 0) {
+        const baseUrl = window.location.origin + window.location.pathname;
+        const queryString = `?size=${keys.join("&")}`;
+
+        window.history.replaceState({}, "", baseUrl + queryString);
+      }
 
       filtered = filtered.filter((item) => keys.includes(item.DogSizeKey));
 
       console.log(filtered);
       console.log(keys);
-    }
+    } 
 
     // console.log(selectedIngredients);
     // console.log(filtered);
@@ -211,6 +231,13 @@ const FilterCategory = () => {
     if (selectedSterilized.length > 0) {
       const keys = selectedSterilized.map((el) => el.key);
 
+      if (keys.length > 0) {
+        const baseUrl = window.location.origin + window.location.pathname;
+        const queryString = `?isSterilized=${keys.join("&")}`;
+
+        window.history.replaceState({}, "", baseUrl + queryString);
+      }
+
       filtered = filtered.filter((item) => keys.includes(item.İsSterilised));
     }
 
@@ -219,26 +246,61 @@ const FilterCategory = () => {
     if (selectedIsAvailable.length > 0) {
       const keys = selectedIsAvailable.map((el) => el.key);
 
+      if (keys.length > 0) {
+        const baseUrl = window.location.origin + window.location.pathname;
+        const queryString = `?IsAvailable=${keys.join("&")}`;
+
+        window.history.replaceState({}, "", baseUrl + queryString);
+      }
+
       filtered = filtered.filter((item) => keys.includes(item.InStock));
 
       console.log(filtered);
       console.log(keys);
-    }
+    } 
 
     if (selectedAgeGroups.length > 0) {
       const keys = selectedAgeGroups.map((el) => el.key);
+
+      if (keys.length > 0) {
+        const baseUrl = window.location.origin + window.location.pathname;
+        const queryString = `?ageGroup=${keys.join("&")}`;
+
+        window.history.replaceState({}, "", baseUrl + queryString);
+      } else {
+        const baseUrl = window.location.origin + window.location.pathname;
+        window.history.replaceState({}, "", baseUrl);
+      }
 
       filtered = filtered.filter((item) => keys.includes(item.AgeKey));
     }
 
     if (selectedFoodTypes.length > 0) {
       const keys = selectedFoodTypes.map((el) => el.key);
+      if (keys.length > 0) {
+        const baseUrl = window.location.origin + window.location.pathname;
+        const queryString = `?foodType=${keys.join("&")}`;
+
+        window.history.replaceState({}, "", baseUrl + queryString);
+      } else {
+        const baseUrl = window.location.origin + window.location.pathname;
+        window.history.replaceState({}, "", baseUrl);
+      }
 
       filtered = filtered.filter((item) => keys.includes(item.FoodTypeKey));
     }
 
     if (selectedProductType.length > 0) {
       const keys = selectedProductType.map((el) => el.key);
+      if (keys.length > 0) {
+        const baseUrl = window.location.origin + window.location.pathname;
+        const queryString = `?productType=${keys.join("&")}`;
+
+        window.history.replaceState({}, "", baseUrl + queryString);
+      } else {
+        const baseUrl = window.location.origin + window.location.pathname;
+        window.history.replaceState({}, "", baseUrl);
+      }
 
       filtered = filtered.filter((item) => keys.includes(item.ProductTypeKey));
 
@@ -248,11 +310,35 @@ const FilterCategory = () => {
 
     if (selectedAnimalTypes.length > 0) {
       const keys = selectedAnimalTypes.map((el) => el.key);
+      if (keys.length > 0) {
+        const baseUrl = window.location.origin + window.location.pathname;
+        const queryString = `?animal=${keys.join("&")}`;
+
+        window.history.replaceState({}, "", baseUrl + queryString);
+      } else {
+        const baseUrl = window.location.origin + window.location.pathname;
+        window.history.replaceState({}, "", baseUrl);
+      }
 
       filtered = filtered.filter((item) => keys.includes(item.AnimalKey));
     }
 
     setFilteredData(filtered);
+
+    // const keys = selectedAnimalTypes.map((el) => el.key);
+
+    // const params = new URLSearchParams(window.location.search);
+
+    // if (keys.length > 0) {
+
+    //   const baseUrl = window.location.origin + window.location.pathname;
+    //   const queryString = `?animal=${keys.join("&")}`;
+
+    //   window.history.replaceState({}, "", baseUrl + queryString);
+    // } else {
+    //   const baseUrl = window.location.origin + window.location.pathname;
+    //   window.history.replaceState({}, "", baseUrl);
+    // }
   }, [
     selectedBrands,
     selectedSizes,
@@ -268,9 +354,9 @@ const FilterCategory = () => {
     i18n.language,
   ]);
 
-  //&CHECK FOR PRICE RANGE
+  //  selectedBrands
 
-  let finalPrice;
+  //&CHECK FOR PRICE RANGE
 
   const calculateFinalPrice = (product) => {
     if (product.isDiscount && product.Price) {
@@ -306,10 +392,18 @@ const FilterCategory = () => {
     setFilteredData(filtered);
   }, [priceRange, data]);
 
-    useEffect(() => {
+  useEffect(() => {
     // const filtered = handleToggle();
     setFilteredData(filteredProducts);
   }, [showFiltered, data]);
+
+  //^URLE OTURMEK UCUN OLAN HISSE
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/products/${product.id}`);
+  };
 
   return (
     <div className={styles.common_container}>

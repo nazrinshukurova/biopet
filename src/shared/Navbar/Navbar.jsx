@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Navbar.module.css";
 import logo from "../../assets/svg/biopet_blue_logo.svg";
 import phone from "../../assets/svg/876-black.svg";
@@ -12,14 +12,14 @@ import { IoIosArrowDown } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ lang }) => {
   const { t, i18n } = useTranslation();
-  const [selectedLang, setSelectedLang] = useState(i18n.language);
 
   const changeLang = (myLang) => {
     i18n.changeLanguage(myLang);
-    setSelectedLang(myLang);
   };
+
+  console.log(lang)
 
   return (
     <>
@@ -45,10 +45,10 @@ const Navbar = () => {
                 <img
                   width="30"
                   height="20"
-                  src={selectedLang === "az" ? azFlag : ruFlag}
+                  src={lang === "az" ? azFlag : ruFlag}
                   alt="flag"
                 />
-                <span>{selectedLang === "az" ? "Az" : "Ru"}</span>
+                <span>{lang === "az" ? "Az" : "Ru"}</span>
               </div>
               <IoIosArrowDown
                 style={{
@@ -60,16 +60,16 @@ const Navbar = () => {
 
             <div
               className={styles.selected_language_2}
-              onClick={() => changeLang(selectedLang === "az" ? "ru" : "az")}
+              onClick={() => changeLang(lang === "az" ? "ru" : "az")}
             >
               <div className={styles.ru_flag_and_name}>
                 <img
                   width="30"
                   height="20"
-                  src={selectedLang === "az" ? ruFlag : azFlag}
+                  src={lang === "az" ? ruFlag : azFlag}
                   alt="alt flag"
                 />
-                <span>{selectedLang === "az" ? "Ru" : "Az"}</span>
+                <span>{lang === "az" ? "Ru" : "Az"}</span>
               </div>
             </div>
           </div>
@@ -96,7 +96,7 @@ const Navbar = () => {
             <li>{t("navbarLinks.Pişiklər")}</li>
             <li>
               <Link
-                to={`/${i18n.language}/products`}
+                to={`/products`}
                 style={{ textDecoration: "none", color: "#1d2123" }}
               >
                 {t("navbarLinks.Məhsullar")}

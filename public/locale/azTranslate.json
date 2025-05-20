@@ -200,5 +200,11 @@
   },
   "price": "Qiymət",
   "ratingForFilterTitle": "Yüksək reytinqli məhsullar",
-  "ratingForFilterText": "Reytinqi 4 və 5 ulduz olan məhsullar"
+  "ratingForFilterText": "Reytinqi 4 və 5 ulduz olan məhsullar",
+  "select_values": {
+    "priceWithIncrease": "Qiymətə görə(artan)",
+    "priceWithDecrease": "Qiymətə görə(azalan)",
+    "AtoZ": "A-Z",
+    "ZtoA": "Z-A"
+  }
 }
