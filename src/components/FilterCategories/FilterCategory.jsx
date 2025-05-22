@@ -23,6 +23,8 @@ import { useNavigate } from "react-router-dom";
 const FilterCategory = () => {
   const { t, i18n } = useTranslation();
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const [filteredData, setFilteredData] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
@@ -34,6 +36,16 @@ const FilterCategory = () => {
   const [selectedAnimalTypes, setSelectedAnimalTypes] = useState([]);
   const [selectedVetDiets, setSelectedVetDiets] = useState([]);
   const [selectedProductType, setSelectedProductType] = useState([]);
+  const [isLoadingBrands, setIsLoadingBrands] = useState(true);
+  const [isLoadingIngredients, setIsLoadingIngredients] = useState(true);
+  const [isLoadingSizes, setIsLoadingSizes] = useState(true);
+  const [isLoadingSterilized, setIsLoadingSterilized] = useState(true);
+  const [isLoadingIsAvailable, setIsLoadingIsAvailable] = useState(true);
+  const [isLoadingAgeGroups, setIsLoadingAgeGroups] = useState(true);
+  const [isLoadingFoodTypes, setIsLoadingFoodTypes] = useState(true);
+  const [isLoadingAnimalTypes, setIsLoadingAnimalTypes] = useState(true);
+  const [isLoadingVetDiets, setIsLoadingVetDiets] = useState(true);
+  const [isLoadingProductTypes, setIsLoadingProductTypes] = useState(true);
 
   const maxPrice = Math.max(...data.map((el) => el.Price)) + 50;
 
@@ -67,8 +79,14 @@ const FilterCategory = () => {
     });
   };
 
-  const createMatches = (searchValue) => (item) =>
-    item?.label?.toLowerCase().includes(searchValue.toLowerCase());
+
+
+  const createMatches = (searchValue) => (item) => {
+    console.log(item.value.key,"SEARCH UCUN ITEM")
+    console.log(searchValues,"SEARCH VALUE")
+    return item?.label?.toLowerCase().includes(searchValue?.toLowerCase());
+
+  };
 
   const generateOptions = (keys, translationKeyPrefix) =>
     keys.map((key) => ({
@@ -120,7 +138,8 @@ const FilterCategory = () => {
     itemsKey,
     placeholderKey,
     selectedState,
-    setSelectedState
+    setSelectedState,
+    loading
   ) => (
     <FilterSection
       title={t(titleKey)}
@@ -134,8 +153,12 @@ const FilterCategory = () => {
       onResetSearch={handleResetSearch}
       selectedValues={selectedState}
       onChange={setSelectedState}
+      loading={loading}
     />
+
+  
   );
+
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -156,6 +179,17 @@ const FilterCategory = () => {
         setData(trimmedData);
         setFilteredData(trimmedData);
       }
+      setLoading(false);
+      setIsLoadingBrands(false);
+      setIsLoadingIngredients(false);
+      setIsLoadingSizes(false);
+      setIsLoadingSterilized(false);
+      setIsLoadingIsAvailable(false);
+      setIsLoadingAgeGroups(false);
+      setIsLoadingFoodTypes(false);
+      setIsLoadingAnimalTypes(false);
+      setIsLoadingVetDiets(false);
+      setIsLoadingProductTypes(false);
     };
     fetchProducts();
   }, []);
@@ -163,180 +197,69 @@ const FilterCategory = () => {
   useEffect(() => {
     let filtered = data;
 
-    if (selectedBrands.length > 0) {
-      const keys = selectedBrands.map((el) => el.key);
-      if (keys.length > 0) {
-        const baseUrl = window.location.origin + window.location.pathname;
-        const queryString = `?brand=${keys.join("&")}`;
+    const baseUrl = window.location.origin + window.location.pathname;
+    const params = new URLSearchParams();
 
-        window.history.replaceState({}, "", baseUrl + queryString);
+    const applyFilter = (selected, keyName, itemField, commentLabel = "") => {
+      if (selected.length > 0) {
+        const keys = selected.map((el) => el.key);
+
+        if (keys.length > 0) {
+          params.set(keyName, keys.join("&"));
+        }
+
+        console.log(keys);
+
+        console.log(params);
+
+        filtered = filtered.filter((item) => keys.includes(item[itemField]));
+        console.log(filtered);
+
+        // Optional: Debugging logs
+        if (commentLabel) {
+          console.log(`${commentLabel} filtered:`, filtered);
+          console.log(`${commentLabel} keys:`, keys);
+        }
       }
+    };
 
-      filtered = filtered.filter((item) => keys.includes(item.BrandKey));
-      console.log(filtered);
-      console.log(keys);
-    } else {
-      const baseUrl = window.location.origin + window.location.pathname;
-      window.history.replaceState({}, "", baseUrl);
-    }
-
-    if (selectedIngredients.length > 0) {
-      const keys = selectedIngredients.map((el) => el.key);
-
-      if (keys.length > 0) {
-        const baseUrl = window.location.origin + window.location.pathname;
-        const queryString = `?ingedient=${keys.join("&")}`;
-
-        window.history.replaceState({}, "", baseUrl + queryString);
-      }
-      filtered = filtered.filter((item) => keys.includes(item.IngredientsKey));
-    } 
-
-    if (selectedVetDiets.length > 0) {
-      const keys = selectedVetDiets.map((el) => el.key);
-
-      if (keys.length > 0) {
-        const baseUrl = window.location.origin + window.location.pathname;
-        const queryString = `?animal=${keys.join("&")}`;
-
-        window.history.replaceState({}, "", baseUrl + queryString);
-      }
-      filtered = filtered.filter((item) =>
-        keys.includes(item.PharmacyAppointmentKey)
-      );
-    } 
-
-    if (selectedSizes.length > 0) {
-      const keys = selectedSizes.map((el) => el.key);
-
-      if (keys.length > 0) {
-        const baseUrl = window.location.origin + window.location.pathname;
-        const queryString = `?size=${keys.join("&")}`;
-
-        window.history.replaceState({}, "", baseUrl + queryString);
-      }
-
-      filtered = filtered.filter((item) => keys.includes(item.DogSizeKey));
-
-      console.log(filtered);
-      console.log(keys);
-    } 
-
-    // console.log(selectedIngredients);
-    // console.log(filtered);
-    // console.log(filtered);
-
-    // console.log(filtered.filter((item) => item.İngredientsAz === "Mal əti"));
-
-    if (selectedSterilized.length > 0) {
-      const keys = selectedSterilized.map((el) => el.key);
-
-      if (keys.length > 0) {
-        const baseUrl = window.location.origin + window.location.pathname;
-        const queryString = `?isSterilized=${keys.join("&")}`;
-
-        window.history.replaceState({}, "", baseUrl + queryString);
-      }
-
-      filtered = filtered.filter((item) => keys.includes(item.İsSterilised));
-    }
-
+    applyFilter(selectedBrands, "brand", "BrandKey", "Brand");
+    applyFilter(selectedIngredients, "ingedient", "IngredientsKey");
+    applyFilter(selectedVetDiets, "animal", "PharmacyAppointmentKey");
+    applyFilter(selectedSizes, "size", "DogSizeKey", "Size");
+    applyFilter(selectedSterilized, "isSterilized", "İsSterilised");
     //!Stoku yoxlayacam
+    applyFilter(selectedIsAvailable, "IsAvailable", "InStock", "Stok");
+    applyFilter(selectedAgeGroups, "ageGroup", "AgeKey");
+    applyFilter(selectedFoodTypes, "foodType", "FoodTypeKey");
+    applyFilter(
+      selectedProductType,
+      "productType",
+      "ProductTypeKey",
+      "Product Type"
+    );
+    applyFilter(selectedAnimalTypes, "animal", "AnimalKey");
 
-    if (selectedIsAvailable.length > 0) {
-      const keys = selectedIsAvailable.map((el) => el.key);
-
-      if (keys.length > 0) {
-        const baseUrl = window.location.origin + window.location.pathname;
-        const queryString = `?IsAvailable=${keys.join("&")}`;
-
-        window.history.replaceState({}, "", baseUrl + queryString);
-      }
-
-      filtered = filtered.filter((item) => keys.includes(item.InStock));
-
-      console.log(filtered);
-      console.log(keys);
-    } 
-
-    if (selectedAgeGroups.length > 0) {
-      const keys = selectedAgeGroups.map((el) => el.key);
-
-      if (keys.length > 0) {
-        const baseUrl = window.location.origin + window.location.pathname;
-        const queryString = `?ageGroup=${keys.join("&")}`;
-
-        window.history.replaceState({}, "", baseUrl + queryString);
-      } else {
-        const baseUrl = window.location.origin + window.location.pathname;
-        window.history.replaceState({}, "", baseUrl);
-      }
-
-      filtered = filtered.filter((item) => keys.includes(item.AgeKey));
-    }
-
-    if (selectedFoodTypes.length > 0) {
-      const keys = selectedFoodTypes.map((el) => el.key);
-      if (keys.length > 0) {
-        const baseUrl = window.location.origin + window.location.pathname;
-        const queryString = `?foodType=${keys.join("&")}`;
-
-        window.history.replaceState({}, "", baseUrl + queryString);
-      } else {
-        const baseUrl = window.location.origin + window.location.pathname;
-        window.history.replaceState({}, "", baseUrl);
-      }
-
-      filtered = filtered.filter((item) => keys.includes(item.FoodTypeKey));
-    }
-
-    if (selectedProductType.length > 0) {
-      const keys = selectedProductType.map((el) => el.key);
-      if (keys.length > 0) {
-        const baseUrl = window.location.origin + window.location.pathname;
-        const queryString = `?productType=${keys.join("&")}`;
-
-        window.history.replaceState({}, "", baseUrl + queryString);
-      } else {
-        const baseUrl = window.location.origin + window.location.pathname;
-        window.history.replaceState({}, "", baseUrl);
-      }
-
-      filtered = filtered.filter((item) => keys.includes(item.ProductTypeKey));
-
-      console.log(keys);
-      console.log(selectedProductType);
-    }
-
-    if (selectedAnimalTypes.length > 0) {
-      const keys = selectedAnimalTypes.map((el) => el.key);
-      if (keys.length > 0) {
-        const baseUrl = window.location.origin + window.location.pathname;
-        const queryString = `?animal=${keys.join("&")}`;
-
-        window.history.replaceState({}, "", baseUrl + queryString);
-      } else {
-        const baseUrl = window.location.origin + window.location.pathname;
-        window.history.replaceState({}, "", baseUrl);
-      }
-
-      filtered = filtered.filter((item) => keys.includes(item.AnimalKey));
-    }
+    // Update URL
+    const queryString = params.toString();
+    window.history.replaceState(
+      {},
+      "",
+      queryString ? `${baseUrl}?${queryString}` : baseUrl
+    );
 
     setFilteredData(filtered);
 
+    // console.log(selectedIngredients);
+    // console.log(filtered);
+    // console.log(filtered.filter((item) => item.İngredientsAz === "Mal əti"));
+
     // const keys = selectedAnimalTypes.map((el) => el.key);
-
     // const params = new URLSearchParams(window.location.search);
-
     // if (keys.length > 0) {
-
-    //   const baseUrl = window.location.origin + window.location.pathname;
     //   const queryString = `?animal=${keys.join("&")}`;
-
     //   window.history.replaceState({}, "", baseUrl + queryString);
     // } else {
-    //   const baseUrl = window.location.origin + window.location.pathname;
     //   window.history.replaceState({}, "", baseUrl);
     // }
   }, [
@@ -399,11 +322,6 @@ const FilterCategory = () => {
 
   //^URLE OTURMEK UCUN OLAN HISSE
 
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate(`/products/${product.id}`);
-  };
 
   return (
     <div className={styles.common_container}>
@@ -411,17 +329,35 @@ const FilterCategory = () => {
       <div className={styles.left_filter}>
         <div className={styles.filter_list}>
           <span className={styles.category_title}>
-            {t("relatedCategories.title")}:
+            {loading ? (
+              <div
+                className={styles.skeleton}
+                style={{ width: 120, height: 24 }}
+              />
+            ) : (
+              t("relatedCategories.title") + ":"
+            )}
           </span>
-          {[
-            "Quru_yem",
-            "Nəm_yem",
-            "Bala_itlər_üçün",
-            "Hamilə_və_südverən_itlər_üçün",
-            "Müalicəvi_yemlər",
-          ].map((cat) => (
-            <div key={cat} className={styles.category}>
-              {t(`relatedCategories.${cat}`)}
+
+          {(loading
+            ? Array.from({ length: 5 }) // skeleton üçün 5 boş blok
+            : [
+                "Quru_yem",
+                "Nəm_yem",
+                "Bala_itlər_üçün",
+                "Hamilə_və_südverən_itlər_üçün",
+                "Müalicəvi_yemlər",
+              ]
+          ).map((cat, index) => (
+            <div key={loading ? index : cat} className={styles.category}>
+              {loading ? (
+                <div
+                  className={styles.skeleton}
+                  style={{ width: "80%", height: 20, margin: "8px 0" }}
+                />
+              ) : (
+                t(`relatedCategories.${cat}`)
+              )}
             </div>
           ))}
         </div>
@@ -432,7 +368,8 @@ const FilterCategory = () => {
           animalTypes,
           "search_placeholders_0",
           selectedAnimalTypes,
-          setSelectedAnimalTypes
+          setSelectedAnimalTypes,
+          isLoadingAnimalTypes
         )}
         {renderFilter(
           "brend",
@@ -440,7 +377,8 @@ const FilterCategory = () => {
           brand,
           "search_placeholders_1",
           selectedBrands,
-          setSelectedBrands
+          setSelectedBrands,
+          isLoadingBrands
         )}
         {renderFilter(
           "ingredients.title",
@@ -448,7 +386,8 @@ const FilterCategory = () => {
           ingredients,
           "search_placeholders_2",
           selectedIngredients,
-          setSelectedIngredients
+          setSelectedIngredients,
+          isLoadingIngredients
         )}
         {renderFilter(
           "isAvailable",
@@ -456,7 +395,8 @@ const FilterCategory = () => {
           available,
           "search_placeholders_9",
           selectedIsAvailable,
-          setSelectedIsAvailable
+          setSelectedIsAvailable,
+          isLoadingIsAvailable
         )}
         {renderFilter(
           "sizeOfDog.title",
@@ -464,7 +404,8 @@ const FilterCategory = () => {
           sizes,
           "search_placeholders_3",
           selectedSizes,
-          setSelectedSizes
+          setSelectedSizes,
+          isLoadingSizes
         )}
         {renderFilter(
           "sterilized",
@@ -472,7 +413,8 @@ const FilterCategory = () => {
           sterilized,
           "search_placeholders_4",
           selectedSterilized,
-          setSelectedSterilized
+          setSelectedSterilized,
+          isLoadingSterilized
         )}
 
         {renderFilter(
@@ -481,7 +423,8 @@ const FilterCategory = () => {
           vetDiets,
           "search_placeholders_6",
           selectedVetDiets,
-          setSelectedVetDiets
+          setSelectedVetDiets,
+          isLoadingVetDiets
         )}
         {renderFilter(
           "ageGroups.title",
@@ -489,7 +432,8 @@ const FilterCategory = () => {
           ageGroups,
           "search_placeholders_7",
           selectedAgeGroups,
-          setSelectedAgeGroups
+          setSelectedAgeGroups,
+          isLoadingAgeGroups
         )}
         {renderFilter(
           "foodTypes.title",
@@ -497,7 +441,8 @@ const FilterCategory = () => {
           foodTypes,
           "search_placeholders_8",
           selectedFoodTypes,
-          setSelectedFoodTypes
+          setSelectedFoodTypes,
+          isLoadingFoodTypes
         )}
         {renderFilter(
           "productTypes.title",
@@ -505,87 +450,167 @@ const FilterCategory = () => {
           productTypes,
           "search_placeholders_8",
           selectedProductType,
-          setSelectedProductType
+          setSelectedProductType,
+          isLoadingProductTypes
         )}
         {/* Filtering for price */}
 
         <div className={styles.filter_list}>
-          <p className={styles.price}>Qiymət</p>
-          <div className={styles.input_prices}>
-            <div className={styles.min_price}>
-              {" "}
-              <input
-                className={styles.price_range_input}
-                type="number"
-                value={priceRange[0]}
-                onChange={(e) => handleInputChange(0, e.target.value)}
-              ></input>
-              <span className={styles.manat_svg}>
-                <Manat />
-              </span>
-            </div>
-            <div className={styles.max_price}>
-              {" "}
-              <input
-                className={styles.price_range_input}
-                type="number"
-                value={priceRange[1]}
-                onChange={(e) => handleInputChange(1, e.target.value)}
-              ></input>
-              <span className={styles.manat_svg}>
-                <Manat />
-              </span>
-            </div>
-          </div>
-          <RangeSlider
-            min={0}
-            max={maxPrice}
-            value={priceRange}
-            onChange={setPriceRange}
-          />
+          {loading ? (
+            <>
+              <div
+                className={styles.skeleton}
+                style={{ width: 50, height: 20, marginBottom: 12 }}
+              />
+              <div
+                className={styles.input_prices}
+                style={{ display: "flex", gap: 8 }}
+              >
+                <div style={{ flex: 1 }}>
+                  <div
+                    className={styles.skeleton}
+                    style={{ height: 36, width: "100%" }}
+                  />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <div
+                    className={styles.skeleton}
+                    style={{ height: 36, width: "100%" }}
+                  />
+                </div>
+              </div>
+              <div style={{ marginTop: 12 }}>
+                <div
+                  className={styles.skeleton}
+                  style={{ height: 24, width: "100%" }}
+                />
+              </div>
+            </>
+          ) : (
+            <>
+              <p className={styles.price}>Qiymət</p>
+              <div className={styles.input_prices}>
+                <div className={styles.min_price}>
+                  <input
+                    className={styles.price_range_input}
+                    type="number"
+                    value={priceRange[0]}
+                    onChange={(e) => handleInputChange(0, e.target.value)}
+                  />
+                  <span className={styles.manat_svg}>
+                    <Manat />
+                  </span>
+                </div>
+                <div className={styles.max_price}>
+                  <input
+                    className={styles.price_range_input}
+                    type="number"
+                    value={priceRange[1]}
+                    onChange={(e) => handleInputChange(1, e.target.value)}
+                  />
+                  <span className={styles.manat_svg}>
+                    <Manat />
+                  </span>
+                </div>
+              </div>
+              <RangeSlider
+                min={0}
+                max={maxPrice}
+                value={priceRange}
+                onChange={setPriceRange}
+              />
+            </>
+          )}
         </div>
         {/* Filtering for RATING */}
         <div className={styles.rating_desc_box}>
-          <div className={styles.rating_left}>
-            <p className={styles.price}>{t("ratingForFilterTitle")}</p>
-            <span className={styles.rating_text}>
-              {t("ratingForFilterText")}
-            </span>
-          </div>
-          <div className={styles.rating_right}>
-            <IOSSwitch onChange={handleToggle} />
-          </div>
+          {loading ? (
+            <>
+              <div className={styles.rating_left}>
+                <div
+                  className={styles.skeleton}
+                  style={{ width: 100, height: 24, marginBottom: 4 }}
+                />
+                <div
+                  className={styles.skeleton}
+                  style={{ width: 150, height: 16 }}
+                />
+              </div>
+              <div className={styles.rating_right}>
+                <div
+                  className={styles.skeleton}
+                  style={{ width: 40, height: 24, borderRadius: 12 }}
+                />
+              </div>
+            </>
+          ) : (
+            <>
+              <div className={styles.rating_left}>
+                <p className={styles.price}>{t("ratingForFilterTitle")}</p>
+                <span className={styles.rating_text}>
+                  {t("ratingForFilterText")}
+                </span>
+              </div>
+              <div className={styles.rating_right}>
+                <IOSSwitch onChange={handleToggle} />
+              </div>
+            </>
+          )}
         </div>
       </div>
       <div className={styles.filtered_result}>
-        {filteredData.map((item) => (
-          <div key={item.id} className={styles.filtered_item}>
-            <div className={styles.item_image}>
-              {" "}
-              <img height="172px" width="172px" src={item.İmage}></img>
-            </div>
-            <div className={styles.item_desc}>
-              {" "}
-              <div className={styles.price}>{item.Price} AZN</div>
-              <div className={styles.item_title}>
-                {" "}
-                {i18n.language === "az" ? item.NameAz : item.NameRu}
+        {loading ? (
+          Array.from({ length: 8 }).map((_, index) => (
+            <div key={index} className={styles.filtered_item}>
+              <div className={`${styles.item_image} ${styles.skeleton}`} />
+              <div className={styles.item_desc}>
+                <div className={`${styles.price} ${styles.skeleton}`} />
+                <div className={`${styles.item_title} ${styles.skeleton}`} />
+                <div className={`${styles.rating} ${styles.skeleton}`} />
+                <div className={`${styles.item_package} ${styles.skeleton}`} />
               </div>
-              <div className={styles.rating}>
-                {item?.Rating === 0 ? <EmptyStarSvg /> : <FullFilledStarSvg />}
-                {item.Rating}
-              </div>
-              {item.Package && (
-                <div className={styles.item_package}>
-                  {i18n.language === "az"
-                    ? `${item.Package}q`
-                    : `${item.Package}г`}
-                </div>
-              )}
             </div>
-            <AddToCart />
+          ))
+        ) : filteredData.length === 0 ? (
+          <div className={styles.empty_message_box}>
+            {/* Burada istəsən ayrıca bir komponent də istifadə edə bilərsən */}
+            <p className={styles.empty_message}>
+              {i18n.language === "az"
+                ? "Nəticə tapılmadı"
+                : "Ничего не найдено"}
+            </p>
           </div>
-        ))}
+        ) : (
+          filteredData.map((item) => (
+            <div key={item.id} className={styles.filtered_item}>
+              <div className={styles.item_image}>
+                <img height="172px" width="172px" src={item.İmage} />
+              </div>
+              <div className={styles.item_desc}>
+                <div className={styles.price}>{item.Price} AZN</div>
+                <div className={styles.item_title}>
+                  {i18n.language === "az" ? item.NameAz : item.NameRu}
+                </div>
+                <div className={styles.rating}>
+                  {item?.Rating === 0 ? (
+                    <EmptyStarSvg />
+                  ) : (
+                    <FullFilledStarSvg />
+                  )}
+                  {item.Rating}
+                </div>
+                {item.Package && (
+                  <div className={styles.item_package}>
+                    {i18n.language === "az"
+                      ? `${item.Package}q`
+                      : `${item.Package}г`}
+                  </div>
+                )}
+              </div>
+              <AddToCart product={item} />
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

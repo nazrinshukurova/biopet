@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import styles from "../FilterCategories/FilterCategory.module.css";
 import i18n from "i18next";
+import { Skeleton } from "@mui/material";
 
 const FilterSection = ({
   title,
@@ -12,6 +13,7 @@ const FilterSection = ({
   onResetSearch,
   selectedValues,
   onChange,
+  loading,
 }) => {
   const { t } = useTranslation();
 
@@ -23,19 +25,40 @@ const FilterSection = ({
     }
   };
 
-  // console.log(
-  //   "ITEM VALUES:",
-  //   items.map((item) => item.value)
-  // );
-
-  // console.log(
-  //   "ITEM VALUES:",
-  //   items.map((item) => item.value.value)
-  // );
+  if (loading) {
+    return (
+      <div className={styles.brands_list}>
+        <Skeleton
+          variant="text"
+          height={30}
+          sx={{ width: "60%", marginBottom: "10px", borderRadius: "4px" }}
+        />
+        <Skeleton
+          variant="rectangular"
+          height={36}
+          sx={{ width: "100%", marginBottom: "20px", borderRadius: "4px" }}
+        />
+        <ul className={styles.filter__list}>
+          {Array.from({ length: 6 }).map((_, idx) => (
+            <li key={idx}>
+              <div className={styles.form_group}>
+                <Skeleton
+                  variant="text"
+                  height={20}
+                  sx={{ width: "80%", borderRadius: "4px" }}
+                />
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.brands_list}>
       <p className={styles.title}>{t(title)}</p>
+
       <input
         type="text"
         placeholder={t(placeholderKey)}
@@ -46,6 +69,7 @@ const FilterSection = ({
           if (e.key === "Enter") onResetSearch();
         }}
       />
+
       <ul className={styles.filter__list}>
         {items.filter(matches).map((item, idx) => (
           <li key={idx}>
@@ -60,7 +84,6 @@ const FilterSection = ({
                 />
                 <span className={styles.check_box}></span>
                 <span className={styles.label_text}>
-                  {" "}
                   {i18n.language === "az"
                     ? item.value.valueAz
                     : item.value.valueRu}
