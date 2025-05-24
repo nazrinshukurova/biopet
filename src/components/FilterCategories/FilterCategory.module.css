@@ -1,10 +1,11 @@
 .common_container {
   display: flex;
   gap: 20px;
-  /* height: auto; */
+  height: auto;
 }
 
 .left_filter {
+  margin-top: 50px;
   background-color: #fff;
   border-radius: 8px;
   padding: 16px;
@@ -151,7 +152,7 @@
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-  max-width: 80%;
+  max-width: 100%;
 }
 
 .filtered_item {
@@ -162,7 +163,6 @@
   flex-direction: column;
   position: relative;
   border: 1px solid transparent;
-  flex: 1;
   width: auto;
   height: 100%;
   max-height: 486px;
@@ -192,7 +192,7 @@
   overflow: hidden;
 }
 
-.price {
+.priceForFilter {
   font-size: 20px;
   font-weight: 500;
   line-height: 26px;
@@ -350,4 +350,17 @@
   padding: 20px;
   color: #888;
   font-size: 22px;
+}
+
+.select_and_result{
+  width: 79%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.select_sort_options{
+  display: flex;
+  flex-direction: row-reverse;
+  padding-right: 25px;
 }

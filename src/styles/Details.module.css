@@ -1,0 +1,242 @@
+.image_and_description {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  width: 100%;
+}
+
+.view_details {
+  display: flex;
+  width: 40%;
+  margin: 16px;
+  padding: 20px;
+  border: 1px solid #f7f9fc;
+  background-color: #fff;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.view_title {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 30px;
+  margin-bottom: 12px;
+  color: #1d2123;
+}
+
+.image_container {
+  width: 40%;
+  border-radius: 12px;
+  overflow: hidden;
+  height: auto;
+  border: 1px solid #f7f9fc;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 16px;
+}
+
+.image_container img {
+  width: 320px;
+  height: 320px;
+}
+
+.view_rating {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: left;
+  color: #1d2123;
+  margin-bottom: 12px;
+}
+
+.view_stars {
+  display: flex;
+  gap: 4px;
+}
+
+.view_packaging {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin-bottom: 12px;
+}
+
+.view_sizes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  border: 1px solid #00bda7;
+  background-color: rgba(0, 214, 143, 0.08);
+  color: #00bda7;
+  width: fit-content;
+  padding: 5px;
+  height: 40px;
+  border-radius: 4px;
+}
+
+.info_bonus {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.left_info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 0px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  justify-self: left;
+  color: rgb(29, 33, 35);
+}
+
+.right_info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 75px;
+  height: 30px;
+  background-color: rgba(226, 30, 76, 0.1);
+  color: rgb(226, 30, 76);
+  min-width: 70px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: -0.1px;
+  border-radius: 4px;
+}
+
+.tooltip_container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip {
+  visibility: hidden;
+  opacity: 0;
+  width: 260px;
+  background-color: white;
+  color: black;
+  text-align: left;
+  border-radius: 12px;
+  padding: 16px;
+  position: absolute;
+  z-index: 10;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.3s ease;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -8px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+}
+
+.tooltip_container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip_footer {
+  margin-top: 10px;
+  background-color: #d5004c;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  padding: 6px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.view_price_title {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: rgb(29, 33, 35);
+}
+
+.prices {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 40px;
+  color: rgb(237, 0, 54);
+}
+
+.price_and_buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.view_like {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  background-color: rgb(225, 250, 241);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.button_and_heart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.info_details {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.type_and_name {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  color: #828282;
+  line-height: 20px;
+  font-size: 14px;
+}
+
+.type {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 15px;
+  color: #1d2123;
+  padding: 8px 0;
+  box-shadow: none;
+}

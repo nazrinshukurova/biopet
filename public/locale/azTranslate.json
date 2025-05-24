@@ -206,5 +206,10 @@
     "priceWithDecrease": "Qiymətə görə(azalan)",
     "AtoZ": "A-Z",
     "ZtoA": "Z-A"
-  }
+  },
+
+  "packaging": "Qablaşdırma",
+  "bonusTitle": "Qazanacağınız bonus",
+  "bonusDescription": "Alış-veriş zamanı xərclənən hər 1 manata görə Siz 1 bonus qazanırsınız. Topladığınız bonusları Siz saytımızın “Bonus mağaza” bölməsində məhsullara dəyişə bilərsiniz.",
+  "bonusRate": "1AZN = 1bonus"
 }

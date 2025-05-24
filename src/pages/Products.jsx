@@ -5,10 +5,11 @@ const Products = () => {
   return (
     <div
       style={{
-        height: "auto",
+        // height: "auto",
         padding: "25px",
       }}
     >
+    
       <FilterCategory />
     </div>
   );

@@ -15,6 +15,7 @@
   align-items: center;
   white-space: nowrap;
   max-height: 47px;
+  cursor: pointer;
 }
 
 .addToCart_desc {
@@ -23,3 +24,4 @@
   gap: 8px;
   justify-content: center;
 }
+

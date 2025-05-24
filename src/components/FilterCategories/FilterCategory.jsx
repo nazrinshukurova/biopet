@@ -19,11 +19,15 @@ import { AddToCart } from "../../shared/assets/Buttons/Buttons";
 import RangeSlider from "../../assets/sliders/RangeSlider";
 import IOSSwitch from "../../assets/sliders/Toggle";
 import { useNavigate } from "react-router-dom";
+import SortSelect from "../../shared/assets/Selects/Select";
+import Details from "../../pages/Details";
 
 const FilterCategory = () => {
   const { t, i18n } = useTranslation();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   const [filteredData, setFilteredData] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
@@ -79,13 +83,12 @@ const FilterCategory = () => {
     });
   };
 
-
-
   const createMatches = (searchValue) => (item) => {
-    console.log(item.value.key,"SEARCH UCUN ITEM")
-    console.log(searchValues,"SEARCH VALUE")
-    return item?.label?.toLowerCase().includes(searchValue?.toLowerCase());
-
+    //? console.log(searchValue,'SEARCH EDIREM')
+    //? console.log(item.value.valueAz)
+    return i18n.language === "ru"
+      ? item?.value.valueRu.toLowerCase().includes(searchValue?.toLowerCase())
+      : item?.value.valueAz.toLowerCase().includes(searchValue?.toLowerCase());
   };
 
   const generateOptions = (keys, translationKeyPrefix) =>
@@ -155,10 +158,7 @@ const FilterCategory = () => {
       onChange={setSelectedState}
       loading={loading}
     />
-
-  
   );
-
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -321,7 +321,6 @@ const FilterCategory = () => {
   }, [showFiltered, data]);
 
   //^URLE OTURMEK UCUN OLAN HISSE
-
 
   return (
     <div className={styles.common_container}>
@@ -558,59 +557,74 @@ const FilterCategory = () => {
           )}
         </div>
       </div>
-      <div className={styles.filtered_result}>
-        {loading ? (
-          Array.from({ length: 8 }).map((_, index) => (
-            <div key={index} className={styles.filtered_item}>
-              <div className={`${styles.item_image} ${styles.skeleton}`} />
-              <div className={styles.item_desc}>
-                <div className={`${styles.price} ${styles.skeleton}`} />
-                <div className={`${styles.item_title} ${styles.skeleton}`} />
-                <div className={`${styles.rating} ${styles.skeleton}`} />
-                <div className={`${styles.item_package} ${styles.skeleton}`} />
+      <div className={styles.select_and_result}>
+        <div className={styles.select_sort_options}>
+          <SortSelect products={filteredData} onSorted={setFilteredData} />
+        </div>{" "}
+        <div className={styles.filtered_result}>
+          {loading ? (
+            Array.from({ length: 8 }).map((_, index) => (
+              <div key={index} className={styles.filtered_item}>
+                <div className={`${styles.item_image} ${styles.skeleton}`} />
+                <div className={styles.item_desc}>
+                  <div className={`${styles.price} ${styles.skeleton}`} />
+                  <div className={`${styles.item_title} ${styles.skeleton}`} />
+                  <div className={`${styles.rating} ${styles.skeleton}`} />
+                  <div
+                    className={`${styles.item_package} ${styles.skeleton}`}
+                  />
+                </div>
               </div>
+            ))
+          ) : filteredData.length === 0 ? (
+            <div className={styles.empty_message_box}>
+              <p className={styles.empty_message}>
+                {i18n.language === "az"
+                  ? "Nəticə tapılmadı"
+                  : "Ничего не найдено"}
+              </p>
             </div>
-          ))
-        ) : filteredData.length === 0 ? (
-          <div className={styles.empty_message_box}>
-            {/* Burada istəsən ayrıca bir komponent də istifadə edə bilərsən */}
-            <p className={styles.empty_message}>
-              {i18n.language === "az"
-                ? "Nəticə tapılmadı"
-                : "Ничего не найдено"}
-            </p>
-          </div>
-        ) : (
-          filteredData.map((item) => (
-            <div key={item.id} className={styles.filtered_item}>
-              <div className={styles.item_image}>
-                <img height="172px" width="172px" src={item.İmage} />
-              </div>
-              <div className={styles.item_desc}>
-                <div className={styles.price}>{item.Price} AZN</div>
-                <div className={styles.item_title}>
-                  {i18n.language === "az" ? item.NameAz : item.NameRu}
+          ) : (
+            filteredData.map((item) => (
+              <div
+                onClick={() => navigate(`/product/${item.id}`, { state: { product: item } })}
+                key={item.id}
+                className={styles.filtered_item}
+              >
+                <div className={styles.item_image}>
+                  <img
+                    height="172px"
+                    width="172px"
+                    src={item.İmage}
+                    alt={item.NameAz}
+                  />
                 </div>
-                <div className={styles.rating}>
-                  {item?.Rating === 0 ? (
-                    <EmptyStarSvg />
-                  ) : (
-                    <FullFilledStarSvg />
-                  )}
-                  {item.Rating}
-                </div>
-                {item.Package && (
-                  <div className={styles.item_package}>
-                    {i18n.language === "az"
-                      ? `${item.Package}q`
-                      : `${item.Package}г`}
+                <div className={styles.item_desc}>
+                  <div className={styles.priceForFilter}>{item.Price} AZN</div>
+                  <div className={styles.item_title}>
+                    {i18n.language === "az" ? item.NameAz : item.NameRu}
                   </div>
-                )}
+                  <div className={styles.rating}>
+                    {item?.Rating === 0 ? (
+                      <EmptyStarSvg />
+                    ) : (
+                      <FullFilledStarSvg />
+                    )}
+                    {item.Rating}
+                  </div>
+                  {item.Package && (
+                    <div className={styles.item_package}>
+                      {i18n.language === "az"
+                        ? `${item.Package}q`
+                        : `${item.Package}г`}
+                    </div>
+                  )}
+                </div>
+                <AddToCart product={item} />
               </div>
-              <AddToCart product={item} />
-            </div>
-          ))
-        )}
+            ))
+          )}
+        </div>
       </div>
     </div>
   );

@@ -6,11 +6,11 @@ import i18next from "i18next";
 import Dropdown from "./shared/Dropdown/Dropdown";
 import NavbarMobile from "./shared/NavbarMobile/NavbarMobile";
 import Products from "./pages/Products";
+import Details from "./pages/Details";
+import Footer from "./shared/Footer/Footer";
 
 const App = () => {
   const [savedLang, setSavedLang] = useState(null);
-
-  
 
   useEffect(() => {
     const lang = localStorage.getItem("i18nextLng") || "az";
@@ -41,7 +41,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/product/:id" element={<Details />} />
       </Routes>
+      {/* <Footer/> */}
     </BrowserRouter>
   );
 };
