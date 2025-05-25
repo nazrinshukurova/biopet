@@ -10,6 +10,8 @@ import Details from "./pages/Details";
 import Footer from "./shared/Footer/Footer";
 import DiscountedProducts from "./pages/DiscountedProducts";
 import { ProductProvider } from "./context/ProductContext";
+import FAQ from "./pages/FAQ";
+import RegisterForm from "./components/Register/Register";
 
 const App = () => {
   const [savedLang, setSavedLang] = useState(null);
@@ -49,6 +51,8 @@ const App = () => {
             path="/products/discounted_products"
             element={<DiscountedProducts />}
           />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/register" element={<RegisterForm />} />
         </Routes>
         {/* <Footer/> */}
       </BrowserRouter>

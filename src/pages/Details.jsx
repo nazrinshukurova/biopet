@@ -42,8 +42,9 @@ const Details = () => {
   const calcDiscountedPrice = (price, percent) => {
     if (product.isDiscount) {
       totalPrice = price - (price / 100) * percent;
+      return totalPrice.toFixed();
     } else {
-      totalPrice = price;
+      totalPrice = price.toFixed();
     }
   };
 

@@ -211,5 +211,13 @@
   "packaging": "Qablaşdırma",
   "bonusTitle": "Qazanacağınız bonus",
   "bonusDescription": "Alış-veriş zamanı xərclənən hər 1 manata görə Siz 1 bonus qazanırsınız. Topladığınız bonusları Siz saytımızın “Bonus mağaza” bölməsində məhsullara dəyişə bilərsiniz.",
-  "bonusRate": "1AZN = 1bonus"
+  "bonusRate": "1AZN = 1bonus",
+  "register": "Qeydiyyat",
+  "subtitle": "Ev heyvanlarının sehrli dünyasını kəşf etməyə hazırsan?",
+  "phone": "Telefon nömrəsi",
+  "terms": "İstifadəçi şərtləri ilə razıyam",
+  "register_button": "Qeydiyyatdan keç",
+  "other_methods": "Digər daxil olma üsulları",
+  "already_registered": "Artıq qeydiyyatdan keçmisən?",
+  "login": "Daxil ol"
 }

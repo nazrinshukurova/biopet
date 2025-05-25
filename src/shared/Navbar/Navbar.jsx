@@ -105,7 +105,15 @@ const Navbar = ({ lang }) => {
             <li>{t("navbarLinks.Digər heyvanlar")}</li>
             <li>{t("navbarLinks.Brendlər")}</li>
             <li>{t("navbarLinks.Bloqlar")}</li>
-            <li>{t("navbarLinks.FAQ")}</li>
+            <li>
+              {" "}
+              <Link
+                to={`/faq`}
+                style={{ textDecoration: "none", color: "#1d2123" }}
+              >
+                {t("navbarLinks.FAQ")}
+              </Link>
+            </li>{" "}
             <li>
               {" "}
               <Link

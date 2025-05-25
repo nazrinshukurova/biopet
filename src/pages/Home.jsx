@@ -10,14 +10,37 @@ import Advertising from "../components/HomeContainer/Advertising/Advertising";
 import Service from "../shared/ServicesComponents/Service";
 import BrandSlider from "../shared/Brands/Brands";
 import Footer from "../shared/Footer/Footer";
+import CategoriesItem from "../components/HomeContainer/CategoriesItem/CategoriesItem";
+import group3 from "../assets/images/home/categoriesİtem/group-9352.png";
+import group1 from "../assets/images/home/categoriesİtem/hp-category-birds-products.png";
+import group2 from "../assets/images/home/categoriesİtem/hp-category-rabbits-and-rodents-products.png";
+import SmallGroups from "../shared/SmallGroups/SmallGroups";
+import src1 from "../assets/images/home/categoriesİtem/image-208.png";
+import src2 from "../assets/images/home/categoriesİtem/image-removebg-preview-3-1-1.png";
+import category1 from "../assets/images/home/categoriesİtem/hp-category-dog-food.png";
+import category2 from "../assets/images/home/categoriesİtem/hp-dog-snacks.png";
+import category3 from "../assets/images/home/categoriesİtem/hp-category-dog-accessories.png";
+import category4 from "../assets/images/home/categoriesİtem/hp-category-dog-care-products.png";
+import src4 from "../assets/images/home/categoriesİtem/image-removebg-preview-13-1-1.png";
+import src3 from "../assets/images/home/categoriesİtem/image-removebg-preview-9-1-1.png";
+import category5 from "../assets/images/home/categoriesİtem/hp-category-cat-food.png";
+import category6 from "../assets/images/home/categoriesİtem/hp-category-cat-snacks.png";
+import category7 from "../assets/images/home/categoriesİtem/hp-category-cat-accessories.png";
+import category8 from "../assets/images/home/categoriesİtem/hp-category-cat-care-products.png";
+import { useProducts } from "../context/ProductContext";
 
 const Home = () => {
   const { t } = useTranslation();
 
+  const {products}=useProducts()
+
+  console.log(products)
+
+
   return (
     <div style={{ backgroundColor: "#fafafa", minHeight: "100vh" }}>
       <Banner />
-      {/* <div
+      <div
         style={{
           display: "flex",
           justifyContent: "space-between",
@@ -45,8 +68,8 @@ const Home = () => {
           sub_category_3={category7}
           sub_category_4={category8}
         />
-      </div> */}
-      {/* <div
+      </div>
+      <div
         style={{
           display: "flex",
           justifyContent: "space-between",
@@ -59,7 +82,7 @@ const Home = () => {
         <SmallGroups title={t("small_groups.birds")} src={group1} />
         <SmallGroups title={t("small_groups.rabbits")} src={group2} />
         <SmallGroups title={t("small_groups.other_animals")} src={group3} />
-      </div> */}
+      </div>
       <Advertising />
       <div className="service_container">
         <Service

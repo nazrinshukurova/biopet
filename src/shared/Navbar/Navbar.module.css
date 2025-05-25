@@ -1,14 +1,15 @@
 .common_navbar_container {
   background-color: #feeac1;
+  padding-bottom: 20px;
 }
 
 .nav_container {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 1.6rem 0 0;
+  padding: 16px 0 0;
   align-items: center;
-  margin-bottom: 2.4rem;
+  margin-bottom: 24px;
 }
 
 .search_container {

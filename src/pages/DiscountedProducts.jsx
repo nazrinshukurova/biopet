@@ -70,8 +70,10 @@ const DiscountedProducts = () => {
                 <div className={styles.price_container}>
                   {item.isDiscount ? (
                     <div className={styles.priceForFilter}>
-                      {item.Price - (item.Price / 100) * item.PercentOfDiscount}{" "}
-                      AZN
+                      {(
+                        item.Price -
+                        (item.Price / 100) * item.PercentOfDiscount
+                      ).toFixed()} AZN
                     </div>
                   ) : (
                     <div className={styles.priceForFilter}>
