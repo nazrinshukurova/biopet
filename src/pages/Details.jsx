@@ -21,8 +21,8 @@ const Details = () => {
 
   const getPackageUnit = (lang, product) => {
     if (lang === "az") {
-      if (product.ProductTypeKey === "litter") {
-        return `${product.Package}L`;
+      if (product?.ProductTypeKey === "litter") {
+        return `${product?.Package}L`;
       }
       return `${product.Package}q`;
     }
@@ -37,9 +37,24 @@ const Details = () => {
     return `${product.Package}`;
   };
 
+  let totalPrice;
+
+  const calcDiscountedPrice = (price, percent) => {
+    if (product.isDiscount) {
+      totalPrice = price - (price / 100) * percent;
+    } else {
+      totalPrice = price;
+    }
+  };
+
+  calcDiscountedPrice(product?.Price, product?.PercentOfDiscount);
+
+  console.log(totalPrice);
+
   const bonus = product?.Price.toFixed(2);
-  console.log(bonus);
-  console.log(product.Price);
+  console.log(product.PercentOfDiscount);
+
+  console.log(product.isDiscount);
 
   return (
     <>
@@ -75,11 +90,13 @@ const Details = () => {
 
           <h5 className={styles.view_packaging}>{t("packaging")}</h5>
 
-          <div className={styles.view_sizes}>
-            <div className={styles.view_package}>
-              {getPackageUnit(lang, product)}
+          {product?.Package ? (
+            <div className={styles.view_sizes}>
+              <div className={styles.view_package}>
+                {getPackageUnit(lang, product)}
+              </div>
             </div>
-          </div>
+          ) : null}
           <div className={styles.info_details}>
             {product.BrandAz ? (
               <div className={styles.type_and_name}>
@@ -317,7 +334,19 @@ const Details = () => {
               <h5 className={styles.view_price_title}>
                 {lang === "az" ? "Qiymət" : "Цена"}
               </h5>
-              <p className={styles.prices}>{product?.Price.toFixed(2)} AZN</p>
+              {product?.isDiscount ? (
+                <div className={styles.allOfPrices}>
+                  <p
+                    className={styles.prices}
+                    style={{ textDecoration: "line-through", fontSize: "26px" }}
+                  >
+                    {product?.Price.toFixed(2)} AZN
+                  </p>
+                  <p className={styles.discounted_price}>{totalPrice} AZN</p>
+                </div>
+              ) : (
+                <p className={styles.prices}>{product?.Price.toFixed(2)} AZN</p>
+              )}
             </div>
             <div className={styles.button_and_heart}>
               <AddToCart />

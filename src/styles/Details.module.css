@@ -240,3 +240,14 @@
   padding: 8px 0;
   box-shadow: none;
 }
+
+.allOfPrices {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 40px;
+  color: #828282;
+}

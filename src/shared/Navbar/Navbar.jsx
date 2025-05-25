@@ -19,7 +19,7 @@ const Navbar = ({ lang }) => {
     i18n.changeLanguage(myLang);
   };
 
-  console.log(lang)
+  console.log(lang);
 
   return (
     <>
@@ -106,7 +106,15 @@ const Navbar = ({ lang }) => {
             <li>{t("navbarLinks.Brendlər")}</li>
             <li>{t("navbarLinks.Bloqlar")}</li>
             <li>{t("navbarLinks.FAQ")}</li>
-            <li>{t("navbarLinks.Endirimlər")}</li>
+            <li>
+              {" "}
+              <Link
+                to={`/products/discounted_products`}
+                style={{ textDecoration: "none", color: "#1d2123" }}
+              >
+                {t("navbarLinks.Endirimlər")}{" "}
+              </Link>
+            </li>
             <li>{t("navbarLinks.Bonus mağaza")}</li>
           </ul>
         </div>

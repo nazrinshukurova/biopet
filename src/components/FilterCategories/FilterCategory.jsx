@@ -20,7 +20,6 @@ import RangeSlider from "../../assets/sliders/RangeSlider";
 import IOSSwitch from "../../assets/sliders/Toggle";
 import { useNavigate } from "react-router-dom";
 import SortSelect from "../../shared/assets/Selects/Select";
-import Details from "../../pages/Details";
 
 const FilterCategory = () => {
   const { t, i18n } = useTranslation();
@@ -587,11 +586,24 @@ const FilterCategory = () => {
           ) : (
             filteredData.map((item) => (
               <div
-                onClick={() => navigate(`/product/${item.id}`, { state: { product: item } })}
+                onClick={() =>
+                  navigate(`/product/${item.id}`, { state: { product: item } })
+                }
                 key={item.id}
                 className={styles.filtered_item}
               >
-                <div className={styles.item_image}>
+                <div
+                  style={{ position: "relative" }}
+                  className={styles.item_image}
+                >
+                  {item.isDiscount ? (
+                    <div
+                      style={{ position: "absolute",left:"10px",top:"10px" }}
+                      className={styles.discount_box}
+                    >
+                      -{item.PercentOfDiscount}%
+                    </div>
+                  ) : null}
                   <img
                     height="172px"
                     width="172px"
