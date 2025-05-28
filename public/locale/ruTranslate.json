@@ -217,5 +217,11 @@
   "register_button": "Зарегистрироваться",
   "other_methods": "Другие способы входа",
   "already_registered": "Уже зарегистрированы?",
-  "login": "Войти"
+  "login": "Войти",
+  "name": "Имя",
+  "lastname": "Фамилия",
+  "email": "Э-почта",
+  "name_placeholder": "Введите свое имя",
+  "surname_placeholder": "Введите вашу фамилию",
+  "email_placeholder": "Введите свой адрес электронной почты"
 }

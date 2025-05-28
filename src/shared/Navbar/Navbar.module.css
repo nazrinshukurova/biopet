@@ -3,6 +3,10 @@
   padding-bottom: 20px;
 }
 
+.mehsullar:hover {
+  color: white;
+}
+
 .nav_container {
   display: flex;
   align-items: center;

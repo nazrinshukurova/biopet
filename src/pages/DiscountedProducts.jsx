@@ -58,7 +58,18 @@ const DiscountedProducts = () => {
               key={item.id}
               className={styles.filtered_item}
             >
-              <div className={styles.item_image}>
+              <div
+                style={{ position: "relative" }}
+                className={styles.item_image}
+              >
+                {item.isDiscount ? (
+                  <div
+                    style={{ position: "absolute", left: "10px", top: "10px" }}
+                    className={styles.discount_box}
+                  >
+                    -{item.PercentOfDiscount}%
+                  </div>
+                ) : null}
                 <img
                   height="172px"
                   width="172px"
@@ -68,17 +79,30 @@ const DiscountedProducts = () => {
               </div>
               <div className={styles.item_desc}>
                 <div className={styles.price_container}>
-                  {item.isDiscount ? (
-                    <div className={styles.priceForFilter}>
-                      {(
-                        item.Price -
-                        (item.Price / 100) * item.PercentOfDiscount
-                      ).toFixed()} AZN
+                  {item?.isDiscount ? (
+                    <div className={styles.allOfPrices}>
+                      <p
+                        className={styles.prices}
+                        style={{
+                          textDecoration: "line-through",
+                          fontSize: "18px",
+                        }}
+                      >
+                        {item.Price.toFixed(2)} AZN
+                      </p>
+                      <p
+                        style={{ color: "red" }}
+                        className={styles.discounted_price}
+                      >
+                        {(
+                          item.Price -
+                          (item.Price / 100) * item.PercentOfDiscount
+                        ).toFixed(2)}{" "}
+                        AZN
+                      </p>
                     </div>
                   ) : (
-                    <div className={styles.priceForFilter}>
-                      {item.Price} AZN
-                    </div>
+                    <p className={styles.prices}>{item.Price.toFixed(2)} AZN</p>
                   )}
                 </div>
                 <div className={styles.item_title}>

@@ -94,7 +94,7 @@ const Navbar = ({ lang }) => {
         <div className={styles.navbar_down_part}>
           <ul>
             <li>{t("navbarLinks.Pişiklər")}</li>
-            <li>
+            <li className={styles.mehsullar}>
               <Link
                 to={`/products`}
                 style={{ textDecoration: "none", color: "#1d2123" }}

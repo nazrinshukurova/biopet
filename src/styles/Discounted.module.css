@@ -218,3 +218,31 @@
   flex-direction: row-reverse;
   padding-right: 25px;
 }
+
+.discount_box {
+  background-color: #ed0036;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 12px;
+  text-align: center;
+  color: #fff;
+  border-radius: 24px;
+  width: 41px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  margin-bottom:2px;
+}
+
+.allOfPrices {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 40px;
+  color: #828282;
+}

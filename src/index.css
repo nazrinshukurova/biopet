@@ -68,3 +68,6 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
+.css-1808mag-MuiPaper-root-MuiAccordion-root::before {
+  height: 0px !important;
+}

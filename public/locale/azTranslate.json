@@ -219,5 +219,11 @@
   "register_button": "Qeydiyyatdan keç",
   "other_methods": "Digər daxil olma üsulları",
   "already_registered": "Artıq qeydiyyatdan keçmisən?",
-  "login": "Daxil ol"
+  "login": "Daxil ol",
+  "name": "Ad",
+  "lastname": "Soyad",
+  "email": "E-mail",
+  "name_placeholder": "Adınızı daxil edin",
+  "surname_placeholder": "Soyadınızı daxil edin",
+  "email_placeholder": "Email daxil edin"
 }
