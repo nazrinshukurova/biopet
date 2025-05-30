@@ -9,8 +9,8 @@ import {
   Heart,
   Info,
 } from "../assets/Svg";
-import { AddToCart } from "../shared/assets/Buttons/Buttons";
 import Footer from "../shared/Footer/Footer";
+import AddToCart from "../shared/Buttons/Buttons";
 
 const Details = () => {
   const { state } = useLocation();

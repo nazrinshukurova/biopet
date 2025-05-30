@@ -1,9 +1,9 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import styles from "./Buttons.module.css";
-import { Cart2 } from "../../../assets/Svg";
+import { Cart2 } from "../../assets/Svg";
 
-export const AddToCart = () => {
+const AddToCart = () => {
   const { t, i18n } = useTranslation();
 
   return (
@@ -17,3 +17,5 @@ export const AddToCart = () => {
     </div>
   );
 };
+
+export default AddToCart;

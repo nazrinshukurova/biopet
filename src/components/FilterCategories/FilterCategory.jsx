@@ -15,11 +15,11 @@ import {
 } from "../../constants/filterOptions";
 import FilterSection from "../SelectedProducts/FilterSection";
 import { EmptyStarSvg, FullFilledStarSvg, Manat } from "../../assets/Svg";
-import { AddToCart } from "../../shared/assets/Buttons/Buttons";
 import RangeSlider from "../../assets/sliders/RangeSlider";
 import IOSSwitch from "../../assets/sliders/Toggle";
 import { useNavigate } from "react-router-dom";
-import SortSelect from "../../shared/assets/Selects/Select";
+import SortSelect from "../../shared/Selects/Select";
+import AddToCart from "../../shared/Buttons/Buttons";
 
 const FilterCategory = () => {
   const { t, i18n } = useTranslation();

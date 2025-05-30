@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useProducts } from "../context/ProductContext";
 import { EmptyStarSvg, FullFilledStarSvg } from "../assets/Svg";
 import { useTranslation } from "react-i18next";
-import { AddToCart } from "../shared/assets/Buttons/Buttons";
 import styles from "../styles/Discounted.module.css";
 import Footer from "../shared/Footer/Footer";
+import AddToCart from "../shared/Buttons/Buttons";
 
 const DiscountedProducts = () => {
   const { products, loading } = useProducts();

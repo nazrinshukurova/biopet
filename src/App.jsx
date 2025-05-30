@@ -12,6 +12,8 @@ import DiscountedProducts from "./pages/DiscountedProducts";
 import { ProductProvider } from "./context/ProductContext";
 import FAQ from "./pages/FAQ";
 import RegisterForm from "./components/Register/Register";
+import Blogs from "./pages/Blogs";
+import BlogsDetails from "./pages/BlogsDetails";
 
 const App = () => {
   const [savedLang, setSavedLang] = useState(null);
@@ -52,6 +54,8 @@ const App = () => {
             element={<DiscountedProducts />}
           />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="blogs" element={<Blogs />} />
+          <Route path="/blogs/:id" element={<BlogsDetails />} />
           <Route path="/register" element={<RegisterForm />} />
         </Routes>
         {/* <Footer/> */}
