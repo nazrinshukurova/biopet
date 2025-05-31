@@ -10,7 +10,7 @@ const Blogs = () => {
 
   const [blogs, setBlogs] = useState([]);
   const [error, setError] = useState(null);
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchBlogs = async () => {
       const { data, error } = await supabase.from("Blogs").select("*");
@@ -29,6 +29,7 @@ const Blogs = () => {
 
         setBlogs(cleanedData);
       }
+      setLoading(false);
     };
 
     fetchBlogs();
@@ -56,8 +57,9 @@ const Blogs = () => {
   return (
     <>
       <div>
-        {error && <p>{error}</p>}
-        {blogs.length === 0 && !error && <p>Loading blogs...</p>}
+        {loading && !error && <div className="spinner"></div>}
+
+        {!loading && blogs.length === 0 && !error && <p>No blogs available</p>}
         <div
           style={{
             display: "flex",

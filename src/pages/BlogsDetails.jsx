@@ -11,9 +11,11 @@ const BlogDetails = () => {
   const { i18n } = useTranslation();
   const [blog, setBlog] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchBlog = async () => {
+      setLoading(true);
       const { data, error } = await supabase
         .from("Blogs")
         .select("*")
@@ -26,19 +28,27 @@ const BlogDetails = () => {
       } else {
         setBlog(data);
       }
+      setLoading(false);
     };
 
     fetchBlog();
   }, [id]);
 
-  if (error) return <p>{error}</p>;
-  if (!blog) return <p>Loading...</p>;
+  if (loading && !error) {
+    return <div className="spinner"></div>; // You can style `.spinner` in your CSS
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
+  if (!blog) {
+    return null; // fallback in case blog is not yet loaded or null
+  }
 
   return (
     <>
-      {" "}
       <div>
-        {" "}
         <h1 className={styles.blog_title}>
           {i18n.language === "az" ? blog.NameAz : blog.NameRu}
         </h1>
@@ -49,14 +59,12 @@ const BlogDetails = () => {
             style={{ maxWidth: "100%" }}
           />
           <div className={styles.blog_details_desc_container}>
-            {" "}
             <div className={styles.date_and_view}>
               <div className={styles.view}>
                 <Date />
                 <div>{blog.Date}</div>
               </div>
               <div className={styles.view}>
-                {" "}
                 <View />
                 <div>{blog.View}</div>
               </div>

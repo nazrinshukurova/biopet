@@ -14,6 +14,9 @@ import FAQ from "./pages/FAQ";
 import RegisterForm from "./components/Register/Register";
 import Blogs from "./pages/Blogs";
 import BlogsDetails from "./pages/BlogsDetails";
+import Login from "./components/Login/Login";
+import Registration from "./pages/Registration";
+import LoginPage from "./pages/LoginPage";
 
 const App = () => {
   const [savedLang, setSavedLang] = useState(null);
@@ -56,7 +59,8 @@ const App = () => {
           <Route path="/faq" element={<FAQ />} />
           <Route path="blogs" element={<Blogs />} />
           <Route path="/blogs/:id" element={<BlogsDetails />} />
-          <Route path="/register" element={<RegisterForm />} />
+          <Route path="/register" element={<Registration />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
         {/* <Footer/> */}
       </BrowserRouter>

@@ -11,6 +11,7 @@ import {
 } from "../assets/Svg";
 import Footer from "../shared/Footer/Footer";
 import AddToCart from "../shared/Buttons/Buttons";
+import { useState, useEffect } from "react";
 
 const Details = () => {
   const { state } = useLocation();
@@ -19,345 +20,281 @@ const Details = () => {
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (product) {
+      setLoading(false);
+    }
+  }, [product]);
+
   const getPackageUnit = (lang, product) => {
     if (lang === "az") {
-      if (product?.ProductTypeKey === "litter") {
-        return `${product?.Package}L`;
-      }
-      return `${product.Package}q`;
+      return product?.ProductTypeKey === "litter"
+        ? `${product?.Package}L`
+        : `${product.Package}q`;
     }
 
     if (lang === "ru") {
-      if (product.ProductTypeKey === "litter") {
-        return `${product.Package}л`;
-      }
-      return `${product.Package}г`;
+      return product?.ProductTypeKey === "litter"
+        ? `${product.Package}л`
+        : `${product.Package}г`;
     }
 
     return `${product.Package}`;
   };
 
-  let totalPrice;
-
   const calcDiscountedPrice = (price, percent) => {
-    if (product.isDiscount) {
-      totalPrice = price - (price / 100) * percent;
-      return totalPrice.toFixed();
-    } else {
-      totalPrice = price.toFixed();
-    }
+    return product?.isDiscount
+      ? (price - (price / 100) * percent).toFixed()
+      : price?.toFixed();
   };
 
-  calcDiscountedPrice(product?.Price, product?.PercentOfDiscount);
-
-  console.log(totalPrice);
-
-  const bonus = product?.Price.toFixed(2);
-  console.log(product.PercentOfDiscount);
-
-  console.log(product.isDiscount);
+  const totalPrice = calcDiscountedPrice(
+    product?.Price,
+    product?.PercentOfDiscount
+  );
+  const bonus = product?.Price?.toFixed(2);
 
   return (
     <>
-      <div className={styles.image_and_description}>
-        <div className={styles.image_container}>
-          <img src={product?.İmage} alt="product" />
-        </div>
-        <div className={styles.view_details}>
-          <h1 className={styles.view_title}>
-            {lang === "az" ? product?.NameAz : product?.NameRu}
-          </h1>
-
-          <div className={styles.view_rating}>
-            <div>{product?.Rating}/5</div>
-            <div className={styles.view_stars}>
-              {Array.from({ length: 5 }).map((_, i) => {
-                const rating = product?.Rating || 0;
-
-                if (i + 1 <= Math.floor(rating)) {
-                  return <FullFilledStarSvg key={i} />;
-                } else if (
-                  i < rating &&
-                  rating % 1 >= 0.5 &&
-                  i === Math.floor(rating)
-                ) {
-                  return <HalfStarSvg key={i} />;
-                } else {
-                  return <EmptyStarSvg key={i} />;
-                }
-              })}
-            </div>
+      {loading ? (
+        <div className="spinner"></div>
+      ) : (
+        <div className={styles.image_and_description}>
+          <div className={styles.image_container}>
+            <img src={product?.İmage} alt="product" />
           </div>
+          <div className={styles.view_details}>
+            <h1 className={styles.view_title}>
+              {lang === "az" ? product?.NameAz : product?.NameRu}
+            </h1>
 
-          <h5 className={styles.view_packaging}>{t("packaging")}</h5>
-
-          {product?.Package ? (
-            <div className={styles.view_sizes}>
-              <div className={styles.view_package}>
-                {getPackageUnit(lang, product)}
+            <div className={styles.view_rating}>
+              <div>{product?.Rating}/5</div>
+              <div className={styles.view_stars}>
+                {Array.from({ length: 5 }).map((_, i) => {
+                  const rating = product?.Rating || 0;
+                  if (i + 1 <= Math.floor(rating)) {
+                    return <FullFilledStarSvg key={i} />;
+                  } else if (
+                    i < rating &&
+                    rating % 1 >= 0.5 &&
+                    i === Math.floor(rating)
+                  ) {
+                    return <HalfStarSvg key={i} />;
+                  } else {
+                    return <EmptyStarSvg key={i} />;
+                  }
+                })}
               </div>
             </div>
-          ) : null}
-          <div className={styles.info_details}>
-            {product.BrandAz ? (
-              <div className={styles.type_and_name}>
-                <div className={styles.title}>{t("brands.brands")}</div>
-                <div className={styles.type}>{product.BrandAz}</div>
-              </div>
-            ) : null}
 
-            {product.CountryAz ? (
-              <div className={styles.type_and_name}>
-                <div className={styles.title}>
-                  {lang === "az" ? "Ölkə" : "Страна"}
-                </div>
-                <div className={styles.type}>
-                  {lang === "az" ? product.CountryAz : product.CountryRu}
+            <h5 className={styles.view_packaging}>{t("packaging")}</h5>
+            {product?.Package && (
+              <div className={styles.view_sizes}>
+                <div className={styles.view_package}>
+                  {getPackageUnit(lang, product)}
                 </div>
               </div>
-            ) : null}
+            )}
 
-            {product.ProductTypeKey ? (
-              <div className={styles.type_and_name}>
-                <div className={styles.title}>
-                  {lang === "az" ? "Məhsulun növü" : "Тип продукта"}
-                </div>
-                <div className={styles.type}>
-                  {lang === "az"
-                    ? product.ProductTypeAz
-                    : product.ProductTypeRu}
-                </div>
-              </div>
-            ) : null}
-            {product.FoodTypeKey ? (
-              <div className={styles.type_and_name}>
-                <div className={styles.title}>
-                  {lang === "az" ? "Yemin Növü" : "Тип присяги"}
-                </div>
-                <div className={styles.type}>
-                  {lang === "az" ? product.FoodTypeAz : product.FoodTypeRu}
-                </div>
-              </div>
-            ) : null}
-            {product.İsSterilised ? (
-              <div className={styles.type_and_name}>
-                <div className={styles.title}>
-                  {lang === "az"
-                    ? "Qısırlaşdırma edilib"
-                    : "Стерилизация проведена"}
-                </div>
-                <div className={styles.type}>
-                  {lang === "az" && product.İsSterilised
-                    ? "Bəli"
-                    : lang === "az" && !product.İsSterilised
+            <div className={styles.info_details}>
+              {[
+                {
+                  key: "BrandAz",
+                  title: t("brands.brands"),
+                  value: product.BrandAz,
+                },
+                {
+                  key: "CountryAz",
+                  title: lang === "az" ? "Ölkə" : "Страна",
+                  value: lang === "az" ? product.CountryAz : product.CountryRu,
+                },
+                {
+                  key: "ProductTypeKey",
+                  title: lang === "az" ? "Məhsulun növü" : "Тип продукта",
+                  value:
+                    lang === "az"
+                      ? product.ProductTypeAz
+                      : product.ProductTypeRu,
+                },
+                {
+                  key: "FoodTypeKey",
+                  title: lang === "az" ? "Yemin Növü" : "Тип присяги",
+                  value:
+                    lang === "az" ? product.FoodTypeAz : product.FoodTypeRu,
+                },
+                {
+                  key: "İsSterilised",
+                  title:
+                    lang === "az"
+                      ? "Qısırlaşdırma edilib"
+                      : "Стерилизация проведена",
+                  value: product.İsSterilised
+                    ? lang === "az"
+                      ? "Bəli"
+                      : "Да"
+                    : lang === "az"
                     ? "Xeyr"
-                    : lang === "ru" && product.İsSterilised
-                    ? "Да"
-                    : "Нет"}
-                </div>
-              </div>
-            ) : null}
-            {product.AnimalKey ? (
-              <div className={styles.type_and_name}>
-                <div className={styles.title}>
-                  {lang === "az" ? "Heyvan növü" : "Тип животного"}
-                </div>
-                <div className={styles.type}>
-                  {lang === "az" ? product.AnimalTypeAz : product.AnimaTypeRu}
-                </div>
-              </div>
-            ) : null}
-            {product.IngredientsKey ? (
-              <div className={styles.type_and_name}>
-                <div className={styles.title}>
-                  {lang === "az" ? "Məhsulun tərkibi" : "Состав продукта"}
-                </div>
-                <div className={styles.type}>
-                  {lang === "az"
-                    ? product.İngredientsAz
-                    : product.İngredientsRu}
-                </div>
-              </div>
-            ) : null}
+                    : "Нет",
+                },
+                {
+                  key: "AnimalKey",
+                  title: lang === "az" ? "Heyvan növü" : "Тип животного",
+                  value:
+                    lang === "az" ? product.AnimalTypeAz : product.AnimaTypeRu,
+                },
+                {
+                  key: "İngredientsAz",
+                  title: lang === "az" ? "Məhsulun tərkibi" : "Состав продукта",
+                  value:
+                    lang === "az"
+                      ? product.İngredientsAz
+                      : product.İngredientsRu,
+                },
+                {
+                  key: "AgeKey",
+                  title: lang === "az" ? "Yaş" : "Возраст",
+                  value: lang === "az" ? product.AgeAz : product.AgeRu,
+                },
+                {
+                  key: "DogSizeKey",
+                  title: lang === "az" ? "İtin ölçüsü" : "Размер собаки",
+                  value: lang === "az" ? product.DogSizeAz : product.DogSizeRu,
+                },
+                {
+                  key: "CookieTypeAz",
+                  title: lang === "az" ? "Oyuncaqın növü" : "Тип игрушки",
+                  value:
+                    lang === "az" ? product.CookieTypeAz : product.CookieTypeRu,
+                },
+                {
+                  key: "ColorAz",
+                  title: lang === "az" ? "Rəng" : "Цвет",
+                  value: lang === "az" ? product.ColorAz : product.ColorRu,
+                },
+                {
+                  key: "AromaAz",
+                  title: lang === "az" ? "Dad" : "Вкус",
+                  value: lang === "az" ? product.AromaAz : product.AromaRu,
+                },
+                {
+                  key: "MaterialAz",
+                  title: lang === "az" ? "Material" : "Материал",
+                  value:
+                    lang === "az" ? product.MaterialAz : product.Materialru,
+                },
+                {
+                  key: "DietAndPreventionAz",
+                  title:
+                    lang === "az"
+                      ? "Pəhriz və qarşısının alınması"
+                      : "Диета и профилактика",
+                  value:
+                    lang === "az"
+                      ? product.DietAndPreventionAz
+                      : product.DietAndPreventionRu,
+                },
+                {
+                  key: "TypeOfAccessoriesAz",
+                  title: lang === "az" ? "Oyuncaqın növü" : "Тип аксессуара",
+                  value:
+                    lang === "az"
+                      ? product.TypeOfAccessoriesAz
+                      : product.TypeOfAccessoriesRu,
+                },
+                {
+                  key: "TypeOfCareProductsAz",
+                  title:
+                    lang === "az" ? "Baxım məhsulları" : "Средства по уходу",
+                  value:
+                    lang === "az"
+                      ? product.TypeOfCareProductsAz
+                      : product.TypeOfCareProductsRu,
+                },
+                {
+                  key: "PharmacyAppointmentKey",
+                  title:
+                    lang === "az"
+                      ? "Aptekın təyinatı"
+                      : "Запись на прием в аптеке",
+                  value:
+                    lang === "az"
+                      ? product.PharmacyAppointmentAz
+                      : product.PharmacyAppointmentRu,
+                },
+                {
+                  key: "BaytarlıqPəhriziAz",
+                  title:
+                    lang === "az" ? "Baytarlıq pəhrizi" : "Ветеринарная диета",
+                  value:
+                    lang === "az"
+                      ? product.BaytarlıqPəhriziAz
+                      : product.BaytarlıqPəhriziRu,
+                },
+              ]
+                .filter((item) => product[item.key])
+                .map((item, index) => (
+                  <div key={index} className={styles.type_and_name}>
+                    <div className={styles.title}>{item.title}</div>
+                    <div className={styles.type}>{item.value}</div>
+                  </div>
+                ))}
+            </div>
 
-            {product.AgeKey ? (
-              <div className={styles.type_and_name}>
-                <div className={styles.title}>
-                  {lang === "az" ? "Yaş" : "Возраст"}
-                </div>
-                <div className={styles.type}>
-                  {lang === "az" ? product.AgeAz : product.AgeRu}
-                </div>
-              </div>
-            ) : null}
-
-            {product.DogSizeKey ? (
-              <div className={styles.type_and_name}>
-                <div className={styles.title}>
-                  {lang === "az" ? "İtin ölçüsü" : "Размер собаки"}
-                </div>
-                <div className={styles.type}>
-                  {lang === "az" ? product.DogSizeAz : product.DogSizeRu}
+            <div className={styles.info_bonus}>
+              <div className={styles.left_info}>
+                <div>{t("bonusTitle")}</div>
+                <div className={styles.tooltip_container}>
+                  <Info />
+                  <div className={styles.tooltip}>
+                    <p>{t("bonusDescription")}</p>
+                    <div className={styles.tooltip_footer}>
+                      {t("bonusRate")}
+                    </div>
+                  </div>
                 </div>
               </div>
-            ) : null}
-
-            {product.CookieTypeAz ? (
-              <div className={styles.type_and_name}>
-                <div className={styles.title}>
-                  {lang === "az" ? "Oyuncaqın növü" : "Тип игрушки"}
-                </div>
-                <div className={styles.type}>
-                  {lang === "az" ? product.CookieTypeAz : product.CookieTypeRu}
-                </div>
-              </div>
-            ) : null}
-
-            {product.ColorAz ? (
-              <div className={styles.type_and_name}>
-                <div className={styles.title}>
-                  {lang === "az" ? "Rəng" : "Цвет"}
-                </div>
-                <div className={styles.type}>
-                  {lang === "az" ? product.ColorAz : product.ColorRu}
-                </div>
-              </div>
-            ) : null}
-
-            {product.AromaAz ? (
-              <div className={styles.type_and_name}>
-                <div className={styles.title}>
-                  {lang === "az" ? "Dad" : "Вкус"}
-                </div>
-                <div className={styles.type}>
-                  {lang === "az" ? product.AromaAz : product.AromaRu}
-                </div>
-              </div>
-            ) : null}
-
-            {product.MaterialAz ? (
-              <div className={styles.type_and_name}>
-                <div className={styles.title}>
-                  {lang === "az" ? "Material" : "Материал"}
-                </div>
-                <div className={styles.type}>
-                  {lang === "az" ? product.MaterialAz : product.Materialru}
-                </div>
-              </div>
-            ) : null}
-
-            {product.DietAndPreventionAz ? (
-              <div className={styles.type_and_name}>
-                <div className={styles.title}>
-                  {lang === "az"
-                    ? "Pəhriz və qarşısının alınması"
-                    : "Диета и профилактика"}
-                </div>
-                <div className={styles.type}>
-                  {lang === "az"
-                    ? product.DietAndPreventionAz
-                    : product.DietAndPreventionRu}
-                </div>
-              </div>
-            ) : null}
-
-            {product.TypeOfAccessoriesAz ? (
-              <div className={styles.type_and_name}>
-                <div className={styles.title}>
-                  {lang === "az" ? "Oyuncaqın növü" : "Тип аксессуара"}
-                </div>
-                <div className={styles.type}>
-                  {lang === "az"
-                    ? product.TypeOfAccessoriesAz
-                    : product.TypeOfAccessoriesRu}
-                </div>
-              </div>
-            ) : null}
-
-            {product.TypeOfCareProductsAz ? (
-              <div className={styles.type_and_name}>
-                <div className={styles.title}>
-                  {lang === "az" ? "Baxım məhsulları" : "Средства по уходу"}
-                </div>
-                <div className={styles.type}>
-                  {lang === "az"
-                    ? product.TypeOfCareProductsAz
-                    : product.TypeOfCareProductsRu}
-                </div>
-              </div>
-            ) : null}
-
-            {product.PharmacyAppointmentKey ? (
-              <div className={styles.type_and_name}>
-                <div className={styles.title}>
-                  {lang === "az"
-                    ? "Aptekın təyinatı"
-                    : "Запись на прием в аптеке"}
-                </div>
-                <div className={styles.type}>
-                  {lang === "az"
-                    ? product.PharmacyAppointmentAz
-                    : product.PharmacyAppointmentRu}
-                </div>
-              </div>
-            ) : null}
-            {product.BaytarlıqPəhriziAz ? (
-              <div className={styles.type_and_name}>
-                <div className={styles.title}>
-                  {lang === "az" ? "Baytarlıq pəhrizi" : "Ветеринарная диета"}
-                </div>
-                <div className={styles.type}>
-                  {lang === "az"
-                    ? product.BaytarlıqPəhriziAz
-                    : product.BaytarlıqPəhriziRu}
-                </div>
-              </div>
-            ) : null}
-          </div>
-
-          <div className={styles.info_bonus}>
-            <div className={styles.left_info}>
-              <div>{t("bonusTitle")}</div>
-              <div className={styles.tooltip_container}>
-                <Info />
-                <div className={styles.tooltip}>
-                  <p>{t("bonusDescription")}</p>
-                  <div className={styles.tooltip_footer}>{t("bonusRate")}</div>
-                </div>
+              <div className={styles.right_info}>
+                +{bonus} <Gift />
               </div>
             </div>
-            <div className={styles.right_info}>
-              +{bonus} <Gift />
-            </div>
-          </div>
-          <div className={styles.price_and_buttons}>
-            <div className={styles.view_price}>
-              <h5 className={styles.view_price_title}>
-                {lang === "az" ? "Qiymət" : "Цена"}
-              </h5>
-              {product?.isDiscount ? (
-                <div className={styles.allOfPrices}>
-                  <p
-                    className={styles.prices}
-                    style={{ textDecoration: "line-through", fontSize: "26px" }}
-                  >
-                    {product?.Price.toFixed(2)} AZN
+
+            <div className={styles.price_and_buttons}>
+              <div className={styles.view_price}>
+                <h5 className={styles.view_price_title}>
+                  {lang === "az" ? "Qiymət" : "Цена"}
+                </h5>
+                {product?.isDiscount ? (
+                  <div className={styles.allOfPrices}>
+                    <p
+                      className={styles.prices}
+                      style={{
+                        textDecoration: "line-through",
+                        fontSize: "26px",
+                      }}
+                    >
+                      {product?.Price?.toFixed(2)} AZN
+                    </p>
+                    <p className={styles.discounted_price}>{totalPrice} AZN</p>
+                  </div>
+                ) : (
+                  <p className={styles.prices}>
+                    {product?.Price?.toFixed(2)} AZN
                   </p>
-                  <p className={styles.discounted_price}>{totalPrice} AZN</p>
+                )}
+              </div>
+              <div className={styles.button_and_heart}>
+                <AddToCart />
+                <div className={styles.view_like}>
+                  <Heart />
                 </div>
-              ) : (
-                <p className={styles.prices}>{product?.Price.toFixed(2)} AZN</p>
-              )}
-            </div>
-            <div className={styles.button_and_heart}>
-              <AddToCart />
-              <div className={styles.view_like}>
-                <Heart />
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
       <Footer />
     </>
   );

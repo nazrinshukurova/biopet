@@ -194,6 +194,47 @@
   height: 28px;
 }
 
+.user:hover {
+  cursor: pointer;
+}
+
+.user_dropdown {
+  position: absolute;
+  top: 60px;
+  right: 70px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  z-index: 999;
+  min-height: 72px;
+  width: 230px;
+  transition: all 0.3s ease;
+  padding: 32px 24px;
+}
+
+.user_dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.user_dropdown li {
+  margin-bottom: 12px;
+  font-size: 16px;
+  color: #1d2123;
+  cursor: pointer;
+}
+
+.user_dropdown li:last-child {
+  margin-bottom: 0;
+}
+
+.user_dropdown a {
+  text-decoration: none;
+  color: #1d2123;
+}
+
 @media (max-width: 1100px) {
   .logo {
     width: 60px;

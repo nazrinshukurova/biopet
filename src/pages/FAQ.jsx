@@ -13,22 +13,31 @@ import Footer from "../shared/Footer/Footer";
 
 const FAQ = () => {
   const [faq, setFAQ] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const fetchFAQ = async () => {
+      setLoading(true);
       const { data, error } = await supabase.from("FAQ").select("*");
-      if (!error) setFAQ(data);
-      else console.error("FAQ error:", error);
+
+      if (error) {
+        console.error("FAQ error:", error);
+        setError(error);
+      } else {
+        setFAQ(data);
+        setError(null);
+      }
+      setLoading(false);
     };
 
     fetchFAQ();
   }, []);
 
-  const { t, i18n } = useTranslation();
-
   return (
     <>
-      {" "}
       <div className={styles.faqContainer}>
         <h2 className={styles.faqTitle}>
           {i18n.language === "az"
@@ -36,25 +45,37 @@ const FAQ = () => {
             : "FAQ – Часто задаваемые вопросы"}
         </h2>
 
-        <div className={styles.faqAccordion}>
-          {faq.map((item) => (
-            <Accordion key={item.id} className={styles.faqItem}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                className={styles.faqQuestion}
-              >
-                <Typography>
-                  {i18n.language === "az" ? item.questionAz : item.questionRu}
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails className={styles.faqAnswer}>
-                <Typography>
-                  {i18n.language === "az" ? item.answerAz : item.answerRu}
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-          ))}
-        </div>
+        {loading && !error && <div className="spinner"></div>}
+
+        {!loading && !error && (
+          <div className={styles.faqAccordion}>
+            {faq.map((item) => (
+              <Accordion key={item.id} className={styles.faqItem}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  className={styles.faqQuestion}
+                >
+                  <Typography>
+                    {i18n.language === "az" ? item.questionAz : item.questionRu}
+                  </Typography>
+                </AccordionSummary>
+                <AccordionDetails className={styles.faqAnswer}>
+                  <Typography>
+                    {i18n.language === "az" ? item.answerAz : item.answerRu}
+                  </Typography>
+                </AccordionDetails>
+              </Accordion>
+            ))}
+          </div>
+        )}
+
+        {error && (
+          <div className={styles.error}>
+            {i18n.language === "az"
+              ? "Məlumat yüklənərkən xəta baş verdi."
+              : "Произошла ошибка при загрузке данных."}
+          </div>
+        )}
       </div>
       <Footer />
     </>

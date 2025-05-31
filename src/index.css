@@ -71,3 +71,21 @@ input[type="number"]::-webkit-outer-spin-button {
 .css-1808mag-MuiPaper-root-MuiAccordion-root::before {
   height: 0px !important;
 }
+
+/* Global Spinner Class */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #00bda7; 
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 50px auto;
+}
+
+/* Animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

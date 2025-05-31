@@ -1,7 +1,16 @@
 {
+  "please_accept_terms": "Zəhmət olmasa, şərtlərlə razı olduğunuzu təsdiqləyin",
+  "register_error": "Qeydiyyat zamanı xəta baş verdi",
+  "register_success": "Uğurla qeydiyyatdan keçdiniz",
+  "invalid_phone": "Zəhmət olmasa düzgün telefon nömrəsi daxil edin",
+  "invalid_name": "Ad yalnız hərflərdən ibarət olmalıdır və ən azı 2 simvol olmalıdır",
+  "invalid_surname": "Soyad yalnız hərflərdən ibarət olmalıdır və ən azı 2 simvol olmalıdır",
+  "invalid_email": "Zəhmət olmasa düzgün email daxil edin",
   "navbar": {
     "searchPlaceholder": "Axtar. məs: Royal Canin, Sanicat, qurd dərmanı...",
-    "searchResult": "Axtarışa uyğun nəticə tapılmadı... "
+    "searchResult": "Axtarışa uyğun nəticə tapılmadı... ",
+    "login": "Daxil ol",
+    "register": "Hesab yarat"
   },
   "navbarLinks": {
     "Pişiklər": "Pişiklər",
@@ -221,9 +230,11 @@
   "already_registered": "Artıq qeydiyyatdan keçmisən?",
   "login": "Daxil ol",
   "name": "Ad",
-  "lastname": "Soyad",
+  "surname": "Soyad",
   "email": "E-mail",
   "name_placeholder": "Adınızı daxil edin",
   "surname_placeholder": "Soyadınızı daxil edin",
-  "email_placeholder": "Email daxil edin"
+  "email_placeholder": "Email daxil edin",
+  "password_placeholder":"Şifrənizi daxil edin",
+  "password":"Şifrə"
 }

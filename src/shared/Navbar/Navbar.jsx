@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./Navbar.module.css";
 import logo from "../../assets/svg/biopet_blue_logo.svg";
 import phone from "../../assets/svg/876-black.svg";
@@ -14,12 +14,28 @@ import { Link } from "react-router-dom";
 
 const Navbar = ({ lang }) => {
   const { t, i18n } = useTranslation();
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const changeLang = (myLang) => {
     i18n.changeLanguage(myLang);
   };
 
-  console.log(lang);
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  };
+
+  // Bağlama funksiyası (çöldə klik ediləndə dropdown bağlansın)
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <>
@@ -75,7 +91,21 @@ const Navbar = ({ lang }) => {
           </div>
 
           <div className={styles.header}>
-            <FiUser className={styles.user} />
+            <div onClick={handleClick} ref={dropdownRef}>
+              <FiUser className={styles.user} />
+              {isOpen && (
+                <div className={styles.user_dropdown}>
+                  <ul>
+                    <li>
+                      <Link to="/login">{t("navbar.login")}</Link>
+                    </li>
+                    <li>
+                      <Link to="/register">{t("navbar.register")}</Link>
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
             <div className={styles.wish_and_count}>
               <FaRegHeart className={styles.heart} />
               <div className={styles.wishlist_count}>
@@ -113,21 +143,19 @@ const Navbar = ({ lang }) => {
               </Link>
             </li>
             <li>
-              {" "}
               <Link
                 to={`/faq`}
                 style={{ textDecoration: "none", color: "#1d2123" }}
               >
                 {t("navbarLinks.FAQ")}
               </Link>
-            </li>{" "}
+            </li>
             <li>
-              {" "}
               <Link
                 to={`/products/discounted_products`}
                 style={{ textDecoration: "none", color: "#1d2123" }}
               >
-                {t("navbarLinks.Endirimlər")}{" "}
+                {t("navbarLinks.Endirimlər")}
               </Link>
             </li>
             <li>{t("navbarLinks.Bonus mağaza")}</li>
