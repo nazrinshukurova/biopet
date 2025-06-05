@@ -235,6 +235,11 @@
   "name_placeholder": "Adınızı daxil edin",
   "surname_placeholder": "Soyadınızı daxil edin",
   "email_placeholder": "Email daxil edin",
-  "password_placeholder":"Şifrənizi daxil edin",
-  "password":"Şifrə"
+  "password_placeholder": "Şifrənizi daxil edin",
+  "password": "Şifrə",
+  "not_found": "Səhifə tapılmadı",
+  "login_text": "Sizin hesabınız yoxdur?",
+  "create_account_text": "Hesab yarat",
+  "order_title": "Sifarişiniz ödənişsiz çatdırılacaq",
+  "total_price": "Toplam məbləğ"
 }

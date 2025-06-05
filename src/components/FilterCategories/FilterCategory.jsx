@@ -20,6 +20,8 @@ import IOSSwitch from "../../assets/sliders/Toggle";
 import { useNavigate } from "react-router-dom";
 import SortSelect from "../../shared/Selects/Select";
 import AddToCart from "../../shared/Buttons/Buttons";
+import Footer from "../../shared/Footer/Footer";
+import { FaArrowAltCircleUp, FaArrowCircleUp, FaArrowUp } from "react-icons/fa";
 
 const FilterCategory = () => {
   const { t, i18n } = useTranslation();
@@ -249,18 +251,6 @@ const FilterCategory = () => {
 
     setFilteredData(filtered);
 
-    // console.log(selectedIngredients);
-    // console.log(filtered);
-    // console.log(filtered.filter((item) => item.İngredientsAz === "Mal əti"));
-
-    // const keys = selectedAnimalTypes.map((el) => el.key);
-    // const params = new URLSearchParams(window.location.search);
-    // if (keys.length > 0) {
-    //   const queryString = `?animal=${keys.join("&")}`;
-    //   window.history.replaceState({}, "", baseUrl + queryString);
-    // } else {
-    //   window.history.replaceState({}, "", baseUrl);
-    // }
   }, [
     selectedBrands,
     selectedSizes,
@@ -319,326 +309,365 @@ const FilterCategory = () => {
     setFilteredData(filteredProducts);
   }, [showFiltered, data]);
 
-  //^URLE OTURMEK UCUN OLAN HISSE
+  //^Pagenetion
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = filteredData.slice(startIndex, endIndex);
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
   return (
-    <div className={styles.common_container}>
-      {" "}
-      <div className={styles.left_filter}>
-        <div className={styles.filter_list}>
-          <span className={styles.category_title}>
-            {loading ? (
-              <div
-                className={styles.skeleton}
-                style={{ width: 120, height: 24 }}
-              />
-            ) : (
-              t("relatedCategories.title") + ":"
-            )}
-          </span>
-
-          {(loading
-            ? Array.from({ length: 5 }) // skeleton üçün 5 boş blok
-            : [
-                "Quru_yem",
-                "Nəm_yem",
-                "Bala_itlər_üçün",
-                "Hamilə_və_südverən_itlər_üçün",
-                "Müalicəvi_yemlər",
-              ]
-          ).map((cat, index) => (
-            <div key={loading ? index : cat} className={styles.category}>
+    <>
+      <div className={styles.common_container}>
+        {" "}
+        <div className={styles.left_filter}>
+          <div className={styles.filter_list}>
+            <span className={styles.category_title}>
               {loading ? (
                 <div
                   className={styles.skeleton}
-                  style={{ width: "80%", height: 20, margin: "8px 0" }}
+                  style={{ width: 120, height: 24 }}
                 />
               ) : (
-                t(`relatedCategories.${cat}`)
+                t("relatedCategories.title") + ":"
               )}
-            </div>
-          ))}
-        </div>
+            </span>
 
-        {renderFilter(
-          "animalTypes.title",
-          "animal",
-          animalTypes,
-          "search_placeholders_0",
-          selectedAnimalTypes,
-          setSelectedAnimalTypes,
-          isLoadingAnimalTypes
-        )}
-        {renderFilter(
-          "brend",
-          "brand",
-          brand,
-          "search_placeholders_1",
-          selectedBrands,
-          setSelectedBrands,
-          isLoadingBrands
-        )}
-        {renderFilter(
-          "ingredients.title",
-          "ingredients",
-          ingredients,
-          "search_placeholders_2",
-          selectedIngredients,
-          setSelectedIngredients,
-          isLoadingIngredients
-        )}
-        {renderFilter(
-          "isAvailable",
-          "isAvailable",
-          available,
-          "search_placeholders_9",
-          selectedIsAvailable,
-          setSelectedIsAvailable,
-          isLoadingIsAvailable
-        )}
-        {renderFilter(
-          "sizeOfDog.title",
-          "size",
-          sizes,
-          "search_placeholders_3",
-          selectedSizes,
-          setSelectedSizes,
-          isLoadingSizes
-        )}
-        {renderFilter(
-          "sterilized",
-          "sterilized",
-          sterilized,
-          "search_placeholders_4",
-          selectedSterilized,
-          setSelectedSterilized,
-          isLoadingSterilized
-        )}
-
-        {renderFilter(
-          "pharmacyAppointment.title",
-          "diets",
-          vetDiets,
-          "search_placeholders_6",
-          selectedVetDiets,
-          setSelectedVetDiets,
-          isLoadingVetDiets
-        )}
-        {renderFilter(
-          "ageGroups.title",
-          "age",
-          ageGroups,
-          "search_placeholders_7",
-          selectedAgeGroups,
-          setSelectedAgeGroups,
-          isLoadingAgeGroups
-        )}
-        {renderFilter(
-          "foodTypes.title",
-          "foodType",
-          foodTypes,
-          "search_placeholders_8",
-          selectedFoodTypes,
-          setSelectedFoodTypes,
-          isLoadingFoodTypes
-        )}
-        {renderFilter(
-          "productTypes.title",
-          "productType",
-          productTypes,
-          "search_placeholders_8",
-          selectedProductType,
-          setSelectedProductType,
-          isLoadingProductTypes
-        )}
-        {/* Filtering for price */}
-
-        <div className={styles.filter_list}>
-          {loading ? (
-            <>
-              <div
-                className={styles.skeleton}
-                style={{ width: 50, height: 20, marginBottom: 12 }}
-              />
-              <div
-                className={styles.input_prices}
-                style={{ display: "flex", gap: 8 }}
-              >
-                <div style={{ flex: 1 }}>
+            {(loading
+              ? Array.from({ length: 5 }) // skeleton üçün 5 boş blok
+              : [
+                  "Quru_yem",
+                  "Nəm_yem",
+                  "Bala_itlər_üçün",
+                  "Hamilə_və_südverən_itlər_üçün",
+                  "Müalicəvi_yemlər",
+                ]
+            ).map((cat, index) => (
+              <div key={loading ? index : cat} className={styles.category}>
+                {loading ? (
                   <div
                     className={styles.skeleton}
-                    style={{ height: 36, width: "100%" }}
+                    style={{ width: "80%", height: 20, margin: "8px 0" }}
                   />
-                </div>
-                <div style={{ flex: 1 }}>
-                  <div
-                    className={styles.skeleton}
-                    style={{ height: 36, width: "100%" }}
-                  />
-                </div>
+                ) : (
+                  t(`relatedCategories.${cat}`)
+                )}
               </div>
-              <div style={{ marginTop: 12 }}>
-                <div
-                  className={styles.skeleton}
-                  style={{ height: 24, width: "100%" }}
-                />
-              </div>
-            </>
-          ) : (
-            <>
-              <p className={styles.price}>Qiymət</p>
-              <div className={styles.input_prices}>
-                <div className={styles.min_price}>
-                  <input
-                    className={styles.price_range_input}
-                    type="number"
-                    value={priceRange[0]}
-                    onChange={(e) => handleInputChange(0, e.target.value)}
-                  />
-                  <span className={styles.manat_svg}>
-                    <Manat />
-                  </span>
-                </div>
-                <div className={styles.max_price}>
-                  <input
-                    className={styles.price_range_input}
-                    type="number"
-                    value={priceRange[1]}
-                    onChange={(e) => handleInputChange(1, e.target.value)}
-                  />
-                  <span className={styles.manat_svg}>
-                    <Manat />
-                  </span>
-                </div>
-              </div>
-              <RangeSlider
-                min={0}
-                max={maxPrice}
-                value={priceRange}
-                onChange={setPriceRange}
-              />
-            </>
+            ))}
+          </div>
+
+          {renderFilter(
+            "animalTypes.title",
+            "animal",
+            animalTypes,
+            "search_placeholders_0",
+            selectedAnimalTypes,
+            setSelectedAnimalTypes,
+            isLoadingAnimalTypes
           )}
-        </div>
-        {/* Filtering for RATING */}
-        <div className={styles.rating_desc_box}>
-          {loading ? (
-            <>
-              <div className={styles.rating_left}>
-                <div
-                  className={styles.skeleton}
-                  style={{ width: 100, height: 24, marginBottom: 4 }}
-                />
-                <div
-                  className={styles.skeleton}
-                  style={{ width: 150, height: 16 }}
-                />
-              </div>
-              <div className={styles.rating_right}>
-                <div
-                  className={styles.skeleton}
-                  style={{ width: 40, height: 24, borderRadius: 12 }}
-                />
-              </div>
-            </>
-          ) : (
-            <>
-              <div className={styles.rating_left}>
-                <p className={styles.price}>{t("ratingForFilterTitle")}</p>
-                <span className={styles.rating_text}>
-                  {t("ratingForFilterText")}
-                </span>
-              </div>
-              <div className={styles.rating_right}>
-                <IOSSwitch onChange={handleToggle} />
-              </div>
-            </>
+          {renderFilter(
+            "brend",
+            "brand",
+            brand,
+            "search_placeholders_1",
+            selectedBrands,
+            setSelectedBrands,
+            isLoadingBrands
           )}
-        </div>
-      </div>
-      <div className={styles.select_and_result}>
-        <div className={styles.select_sort_options}>
-          <SortSelect products={filteredData} onSorted={setFilteredData} />
-        </div>{" "}
-        <div className={styles.filtered_result}>
-          {loading ? (
-            Array.from({ length: 8 }).map((_, index) => (
-              <div key={index} className={styles.filtered_item}>
-                <div className={`${styles.item_image} ${styles.skeleton}`} />
-                <div className={styles.item_desc}>
-                  <div className={`${styles.price} ${styles.skeleton}`} />
-                  <div className={`${styles.item_title} ${styles.skeleton}`} />
-                  <div className={`${styles.rating} ${styles.skeleton}`} />
-                  <div
-                    className={`${styles.item_package} ${styles.skeleton}`}
-                  />
-                </div>
-              </div>
-            ))
-          ) : filteredData.length === 0 ? (
-            <div className={styles.empty_message_box}>
-              <p className={styles.empty_message}>
-                {i18n.language === "az"
-                  ? "Nəticə tapılmadı"
-                  : "Ничего не найдено"}
-              </p>
-            </div>
-          ) : (
-            filteredData.map((item) => (
-              <div
-                onClick={() =>
-                  navigate(`/product/${item.id}`, { state: { product: item } })
-                }
-                key={item.id}
-                className={styles.filtered_item}
-              >
+          {renderFilter(
+            "ingredients.title",
+            "ingredients",
+            ingredients,
+            "search_placeholders_2",
+            selectedIngredients,
+            setSelectedIngredients,
+            isLoadingIngredients
+          )}
+          {renderFilter(
+            "isAvailable",
+            "isAvailable",
+            available,
+            "search_placeholders_9",
+            selectedIsAvailable,
+            setSelectedIsAvailable,
+            isLoadingIsAvailable
+          )}
+          {renderFilter(
+            "sizeOfDog.title",
+            "size",
+            sizes,
+            "search_placeholders_3",
+            selectedSizes,
+            setSelectedSizes,
+            isLoadingSizes
+          )}
+          {renderFilter(
+            "sterilized",
+            "sterilized",
+            sterilized,
+            "search_placeholders_4",
+            selectedSterilized,
+            setSelectedSterilized,
+            isLoadingSterilized
+          )}
+
+          {renderFilter(
+            "pharmacyAppointment.title",
+            "diets",
+            vetDiets,
+            "search_placeholders_6",
+            selectedVetDiets,
+            setSelectedVetDiets,
+            isLoadingVetDiets
+          )}
+          {renderFilter(
+            "ageGroups.title",
+            "age",
+            ageGroups,
+            "search_placeholders_7",
+            selectedAgeGroups,
+            setSelectedAgeGroups,
+            isLoadingAgeGroups
+          )}
+          {renderFilter(
+            "foodTypes.title",
+            "foodType",
+            foodTypes,
+            "search_placeholders_8",
+            selectedFoodTypes,
+            setSelectedFoodTypes,
+            isLoadingFoodTypes
+          )}
+          {renderFilter(
+            "productTypes.title",
+            "productType",
+            productTypes,
+            "search_placeholders_8",
+            selectedProductType,
+            setSelectedProductType,
+            isLoadingProductTypes
+          )}
+          {/* Filtering for price */}
+
+          <div className={styles.filter_list}>
+            {loading ? (
+              <>
                 <div
-                  style={{ position: "relative" }}
-                  className={styles.item_image}
+                  className={styles.skeleton}
+                  style={{ width: 50, height: 20, marginBottom: 12 }}
+                />
+                <div
+                  className={styles.input_prices}
+                  style={{ display: "flex", gap: 8 }}
                 >
-                  {item.isDiscount ? (
+                  <div style={{ flex: 1 }}>
                     <div
-                      style={{ position: "absolute",left:"10px",top:"10px" }}
-                      className={styles.discount_box}
-                    >
-                      -{item.PercentOfDiscount}%
-                    </div>
-                  ) : null}
-                  <img
-                    height="172px"
-                    width="172px"
-                    src={item.İmage}
-                    alt={item.NameAz}
+                      className={styles.skeleton}
+                      style={{ height: 36, width: "100%" }}
+                    />
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <div
+                      className={styles.skeleton}
+                      style={{ height: 36, width: "100%" }}
+                    />
+                  </div>
+                </div>
+                <div style={{ marginTop: 12 }}>
+                  <div
+                    className={styles.skeleton}
+                    style={{ height: 24, width: "100%" }}
                   />
                 </div>
-                <div className={styles.item_desc}>
-                  <div className={styles.priceForFilter}>{item.Price} AZN</div>
-                  <div className={styles.item_title}>
-                    {i18n.language === "az" ? item.NameAz : item.NameRu}
+              </>
+            ) : (
+              <>
+                <p className={styles.price}>Qiymət</p>
+                <div className={styles.input_prices}>
+                  <div className={styles.min_price}>
+                    <input
+                      className={styles.price_range_input}
+                      type="number"
+                      value={priceRange[0]}
+                      onChange={(e) => handleInputChange(0, e.target.value)}
+                    />
+                    <span className={styles.manat_svg}>
+                      <Manat />
+                    </span>
                   </div>
-                  <div className={styles.rating}>
-                    {item?.Rating === 0 ? (
-                      <EmptyStarSvg />
-                    ) : (
-                      <FullFilledStarSvg />
-                    )}
-                    {item.Rating}
+                  <div className={styles.max_price}>
+                    <input
+                      className={styles.price_range_input}
+                      type="number"
+                      value={priceRange[1]}
+                      onChange={(e) => handleInputChange(1, e.target.value)}
+                    />
+                    <span className={styles.manat_svg}>
+                      <Manat />
+                    </span>
                   </div>
-                  {item.Package && (
-                    <div className={styles.item_package}>
-                      {i18n.language === "az"
-                        ? `${item.Package}q`
-                        : `${item.Package}г`}
-                    </div>
-                  )}
                 </div>
-                <AddToCart product={item} />
+                <RangeSlider
+                  min={0}
+                  max={maxPrice}
+                  value={priceRange}
+                  onChange={setPriceRange}
+                />
+              </>
+            )}
+          </div>
+          {/* Filtering for RATING */}
+          <div className={styles.rating_desc_box}>
+            {loading ? (
+              <>
+                <div className={styles.rating_left}>
+                  <div
+                    className={styles.skeleton}
+                    style={{ width: 100, height: 24, marginBottom: 4 }}
+                  />
+                  <div
+                    className={styles.skeleton}
+                    style={{ width: 150, height: 16 }}
+                  />
+                </div>
+                <div className={styles.rating_right}>
+                  <div
+                    className={styles.skeleton}
+                    style={{ width: 40, height: 24, borderRadius: 12 }}
+                  />
+                </div>
+              </>
+            ) : (
+              <>
+                <div className={styles.rating_left}>
+                  <p className={styles.price}>{t("ratingForFilterTitle")}</p>
+                  <span className={styles.rating_text}>
+                    {t("ratingForFilterText")}
+                  </span>
+                </div>
+                <div className={styles.rating_right}>
+                  <IOSSwitch onChange={handleToggle} />
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+        <div className={styles.select_and_result}>
+          <div className={styles.select_sort_options}>
+            <SortSelect products={filteredData} onSorted={setFilteredData} />
+          </div>{" "}
+          <div className={styles.filtered_result}>
+            {loading ? (
+              Array.from({ length: 8 }).map((_, index) => (
+                <div key={index} className={styles.filtered_item}>
+                  <div className={`${styles.item_image} ${styles.skeleton}`} />
+                  <div className={styles.item_desc}>
+                    <div className={`${styles.price} ${styles.skeleton}`} />
+                    <div
+                      className={`${styles.item_title} ${styles.skeleton}`}
+                    />
+                    <div className={`${styles.rating} ${styles.skeleton}`} />
+                    <div
+                      className={`${styles.item_package} ${styles.skeleton}`}
+                    />
+                  </div>
+                </div>
+              ))
+            ) : filteredData.length === 0 ? (
+              <div className={styles.empty_message_box}>
+                <p className={styles.empty_message}>
+                  {i18n.language === "az"
+                    ? "Nəticə tapılmadı"
+                    : "Ничего не найдено"}
+                </p>
               </div>
-            ))
-          )}
+            ) : (
+              currentItems.map((item) => (
+                <div className={styles.filtered_item}>
+                  <div
+                    onClick={() =>
+                      navigate(`/product/${item.id}`, {
+                        state: { product: item },
+                      })
+                    }
+                    key={item.id}
+                    style={{ position: "relative", cursor: "pointer" }}
+                    className={styles.item_image}
+                  >
+                    {item.isDiscount ? (
+                      <div
+                        style={{
+                          position: "absolute",
+                          left: "10px",
+                          top: "10px",
+                        }}
+                        className={styles.discount_box}
+                      >
+                        -{item.PercentOfDiscount}%
+                      </div>
+                    ) : null}
+                    <img
+                      height="172px"
+                      width="172px"
+                      src={item.İmage}
+                      alt={item.NameAz}
+                    />
+                  </div>
+                  <div className={styles.item_desc}>
+                    <div className={styles.priceForFilter}>
+                      {item.Price} AZN
+                    </div>
+                    <div className={styles.item_title}>
+                      {i18n.language === "az" ? item.NameAz : item.NameRu}
+                    </div>
+                    <div className={styles.rating}>
+                      {item?.Rating === 0 ? (
+                        <EmptyStarSvg />
+                      ) : (
+                        <FullFilledStarSvg />
+                      )}
+                      {item.Rating}
+                    </div>
+                    {item.Package && (
+                      <div className={styles.item_package}>
+                        {i18n.language === "az"
+                          ? `${item.Package}q`
+                          : `${item.Package}г`}
+                      </div>
+                    )}
+                  </div>
+                  <AddToCart product={item} />
+                </div>
+              ))
+            )}
+          </div>
+          <div className={styles.pagination}>
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button
+                key={i}
+                className={`${styles.page_button} ${
+                  currentPage === i + 1 ? styles.active : ""
+                }`}
+                onClick={() => setCurrentPage(i + 1)}
+              >
+                {i + 1}
+              </button>
+            ))}
+          </div>
+          <div className={styles.go_to_top}>
+            {" "}
+            <button
+              className={styles.up_button}
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            >
+              <FaArrowUp style={{ fontWeight: "400px" }} />
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -73,10 +73,61 @@
   color: white;
 }
 
-.wish_and_count {
+.wish_and_count,
+.basket_and_count {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  transition: all 0.3s ease-in;
+  cursor: pointer;
+}
+
+.hidden_box {
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  position: absolute;
+  top: 100%;
+  margin-top: 6px;
+  width: 320px;
+  background-color: white;
+  color: #1d2123;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 10;
+  right: 20px;
+  padding: 14px 16px;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.basket_and_count:hover .hidden_box {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.hidden_box::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 28px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent transparent white transparent;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.basket_and_count:hover .hidden_box::before {
+  opacity: 1;
+  visibility: visible;
 }
 
 .user,
@@ -307,4 +358,59 @@
   .common_navbar_container {
     display: none;
   }
+}
+
+.basket_item {
+  border-bottom: 1px solid #e0e0e0;
+  
+  padding: 24px;
+}
+
+.product_title {
+  font-size: 14px;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+  line-height: 20px;
+  font-weight: 500;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+  color: #1d2123;
+}
+
+.product_title:hover {
+  color: #00b5a4;
+}
+
+.product_image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.all_basket_products {
+  max-height: 300px; /* hər məhsul təxminən 90-100pxdirsə, 3 məhsula qədər yer edər */
+  overflow-y: auto;
+}
+
+/* Optional: scrollbar üçün stil */
+.all_basket_products::-webkit-scrollbar {
+  width: 6px;
+}
+
+.all_basket_products::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.product_price{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: #ED0036;
+  height: 34px;
+  font-size: 20px;
 }

@@ -234,5 +234,10 @@
   "surname_placeholder": "Введите вашу фамилию",
   "email_placeholder": "Введите свой адрес электронной почты",
   "password_placeholder": "Введите свой пароль",
-  "password": "Пароль"
+  "password": "Пароль",
+  "not_found": "Страница не найдена",
+  "login_text": "Нет аккаунта?",
+  "create_account_text": "Создайте аккаунт",
+  "order_title": "Ваш заказ будет доставлен бесплатно.",
+  "total_price":"Общая сумма"
 }
