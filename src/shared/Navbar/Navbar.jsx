@@ -16,8 +16,14 @@ import { Manat, RedManat } from "../../assets/Svg";
 import { FinishTheOrder, ViewBasket } from "../Buttons/Buttons";
 
 const Navbar = ({ lang }) => {
-  const { basketItems, basketCount, totalQuantity, quantity, totalPrice } =
-    useBasket();
+  const {
+    totalDiscount,
+    basketItems,
+    basketCount,
+    totalQuantity,
+    quantity,
+    totalPrice,
+  } = useBasket();
 
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
@@ -199,7 +205,7 @@ const Navbar = ({ lang }) => {
                     }}
                   >
                     <div style={{ fontWeight: "400" }}>
-                      {totalPrice.toFixed(2)}
+                      {(totalPrice - totalDiscount).toFixed(2)}
                     </div>
                     <RedManat height="14px" width="14px" color="#1d2123" />
                   </div>

@@ -241,5 +241,8 @@
   "login_text": "Sizin hesabınız yoxdur?",
   "create_account_text": "Hesab yarat",
   "order_title": "Sifarişiniz ödənişsiz çatdırılacaq",
-  "total_price": "Toplam məbləğ"
+  "total_price": "Toplam məbləğ",
+  "total_discount": "Total endirim",
+  "total": "Cəmi",
+  "delivery_policy": "Sifariş edərkən İstifadəçi şərtləri ilə razılaşmış olursunuz"
 }

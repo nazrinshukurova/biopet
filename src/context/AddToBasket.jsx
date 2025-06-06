@@ -43,7 +43,8 @@ export const BasketProvider = ({ children }) => {
     total: item.Price * item.quantity,
   }));
 
-  // 🧾 Total price for entire basket
+  console.log(basketItems);
+
   const totalPrice = itemsWithTotal.reduce((sum, item) => sum + item.total, 0);
 
   const decreaseQuantity = (productId) => {
@@ -56,6 +57,14 @@ export const BasketProvider = ({ children }) => {
     );
   };
 
+  const totalDiscount = basketItems.reduce((sum, item) => {
+    if (item.isDiscount) {
+      const discountPerItem = (item.Price * item.PercentOfDiscount) / 100;
+      return sum + discountPerItem * item.quantity;
+    }
+    return sum;
+  }, 0);
+
   return (
     <BasketContext.Provider
       value={{
@@ -64,6 +73,7 @@ export const BasketProvider = ({ children }) => {
         removeFromBasket,
         clearBasket,
         decreaseQuantity,
+        totalDiscount,
         basketCount: basketItems.length, // different products
         totalQuantity: basketItems.reduce(
           (sum, item) => sum + item.quantity,

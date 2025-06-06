@@ -21,6 +21,7 @@ import NotFound from "./pages/NotFound";
 import { AuthProvider } from "./context/AuthContext";
 import { BasketProvider } from "./context/AddToBasket";
 import Basket from "./pages/Basket";
+import { WishlistProvider } from "./context/WishlistContext";
 
 const App = () => {
   const [savedLang, setSavedLang] = useState(null);
@@ -50,28 +51,30 @@ const App = () => {
     <ProductProvider>
       <BrowserRouter>
         <AuthProvider>
-          <BasketProvider>
-            <Navbar lang={language} />
-            <Dropdown />
-            <NavbarMobile />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/product/:id" element={<Details />} />
-              <Route
-                path="/products/discounted_products"
-                element={<DiscountedProducts />}
-              />
-              <Route path="/faq" element={<FAQ />} />
-              <Route path="blogs" element={<Blogs />} />
-              <Route path="/blogs/:id" element={<BlogsDetails />} />
-              <Route path="/register" element={<Registration />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/basket" element={<Basket />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-            {/* <Footer/> */}
-          </BasketProvider>
+          <WishlistProvider>
+            <BasketProvider>
+              <Navbar lang={language} />
+              <Dropdown />
+              <NavbarMobile />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/product/:id" element={<Details />} />
+                <Route
+                  path="/products/discounted_products"
+                  element={<DiscountedProducts />}
+                />
+                <Route path="/faq" element={<FAQ />} />
+                <Route path="blogs" element={<Blogs />} />
+                <Route path="/blogs/:id" element={<BlogsDetails />} />
+                <Route path="/register" element={<Registration />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/basket" element={<Basket />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+              {/* <Footer/> */}
+            </BasketProvider>
+          </WishlistProvider>
         </AuthProvider>
       </BrowserRouter>
     </ProductProvider>

@@ -14,7 +14,12 @@ import {
   productTypeKeys,
 } from "../../constants/filterOptions";
 import FilterSection from "../SelectedProducts/FilterSection";
-import { EmptyStarSvg, FullFilledStarSvg, Manat } from "../../assets/Svg";
+import {
+  EmptyStarSvg,
+  FullFilledStarSvg,
+  Heart,
+  Manat,
+} from "../../assets/Svg";
 import RangeSlider from "../../assets/sliders/RangeSlider";
 import IOSSwitch from "../../assets/sliders/Toggle";
 import { useNavigate } from "react-router-dom";
@@ -250,7 +255,6 @@ const FilterCategory = () => {
     );
 
     setFilteredData(filtered);
-
   }, [
     selectedBrands,
     selectedSizes,
@@ -608,6 +612,7 @@ const FilterCategory = () => {
                         -{item.PercentOfDiscount}%
                       </div>
                     ) : null}
+                    <Heart />
                     <img
                       height="172px"
                       width="172px"
