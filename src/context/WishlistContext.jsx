@@ -1,11 +1,16 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
-// 1. Kontekstin yaradılması
 const WishlistContext = createContext();
 
-// 2. Provider komponenti
 export const WishlistProvider = ({ children }) => {
-  const [wishlist, setWishlist] = useState([]);
+  const [wishlist, setWishlist] = useState(() => {
+    const storedWishlist = localStorage.getItem("wishlist");
+    return storedWishlist ? JSON.parse(storedWishlist) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  }, [wishlist]);
 
   const addToWishlist = (product) => {
     if (!wishlist.find((item) => item.id === product.id)) {
@@ -40,5 +45,4 @@ export const WishlistProvider = ({ children }) => {
   );
 };
 
-// 3. Custom hook
 export const useWishlist = () => useContext(WishlistContext);

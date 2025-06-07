@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import { useBasket } from "../../context/AddToBasket";
 import { Manat, RedManat } from "../../assets/Svg";
 import { FinishTheOrder, ViewBasket } from "../Buttons/Buttons";
+import { useWishlist } from "../../context/WishlistContext";
 
 const Navbar = ({ lang }) => {
   const {
@@ -24,6 +25,10 @@ const Navbar = ({ lang }) => {
     quantity,
     totalPrice,
   } = useBasket();
+
+  const {wishlist}=useWishlist()
+
+  console.log(wishlist)
 
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
@@ -121,7 +126,7 @@ const Navbar = ({ lang }) => {
             <div className={styles.wish_and_count}>
               <FaRegHeart className={styles.heart} />
               <div className={styles.wishlist_count}>
-                <span>0</span>
+                <span>{wishlist.length}</span>
               </div>
             </div>
             <div className={styles.basket_and_count}>

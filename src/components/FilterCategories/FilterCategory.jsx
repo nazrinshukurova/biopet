@@ -16,6 +16,7 @@ import {
 import FilterSection from "../SelectedProducts/FilterSection";
 import {
   EmptyStarSvg,
+  ExternalLink,
   FullFilledStarSvg,
   Heart,
   Manat,
@@ -27,6 +28,8 @@ import SortSelect from "../../shared/Selects/Select";
 import AddToCart from "../../shared/Buttons/Buttons";
 import Footer from "../../shared/Footer/Footer";
 import { FaArrowAltCircleUp, FaArrowCircleUp, FaArrowUp } from "react-icons/fa";
+import { useWishlist } from "../../context/WishlistContext";
+import { FiExternalLink } from "react-icons/fi";
 
 const FilterCategory = () => {
   const { t, i18n } = useTranslation();
@@ -322,6 +325,10 @@ const FilterCategory = () => {
   const currentItems = filteredData.slice(startIndex, endIndex);
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
+  const { addToWishlist, wishlist, clearWishlist } = useWishlist();
+
+  console.log(wishlist, "WISHLIST");
+
   return (
     <>
       <div className={styles.common_container}>
@@ -591,11 +598,6 @@ const FilterCategory = () => {
               currentItems.map((item) => (
                 <div className={styles.filtered_item}>
                   <div
-                    onClick={() =>
-                      navigate(`/product/${item.id}`, {
-                        state: { product: item },
-                      })
-                    }
                     key={item.id}
                     style={{ position: "relative", cursor: "pointer" }}
                     className={styles.item_image}
@@ -612,7 +614,21 @@ const FilterCategory = () => {
                         -{item.PercentOfDiscount}%
                       </div>
                     ) : null}
-                    <Heart />
+                    <div style={{display:"flex",gap:"10px",position:"absolute",right:"10px",top:"10px"}}>
+                      {" "}
+                      <div onClick={() => addToWishlist(item)}>
+                        <Heart />
+                      </div>
+                      <div
+                        onClick={() =>
+                          navigate(`/product/${item.id}`, {
+                            state: { product: item },
+                          })
+                        }
+                      >
+                        <ExternalLink />
+                      </div>
+                    </div>
                     <img
                       height="172px"
                       width="172px"
