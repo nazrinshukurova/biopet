@@ -19,6 +19,7 @@ const Login = () => {
       alert(t("login_success"));
       setPhone("");
       setPassword("");
+      window.location.href="/"
     }
   };
 

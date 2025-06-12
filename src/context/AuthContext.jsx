@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { supabase } from "../../client";
 
@@ -6,8 +6,15 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const { t } = useTranslation();
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+
   const [authErrors, setAuthErrors] = useState({});
+  const [isLogin, setIsLogin] = useState(() => {
+    return localStorage.getItem("isLogin") === "true";
+  });
 
   const register = async ({ phone, name, surname, email, password, terms }) => {
     const phoneRegex = /^(50|51|55|70|77|99|10|60|90)\s?\d{3}\s?\d{2}\s?\d{2}$/;
@@ -68,12 +75,27 @@ export const AuthProvider = ({ children }) => {
     }
 
     setUser(data);
+    setIsLogin(true);
+
+    // Save to localStorage
+    localStorage.setItem("user", JSON.stringify(data));
+    localStorage.setItem("isLogin", "true");
+
     setAuthErrors({});
     return true;
   };
 
+  const logout = () => {
+    setUser(null);
+    setIsLogin(false);
+    localStorage.removeItem("user");
+    localStorage.removeItem("isLogin");
+  };
+
   return (
-    <AuthContext.Provider value={{ user, authErrors, register, login }}>
+    <AuthContext.Provider
+      value={{ user, authErrors, isLogin, register, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

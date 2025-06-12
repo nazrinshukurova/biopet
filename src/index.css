@@ -83,6 +83,15 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 50px auto;
 }
 
+.spinner2 {
+  width: 20px;
+  height: 20px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #00bda7;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
 /* Animation */
 @keyframes spin {
   to {
@@ -113,4 +122,9 @@ input[type="number"]::-webkit-outer-spin-button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.Toastify__toast-icon--success svg path {
+  stroke: #00b5a4 !important;
+  fill: #00b5a4 !important;
 }

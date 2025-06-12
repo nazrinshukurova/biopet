@@ -6,6 +6,7 @@
   "invalid_name": "Ad yalnız hərflərdən ibarət olmalıdır və ən azı 2 simvol olmalıdır",
   "invalid_surname": "Soyad yalnız hərflərdən ibarət olmalıdır və ən azı 2 simvol olmalıdır",
   "invalid_email": "Zəhmət olmasa düzgün email daxil edin",
+  "invalid_password": "Parol ən azı 6 simvol uzunluğunda olmalıdır",
   "navbar": {
     "searchPlaceholder": "Axtar. məs: Royal Canin, Sanicat, qurd dərmanı...",
     "searchResult": "Axtarışa uyğun nəticə tapılmadı... ",
@@ -244,5 +245,7 @@
   "total_price": "Toplam məbləğ",
   "total_discount": "Total endirim",
   "total": "Cəmi",
-  "delivery_policy": "Sifariş edərkən İstifadəçi şərtləri ilə razılaşmış olursunuz"
+  "delivery_policy": "Sifariş edərkən İstifadəçi şərtləri ilə razılaşmış olursunuz",
+  "delivery_condition": "Çatdırılma xidmətimiz həftənin 7 günü xidmətinizdədir.",
+  "total_bonus": "Qazanılan bonuslar"
 }

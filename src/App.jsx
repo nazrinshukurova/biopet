@@ -22,6 +22,8 @@ import { AuthProvider } from "./context/AuthContext";
 import { BasketProvider } from "./context/AddToBasket";
 import Basket from "./pages/Basket";
 import { WishlistProvider } from "./context/WishlistContext";
+import Wishlist from "./pages/Wishlist";
+import Checkout from "./pages/Checkout";
 
 const App = () => {
   const [savedLang, setSavedLang] = useState(null);
@@ -70,6 +72,8 @@ const App = () => {
                 <Route path="/register" element={<Registration />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/basket" element={<Basket />} />
+                <Route path="/wishlist" element={<Wishlist />} />
+                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
               {/* <Footer/> */}

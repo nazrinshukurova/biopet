@@ -6,6 +6,7 @@ import { HiOutlineMinusSm, HiOutlineTruck } from "react-icons/hi";
 import { LuPlus } from "react-icons/lu";
 import { FinishTheOrder } from "../shared/Buttons/Buttons";
 import Footer from "../shared/Footer/Footer";
+import { Link } from "react-router-dom";
 
 const Basket = () => {
   const {
@@ -195,7 +196,10 @@ const Basket = () => {
 
           <Dashed style={{ margin: "24px 28px", paddingBottom: "32px" }} />
 
-          <FinishTheOrder />
+          <Link style={{textDecoration:"none"}} to="/checkout">
+            {" "}
+            <FinishTheOrder />
+          </Link>
           <div className={styles.delivery_policy}>{t("delivery_policy")}</div>
         </div>
       </div>

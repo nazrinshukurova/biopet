@@ -1,16 +1,18 @@
 import React from "react";
 import FilterCategory from "../components/FilterCategories/FilterCategory";
+import Footer from "../shared/Footer/Footer";
 
 const Products = () => {
   return (
-    <div
-      style={{
-        // height: "auto",
-        padding: "25px",
-      }}
-    >
-    
-      <FilterCategory />
+    <div>
+      <div
+        style={{
+          padding: "25px",
+        }}
+      >
+        <FilterCategory />
+      </div>
+      <Footer />
     </div>
   );
 };

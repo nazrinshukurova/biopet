@@ -20,16 +20,20 @@ import {
   FullFilledStarSvg,
   Heart,
   Manat,
+  Wish,
+  Wished,
 } from "../../assets/Svg";
 import RangeSlider from "../../assets/sliders/RangeSlider";
 import IOSSwitch from "../../assets/sliders/Toggle";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import SortSelect from "../../shared/Selects/Select";
 import AddToCart from "../../shared/Buttons/Buttons";
 import Footer from "../../shared/Footer/Footer";
 import { FaArrowAltCircleUp, FaArrowCircleUp, FaArrowUp } from "react-icons/fa";
 import { useWishlist } from "../../context/WishlistContext";
 import { FiExternalLink } from "react-icons/fi";
+import { SuccesAlert } from "../../shared/ReusableItems/Reusable";
+import { useBasket } from "../../context/AddToBasket";
 
 const FilterCategory = () => {
   const { t, i18n } = useTranslation();
@@ -37,6 +41,8 @@ const FilterCategory = () => {
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
+
+  const { addToBasket, showSuccessAlert } = useBasket();
 
   const [filteredData, setFilteredData] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
@@ -317,22 +323,57 @@ const FilterCategory = () => {
   }, [showFiltered, data]);
 
   //^Pagenetion
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12;
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // URL-dən oxu
+  const currentPage = parseInt(searchParams.get("page")) || 1;
+  const searchTerm = searchParams.get("search") || "";
+  const itemsPerPage = 16;
+
+  // Səhifələmə
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentItems = filteredData.slice(startIndex, endIndex);
+
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
-  const { addToWishlist, wishlist, clearWishlist } = useWishlist();
+  // Search handler
+  const handleSearch = (e) => {
+    setSearchParams({ page: 1, search: e.target.value }); // URL dəyişir, səhifə sıfırlanır
+  };
+
+  // Page change handler
+  const handlePageChange = (page) => {
+    setSearchParams({ page, search: searchTerm });
+  };
+
+  console.log(searchParams, "SEARCH PARAMS");
+
+  const {
+    addToWishlist,
+    wishlist,
+    clearWishlist,
+    isInWishlist,
+    loadingWishlistId,
+  } = useWishlist();
 
   console.log(wishlist, "WISHLIST");
+
+  console.log(isInWishlist(), "WISLISTDE VARSA YOXLA");
 
   return (
     <>
       <div className={styles.common_container}>
-        {" "}
+        {showSuccessAlert && (
+          <SuccesAlert
+            text={
+              i18n.language === "az"
+                ? "Məhsul səbətə əlavə olundu"
+                : "Товар добавлен в корзину"
+            }
+          />
+        )}{" "}
         <div className={styles.left_filter}>
           <div className={styles.filter_list}>
             <span className={styles.category_title}>
@@ -614,19 +655,21 @@ const FilterCategory = () => {
                         -{item.PercentOfDiscount}%
                       </div>
                     ) : null}
-                    <div style={{display:"flex",gap:"10px",position:"absolute",right:"10px",top:"10px"}}>
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "10px",
+                        position: "absolute",
+                        right: "10px",
+                        top: "10px",
+                      }}
+                    >
                       {" "}
-                      <div onClick={() => addToWishlist(item)}>
-                        <Heart />
-                      </div>
                       <div
-                        onClick={() =>
-                          navigate(`/product/${item.id}`, {
-                            state: { product: item },
-                          })
-                        }
+                        style={{ cursor: "pointer" }}
+                        onClick={() => addToWishlist(item)}
                       >
-                        <ExternalLink />
+                        {isInWishlist(item.id) ? <Wished /> : <Wish />}
                       </div>
                     </div>
                     <img
@@ -671,7 +714,7 @@ const FilterCategory = () => {
                 className={`${styles.page_button} ${
                   currentPage === i + 1 ? styles.active : ""
                 }`}
-                onClick={() => setCurrentPage(i + 1)}
+                onClick={() => handlePageChange(i + 1)} // Düzgün handler
               >
                 {i + 1}
               </button>

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const AddToCart = ({ product }) => {
   const { t, i18n } = useTranslation();
-  const { addToBasket } = useBasket();
+  const { addToBasket, showSuccessAlert } = useBasket();
 
   return (
     <div>
@@ -54,6 +54,32 @@ export const FinishTheOrder = () => {
   return (
     <div className={styles.finish_the_order}>
       {i18n.language === "az" ? "Sifarişi tamamlayın" : "Завершить заказ"}
+    </div>
+  );
+};
+
+export const ClearAll = ({ clickFunction }) => {
+  const { t, i18n } = useTranslation();
+
+  return (
+    <div className={styles.clear_box} onClick={clickFunction}>
+      {" "}
+      <div className={styles.clear_all_button}>
+        {" "}
+        {i18n.language === "az" ? "Hamısını təmizlə" : "Очистить все"}
+      </div>
+    </div>
+  );
+};
+
+export const SaveMemory = () => {
+  const { i18n } = useTranslation();
+
+  return (
+    <div className={styles.save_memory}>
+      {i18n.language === "az"
+        ? "Yadda saxla və davam et"
+        : "Сохранить и продолжить"}
     </div>
   );
 };

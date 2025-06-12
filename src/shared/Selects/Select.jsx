@@ -2,7 +2,7 @@ import React from "react";
 import { Select } from "antd";
 import { useTranslation } from "react-i18next";
 
-const SortSelect = ({ products, onSorted }) => {
+const SortSelect = ({ products, onSorted,value }) => {
   const { t } = useTranslation();
 
   const sortOptions = [
@@ -54,6 +54,7 @@ const SortSelect = ({ products, onSorted }) => {
       placeholder={t("select_values.priceWithIncrease")}
       options={sortOptions}
       onChange={handleChange}
+      // value={value}
     />
   );
 };

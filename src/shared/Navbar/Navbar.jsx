@@ -15,6 +15,7 @@ import { useBasket } from "../../context/AddToBasket";
 import { Manat, RedManat } from "../../assets/Svg";
 import { FinishTheOrder, ViewBasket } from "../Buttons/Buttons";
 import { useWishlist } from "../../context/WishlistContext";
+import { useAuth } from "../../context/AuthContext";
 
 const Navbar = ({ lang }) => {
   const {
@@ -26,9 +27,9 @@ const Navbar = ({ lang }) => {
     totalPrice,
   } = useBasket();
 
-  const {wishlist}=useWishlist()
+  const { wishlist } = useWishlist();
 
-  console.log(wishlist)
+  console.log(wishlist);
 
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
@@ -53,6 +54,13 @@ const Navbar = ({ lang }) => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const { user, login, isLogin, logout } = useAuth();
+
+  console.log(user, "USER");
+  console.log(isLogin, "LOGIN");
+  console.log(user, "USER");
+  console.log(isLogin, "LOGIN");
 
   return (
     <>
@@ -111,20 +119,47 @@ const Navbar = ({ lang }) => {
             <div onClick={handleClick} ref={dropdownRef}>
               <FiUser className={styles.user} />
               {isOpen && (
-                <div className={styles.user_dropdown}>
-                  <ul>
-                    <li>
-                      <Link to="/login">{t("navbar.login")}</Link>
-                    </li>
-                    <li>
-                      <Link to="/register">{t("navbar.register")}</Link>
-                    </li>
-                  </ul>
+                <div
+                  className={
+                    isLogin === false
+                      ? styles.user_dropdown
+                      : styles.user_dropdown_true
+                  }
+                >
+                  {isLogin ? (
+                    <div className={styles.standart}>
+                      <div
+                        className={styles.user_name}
+                      >{`${user.name} ${user.surname}`}</div>
+                      <div
+                        className={styles.logout}
+                        onClick={logout}
+                        style={{ cursor: "pointer" }}
+                      >
+                        Logout
+                      </div>
+                    </div>
+                  ) : (
+                    <ul>
+                      <li>
+                        <Link to="/login">{t("navbar.login")}</Link>
+                      </li>
+                      <li>
+                        <Link to="/register">{t("navbar.register")}</Link>
+                      </li>
+                    </ul>
+                  )}
                 </div>
               )}
             </div>
             <div className={styles.wish_and_count}>
-              <FaRegHeart className={styles.heart} />
+              <Link
+                style={{ textDecoration: "none", color: "#1d2123" }}
+                to="/wishlist"
+              >
+                {" "}
+                <FaRegHeart className={styles.heart} />
+              </Link>
               <div className={styles.wishlist_count}>
                 <span>{wishlist.length}</span>
               </div>
@@ -225,7 +260,9 @@ const Navbar = ({ lang }) => {
                   }}
                 >
                   <ViewBasket />
-                  <FinishTheOrder />
+                  <Link style={{ textDecoration: "none" }} to="/checkout">
+                    <FinishTheOrder />
+                  </Link>
                 </div>
               </div>
               <div className={styles.wishlist_count}>
@@ -246,7 +283,7 @@ const Navbar = ({ lang }) => {
                 {t("navbarLinks.Məhsullar")}
               </Link>
             </li>
-            <li>{t("navbarLinks.Digər heyvanlar")}</li>
+            {/* <li>{t("navbarLinks.Digər heyvanlar")}</li> */}
             <li>{t("navbarLinks.Brendlər")}</li>
             <li>
               <Link

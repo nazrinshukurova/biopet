@@ -354,3 +354,297 @@ export const ExternalLink = () => {
     </div>
   );
 };
+
+export const CardBg = () => {
+  return (
+    <>
+      {" "}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="308"
+        height="80"
+        fill="none"
+      >
+        <mask
+          id="a"
+          style="mask-type:alpha"
+          maskUnits="userSpaceOnUse"
+          x="0"
+          y="0"
+          width="308"
+          height="80"
+        >
+          <path fill="#00BDA7" d="M0 0h308v80H0z" />
+        </mask>
+        <g mask="url(#a)">
+          <path fill="#00BDA7" d="M0 0h308v80H0z" />
+          <circle
+            opacity=".3"
+            cx="147"
+            cy="-15"
+            r="147"
+            fill="url(#paint0_radial_8765_83880)"
+          />
+          <circle
+            opacity=".5"
+            cx="120"
+            r="110"
+            fill="url(#paint1_radial_8765_83880)"
+          />
+        </g>
+        <defs>
+          <radialGradient
+            id="paint0_radial_8765_83880"
+            cx="0"
+            cy="0"
+            r="1"
+            gradientUnits="userSpaceOnUse"
+            gradientTransform="rotate(-135 239.36 44.135) scale(315.52)"
+          >
+            <stop stop-color="#fff" />
+            <stop offset="1" stop-color="#fff" stop-opacity="0" />
+          </radialGradient>
+          <radialGradient
+            id="paint1_radial_8765_83880"
+            cx="0"
+            cy="0"
+            r="1"
+            gradientUnits="userSpaceOnUse"
+            gradientTransform="rotate(-135 186.437 36.567) scale(236.103)"
+          >
+            <stop stop-color="#fff" />
+            <stop offset="1" stop-color="#fff" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+      </svg>
+    </>
+  );
+};
+
+export const Wish = () => {
+  return (
+    <>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="22"
+        height="20"
+        fill="none"
+      >
+        <path
+          d="M19.458 2.591a5.255 5.255 0 00-1.708-1.177 5.122 5.122 0 00-4.028 0 5.255 5.255 0 00-1.708 1.177L11 3.638 9.986 2.59A5.183 5.183 0 006.264 1a5.183 5.183 0 00-3.722 1.59A5.52 5.52 0 001 6.431a5.52 5.52 0 001.542 3.841l1.014 1.047L11 19l7.444-7.681 1.014-1.047a5.445 5.445 0 001.141-1.762 5.58 5.58 0 000-4.157 5.445 5.445 0 00-1.141-1.762z"
+          fill="#fff"
+          stroke="#AFAFAF"
+          stroke-width="1.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </>
+  );
+};
+
+export const Wished = () => {
+  return (
+    <>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="22"
+        height="20"
+        fill="none"
+      >
+        <path
+          d="M19.458 2.591a5.255 5.255 0 00-1.708-1.177 5.122 5.122 0 00-4.028 0 5.255 5.255 0 00-1.708 1.177L11 3.638 9.986 2.59A5.183 5.183 0 006.264 1a5.183 5.183 0 00-3.722 1.59A5.52 5.52 0 001 6.431a5.52 5.52 0 001.542 3.841l1.014 1.047L11 19l7.444-7.681 1.014-1.047a5.445 5.445 0 001.141-1.762 5.58 5.58 0 000-4.157 5.445 5.445 0 00-1.141-1.762z"
+          fill="#ed0036"
+          stroke="#ed0036"
+          stroke-width="1.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </>
+  );
+};
+
+export const RedLoading = () => {
+  return (
+    <>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        style={{ margin: "auto", background: "0 0" }}
+        viewBox="0 0 100 100"
+        preserveAspectRatio="xMidYMid"
+        display="block"
+      >
+        <circle
+          cx="50"
+          cy="50"
+          fill="none"
+          stroke="#e21e4c"
+          strokeWidth="10"
+          r="35"
+          strokeDasharray="164.93361431346415 56.97787143782138"
+        >
+          <animateTransform
+            attributeName="transform"
+            type="rotate"
+            repeatCount="indefinite"
+            dur="1s"
+            values="0 50 50;360 50 50"
+            keyTimes="0;1"
+          />
+        </circle>
+      </svg>
+    </>
+  );
+};
+
+export const Check = () => {
+  return (
+    <>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="21"
+        height="20"
+        fill="none"
+      >
+        <circle cx="10.5" cy="10" r="9.25" stroke="#fff" stroke-width="1.5" />
+        <path
+          d="M15.106 7.104L8.76 13.272 5.875 10.47"
+          stroke="#fff"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </>
+  );
+};
+
+export const BigHeart = () => {
+  return (
+    <>
+      <svg
+        stroke="currentColor"
+        fill="none"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        height="86px"
+        width="83px"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg>
+    </>
+  );
+};
+
+export const Checked = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="12px"
+      width="16px"
+      viewBox="0 0 12 9"
+      fill="none"
+    >
+      <path
+        d="M10.444 1.539L4.332 7.462 1.555 4.769"
+        stroke="#00b5a4"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const Location = () => {
+  return (
+    <>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="18"
+        fill="none"
+      >
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M11.667 18l-.061-.002a.999.999 0 01-.92-.8L9.15 9.633a.999.999 0 00-.781-.781L.8 7.31a.998.998 0 01-.117-1.927l16-5.332a1.001 1.001 0 011.265 1.264l-5.334 16a.998.998 0 01-.948.684z"
+          fill="#E21E4C"
+        />
+      </svg>
+    </>
+  );
+};
+
+export const Money = () => {
+  return (
+    <>
+      {" "}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="27"
+        height="24"
+        fill="none"
+      >
+        <path
+          d="M20.692 9H9.922c-1.189 0-2.153.895-2.153 2v6c0 1.105.964 2 2.154 2h10.77c1.189 0 2.153-.895 2.153-2v-6c0-1.105-.964-2-2.154-2z"
+          stroke="#1D2123"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M15.307 16c1.19 0 2.154-.895 2.154-2s-.964-2-2.154-2-2.154.895-2.154 2 .965 2 2.154 2zm3.231-7V7c0-.53-.227-1.04-.63-1.414A2.24 2.24 0 0016.383 5H5.615c-.571 0-1.119.21-1.523.586A1.93 1.93 0 003.462 7v6c0 .53.226 1.04.63 1.414A2.24 2.24 0 005.615 15H7.77"
+          stroke="#1D2123"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </>
+  );
+};
+
+export const Card = () => {
+  return (
+    <>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="40"
+        height="40"
+        fill="none"
+      >
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M18.334 25.714h-6.667c-.916 0-1.666-.857-1.666-1.904 0-1.048.75-1.905 1.666-1.905h6.667c.917 0 1.667.857 1.667 1.904 0 1.048-.75 1.905-1.667 1.905zm10 0h-3.333c-.917 0-1.667-.857-1.667-1.904 0-1.048.75-1.905 1.667-1.905h3.333c.917 0 1.667.857 1.667 1.904 0 1.048-.75 1.905-1.667 1.905zm5 1.905c0 1.05-.747 1.905-1.667 1.905H8.334c-.92 0-1.667-.855-1.667-1.905v-9.524h26.667v9.524zM6.667 12.381c0-1.05.747-1.905 1.667-1.905h23.333c.92 0 1.667.855 1.667 1.905v1.905H6.667V12.38zm25-5.714H8.334c-2.757 0-5 2.563-5 5.714v15.238c0 3.15 2.243 5.714 5 5.714h23.333c2.757 0 5-2.563 5-5.714V12.381c0-3.15-2.243-5.714-5-5.714z"
+          fill="#1D2123"
+        />
+      </svg>
+    </>
+  );
+};
+
+export const Percent = () => {
+  return (
+    <>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="17"
+        fill="none"
+      >
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M15.74.26a.887.887 0 00-1.258 0L.261 14.484a.886.886 0 000 1.257.889.889 0 001.257 0L15.739 1.518a.889.889 0 000-1.257zM12 15c-.827 0-1.5-.673-1.5-1.5S11.173 12 12 12s1.5.673 1.5 1.5S12.827 15 12 15zm0-5c-1.93 0-3.5 1.57-3.5 3.5S10.07 17 12 17s3.5-1.57 3.5-3.5S13.93 10 12 10zM4 2c.827 0 1.5.673 1.5 1.5S4.827 5 4 5s-1.5-.673-1.5-1.5S3.173 2 4 2zm0 5c1.93 0 3.5-1.57 3.5-3.5S5.93 0 4 0 .5 1.57.5 3.5 2.07 7 4 7z"
+          fill="#1D2123"
+        />
+      </svg>
+    </>
+  );
+};

@@ -1,5 +1,7 @@
-import { Date, View } from "../../assets/Svg";
+import { t } from "i18next";
+import { Check, Date, View } from "../../assets/Svg";
 import styles from "./Reusable.module.css";
+import { useTranslation } from "react-i18next";
 
 export const Blog = ({ src, title, date, view }) => {
   return (
@@ -23,5 +25,21 @@ export const Blog = ({ src, title, date, view }) => {
         </div>
       </div>
     </div>
+  );
+};
+
+export const SuccesAlert = ({text}) => {
+  const { i18n, t } = useTranslation();
+
+  return (
+    <>
+      <div className={styles.overlay}>
+        {" "}
+        <div className={styles.alert_box}>
+         {text}
+          <Check />
+        </div>
+      </div>
+    </>
   );
 };

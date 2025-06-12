@@ -8,13 +8,20 @@ export const WishlistProvider = ({ children }) => {
     return storedWishlist ? JSON.parse(storedWishlist) : [];
   });
 
+  const [loadingWishlistId, setLoadingWishlistId] = useState(null); // loading üçün əlavə state
+
   useEffect(() => {
     localStorage.setItem("wishlist", JSON.stringify(wishlist));
   }, [wishlist]);
 
-  const addToWishlist = (product) => {
+  const addToWishlist = async (product) => {
     if (!wishlist.find((item) => item.id === product.id)) {
+      setLoadingWishlistId(product.id); // loading başlasın
+      // Sadəcə loading görünsün deyə kiçik gecikmə əlavə edə bilərik
+      await new Promise((resolve) => setTimeout(resolve, 500)); // opsional
+
       setWishlist([...wishlist, product]);
+      setLoadingWishlistId(null); // loading bitsin
     }
   };
 
@@ -38,6 +45,7 @@ export const WishlistProvider = ({ children }) => {
         removeFromWishlist,
         clearWishlist,
         isInWishlist,
+        loadingWishlistId,
       }}
     >
       {children}
