@@ -1,0 +1,67 @@
+.title {
+  font-size: 24px;
+  margin-bottom: 24px;
+  font-weight: 500;
+  color: #1d2123;
+}
+
+.profile_body {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 48px 24px 70px;
+}
+
+.input {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+  color: #1d2123;
+  font-size: 14px;
+  padding: 12px 16px;
+  -webkit-appearance: none;
+  outline: none;
+}
+
+.input_and_label {
+  display: flex;
+  flex-direction: column;
+}
+
+.form_container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.form_container label {
+  color: #1d2123;
+  font-size: 14px;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.button {
+  margin-top: 32px;
+}
+
+.phone_input_wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.profile_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 32px;
+  gap: 32px;
+}
+
+.profile_body_container {
+  flex: 3;
+}
+
+.profile_menu_container {
+  flex: 1;
+}

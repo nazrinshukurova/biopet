@@ -128,3 +128,35 @@ input[type="number"]::-webkit-outer-spin-button {
   stroke: #00b5a4 !important;
   fill: #00b5a4 !important;
 }
+
+.about {
+  text-align: center;
+  font-size: 34px;
+  margin-top: 40px;
+  margin-bottom: 48px;
+  text-align: center;
+  font-weight: 500;
+  color: #1d2123;
+}
+
+.about_text_box {
+  background-color: rgb(255, 255, 255);
+  margin: 0px 25px;
+}
+
+.about_text {
+  text-align: left;
+  color: rgb(102, 102, 102);
+  font-size: 16px;
+  padding: 16px 24px 40px;
+  height: 200px;
+}
+
+.company_name {
+  font-weight: 600;
+  color: rgb(102, 102, 102);
+}
+
+.css-13lvt8g-MuiButtonBase-root-MuiRadio-root {
+  padding:9px 9px 9px 0px !important;
+}

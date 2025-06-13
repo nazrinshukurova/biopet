@@ -48,14 +48,10 @@ export const ViewBasket = () => {
 //   );
 // };
 
-export const FinishTheOrder = () => {
+export const FinishTheOrder = ({ text }) => {
   const { i18n } = useTranslation();
 
-  return (
-    <div className={styles.finish_the_order}>
-      {i18n.language === "az" ? "Sifarişi tamamlayın" : "Завершить заказ"}
-    </div>
-  );
+  return <div className={styles.finish_the_order}>{text}</div>;
 };
 
 export const ClearAll = ({ clickFunction }) => {
@@ -72,14 +68,22 @@ export const ClearAll = ({ clickFunction }) => {
   );
 };
 
-export const SaveMemory = () => {
+export const SaveMemory = ({disabled,onClick}) => {
   const { i18n } = useTranslation();
 
   return (
-    <div className={styles.save_memory}>
+    <button disabled={disabled} onClick={onClick} className={styles.save_memory}>
       {i18n.language === "az"
         ? "Yadda saxla və davam et"
         : "Сохранить и продолжить"}
-    </div>
+    </button>
+  );
+};
+
+export const PayButton = ({color,text,textColor,type,onClick}) => {
+  return (
+    <>
+      <button type={type} onClick={onClick} style={{ backgroundColor: color,color:textColor }} className={styles.pay}>{text}</button>
+    </>
   );
 };

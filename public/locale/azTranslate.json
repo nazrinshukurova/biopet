@@ -247,5 +247,19 @@
   "total": "Cəmi",
   "delivery_policy": "Sifariş edərkən İstifadəçi şərtləri ilə razılaşmış olursunuz",
   "delivery_condition": "Çatdırılma xidmətimiz həftənin 7 günü xidmətinizdədir.",
-  "total_bonus": "Qazanılan bonuslar"
+  "total_bonus": "Qazanılan bonuslar",
+  "birbank_3_taksit": "Birbank 3 aylıq taksit",
+  "birbank_2_taksit": "Birbank 2 aylıq taksit",
+  "enter_kart_details": "Kart məlumatlarını daxil edin",
+  "payment_details": "Ödəniş detalları",
+  "payment_amount": "Ödəniş məbləği",
+  "pay": "Ödə",
+  "reject": "İmtina",
+  "succes_message_about_payment": "Ödəniş uğurludur",
+  "about_title": "Haqqımızda",
+  "edit": "Düzəliş et",
+  "save": "Yadda saxla",
+  "gender": "Cins",
+  "male": "Erkək",
+  "female": "Dişi"
 }

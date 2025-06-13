@@ -111,3 +111,26 @@
   justify-content: center;
   white-space: nowrap;
 }
+
+.save_memory:disabled {
+  border: 1px solid #e0e0e0;
+  background: #fdfefe;
+  color: #828282;
+  cursor: not-allowed;
+}
+
+.pay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  height: 48px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  border: none;
+  border-radius: 2px;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+}

@@ -1,29 +1,49 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import Home from "./pages/Home";
-import Navbar from "./shared/Navbar/Navbar";
 import i18next from "i18next";
-import Dropdown from "./shared/Dropdown/Dropdown";
-import NavbarMobile from "./shared/NavbarMobile/NavbarMobile";
+
+// Pages
+import Home from "./pages/Home";
 import Products from "./pages/Products";
 import Details from "./pages/Details";
-import Footer from "./shared/Footer/Footer";
 import DiscountedProducts from "./pages/DiscountedProducts";
-import { ProductProvider } from "./context/ProductContext";
 import FAQ from "./pages/FAQ";
-import RegisterForm from "./components/Register/Register";
 import Blogs from "./pages/Blogs";
 import BlogsDetails from "./pages/BlogsDetails";
-import Login from "./components/Login/Login";
+import Basket from "./pages/Basket";
+import Wishlist from "./pages/Wishlist";
+import Checkout from "./pages/Checkout";
+import PaymentPage from "./pages/PaymentPage";
+import About from "./pages/About";
+import Account from "./pages/Account";
 import Registration from "./pages/Registration";
 import LoginPage from "./pages/LoginPage";
 import NotFound from "./pages/NotFound";
-import { AuthProvider } from "./context/AuthContext";
+
+// Components
+import Navbar from "./shared/Navbar/Navbar";
+import Dropdown from "./shared/Dropdown/Dropdown";
+import NavbarMobile from "./shared/NavbarMobile/NavbarMobile";
+import Footer from "./shared/Footer/Footer";
+
+// Contexts
+import { ProductProvider } from "./context/ProductContext";
+import { AuthProvider, useAuth } from "./context/AuthContext";
 import { BasketProvider } from "./context/AddToBasket";
-import Basket from "./pages/Basket";
 import { WishlistProvider } from "./context/WishlistContext";
-import Wishlist from "./pages/Wishlist";
-import Checkout from "./pages/Checkout";
+import MyPet from "./pages/MyPet";
+import PickAnimal from "./components/PickAnimal/PickAnimal";
+import AboutInfoForPet from "./components/AboutInfoForPet/AboutInfoForPet";
+
+const ProtectedRoute = ({ children }) => {
+  const { user } = useAuth();
+  return user ? children : <Navigate to="/login" replace />;
+};
+
+const PublicRoute = ({ children }) => {
+  const { user } = useAuth();
+  return !user ? children : <Navigate to="/account" replace />;
+};
 
 const App = () => {
   const [savedLang, setSavedLang] = useState(null);
@@ -40,24 +60,23 @@ const App = () => {
 
     return () => {
       i18next.off("languageChanged", handleLangChange);
-    }; //&clean up function
-  }, [savedLang]);
+    };
+  }, []);
 
   if (!savedLang) return null;
-
-  console.log(savedLang);
 
   const language = savedLang;
 
   return (
     <ProductProvider>
-      <BrowserRouter>
-        <AuthProvider>
-          <WishlistProvider>
-            <BasketProvider>
+      <AuthProvider>
+        <WishlistProvider>
+          <BasketProvider>
+            <BrowserRouter>
               <Navbar lang={language} />
               <Dropdown />
               <NavbarMobile />
+
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/products" element={<Products />} />
@@ -67,20 +86,56 @@ const App = () => {
                   element={<DiscountedProducts />}
                 />
                 <Route path="/faq" element={<FAQ />} />
-                <Route path="blogs" element={<Blogs />} />
+                <Route path="/blogs" element={<Blogs />} />
                 <Route path="/blogs/:id" element={<BlogsDetails />} />
-                <Route path="/register" element={<Registration />} />
-                <Route path="/login" element={<LoginPage />} />
+                <Route
+                  path="/register"
+                  element={
+                    <PublicRoute>
+                      <Registration />
+                    </PublicRoute>
+                  }
+                />
+                <Route
+                  path="/login"
+                  element={
+                    <PublicRoute>
+                      <LoginPage />
+                    </PublicRoute>
+                  }
+                />
                 <Route path="/basket" element={<Basket />} />
                 <Route path="/wishlist" element={<Wishlist />} />
-                 <Route path="/checkout" element={<Checkout />} />
+                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/payment" element={<PaymentPage />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/pickanimal" element={<PickAnimal />} />
+                <Route path="/infopet" element={<AboutInfoForPet />} />
+                <Route
+                  path="/account"
+                  element={
+                    <ProtectedRoute>
+                      <Account />
+                    </ProtectedRoute>
+                  }
+                />
+
+                <Route
+                  path="/mypet"
+                  element={
+                    <ProtectedRoute>
+                      <MyPet />
+                    </ProtectedRoute>
+                  }
+                />
                 <Route path="*" element={<NotFound />} />
               </Routes>
-              {/* <Footer/> */}
-            </BasketProvider>
-          </WishlistProvider>
-        </AuthProvider>
-      </BrowserRouter>
+
+              <Footer />
+            </BrowserRouter>
+          </BasketProvider>
+        </WishlistProvider>
+      </AuthProvider>
     </ProductProvider>
   );
 };

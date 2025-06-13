@@ -127,16 +127,22 @@ const Navbar = ({ lang }) => {
                   }
                 >
                   {isLogin ? (
-                    <div className={styles.standart}>
-                      <div
-                        className={styles.user_name}
-                      >{`${user.name} ${user.surname}`}</div>
-                      <div
-                        className={styles.logout}
-                        onClick={logout}
-                        style={{ cursor: "pointer" }}
-                      >
-                        Logout
+                    <div>
+                      {" "}
+                      <div className={styles.standart}>
+                        <Link style={{ textDecoration: "none" }} to="/account">
+                          {" "}
+                          <div
+                            className={styles.user_name}
+                          >{`${user.name} ${user.surname}`}</div>
+                        </Link>
+                        <div
+                          className={styles.logout}
+                          onClick={logout}
+                          style={{ cursor: "pointer" }}
+                        >
+                          Logout
+                        </div>
                       </div>
                     </div>
                   ) : (
@@ -261,7 +267,13 @@ const Navbar = ({ lang }) => {
                 >
                   <ViewBasket />
                   <Link style={{ textDecoration: "none" }} to="/checkout">
-                    <FinishTheOrder />
+                    <FinishTheOrder
+                      text={
+                        i18n.language === "az"
+                          ? "Sifarişi tamamlayın"
+                          : "Завершить заказ"
+                      }
+                    />
                   </Link>
                 </div>
               </div>
@@ -283,7 +295,6 @@ const Navbar = ({ lang }) => {
                 {t("navbarLinks.Məhsullar")}
               </Link>
             </li>
-            {/* <li>{t("navbarLinks.Digər heyvanlar")}</li> */}
             <li>{t("navbarLinks.Brendlər")}</li>
             <li>
               <Link
@@ -309,7 +320,14 @@ const Navbar = ({ lang }) => {
                 {t("navbarLinks.Endirimlər")}
               </Link>
             </li>
-            <li>{t("navbarLinks.Bonus mağaza")}</li>
+            <li>
+              <Link
+                to={`/about`}
+                style={{ textDecoration: "none", color: "#1d2123" }}
+              >
+                {t("about_title")}
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

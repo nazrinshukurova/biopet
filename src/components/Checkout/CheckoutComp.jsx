@@ -24,8 +24,10 @@ import L from "leaflet";
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
-import { SaveMemory } from "../../shared/Buttons/Buttons";
+import { FinishTheOrder, SaveMemory } from "../../shared/Buttons/Buttons";
 import { SuccesAlert } from "../../shared/ReusableItems/Reusable";
+import birbank from "../../assets/Brands/birbank.png";
+import { Link } from "react-router-dom";
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -70,7 +72,6 @@ const LocationMarker = ({ setSelectedAddress }) => {
 
 const CheckoutComp = () => {
   const { t, i18n } = useTranslation();
-
   const { totalPrice, totalDiscount } = useBasket();
 
   const [selectedAddress, setSelectedAddress] = useState("");
@@ -84,14 +85,17 @@ const CheckoutComp = () => {
   });
 
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
-
   const [selectedMethod, setSelectedMethod] = useState(null);
+  const [selectedInstallment, setSelectedInstallment] = useState(null);
 
   const handleSelect = (method) => {
     setSelectedMethod(method);
   };
 
-  // LocalStorage-dan yükləmə
+  const handleSelectInstallment = (installment) => {
+    setSelectedInstallment(installment);
+  };
+
   useEffect(() => {
     const savedData = JSON.parse(localStorage.getItem("checkoutForm"));
     if (savedData) {
@@ -122,10 +126,7 @@ const CheckoutComp = () => {
       const dataToSave = { selectedAddress, formData };
       localStorage.setItem("checkoutForm", JSON.stringify(dataToSave));
 
-      // Success alert göstər
       setShowSuccessAlert(true);
-
-      // 3 saniyə sonra gizlət
       setTimeout(() => setShowSuccessAlert(false), 700);
     } catch (error) {
       alert(
@@ -137,7 +138,6 @@ const CheckoutComp = () => {
   return (
     <div className={styles.payment}>
       <div className={styles.payment_section}>
-        {/* Custom Success Alert şərtə bağlı göstərilir */}
         {showSuccessAlert && (
           <SuccesAlert
             text={
@@ -158,6 +158,7 @@ const CheckoutComp = () => {
               ? "1. Çatdırılma ünvanı"
               : "1. Адрес доставки"}
           </div>
+
           <div className={styles.delivery_condition}>
             {t("delivery_condition")}
           </div>
@@ -165,6 +166,7 @@ const CheckoutComp = () => {
           <div className={styles.delivery_type}>
             {i18n.language === "az" ? "Çatdırılma üsulu" : "Способ доставки"}
           </div>
+
           <div className={styles.delivery_type_text}>
             <p>
               {i18n.language === "az"
@@ -280,6 +282,7 @@ const CheckoutComp = () => {
                   : "Выберите адрес на карте"}
               </div>
             </div>
+
             <MapContainer
               center={[40.4093, 49.8671]}
               zoom={13}
@@ -312,16 +315,15 @@ const CheckoutComp = () => {
             />
           </div>
 
-          {/* Yadda saxla düyməsi */}
           <div onClick={handleSave} style={{ cursor: "pointer" }}>
             <SaveMemory />
           </div>
 
-          {/* ODEME METHODU */}
           <div>
             <div className={styles.payment_head}>
               {i18n.language === "az" ? "2. Ödəmə metodu" : "2. Способ оплаты"}
             </div>
+
             <div className={styles.payment_methods_box}>
               <div
                 className={`${styles.payment_method} ${
@@ -345,7 +347,7 @@ const CheckoutComp = () => {
               >
                 <Card />
                 <div className={styles.payment_text}>
-                  {i18n.language === "az" ? "Onlyan ödə" : "Только оплата."}
+                  {i18n.language === "az" ? "Onlayn ödə" : "Оплата онлайн"}
                 </div>
               </div>
 
@@ -363,6 +365,43 @@ const CheckoutComp = () => {
                 </div>
               </div>
             </div>
+
+            {selectedMethod === "installment" && (
+              <div className={styles.payment_with_taksit}>
+                <div
+                  className={`${styles.birbank_container} ${
+                    selectedInstallment === "3months" ? styles.selected : ""
+                  }`}
+                  onClick={() => handleSelectInstallment("3months")}
+                >
+                  <img className={styles.birbank} src={birbank} alt="birbank" />
+                  <div>{t("birbank_3_taksit")}</div>
+                </div>
+
+                <div
+                  className={`${styles.birbank_container} ${
+                    selectedInstallment === "2months" ? styles.selected : ""
+                  }`}
+                  onClick={() => handleSelectInstallment("2months")}
+                >
+                  <img className={styles.birbank} src={birbank} alt="birbank" />
+                  <div>{t("birbank_2_taksit")}</div>
+                </div>
+              </div>
+            )}
+
+            <Link to="/payment" style={{textDecoration:"none"}}>
+              {" "}
+              <div className={styles.payment_button}>
+                <FinishTheOrder
+                  text={
+                    i18n.language === "az"
+                      ? "Ödənişi təsdiqlə"
+                      : "Подтвердить платеж"
+                  }
+                />
+              </div>
+            </Link>
           </div>
         </div>
       </div>
@@ -377,14 +416,14 @@ const CheckoutComp = () => {
 
         <div className={styles.order_total}>
           <div>{t("total_price")}</div>
-          <div>{totalPrice.toFixed(2)}man</div>
+          <div>{totalPrice.toFixed(2)} man</div>
         </div>
 
         <Dashed style={{ margin: "24px 0 28px", paddingBottom: "32px" }} />
 
         <div className={styles.order_total}>
           <div>{t("total_discount")}</div>
-          <div>-{totalDiscount.toFixed(2)}man</div>
+          <div>-{totalDiscount.toFixed(2)} man</div>
         </div>
 
         <Dashed style={{ margin: "24px 0 28px", paddingBottom: "32px" }} />
@@ -392,15 +431,15 @@ const CheckoutComp = () => {
         <div className={styles.order_total}>
           <div>{t("total_bonus")}</div>
           <div className={styles.bonus_gift}>
-            +{totalPrice.toFixed()}
-            <Gift />
+            +{totalPrice.toFixed()} <Gift />
           </div>
         </div>
+
         <Dashed style={{ margin: "24px 28px", paddingBottom: "32px" }} />
 
         <div className={styles.order_total}>
           <div>{t("total")}</div>
-          <div>{(totalPrice - totalDiscount).toFixed(2)}man</div>
+          <div>{(totalPrice - totalDiscount).toFixed(2)} man</div>
         </div>
 
         <Dashed style={{ margin: "24px 28px", paddingBottom: "32px" }} />

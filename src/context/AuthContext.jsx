@@ -90,6 +90,7 @@ export const AuthProvider = ({ children }) => {
     setIsLogin(false);
     localStorage.removeItem("user");
     localStorage.removeItem("isLogin");
+    window.location.href="/"
   };
 
   return (

@@ -10,6 +10,7 @@ import styles from "../styles/Faq.module.css";
 import { supabase } from "../../client";
 import { useTranslation } from "react-i18next";
 import Footer from "../shared/Footer/Footer";
+import { BonusPopUp } from "../shared/ReusableItems/Reusable";
 
 const FAQ = () => {
   const [faq, setFAQ] = useState([]);

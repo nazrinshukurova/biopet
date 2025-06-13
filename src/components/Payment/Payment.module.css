@@ -1,0 +1,101 @@
+.payment_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #fff;
+}
+
+.right_side {
+  width: 50%;
+}
+
+.image1 {
+  min-height: 95vh;
+  max-width: 550px;
+}
+
+.logo_section {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  height: 33px;
+}
+
+.logo {
+  width: 184px;
+}
+
+.field_input {
+  border-radius: 2px;
+  border: 1px solid #ececec;
+  display: flex;
+  padding: 14px 8px;
+  margin: 0;
+  outline: none;
+  width: 326px;
+  max-height: 50px;
+}
+
+.year_and_month {
+  height: 48px;
+  border-radius: 2px;
+  border: 1px solid #ececec;
+  display: flex;
+  padding: 14px 8px;
+  margin: 0;
+  width: 84px;
+  outline: none;
+}
+
+.cvv_and_year {
+  display: flex;
+  gap: 20px;
+}
+
+.left {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left_side {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: start;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.payment_amount {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: #999999;
+}
+
+.input_group {
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.cart_types {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-width: 50px;
+  width: 100%;
+  align-items: center;
+  box-sizing: border-box;
+  gap: 32px;
+  height: 80px;
+}

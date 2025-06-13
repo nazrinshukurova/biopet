@@ -190,3 +190,43 @@
   gap: 20px;
   margin-top: 20px;
 }
+
+.payment_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.payment_with_taksit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 40px;
+  margin-top: 8px;
+  gap: 32px;
+}
+
+.birbank {
+  width: 20px;
+  height: 28px;
+  margin-right: 10px;
+}
+
+.birbank_container {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 11px 18px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background-color: #fff;
+}
+
+.birbank_container.selected {
+  border: 1px solid #00b5a4;
+}
+

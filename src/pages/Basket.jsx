@@ -196,9 +196,15 @@ const Basket = () => {
 
           <Dashed style={{ margin: "24px 28px", paddingBottom: "32px" }} />
 
-          <Link style={{textDecoration:"none"}} to="/checkout">
+          <Link style={{ textDecoration: "none" }} to="/checkout">
             {" "}
-            <FinishTheOrder />
+            <FinishTheOrder
+              text={
+                i18n.language === "az"
+                  ? "Sifarişi tamamlayın"
+                  : "Завершить заказ"
+              }
+            />
           </Link>
           <div className={styles.delivery_policy}>{t("delivery_policy")}</div>
         </div>

@@ -245,5 +245,19 @@
   "total": "Общий",
   "delivery_policy": "Оформляя заказ, вы соглашаетесь с Условиями использования.",
   "delivery_condition": "Наша служба доставки работает 7 дней в неделю.",
-  "total_bonus": "Бонусы заработаны"
+  "total_bonus": "Бонусы заработаны",
+  "birbank_3_taksit": "Birbank 3 ежемесячных платежа",
+  "birbank_2_taksit": "Birbank 2 ежемесячных платежа",
+  "enter_kart_details": "Введите данные карты",
+  "payment_details": "Реквизиты для оплаты",
+  "payment_amount": "Сумма платежа",
+  "pay": "Платить",
+  "reject": "Отказ от ответственности",
+  "succes_message_about_payment": "Платеж прошел успешно.",
+  "about_title": "О компании",
+  "edit": "Стань лучше",
+  "save": "Сохранять",
+  "gender": "Пол",
+  "male": "Мужской",
+  "female": "Женский"
 }
