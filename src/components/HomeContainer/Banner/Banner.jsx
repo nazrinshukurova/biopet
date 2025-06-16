@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import slider1 from "../../../assets/images/home/slider2/elanco-advantage-multi-1000x1000.jpg";
@@ -9,6 +9,44 @@ import { useTranslation } from "react-i18next";
 const Banner = () => {
   const { t, i18n } = useTranslation();
   const [selectedLang, setSelectedLang] = useState("az");
+
+  // Countdown Setup
+  const targetTime =
+    new Date().getTime() +
+    4 * 24 * 60 * 60 * 1000 +
+    1 * 60 * 60 * 1000 +
+    59 * 60 * 1000 +
+    38 * 1000;
+
+  const calculateTimeLeft = () => {
+    const now = new Date().getTime();
+    const difference = targetTime - now;
+
+    let timeLeft = {};
+
+    if (difference > 0) {
+      timeLeft = {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / (1000 * 60)) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      };
+    } else {
+      timeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    }
+
+    return timeLeft;
+  };
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const changeLang = (myLang) => {
     i18n.changeLanguage(myLang);
@@ -36,6 +74,7 @@ const Banner = () => {
 
   return (
     <div className={styles.carousels}>
+      {/* Main Banner Carousel */}
       <div className={styles.carousel}>
         <Carousel
           swipeable={false}
@@ -74,23 +113,27 @@ const Banner = () => {
           </div>
         </Carousel>
       </div>
+
       {/* Weekly Discount Carousel */}
       <div className={styles.weeklyDiscount}>
         <div className={styles.header}>
           <p>{t("slider2.discountOfweek")}</p>
           <div className={styles.countdown}>
             <div className={styles.count_container}>
-              {" "}
               <div className={styles.count}>
-                <div className={styles.time}>04</div>
+                <div className={styles.time}>
+                  {String(timeLeft.days).padStart(2, "0")}
+                </div>
                 <div className={styles.two_dots}>:</div>
               </div>
               <div className={styles.timer}>{t("slider2.day")}</div>
             </div>
+
             <div className={styles.count_container}>
-              {" "}
               <div className={styles.count}>
-                <div className={styles.time}>01</div>
+                <div className={styles.time}>
+                  {String(timeLeft.hours).padStart(2, "0")}
+                </div>
                 <div className={styles.two_dots}>:</div>
               </div>
               <div className={styles.timer}>{t("slider2.hour")}</div>
@@ -98,7 +141,9 @@ const Banner = () => {
 
             <div className={styles.count_container}>
               <div className={styles.count}>
-                <div className={styles.time}>59</div>
+                <div className={styles.time}>
+                  {String(timeLeft.minutes).padStart(2, "0")}
+                </div>
                 <div className={styles.two_dots}>:</div>
               </div>
               <div className={styles.timer}>{t("slider2.minute")}</div>
@@ -106,9 +151,11 @@ const Banner = () => {
 
             <div className={styles.count_container_last}>
               <div className={styles.count}>
-                <span className={styles.time}>38</span>
+                <span className={styles.time}>
+                  {String(timeLeft.seconds).padStart(2, "0")}
+                </span>
               </div>
-                <div className={styles.timer}>{t("slider2.second")}</div>
+              <div className={styles.timer}>{t("slider2.second")}</div>
             </div>
           </div>
         </div>
@@ -121,7 +168,6 @@ const Banner = () => {
                 className={styles.slider_1_image}
                 src={slider1}
                 alt="Elanco Advantage Multi"
-                
               />
             </div>
 

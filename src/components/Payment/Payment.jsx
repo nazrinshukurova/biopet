@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Payment.module.css";
 import image1 from "../../assets/images/home/categoriesİtem/HppImage-Banner-Flex.png";
 import image2 from "../../assets/images/home/categoriesİtem/HppImage-Logo-Flex.png";
@@ -8,13 +8,17 @@ import { PayButton } from "../../shared/Buttons/Buttons";
 import { BonusPopUp, SuccesAlert } from "../../shared/ReusableItems/Reusable";
 import visa from "../../assets/images/home/categoriesİtem/visa.png";
 import idCheck from "../../assets/images/home/categoriesİtem/idcheck.png";
+import Confetti from "react-confetti";
+import { useWindowSize } from "@react-hook/window-size";
 
 const Payment = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { totalPrice, totalDiscount } = useBasket();
   const amount = (totalPrice - totalDiscount).toFixed(2);
   const [showAlert, setShowAlert] = useState(false);
   const [showBonusPopup, setShowBonusPopup] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [width, height] = useWindowSize();
 
   const [cardNumber, setCardNumber] = useState("");
   const [expiry, setExpiry] = useState("");
@@ -51,17 +55,18 @@ const Payment = () => {
     if (valid) {
       setShowAlert(true);
 
-      // 900ms sonra SuccessAlert-i bağla
       setTimeout(() => {
         setShowAlert(false);
 
-        // Bonus popup-u göstər
         setShowBonusPopup(true);
+        setShowConfetti(true);
 
-        // Bonus popup 900ms görünsün, sonra yönləndirsin
+        // 2.5 saniyədən sonra yönləndir və confetti-ni bağla
         setTimeout(() => {
+          setShowBonusPopup(false);
+          setShowConfetti(false);
           window.location.href = "/";
-        }, 2500);
+        }, 4500);
       }, 900);
 
       // Formu sıfırla
@@ -97,7 +102,6 @@ const Payment = () => {
     let formattedValue = value.match(/.{1,4}/g)?.join(" ") || ""; // 4 rəqəmdən bir boşluq qoy
 
     if (formattedValue.length <= 19) {
-      // 16 rəqəm + 3 boşluq = 19 simvol
       setCardNumber(formattedValue);
     }
   };
@@ -111,6 +115,7 @@ const Payment = () => {
 
   return (
     <div>
+      {showConfetti && <Confetti width={width} height={height} />}
       <form onSubmit={handleSubmit} className={styles.payment_container}>
         {showAlert && <SuccesAlert text={t("succes_message_about_payment")} />}
         {showBonusPopup && <BonusPopUp bonus={totalPrice.toFixed()} />}
@@ -135,7 +140,6 @@ const Payment = () => {
                   handleCardNumberChange(e);
                 }}
               />
-
               {errors.cardNumber && (
                 <span className={styles.error}>{errors.cardNumber}</span>
               )}
@@ -175,7 +179,6 @@ const Payment = () => {
             <div className={styles.payment_amount}>{t("payment_amount")}</div>
             <div>{amount} AZN</div>
 
-            {/* Submit button */}
             <PayButton
               textColor="#fff"
               color="#DF3A4C"
@@ -183,7 +186,6 @@ const Payment = () => {
               type="submit"
             />
 
-            {/* Reject button */}
             <PayButton
               textColor="#586268"
               color="#F3F5F8"
@@ -191,12 +193,14 @@ const Payment = () => {
               onClick={handleReject}
               type="button"
             />
+
             <div className={styles.cart_types}>
-              <img style={{ height: "38px" }} src={idCheck}></img>
-              <img style={{ height: "38px" }} src={visa}></img>
+              <img style={{ height: "38px" }} src={idCheck} alt="id check" />
+              <img style={{ height: "38px" }} src={visa} alt="visa" />
             </div>
           </div>
         </div>
+
         <div className={styles.right_side}>
           <img className={styles.image1} src={image1} alt="Payment Banner" />
         </div>

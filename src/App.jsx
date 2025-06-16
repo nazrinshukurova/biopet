@@ -34,6 +34,7 @@ import { WishlistProvider } from "./context/WishlistContext";
 import MyPet from "./pages/MyPet";
 import PickAnimal from "./components/PickAnimal/PickAnimal";
 import AboutInfoForPet from "./components/AboutInfoForPet/AboutInfoForPet";
+import UXPinLayout from "./pages/Dashboard";
 
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuth();
@@ -110,6 +111,7 @@ const App = () => {
                 <Route path="/payment" element={<PaymentPage />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/pickanimal" element={<PickAnimal />} />
+                   <Route path="/dashboard" element={<UXPinLayout />} />
                 <Route path="/infopet" element={<AboutInfoForPet />} />
                 <Route
                   path="/account"

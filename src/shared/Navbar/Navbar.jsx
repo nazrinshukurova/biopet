@@ -295,7 +295,15 @@ const Navbar = ({ lang }) => {
                 {t("navbarLinks.Məhsullar")}
               </Link>
             </li>
-            <li>{t("navbarLinks.Brendlər")}</li>
+            <li>
+              {" "}
+              <Link
+                to={`/dashboard`}
+                style={{ textDecoration: "none", color: "#1d2123" }}
+              >
+                Dashboard
+              </Link>
+            </li>
             <li>
               <Link
                 to={`/blogs`}
