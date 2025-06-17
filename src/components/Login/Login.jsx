@@ -9,17 +9,17 @@ const Login = () => {
   const { t, i18n } = useTranslation();
   const { login, authErrors } = useAuth();
 
-  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
   const handleLogin = async () => {
-    const success = await login({ phone, password, terms: termsAccepted });
+    const success = await login({ email, password, terms: termsAccepted });
 
     if (success) {
       setShowAlert(true);
-      setPhone("");
+      setEmail("");
       setPassword("");
       window.location.href = "/";
     }
@@ -36,14 +36,13 @@ const Login = () => {
         <h1 className={styles.title}>{t("login")}</h1>
 
         <div className={styles.phone_container}>
-          <label className={styles.phone_label}>{t("phone")}</label>
+          <label className={styles.phone_label}>{t("email")}</label>
           <div className={styles.phoneInput}>
-            <span className={styles.phone_prefix}>+994 </span>
             <input
               type="text"
-              placeholder="00 000 00 00"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              placeholder={t("email_placeholder")}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
         </div>

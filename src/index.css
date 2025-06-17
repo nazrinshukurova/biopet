@@ -158,5 +158,69 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .css-13lvt8g-MuiButtonBase-root-MuiRadio-root {
-  padding:9px 9px 9px 0px !important;
+  padding: 9px 9px 9px 0px !important;
+}
+
+.ant-layout-sider {
+  background-color: #00b5a4 !important;
+}
+.ant-menu-dark,
+.ant-layout-sider .ant-layout-sider-trigger {
+  background-color: #00b5a4 !important;
+}
+
+.ant-menu-item-selected {
+  background-color: #feeac1 !important; 
+  color: #333333 !important;
+}
+
+.ant-menu-item {
+  background-color: #00bfa6 !important; 
+  color: white !important; 
+}
+
+.ant-menu-item:hover {
+  background-color: #feeac1 !important;
+  color: #333333 !important;
+}
+
+.ant-btn-variant-solid {
+  background-color: #00b5a4;
+}
+
+.ant-btn-color-dangerous.ant-btn-variant-solid {
+  background-color: #e21e4c;
+}
+
+.ant-menu-item {
+  font-weight: bold !important;
+}
+
+.ant-menu-item-selected {
+  background-color: #feeac1 !important;
+  color: #333333 !important;
+  font-weight: bold !important;
+}
+
+.ant-menu-item:not(.ant-menu-item-selected) {
+  background-color: #00bfa6 !important;
+  color: white !important;
+  font-weight: bold !important;
+}
+
+.ant-menu-item-selected .anticon {
+  font-size: 20px !important;
+  color: #333333 !important; 
+}
+
+.ant-menu-item .anticon {
+  font-size: 18px !important;
+}
+
+.ant-menu {
+  padding-top: 15px !important;
+}
+
+.ant-menu-item {
+  margin-bottom: 7px !important; 
 }

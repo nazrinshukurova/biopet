@@ -30,6 +30,8 @@ import { useAuth } from "../context/AuthContext";
 import { supabase } from "../../client";
 import { useProducts } from "../context/ProductContext";
 import moment from "moment";
+import logo from "../assets/Svg/biopet_blue_logo.svg";
+import { Link } from "react-router-dom";
 
 const { Header, Sider, Content } = Layout;
 const { Title } = Typography;
@@ -42,6 +44,8 @@ const Dashboard = () => {
   const [users, setUsers] = useState([]);
   const [blogs, setBlogs] = useState([]);
   const [faqs, setFaqs] = useState([]);
+
+  console.log(faqs);
 
   const [loadingUsers, setLoadingUsers] = useState(true);
   const [loadingBlogs, setLoadingBlogs] = useState(true);
@@ -88,10 +92,7 @@ const Dashboard = () => {
 
   const fetchBlogs = async () => {
     setLoadingBlogs(true);
-    const { data, error } = await supabase
-      .from("Blogs")
-      .select("*")
-      .order("created_at", { ascending: false });
+    const { data, error } = await supabase.from("Blogs").select("*");
     if (error) {
       message.error("Bloqlar yüklənərkən xəta baş verdi!");
     } else {
@@ -102,10 +103,7 @@ const Dashboard = () => {
 
   const fetchFaqs = async () => {
     setLoadingFaqs(true);
-    const { data, error } = await supabase
-      .from("FAQ")
-      .select("*")
-      .order("created_at", { ascending: false });
+    const { data, error } = await supabase.from("FAQ").select("*");
     if (error) {
       message.error("FAQ-lar yüklənərkən xəta baş verdi!");
     } else {
@@ -206,8 +204,6 @@ const Dashboard = () => {
   const onAddBlog = async (values) => {
     const blogData = {
       ...values,
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
     };
 
     const { error } = await supabase.from("Blogs").insert([blogData]);
@@ -234,10 +230,6 @@ const Dashboard = () => {
   const handleUpdateBlog = async (values) => {
     const blogData = {
       ...values,
-      publish_date: values.publish_date
-        ? values.publish_date.toISOString()
-        : null,
-      updated_at: new Date().toISOString(),
     };
 
     const { error } = await supabase
@@ -269,8 +261,6 @@ const Dashboard = () => {
   const onAddFaq = async (values) => {
     const faqData = {
       ...values,
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
     };
 
     const { error } = await supabase.from("FAQ").insert([faqData]);
@@ -284,17 +274,17 @@ const Dashboard = () => {
     }
   };
 
+  console.log(user, "USER");
+
   const handleEditFaq = (record) => {
     setEditingFaq(record);
     setFaqEditModalVisible(true);
     formEditFaq.setFieldsValue(record);
   };
 
-
   const handleUpdateFaq = async (values) => {
     const faqData = {
       ...values,
-      updated_at: new Date().toISOString(),
     };
 
     const { error } = await supabase
@@ -402,7 +392,6 @@ const Dashboard = () => {
     },
   ];
 
-
   const userColumns = [
     { title: "ID", dataIndex: "id", key: "id", width: 100 },
     { title: "Name", dataIndex: "name", key: "name", width: 200 },
@@ -450,36 +439,99 @@ const Dashboard = () => {
   ];
 
   const blogColumns = [
-    { title: "ID", dataIndex: "id", key: "id", width: 80 },
-    { title: "Title (AZ)", dataIndex: "title_az", key: "title_az", width: 250 },
-    { title: "Title (RU)", dataIndex: "title_ru", key: "title_ru", width: 250 },
-    { title: "Author", dataIndex: "author", key: "author", width: 150 },
     {
-      title: "Published",
-      dataIndex: "is_published",
-      key: "is_published",
-      width: 100,
-      render: (published) => <Switch checked={published} disabled />,
+      title: "ID",
+      dataIndex: "id",
+      key: "id",
+      fixed: "left",
+      width: 80,
+      maxWidth: 100,
     },
     {
-      title: "Publish Date",
-      dataIndex: "publish_date",
-      key: "publish_date",
-      width: 150,
+      title: "NameAz",
+      dataIndex: "NameAz",
+      key: "NameAz",
+      width: 200,
+      ellipsis: true,
+    },
+    {
+      title: "NameRu",
+      dataIndex: "NameRu",
+      key: "NameRu",
+      width: 200,
+    },
+    { title: "View", dataIndex: "View", key: "View", width: 80, maxWidth: 200 },
+
+    {
+      title: "TextAz",
+      dataIndex: "TextAz",
+      key: "TextAz",
+      width: 200,
+      render: (text) => (
+        <div
+          style={{
+            maxHeight: "100px",
+            overflowY: "auto",
+            paddingRight: "5px",
+          }}
+        >
+          {text}
+        </div>
+      ),
+    },
+    {
+      title: "TextRu",
+      dataIndex: "TextRu",
+      key: "TextRu",
+      width: 200,
+      render: (text) => (
+        <div
+          style={{
+            maxHeight: "100px",
+            overflowY: "auto",
+            paddingRight: "5px",
+          }}
+        >
+          {text}
+        </div>
+      ),
+    },
+    {
+      title: "Image",
+      dataIndex: "Image",
+      key: "Image",
+      width: 200,
+      render: (text) => (
+        <div
+          style={{
+            maxHeight: "100px", // containerin maksimum hündürlüyü
+            overflowY: "auto", // dikey scroll açılır
+            paddingRight: "5px",
+          }}
+        >
+          <img
+            src={text}
+            alt="blog"
+            style={{ width: "100%", display: "block" }}
+          />
+        </div>
+      ),
+    },
+
+    {
+      title: "Date",
+      dataIndex: "Date",
+      key: "Date",
+      width: 100,
+      maxWidth: 200,
       render: (text) =>
         text ? new Date(text).toLocaleDateString() : "Not set",
-    },
-    {
-      title: "Created At",
-      dataIndex: "created_at",
-      key: "created_at",
-      width: 150,
-      render: (text) => new Date(text).toLocaleDateString(),
     },
     {
       title: "Action",
       key: "action",
       width: 200,
+      fixed: "right",
       render: (_, record) => (
         <Space>
           <Button
@@ -511,21 +563,21 @@ const Dashboard = () => {
   ];
 
   const faqColumns = [
-    { title: "id", dataIndex: "id", key: "id", width: 80 },
+    { title: "id", dataIndex: "id", key: "id", width: 30, fixed: "left" },
     {
       title: "questionAz",
       dataIndex: "questionAz",
       key: "questionAz",
-      width: 300,
+      width: 100,
     },
     {
       title: "questionRu",
       dataIndex: "questionRu",
       key: "questionRu",
-      width: 300,
+      width: 100,
     },
-    { title: "answerAz", dataIndex: "answerAz", key: "answerAz", width: 150 },
-  
+    { title: "answerAz", dataIndex: "answerAz", key: "answerAz", width: 100 },
+
     {
       title: "answerRu",
       dataIndex: "answerRu",
@@ -536,7 +588,8 @@ const Dashboard = () => {
     {
       title: "Action",
       key: "action",
-      width: 200,
+      width: 70,
+      fixed: "right",
       render: (_, record) => (
         <Space>
           <Button
@@ -612,27 +665,42 @@ const Dashboard = () => {
       <Layout>
         <Header
           style={{
-            padding: "0 16px",
+            padding: "40px 16px 16px 16px",
             background: "#fff",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <Avatar>{user?.name?.[0] || <UserOutlined />}</Avatar>
-            <span>
-              {user?.name} {user?.surname}
-            </span>
-          </div>
-          <Button
-            type="primary"
-            danger
-            icon={<LogoutOutlined />}
-            onClick={logout}
+          <Link to="/" style={{textDecoration:"none"}}>
+            <div>
+              <img src={logo}></img>
+            </div>
+          </Link>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              padding: "0 0 16px 0",
+            }}
           >
-            Logout
-          </Button>
+            {" "}
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <Avatar>{user?.name?.[0] || <UserOutlined />}</Avatar>
+              <span>
+                {user?.name} {user?.surname}
+              </span>
+            </div>
+            <Button
+              type="primary"
+              danger
+              icon={<LogoutOutlined />}
+              onClick={logout}
+            >
+              Logout
+            </Button>
+          </div>
         </Header>
 
         <Content style={{ margin: "16px" }}>
@@ -694,10 +762,80 @@ const Dashboard = () => {
                   rowKey="id"
                   loading={loadingBlogs}
                   pagination={{ pageSize: 5 }}
-                  scroll={{ x: 1400 }}
+                  scroll={{ x: "max-content" }} // Daha dinamik scroll
                 />
               </>
             )}
+
+            <Modal
+              title="Add New Blog"
+              visible={isBlogModalVisible}
+              onCancel={() => {
+                setBlogModalVisible(false);
+                formBlog.resetFields();
+              }}
+              footer={null}
+              destroyOnClose
+            >
+              <Form form={formBlog} layout="vertical" onFinish={onAddBlog}>
+                <Form.Item
+                  name="NameAz"
+                  label="NameAz"
+                  rules={[{ required: true, message: "NameAz is required" }]}
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  name="NameRu"
+                  label="NameRu"
+                  rules={[{ required: true, message: "NameRu is required" }]}
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  name="View"
+                  label="View"
+                  rules={[{ required: true, message: "View is required" }]}
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  name="TextAz"
+                  label="TextAz"
+                  rules={[{ required: true, message: "TextAz is required" }]}
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  name="TextRu"
+                  label="TextRu"
+                  rules={[{ required: true, message: "TextRu is required" }]}
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  name="Image"
+                  label="Image"
+                  rules={[{ required: true, message: "Image is required" }]}
+                >
+                  <Input />
+                </Form.Item>
+
+                <Form.Item
+                  name="Date"
+                  label="Date"
+                  rules={[{ required: true, message: "Date is required" }]}
+                >
+                  <Input />
+                </Form.Item>
+
+                <Form.Item>
+                  <Button type="primary" htmlType="submit" block>
+                    Add Blog
+                  </Button>
+                </Form.Item>
+              </Form>
+            </Modal>
 
             {activeTab === "faqs" && (
               <>
@@ -726,9 +864,9 @@ const Dashboard = () => {
 
           <Modal
             title="Add New FAQ"
-            visible={isProductModalVisible}
+            visible={isFaqModalVisible}
             onCancel={() => {
-              setProductModalVisible(false);
+              setFaqModalVisible(false);
               formFaq.resetFields();
             }}
             footer={null}
@@ -1437,6 +1575,83 @@ const Dashboard = () => {
               <Form.Item>
                 <Button type="primary" htmlType="submit" block>
                   Update User
+                </Button>
+              </Form.Item>
+            </Form>
+          </Modal>
+
+          {/* Blog Edit Modal */}
+          <Modal
+            title="Edit Blog"
+            visible={isBlogEditModalVisible}
+            onCancel={() => setBlogEditModalVisible(false)}
+            footer={null}
+            destroyOnClose
+          >
+            <Form
+              form={formEditBlog}
+              layout="vertical"
+              onFinish={handleUpdateBlog}
+            >
+              <Form.Item name="NameAz" label="NameAz">
+                <Input />
+              </Form.Item>
+              <Form.Item name="NameRu" label="NameRu">
+                <Input />
+              </Form.Item>
+              <Form.Item name="View" label="View">
+                <Input />
+              </Form.Item>
+              <Form.Item name="TextAz" label="TextAz">
+                <Input />
+              </Form.Item>
+              <Form.Item name="TextRu" label="TextRu">
+                <Input />
+              </Form.Item>
+              <Form.Item name="Image" label="Image">
+                <Input />
+              </Form.Item>
+              <Form.Item name="Date" label="Date">
+                <Input />
+              </Form.Item>
+
+              <Form.Item>
+                <Button type="primary" htmlType="submit" block>
+                  Update Blog
+                </Button>
+              </Form.Item>
+            </Form>
+          </Modal>
+
+          {/* FAQ Edit Modal */}
+          <Modal
+            title="Edit FAQ"
+            visible={isFaqEditModalVisible}
+            onCancel={() => setFaqEditModalVisible(false)}
+            footer={null}
+            destroyOnClose
+          >
+            <Form
+              form={formEditFaq}
+              layout="vertical"
+              onFinish={handleUpdateFaq}
+            >
+              <Form.Item name="questionAz" label="questionAz">
+                <Input />
+              </Form.Item>
+              <Form.Item name="questionRu" label="questionRu">
+                <Input />
+              </Form.Item>
+              <Form.Item name="answerAz" label="answerAz">
+                <Input />
+              </Form.Item>
+              <Form.Item name="answerRu" label="answerRu">
+                <Input />
+              </Form.Item>
+
+              <Form.Item>
+                <Button type="primary" htmlType="submit" block>
+                  Update FAQ
                 </Button>
               </Form.Item>
             </Form>

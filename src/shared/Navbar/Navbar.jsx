@@ -295,15 +295,17 @@ const Navbar = ({ lang }) => {
                 {t("navbarLinks.Məhsullar")}
               </Link>
             </li>
-            <li>
-              {" "}
-              <Link
-                to={`/dashboard`}
-                style={{ textDecoration: "none", color: "#1d2123" }}
-              >
-                Dashboard
-              </Link>
-            </li>
+            {user?.email === "nazrin@gmail.com" ? (
+              <li>
+                {" "}
+                <Link
+                  to={`/dashboard`}
+                  style={{ textDecoration: "none", color: "#1d2123" }}
+                >
+                  Dashboard
+                </Link>
+              </li>
+            ) : null}
             <li>
               <Link
                 to={`/blogs`}

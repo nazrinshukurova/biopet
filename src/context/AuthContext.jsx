@@ -51,13 +51,13 @@ export const AuthProvider = ({ children }) => {
     return true;
   };
 
-  const login = async ({ phone, password, terms }) => {
+  const login = async ({ email, password, terms }) => {
     if (!terms) {
       setAuthErrors({ terms: t("terms_alert") });
       return false;
     }
 
-    if (!phone || !password) {
+    if (!email || !password) {
       setAuthErrors({ general: t("fill_fields_alert") });
       return false;
     }
@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }) => {
     const { data, error } = await supabase
       .from("Users")
       .select("*")
-      .eq("phone", phone)
+      .eq("email", email)
       .eq("password", password)
       .single();
 
