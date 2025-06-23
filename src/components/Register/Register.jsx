@@ -4,7 +4,24 @@ import { useTranslation } from "react-i18next";
 import { Facebook, Google } from "../../assets/Svg";
 import Footer from "../../shared/Footer/Footer";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext"; // Yolu özünüzə uyğun tənzimləyin
+import { useAuth } from "../../context/AuthContext";
+import { SuccesAlert } from "../../shared/ReusableItems/Reusable";
+
+// Telefon nömrəsini formatlayan funksiya
+const formatPhoneNumber = (value) => {
+  const cleaned = value.replace(/\D/g, ""); // rəqəmlərdən başqa hər şeyi sil
+  const match = cleaned.match(/^(\d{0,2})(\d{0,3})(\d{0,2})(\d{0,2})$/);
+
+  if (match) {
+    let formatted = "";
+    if (match[1]) formatted += match[1];
+    if (match[2]) formatted += " " + match[2];
+    if (match[3]) formatted += " " + match[3];
+    if (match[4]) formatted += " " + match[4];
+    return formatted.trim();
+  }
+  return value;
+};
 
 const RegisterForm = () => {
   const { t } = useTranslation();
@@ -17,8 +34,17 @@ const RegisterForm = () => {
   const [password, setPassword] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleRegister = async () => {
+    const phoneRegex = /^\d{2} \d{3} \d{2} \d{2}$/;
+    if (!phoneRegex.test(phone)) {
+      alert(
+        "Telefon nömrəsini düzgün formatda daxil edin. Məsələn: 50 555 12 34"
+      );
+      return;
+    }
+
     setLoading(true);
     const success = await register({
       phone,
@@ -31,19 +57,24 @@ const RegisterForm = () => {
     setLoading(false);
 
     if (success) {
-      alert(t("register_success"));
+      setShowAlert(true);
       setPhone("");
       setName("");
       setSurname("");
       setEmail("");
       setPassword("");
       setTermsAccepted(false);
-      window.location.href = "/login"; 
+
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 1000);
     }
   };
 
   return (
     <div className={styles.full_container}>
+      {showAlert && <SuccesAlert  text={t("register_success")} />}
+
       <div className={styles.container}>
         <div className={styles.form_container}>
           <h1 className={styles.title}>{t("register")}</h1>
@@ -51,15 +82,16 @@ const RegisterForm = () => {
             <p className={styles.subtitle}>"{t("subtitle")}"</p>
           </div>
 
+          {/* Telefon */}
           <div className={styles.phone_container}>
             <label className={styles.phone_label}>{t("phone")}</label>
             <div className={styles.phoneInput}>
               <span className={styles.phone_prefix}>+994 </span>
               <input
-                type="number"
-                placeholder="00 000 00 00"
+                type="text"
+                placeholder="50 555 12 34"
                 value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                onChange={(e) => setPhone(formatPhoneNumber(e.target.value))}
                 disabled={loading}
               />
             </div>
@@ -68,6 +100,7 @@ const RegisterForm = () => {
             )}
           </div>
 
+          {/* Ad */}
           <div className={styles.phone_container}>
             <label className={styles.phone_label}>{t("name")}</label>
             <div className={styles.phoneInput}>
@@ -84,6 +117,7 @@ const RegisterForm = () => {
             )}
           </div>
 
+          {/* Soyad */}
           <div className={styles.phone_container}>
             <label className={styles.phone_label}>{t("surname")}</label>
             <div className={styles.phoneInput}>
@@ -100,6 +134,7 @@ const RegisterForm = () => {
             )}
           </div>
 
+          {/* Email */}
           <div className={styles.phone_container}>
             <label className={styles.phone_label}>{t("email")}</label>
             <div className={styles.phoneInput}>
@@ -145,6 +180,7 @@ const RegisterForm = () => {
               {t("terms")}
             </label>
           </div>
+
           {authErrors?.terms && (
             <p className={styles.error}>{authErrors.terms}</p>
           )}
@@ -155,12 +191,15 @@ const RegisterForm = () => {
           <button
             className={styles.registerButton}
             onClick={handleRegister}
-            disabled={loading}
+            disabled={loading || !termsAccepted}
+            style={{
+              backgroundColor: loading || !termsAccepted ? "#ccc" : "#00bfa6",
+              cursor: loading || !termsAccepted ? "not-allowed" : "pointer",
+            }}
           >
             {loading ? <div className="spinner2"></div> : t("register_button")}
           </button>
 
-          {/* Sosial login düymələri lazım deyilsə aşağıdakı hissəni şərh kimi saxlayın */}
           {/* <p className={styles.or}>{t("other_methods")}</p>
           <div className={styles.socials}>
             <button className={styles.google}><Google /></button>

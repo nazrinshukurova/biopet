@@ -13,7 +13,6 @@ const Wishlist = () => {
   return (
     <div>
       <WishlistComp />
-      <Footer />
     </div>
   );
 };

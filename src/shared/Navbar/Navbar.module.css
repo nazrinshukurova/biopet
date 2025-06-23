@@ -224,14 +224,14 @@
   height: 56px;
 }
 
-.navbar_down_part ul li {
+.link{
   transition: all 0.3s ease-in-out;
   padding: 0.8rem 1.2rem;
   border-radius: 8px;
 }
 
-.navbar_down_part ul li:hover {
-  color: #fff;
+.link:hover {
+  color: #fff !important;
   background-color: #00b5a4;
 }
 

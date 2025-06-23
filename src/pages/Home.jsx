@@ -107,7 +107,6 @@ const Home = () => {
         />
       </div>
       <BrandSlider />
-      <Footer />
     </div>
   );
 };

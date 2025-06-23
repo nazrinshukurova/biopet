@@ -49,11 +49,7 @@ const ProtectedRoute = ({ children }) => {
   return user ? children : <Navigate to="/login" replace />;
 };
 
-// Public route (yalnız qeydə alınmamış istifadəçilər üçün)
-const PublicRoute = ({ children }) => {
-  const { user } = useAuth();
-  return !user ? children : <Navigate to="/account" replace />;
-};
+
 
 // Dashboard üçün xüsusi qoruma — yalnız "nazrin@gmail.com" istifadəçisi daxil ola bilər
 const DashboardProtectedRoute = ({ children }) => {
@@ -127,17 +123,13 @@ const App = () => {
                   <Route
                     path="/register"
                     element={
-                      <PublicRoute>
                         <Registration />
-                      </PublicRoute>
                     }
                   />
                   <Route
                     path="/login"
                     element={
-                      <PublicRoute>
                         <LoginPage />
-                      </PublicRoute>
                     }
                   />
                   <Route path="/basket" element={<Basket />} />

@@ -12,7 +12,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useBasket } from "../../context/AddToBasket";
-import { Manat, RedManat } from "../../assets/Svg";
+import { DarkMode, LightMode, Manat, RedManat } from "../../assets/Svg";
 import { FinishTheOrder, ViewBasket } from "../Buttons/Buttons";
 import { useWishlist } from "../../context/WishlistContext";
 import { useAuth } from "../../context/AuthContext";
@@ -61,6 +61,17 @@ const Navbar = ({ lang }) => {
   console.log(isLogin, "LOGIN");
   console.log(user, "USER");
   console.log(isLogin, "LOGIN");
+
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    document.body.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
+
+  console.log(theme);
 
   return (
     <>
@@ -286,9 +297,18 @@ const Navbar = ({ lang }) => {
 
         <div className={styles.navbar_down_part}>
           <ul>
-            <li>{t("navbarLinks.Pişiklər")}</li>
-            <li className={styles.mehsullar}>
+            <li>
               <Link
+                className={styles.link}
+                to={`/`}
+                style={{ textDecoration: "none", color: "#1d2123" }}
+              >
+                {t("Home")}
+              </Link>
+            </li>
+            <li>
+              <Link
+                className={styles.link}
                 to={`/products`}
                 style={{ textDecoration: "none", color: "#1d2123" }}
               >
@@ -299,6 +319,7 @@ const Navbar = ({ lang }) => {
               <li>
                 {" "}
                 <Link
+                  className={styles.link}
                   to={`/dashboard`}
                   style={{ textDecoration: "none", color: "#1d2123" }}
                 >
@@ -308,6 +329,7 @@ const Navbar = ({ lang }) => {
             ) : null}
             <li>
               <Link
+                className={styles.link}
                 to={`/blogs`}
                 style={{ textDecoration: "none", color: "#1d2123" }}
               >
@@ -316,6 +338,7 @@ const Navbar = ({ lang }) => {
             </li>
             <li>
               <Link
+                className={styles.link}
                 to={`/faq`}
                 style={{ textDecoration: "none", color: "#1d2123" }}
               >
@@ -324,6 +347,7 @@ const Navbar = ({ lang }) => {
             </li>
             <li>
               <Link
+                className={styles.link}
                 to={`/products/discounted_products`}
                 style={{ textDecoration: "none", color: "#1d2123" }}
               >
@@ -332,11 +356,15 @@ const Navbar = ({ lang }) => {
             </li>
             <li>
               <Link
+                className={styles.link}
                 to={`/about`}
                 style={{ textDecoration: "none", color: "#1d2123" }}
               >
                 {t("about_title")}
               </Link>
+            </li>
+            <li onClick={toggleTheme}>
+              {theme === "dark" ? <LightMode /> : <DarkMode />}
             </li>
           </ul>
         </div>

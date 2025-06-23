@@ -12,7 +12,6 @@ const Products = () => {
       >
         <FilterCategory />
       </div>
-      <Footer />
     </div>
   );
 };

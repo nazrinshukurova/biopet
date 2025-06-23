@@ -6,7 +6,6 @@ const Registration = () => {
   return (
     <div>
       <RegisterForm/>
-      <Footer/>
     </div>
   )
 }

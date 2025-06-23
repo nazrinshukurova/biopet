@@ -18,10 +18,13 @@ const Login = () => {
     const success = await login({ email, password, terms: termsAccepted });
 
     if (success) {
-      setShowAlert(true);
+      setShowAlert(true); // Alert göstər
       setEmail("");
       setPassword("");
-      window.location.href = "/";
+
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 1000);
     }
   };
 
@@ -79,7 +82,15 @@ const Login = () => {
           <p className={styles.error}>{authErrors.general}</p>
         )}
 
-        <button className={styles.registerButton} onClick={handleLogin}>
+        <button
+          className={styles.registerButton}
+          onClick={handleLogin}
+          disabled={!termsAccepted} // Terms qəbul edilməyibsə button disabled olacaq
+          style={{
+            backgroundColor: termsAccepted ? "#00bfa6" : "#ccc",
+            cursor: termsAccepted ? "pointer" : "not-allowed",
+          }}
+        >
           {t("register_button")}
         </button>
 

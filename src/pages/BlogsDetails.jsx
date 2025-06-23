@@ -75,7 +75,6 @@ const BlogDetails = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

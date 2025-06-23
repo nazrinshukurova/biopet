@@ -58,7 +58,6 @@ const Basket = () => {
               : "🤯 Трудно поверить, но ваша корзина пуста."}
           </div>
         </div>
-        <Footer />
       </>
     );
   }
@@ -209,7 +208,6 @@ const Basket = () => {
           <div className={styles.delivery_policy}>{t("delivery_policy")}</div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

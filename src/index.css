@@ -170,13 +170,13 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .ant-menu-item-selected {
-  background-color: #feeac1 !important; 
+  background-color: #feeac1 !important;
   color: #333333 !important;
 }
 
 .ant-menu-item {
-  background-color: #00bfa6 !important; 
-  color: white !important; 
+  background-color: #00bfa6 !important;
+  color: white !important;
 }
 
 .ant-menu-item:hover {
@@ -210,7 +210,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .ant-menu-item-selected .anticon {
   font-size: 20px !important;
-  color: #333333 !important; 
+  color: #333333 !important;
 }
 
 .ant-menu-item .anticon {
@@ -222,5 +222,14 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .ant-menu-item {
-  margin-bottom: 7px !important; 
+  margin-bottom: 7px !important;
+}
+
+/* Global CSS-də yaz */
+body[data-theme="light"] {
+  background-color: white;
+}
+
+body[data-theme="dark"] {
+  background-color: #00242de0;
 }

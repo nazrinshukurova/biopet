@@ -2,6 +2,8 @@
   "please_accept_terms": "Zəhmət olmasa, şərtlərlə razı olduğunuzu təsdiqləyin",
   "register_error": "Qeydiyyat zamanı xəta baş verdi",
   "register_success": "Uğurla qeydiyyatdan keçdiniz",
+  "login_success": "Uğurla daxil oldunuz!",
+  "user_exists": "Bu istifadəçi artıq mövcuddur!",
   "invalid_phone": "Zəhmət olmasa düzgün telefon nömrəsi daxil edin",
   "invalid_name": "Ad yalnız hərflərdən ibarət olmalıdır və ən azı 2 simvol olmalıdır",
   "invalid_surname": "Soyad yalnız hərflərdən ibarət olmalıdır və ən azı 2 simvol olmalıdır",
@@ -261,5 +263,6 @@
   "save": "Yadda saxla",
   "gender": "Cins",
   "male": "Erkək",
-  "female": "Dişi"
+  "female": "Dişi",
+  "Home": "Ana səhifə"
 }

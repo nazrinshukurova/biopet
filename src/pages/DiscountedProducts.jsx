@@ -129,7 +129,6 @@ const DiscountedProducts = () => {
           ))
         )}
       </div>
-      <Footer />
     </div>
   );
 };

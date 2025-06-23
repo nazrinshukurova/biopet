@@ -16,6 +16,8 @@ import {
   Switch,
   DatePicker,
 } from "antd";
+import { Radio } from "antd";
+
 import {
   UserOutlined,
   AppstoreOutlined,
@@ -32,6 +34,7 @@ import { useProducts } from "../context/ProductContext";
 import moment from "moment";
 import logo from "../assets/Svg/biopet_blue_logo.svg";
 import { Link } from "react-router-dom";
+import { Checkbox } from "@mui/material";
 
 const { Header, Sider, Content } = Layout;
 const { Title } = Typography;
@@ -313,52 +316,432 @@ const Dashboard = () => {
   };
 
   // Table columns
+
   const productColumns = [
-    { title: "ID", dataIndex: "id", key: "id", fixed: "left", width: 100 },
-    { title: "NameAz", dataIndex: "NameAz", key: "NameAz", width: 200 },
-    { title: "BrandAz", dataIndex: "BrandAz", key: "BrandAz", width: 200 },
-    { title: "NameRu", dataIndex: "NameRu", key: "NameRu", width: 200 },
     {
-      title: "CountryAz",
+      title: "ID",
+      dataIndex: "id",
+      key: "id",
+      fixed: "left",
+      width: 100,
+      render: (value) => (value != null && value !== "" ? value : "null"),
+    },
+    {
+      title: "Şəkil",
+      dataIndex: "İmage",
+      key: "İmage",
+      width: 200,
+      render: (text) =>
+        text ? (
+          <div
+            style={{
+              maxHeight: "100px",
+              maxWidth: "200px",
+              paddingRight: "5px",
+            }}
+          >
+            <img
+              src={text}
+              alt="blog"
+              style={{ width: "100px", height: "100px", display: "block" }}
+            />
+          </div>
+        ) : (
+          "null"
+        ),
+    },
+    {
+      title: "Ad (Azərbaycanca)",
+      dataIndex: "NameAz",
+      key: "NameAz",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Ad (Rusca)",
+      dataIndex: "NameRu",
+      key: "NameRu",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Marka (Azərbaycanca)",
+      dataIndex: "BrandAz",
+      key: "BrandAz",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Ölkə (Azərbaycanca)",
       dataIndex: "CountryAz",
       key: "CountryAz",
       width: 200,
+      render: (value) => (value ? value : "null"),
     },
     {
-      title: "CountryRu",
-      dataIndex: "CountryRu",
-      key: "CountryRu",
+      title: "Qablaşdırma",
+      dataIndex: "Package",
+      key: "Package",
       width: 200,
+      render: (value) => (value ? value : "null"),
     },
-    { title: "Package", dataIndex: "Package", key: "Package", width: 200 },
     {
-      title: "FoodTypeAz",
+      title: "Qida növü (Azərbaycanca)",
       dataIndex: "FoodTypeAz",
       key: "FoodTypeAz",
       width: 200,
+      render: (value) => (value ? value : "null"),
     },
     {
-      title: "ProductTypeAz",
+      title: "Məhsul növü (Azərbaycanca)",
       dataIndex: "ProductTypeAz",
       key: "ProductTypeAz",
       width: 200,
+      render: (value) => (value ? value : "null"),
     },
-    { title: "AgeAz", dataIndex: "AgeAz", key: "AgeAz", width: 200 },
     {
-      title: "İsSterilised",
+      title: "Yaş qrupu (Azərbaycanca)",
+      dataIndex: "AgeAz",
+      key: "AgeAz",
+      width: 150,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Sterilizasiya olunub?",
       dataIndex: "İsSterilised",
       key: "İsSterilised",
-      width: 200,
+      width: 150,
+      render: (value) =>
+        value === true ? "Bəli" : value === false ? "Xeyr" : "null",
     },
     {
-      title: "AnimalTypeAz",
+      title: "Heyvan növü (Azərbaycanca)",
       dataIndex: "AnimalTypeAz",
       key: "AnimalTypeAz",
       width: 200,
+      render: (value) => (value ? value : "null"),
     },
-    { title: "Price", dataIndex: "Price", key: "Price", width: 200 },
     {
-      title: "Action",
+      title: "Tərkibi (Azərbaycanca)",
+      dataIndex: "İngredientsAz",
+      key: "İngredientsAz",
+      width: 250,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Qiymət",
+      dataIndex: "Price",
+      key: "Price",
+      width: 150,
+      render: (value) => (value != null ? value : "null"),
+    },
+    {
+      title: "Endirim varmı?",
+      dataIndex: "isDiscount",
+      key: "isDiscount",
+      width: 150,
+      render: (value) =>
+        value === true ? "Bəli" : value === false ? "Xeyr" : "null",
+    },
+    {
+      title: "Reytinq",
+      dataIndex: "Rating",
+      key: "Rating",
+      width: 150,
+      render: (value) => (value != null ? value : "null"),
+    },
+    {
+      title: "Ölkə (Rusca)",
+      dataIndex: "CountryRu",
+      key: "CountryRu",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Qida növü (Rusca)",
+      dataIndex: "FoodTypeRu",
+      key: "FoodTypeRu",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Məhsul növü (Rusca)",
+      dataIndex: "ProductTypeRu",
+      key: "ProductTypeRu",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Heyvan növü (Rusca)",
+      dataIndex: "AnimalTypeRu",
+      key: "AnimalTypeRu",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Tərkibi (Rusca)",
+      dataIndex: "IngredientsRu",
+      key: "IngredientsRu",
+      width: 250,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Yaş qrupu (Rusca)",
+      dataIndex: "AgeRu",
+      key: "AgeRu",
+      width: 150,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Pəhriz və profilaktika (Azərbaycanca)",
+      dataIndex: "DietAndPreventionAz",
+      key: "DietAndPreventionAz",
+      width: 250,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Pəhriz və profilaktika (Rusca)",
+      dataIndex: "DietAndPreventionRu",
+      key: "DietAndPreventionRu",
+      width: 250,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Baytarlıq pəhrizi (Azərbaycanca)",
+      dataIndex: "BaytarlıqPəhriziAz",
+      key: "BaytarlıqPəhriziAz",
+      width: 250,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Xəstəlik (Azərbaycanca)",
+      dataIndex: "XəstəlikAz",
+      key: "XəstəlikAz",
+      width: 250,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Baytarlıq pəhrizi (Rusca)",
+      dataIndex: "BaytarlıqPəhriziRu",
+      key: "BaytarlıqPəhriziRu",
+      width: 250,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Xəstəlik (Rusca)",
+      dataIndex: "XəstəlikRu",
+      key: "XəstəlikRu",
+      width: 250,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Əczaçılıq göstərişi (Azərbaycanca)",
+      dataIndex: "PharmacyAppointmentAz",
+      key: "PharmacyAppointmentAz",
+      width: 250,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Əczaçılıq göstərişi (Rusca)",
+      dataIndex: "PharmacyAppointmentRu",
+      key: "PharmacyAppointmentRu",
+      width: 250,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Endirim faizi",
+      dataIndex: "PercentOfDiscount",
+      key: "PercentOfDiscount",
+      width: 150,
+      render: (value) => (value != null ? value : "null"),
+    },
+    {
+      title: "Anbarda var?",
+      dataIndex: "InStock",
+      key: "InStock",
+      width: 150,
+      render: (value) =>
+        value === true ? "Bəli" : value === false ? "Xeyr" : "null",
+    },
+    {
+      title: "Ətir (Azərbaycanca)",
+      dataIndex: "AromaAz",
+      key: "AromaAz",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Material (Azərbaycanca)",
+      dataIndex: "MaterialAz",
+      key: "MaterialAz",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Qum növü (Azərbaycanca)",
+      dataIndex: "TypeOfSandAz",
+      key: "TypeOfSandAz",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Material (Rusca)",
+      dataIndex: "MaterialRu",
+      key: "MaterialRu",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Ətir (Rusca)",
+      dataIndex: "AromaRu",
+      key: "AromaRu",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Qum növü (Rusca)",
+      dataIndex: "TypeOfSandRu",
+      key: "TypeOfSandRu",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Peçenye növü (Azərbaycanca)",
+      dataIndex: "CookieTypeAz",
+      key: "CookieTypeAz",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Peçenye növü (Rusca)",
+      dataIndex: "CookieTypeRu",
+      key: "CookieTypeRu",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "İt ölçüsü (Azərbaycanca)",
+      dataIndex: "DogSizeAz",
+      key: "DogSizeAz",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "İt ölçüsü (Rusca)",
+      dataIndex: "DogSizeRu",
+      key: "DogSizeRu",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Rəng (Azərbaycanca)",
+      dataIndex: "ColorAz",
+      key: "ColorAz",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Rəng (Rusca)",
+      dataIndex: "ColorRu",
+      key: "ColorRu",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Aksesuar növü (Azərbaycanca)",
+      dataIndex: "TypeOfAccessoriesAz",
+      key: "TypeOfAccessoriesAz",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Qulluq məhsulları növü (Azərbaycanca)",
+      dataIndex: "TypeOfCareProductsAz",
+      key: "TypeOfCareProductsAz",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Məhsulun ölçüsü",
+      dataIndex: "ProductSize",
+      key: "ProductSize",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Aksesuar növü (Rusca)",
+      dataIndex: "TypeOfAccessoriesRu",
+      key: "TypeOfAccessoriesRu",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Qulluq məhsulları növü (Rusca)",
+      dataIndex: "TypeOfCareProductsRu",
+      key: "TypeOfCareProductsRu",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+
+    {
+      title: "Heyvan açarı",
+      dataIndex: "AnimalKey",
+      key: "AnimalKey",
+      width: 150,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Tərkib açarı",
+      dataIndex: "IngredientsKey",
+      key: "IngredientsKey",
+      width: 150,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Qida növü açarı",
+      dataIndex: "FoodTypeKey",
+      key: "FoodTypeKey",
+      width: 150,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Məhsul növü açarı",
+      dataIndex: "ProductTypeKey",
+      key: "ProductTypeKey",
+      width: 150,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Yaş qrupu açarı",
+      dataIndex: "AgeKey",
+      key: "AgeKey",
+      width: 150,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "İt ölçüsü açarı",
+      dataIndex: "DogSizeKey",
+      key: "DogSizeKey",
+      width: 150,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Marka açarı",
+      dataIndex: "BrandKey",
+      key: "BrandKey",
+      width: 150,
+      render: (value) => (value ? value : "null"),
+    },
+    {
+      title: "Əczaçılıq göstərişi açarı",
+      dataIndex: "PharmacyAppointmentKey",
+      key: "PharmacyAppointmentKey",
+      width: 200,
+      render: (value) => (value ? value : "null"),
+    },
+
+    {
+      title: "Əməliyyatlar",
       key: "action",
       fixed: "right",
       width: 200,
@@ -370,7 +753,7 @@ const Dashboard = () => {
             onClick={() => handleEditProduct(record)}
             size="small"
           >
-            Edit
+            Düzəliş
           </Button>
           <Popconfirm
             title="Məhsulu silmək istədiyinizə əminsiniz?"
@@ -384,7 +767,7 @@ const Dashboard = () => {
               icon={<DeleteOutlined />}
               size="small"
             >
-              Delete
+              Sil
             </Button>
           </Popconfirm>
         </Space>
@@ -672,7 +1055,7 @@ const Dashboard = () => {
             alignItems: "center",
           }}
         >
-          <Link to="/" style={{textDecoration:"none"}}>
+          <Link to="/" style={{ textDecoration: "none" }}>
             <div>
               <img src={logo}></img>
             </div>
@@ -785,48 +1168,62 @@ const Dashboard = () => {
                 >
                   <Input />
                 </Form.Item>
-                <Form.Item
-                  name="NameRu"
-                  label="NameRu"
-                  rules={[{ required: true, message: "NameRu is required" }]}
-                >
-                  <Input />
-                </Form.Item>
-                <Form.Item
-                  name="View"
-                  label="View"
-                  rules={[{ required: true, message: "View is required" }]}
-                >
-                  <Input />
-                </Form.Item>
-                <Form.Item
-                  name="TextAz"
-                  label="TextAz"
-                  rules={[{ required: true, message: "TextAz is required" }]}
-                >
-                  <Input />
-                </Form.Item>
-                <Form.Item
-                  name="TextRu"
-                  label="TextRu"
-                  rules={[{ required: true, message: "TextRu is required" }]}
-                >
-                  <Input />
-                </Form.Item>
-                <Form.Item
-                  name="Image"
-                  label="Image"
-                  rules={[{ required: true, message: "Image is required" }]}
-                >
+
+                <Form.Item name="NameRu" label="NameRu">
                   <Input />
                 </Form.Item>
 
-                <Form.Item
-                  name="Date"
-                  label="Date"
-                  rules={[{ required: true, message: "Date is required" }]}
-                >
+                <Form.Item name="View" label="View">
                   <Input />
+                </Form.Item>
+
+                <Form.Item name="TextAz" label="TextAz">
+                  <Input />
+                </Form.Item>
+
+                <Form.Item name="TextRu" label="TextRu">
+                  <Input />
+                </Form.Item>
+
+                <Form.Item name="Image" label="Image">
+                  <Input />
+                </Form.Item>
+
+                <Form.Item name="Date" label="Date">
+                  <Input />
+                </Form.Item>
+
+                {/* is ilə başlayan bütün sahələr Checkbox ilə */}
+                <Form.Item
+                  name="isDiscount"
+                  label="Is Discount"
+                  valuePropName="checked"
+                >
+                  <Checkbox />
+                </Form.Item>
+
+                <Form.Item
+                  name="isActive"
+                  label="Is Active"
+                  valuePropName="checked"
+                >
+                  <Checkbox />
+                </Form.Item>
+
+                <Form.Item
+                  name="isPublished"
+                  label="Is Published"
+                  valuePropName="checked"
+                >
+                  <Checkbox />
+                </Form.Item>
+
+                <Form.Item
+                  name="isFeatured"
+                  label="Is Featured"
+                  valuePropName="checked"
+                >
+                  <Checkbox />
                 </Form.Item>
 
                 <Form.Item>
@@ -911,6 +1308,7 @@ const Dashboard = () => {
           </Modal>
 
           {/* Product Modals (existing) */}
+
           <Modal
             title="Add New Product"
             visible={isProductModalVisible}
@@ -923,9 +1321,31 @@ const Dashboard = () => {
           >
             <Form form={formProduct} layout="vertical" onFinish={onAddProduct}>
               <Form.Item
+                name="İmage"
+                label="İmage"
+                rules={[
+                  { required: true, message: "İmage is required" },
+                  {
+                    pattern: /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg))$/i,
+                    message:
+                      "Please enter a valid image URL (png, jpg, jpeg, gif, svg)",
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+
+              <Form.Item
                 name="NameAz"
                 label="NameAz"
-                rules={[{ required: false, message: "NameAz is required" }]}
+                rules={[
+                  { required: true, message: "NameAz is required" },
+                  {
+                    pattern: /^[a-zA-Z0-9ğüşöçƏIİŞĞÜÖÇ\s\-]+$/i,
+                    message:
+                      "NameAz can only contain letters, numbers, spaces, and hyphens",
+                  },
+                ]}
               >
                 <Input />
               </Form.Item>
@@ -933,15 +1353,22 @@ const Dashboard = () => {
               <Form.Item
                 name="Price"
                 label="Price"
-                rules={[{ required: false, message: "Price is required" }]}
+                rules={[{ required: true, message: "Price is required" }]}
               >
-                <InputNumber min={0} style={{ width: "100%" }} />
+                <InputNumber min={0} style={{ width: "100%" }} step={0.01} />
               </Form.Item>
 
               <Form.Item
                 name="NameRu"
                 label="NameRu"
-                rules={[{ required: false, message: "NameRu is required" }]}
+                rules={[
+                  { required: true, message: "NameRu is required" },
+                  {
+                    pattern: /^[a-zA-Z0-9а-яё\s\-]+$/i,
+                    message:
+                      "NameRu can only contain letters, numbers, spaces, and hyphens",
+                  },
+                ]}
               >
                 <Input />
               </Form.Item>
@@ -949,7 +1376,14 @@ const Dashboard = () => {
               <Form.Item
                 name="BrandAz"
                 label="BrandAz"
-                rules={[{ required: false, message: "BrandAz is required" }]}
+                rules={[
+                  { required: false, message: "BrandAz is required" },
+                  {
+                    pattern: /^[a-zA-Z0-9ğüşöçƏIİŞĞÜÖÇ\s\-]+$/i,
+                    message:
+                      "BrandAz can only contain letters, numbers, spaces, and hyphens",
+                  },
+                ]}
               >
                 <Input />
               </Form.Item>
@@ -957,7 +1391,14 @@ const Dashboard = () => {
               <Form.Item
                 name="CountryAz"
                 label="CountryAz"
-                rules={[{ required: false, message: "CountryAz is required" }]}
+                rules={[
+                  { required: true, message: "CountryAz is required" },
+                  {
+                    pattern: /^[a-zA-ZğüşöçƏIİŞĞÜÖÇ\s\-]+$/i,
+                    message:
+                      "CountryAz can only contain letters, spaces, and hyphens",
+                  },
+                ]}
               >
                 <Input />
               </Form.Item>
@@ -965,7 +1406,14 @@ const Dashboard = () => {
               <Form.Item
                 name="CountryRu"
                 label="CountryRu"
-                rules={[{ required: false, message: "CountryRu is required" }]}
+                rules={[
+                  { required: true, message: "CountryRu is required" },
+                  {
+                    pattern: /^[а-яё\s\-]+$/i,
+                    message:
+                      "CountryRu can only contain Russian letters, spaces, hyphens",
+                  },
+                ]}
               >
                 <Input />
               </Form.Item>
@@ -973,7 +1421,7 @@ const Dashboard = () => {
               <Form.Item
                 name="Package"
                 label="Package"
-                rules={[{ required: false, message: "Package is required" }]}
+                rules={[{ required: true, message: "Package is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -990,7 +1438,7 @@ const Dashboard = () => {
                 name="ProductTypeAz"
                 label="ProductTypeAz"
                 rules={[
-                  { required: false, message: "ProductTypeAz is required" },
+                  { required: true, message: "ProductTypeAz is required" },
                 ]}
               >
                 <Input />
@@ -1018,7 +1466,7 @@ const Dashboard = () => {
                 name="AnimalTypeAz"
                 label="AnimalTypeAz"
                 rules={[
-                  { required: false, message: "AnimalTypeAz is required" },
+                  { required: true, message: "AnimalTypeAz is required" },
                 ]}
               >
                 <Input />
@@ -1035,25 +1483,28 @@ const Dashboard = () => {
               </Form.Item>
 
               <Form.Item
-                name="İmage"
-                label="İmage"
-                rules={[{ required: false, message: "İmage is required" }]}
-              >
-                <Input />
-              </Form.Item>
-
-              <Form.Item
                 name="isDiscount"
-                label="isDiscount"
-                valuePropName="checked"
+                label="Is Discount?"
+                rules={[{  message: "Please select yes or no" }]}
               >
-                <Input type="checkbox" />
+                <Radio.Group>
+                  <Radio value={true}>Yes</Radio>
+                  <Radio value={false}>No</Radio>
+                </Radio.Group>
               </Form.Item>
 
               <Form.Item
                 name="Rating"
                 label="Rating"
-                rules={[{ required: false, message: "Rating is required" }]}
+                rules={[
+                  { required: true, message: "Rating is required" },
+                  {
+                    type: "number",
+                    min: 0,
+                    max: 5,
+                    message: "Rating must be between 0 and 5",
+                  },
+                ]}
               >
                 <InputNumber min={0} max={5} style={{ width: "100%" }} />
               </Form.Item>
@@ -1061,7 +1512,7 @@ const Dashboard = () => {
               <Form.Item
                 name="FoodTypeRu"
                 label="FoodTypeRu"
-                rules={[{ required: false, message: "FoodTypeRu is required" }]}
+                rules={[{ message: "FoodTypeRu is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1070,7 +1521,7 @@ const Dashboard = () => {
                 name="ProductTypeRu"
                 label="ProductTypeRu"
                 rules={[
-                  { required: false, message: "ProductTypeRu is required" },
+                  { required: true, message: "ProductTypeRu is required" },
                 ]}
               >
                 <Input />
@@ -1080,7 +1531,7 @@ const Dashboard = () => {
                 name="AnimalTypeRu"
                 label="AnimalTypeRu"
                 rules={[
-                  { required: false, message: "AnimalTypeRu is required" },
+                  { required: true, message: "AnimalTypeRu is required" },
                 ]}
               >
                 <Input />
@@ -1099,7 +1550,7 @@ const Dashboard = () => {
               <Form.Item
                 name="AgeRu"
                 label="AgeRu"
-                rules={[{ required: false, message: "AgeRu is required" }]}
+                rules={[{  message: "AgeRu is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1109,7 +1560,6 @@ const Dashboard = () => {
                 label="DietAndPreventionAz"
                 rules={[
                   {
-                    required: false,
                     message: "DietAndPreventionAz is required",
                   },
                 ]}
@@ -1122,7 +1572,6 @@ const Dashboard = () => {
                 label="DietAndPreventionRu"
                 rules={[
                   {
-                    required: false,
                     message: "DietAndPreventionRu is required",
                   },
                 ]}
@@ -1134,10 +1583,7 @@ const Dashboard = () => {
                 name="BaytarlıqPəhriziAz"
                 label="BaytarlıqPəhriziAz"
                 rules={[
-                  {
-                    required: false,
-                    message: "BaytarlıqPəhriziAz is required",
-                  },
+                  {  message: "BaytarlıqPəhriziAz is required" },
                 ]}
               >
                 <Input />
@@ -1146,7 +1592,7 @@ const Dashboard = () => {
               <Form.Item
                 name="XəstəlikAz"
                 label="XəstəlikAz"
-                rules={[{ required: false, message: "XəstəlikAz is required" }]}
+                rules={[{ message: "XəstəlikAz is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1155,10 +1601,7 @@ const Dashboard = () => {
                 name="BaytarlıqPəhriziRu"
                 label="BaytarlıqPəhriziRu"
                 rules={[
-                  {
-                    required: false,
-                    message: "BaytarlıqPəhriziRu is required",
-                  },
+                  {  message: "BaytarlıqPəhriziRu is required" },
                 ]}
               >
                 <Input />
@@ -1167,7 +1610,7 @@ const Dashboard = () => {
               <Form.Item
                 name="XəstəlikRu"
                 label="XəstəlikRu"
-                rules={[{ required: false, message: "XəstəlikRu is required" }]}
+                rules={[{  message: "XəstəlikRu is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1177,7 +1620,6 @@ const Dashboard = () => {
                 label="PharmacyAppointmentAz"
                 rules={[
                   {
-                    required: false,
                     message: "PharmacyAppointmentAz is required",
                   },
                 ]}
@@ -1190,7 +1632,6 @@ const Dashboard = () => {
                 label="PharmacyAppointmentRu"
                 rules={[
                   {
-                    required: false,
                     message: "PharmacyAppointmentRu is required",
                   },
                 ]}
@@ -1202,7 +1643,13 @@ const Dashboard = () => {
                 name="PercentOfDiscount"
                 label="PercentOfDiscount"
                 rules={[
-                  { required: false, message: "PercentOfDiscount is required" },
+                  { message: "PercentOfDiscount is required" },
+                  {
+                    type: "number",
+                    min: 0,
+                    max: 100,
+                    message: "PercentOfDiscount must be between 0 and 100",
+                  },
                 ]}
               >
                 <InputNumber min={0} max={100} style={{ width: "100%" }} />
@@ -1211,15 +1658,18 @@ const Dashboard = () => {
               <Form.Item
                 name="InStock"
                 label="InStock"
-                rules={[{ required: false, message: "InStock is required" }]}
+                rules={[{ required: true, message: "InStock is required" }]}
               >
-                <InputNumber min={0} style={{ width: "100%" }} />
+                <Radio.Group>
+                  <Radio value={true}>Yes</Radio>
+                  <Radio value={false}>No</Radio>
+                </Radio.Group>
               </Form.Item>
 
               <Form.Item
                 name="AromaAz"
                 label="AromaAz"
-                rules={[{ required: false, message: "AromaAz is required" }]}
+                rules={[{  message: "AromaAz is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1227,7 +1677,7 @@ const Dashboard = () => {
               <Form.Item
                 name="MaterialAz"
                 label="MaterialAz"
-                rules={[{ required: false, message: "MaterialAz is required" }]}
+                rules={[{ message: "MaterialAz is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1236,7 +1686,7 @@ const Dashboard = () => {
                 name="TypeOfSandAz"
                 label="TypeOfSandAz"
                 rules={[
-                  { required: false, message: "TypeOfSandAz is required" },
+                  {  message: "TypeOfSandAz is required" },
                 ]}
               >
                 <Input />
@@ -1245,7 +1695,7 @@ const Dashboard = () => {
               <Form.Item
                 name="MaterialRu"
                 label="MaterialRu"
-                rules={[{ required: false, message: "MaterialRu is required" }]}
+                rules={[{ message: "MaterialRu is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1253,7 +1703,7 @@ const Dashboard = () => {
               <Form.Item
                 name="AromaRu"
                 label="AromaRu"
-                rules={[{ required: false, message: "AromaRu is required" }]}
+                rules={[{message: "AromaRu is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1262,7 +1712,7 @@ const Dashboard = () => {
                 name="TypeOfSandRu"
                 label="TypeOfSandRu"
                 rules={[
-                  { required: false, message: "TypeOfSandRu is required" },
+                  {message: "TypeOfSandRu is required" },
                 ]}
               >
                 <Input />
@@ -1272,7 +1722,7 @@ const Dashboard = () => {
                 name="CookieTypeAz"
                 label="CookieTypeAz"
                 rules={[
-                  { required: false, message: "CookieTypeAz is required" },
+                  {  message: "CookieTypeAz is required" },
                 ]}
               >
                 <Input />
@@ -1282,7 +1732,7 @@ const Dashboard = () => {
                 name="CookieTypeRu"
                 label="CookieTypeRu"
                 rules={[
-                  { required: false, message: "CookieTypeRu is required" },
+                  { message: "CookieTypeRu is required" },
                 ]}
               >
                 <Input />
@@ -1291,7 +1741,7 @@ const Dashboard = () => {
               <Form.Item
                 name="DogSizeAz"
                 label="DogSizeAz"
-                rules={[{ required: false, message: "DogSizeAz is required" }]}
+                rules={[{  message: "DogSizeAz is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1299,7 +1749,7 @@ const Dashboard = () => {
               <Form.Item
                 name="DogSizeRu"
                 label="DogSizeRu"
-                rules={[{ required: false, message: "DogSizeRu is required" }]}
+                rules={[{  message: "DogSizeRu is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1307,7 +1757,7 @@ const Dashboard = () => {
               <Form.Item
                 name="ColorAz"
                 label="ColorAz"
-                rules={[{ required: false, message: "ColorAz is required" }]}
+                rules={[{  message: "ColorAz is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1315,7 +1765,7 @@ const Dashboard = () => {
               <Form.Item
                 name="ColorRu"
                 label="ColorRu"
-                rules={[{ required: false, message: "ColorRu is required" }]}
+                rules={[{  message: "ColorRu is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1325,7 +1775,7 @@ const Dashboard = () => {
                 label="TypeOfAccessoriesAz"
                 rules={[
                   {
-                    required: false,
+                    
                     message: "TypeOfAccessoriesAz is required",
                   },
                 ]}
@@ -1338,7 +1788,7 @@ const Dashboard = () => {
                 label="TypeOfCareProductsAz"
                 rules={[
                   {
-                    required: false,
+                    
                     message: "TypeOfCareProductsAz is required",
                   },
                 ]}
@@ -1349,9 +1799,7 @@ const Dashboard = () => {
               <Form.Item
                 name="ProductSize"
                 label="ProductSize"
-                rules={[
-                  { required: false, message: "ProductSize is required" },
-                ]}
+                rules={[{  message: "ProductSize is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1361,7 +1809,7 @@ const Dashboard = () => {
                 label="TypeOfAccessoriesRu"
                 rules={[
                   {
-                    required: false,
+                    
                     message: "TypeOfAccessoriesRu is required",
                   },
                 ]}
@@ -1374,7 +1822,6 @@ const Dashboard = () => {
                 label="TypeOfCareProductsRu"
                 rules={[
                   {
-                    required: false,
                     message: "TypeOfCareProductsRu is required",
                   },
                 ]}
@@ -1385,7 +1832,7 @@ const Dashboard = () => {
               <Form.Item
                 name="AnimalKey"
                 label="AnimalKey"
-                rules={[{ required: false, message: "AnimalKey is required" }]}
+                rules={[{ required: true, message: "AnimalKey is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1394,7 +1841,7 @@ const Dashboard = () => {
                 name="IngredientsKey"
                 label="IngredientsKey"
                 rules={[
-                  { required: false, message: "IngredientsKey is required" },
+                  {  message: "IngredientsKey is required" },
                 ]}
               >
                 <Input />
@@ -1403,9 +1850,7 @@ const Dashboard = () => {
               <Form.Item
                 name="FoodTypeKey"
                 label="FoodTypeKey"
-                rules={[
-                  { required: false, message: "FoodTypeKey is required" },
-                ]}
+                rules={[{ message: "FoodTypeKey is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1414,7 +1859,7 @@ const Dashboard = () => {
                 name="ProductTypeKey"
                 label="ProductTypeKey"
                 rules={[
-                  { required: false, message: "ProductTypeKey is required" },
+                  { required: true, message: "ProductTypeKey is required" },
                 ]}
               >
                 <Input />
@@ -1423,7 +1868,7 @@ const Dashboard = () => {
               <Form.Item
                 name="AgeKey"
                 label="AgeKey"
-                rules={[{ required: false, message: "AgeKey is required" }]}
+                rules={[{  message: "AgeKey is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1439,7 +1884,7 @@ const Dashboard = () => {
               <Form.Item
                 name="BrandKey"
                 label="BrandKey"
-                rules={[{ required: false, message: "BrandKey is required" }]}
+                rules={[{  message: "BrandKey is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1449,7 +1894,6 @@ const Dashboard = () => {
                 label="PharmacyAppointmentKey"
                 rules={[
                   {
-                    required: false,
                     message: "PharmacyAppointmentKey is required",
                   },
                 ]}
@@ -1481,28 +1925,27 @@ const Dashboard = () => {
               <Form.Item
                 name="NameAz"
                 label="NameAz"
-                rules={[{ required: false, message: "NameAz is required" }]}
+                rules={[{ required: true, message: "NameAz is required" }]}
               >
                 <Input />
               </Form.Item>
               <Form.Item
                 name="Price"
                 label="Price"
-                rules={[{ required: false, message: "Price is required" }]}
+                rules={[{ required: true, message: "Price is required" }]}
               >
                 <InputNumber min={0} style={{ width: "100%" }} />
               </Form.Item>
               <Form.Item
                 name="BrandAz"
                 label="BrandAz"
-                rules={[{ required: false, message: "BrandAz is required" }]}
               >
                 <Input />
               </Form.Item>
               <Form.Item
                 name="NameRu"
                 label="NameRu"
-                rules={[{ required: false, message: "NameRu is required" }]}
+                rules={[{ required: true, message: "NameRu is required" }]}
               >
                 <Input />
               </Form.Item>

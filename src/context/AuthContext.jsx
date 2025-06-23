@@ -17,7 +17,14 @@ export const AuthProvider = ({ children }) => {
   });
 
   const register = async ({ phone, name, surname, email, password, terms }) => {
-    const phoneRegex = /^(50|51|55|70|77|99|10|60|90)\s?\d{3}\s?\d{2}\s?\d{2}$/;
+    // Trim all inputs
+    phone = phone.trim();
+    name = name.trim();
+    surname = surname.trim();
+    email = email.trim();
+    password = password.trim();
+
+    const phoneRegex = /^(50|51|55|70|77|99|10|60|90)\s\d{3}\s\d{2}\s\d{2}$/;
     const nameRegex = /^[A-Za-zА-Яа-яЁёƏəÖöÜüĞğÇçŞşİı]{2,}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passwordRegex =
@@ -52,6 +59,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async ({ email, password, terms }) => {
+    email = email.trim();
+    password = password.trim();
+
     if (!terms) {
       setAuthErrors({ terms: t("terms_alert") });
       return false;
@@ -77,7 +87,6 @@ export const AuthProvider = ({ children }) => {
     setUser(data);
     setIsLogin(true);
 
-    // Save to localStorage
     localStorage.setItem("user", JSON.stringify(data));
     localStorage.setItem("isLogin", "true");
 
@@ -90,7 +99,7 @@ export const AuthProvider = ({ children }) => {
     setIsLogin(false);
     localStorage.removeItem("user");
     localStorage.removeItem("isLogin");
-    window.location.href="/"
+    window.location.href = "/";
   };
 
   return (

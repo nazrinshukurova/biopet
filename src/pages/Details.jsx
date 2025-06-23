@@ -295,7 +295,6 @@ const Details = () => {
           </div>
         </div>
       )}
-      <Footer />
     </>
   );
 };
