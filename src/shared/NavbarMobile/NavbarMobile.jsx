@@ -5,6 +5,7 @@ import logo from "../../assets/svg/biopet_blue_logo.svg";
 import search from "../../assets/svg/search.svg";
 import { useTranslation } from "react-i18next";
 import Dropdown from "../Dropdown/Dropdown";
+import SearchResults from "../../components/SearchResults/SearchResults";
 
 const NavbarMobile = () => {
   const { t } = useTranslation();
@@ -34,6 +35,7 @@ const NavbarMobile = () => {
             <img width="16" height="16" src={search} alt="search icon" />
           </span>
         </div>
+        
       </div>
 
       <Dropdown visibility={visibility} setVisibility={setVisibility} />

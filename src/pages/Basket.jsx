@@ -37,6 +37,9 @@ const Basket = () => {
     }
   };
 
+  
+  console.log(basketItems)
+
   if (!basketItems || basketItems.length === 0) {
     return (
       <>
@@ -61,6 +64,8 @@ const Basket = () => {
       </>
     );
   }
+
+console.log(basketItems)
 
   return (
     <>
@@ -97,7 +102,6 @@ const Basket = () => {
                         </span>
                       </div>
                     )}
-
                     <div className={styles.prod_price}>
                       <div className={styles.price_box}>
                         {i18n.language === "az" ? "Qiymət" : "Цена"}:

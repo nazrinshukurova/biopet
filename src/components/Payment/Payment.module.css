@@ -3,7 +3,8 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  background-color: #fff;
+  background-color: var(--container-bg);
+  color: var(--subtext);
 }
 
 .right_side {

@@ -1,4 +1,4 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styles from "../styles/Details.module.css";
 import { useTranslation } from "react-i18next";
 import {
@@ -11,22 +11,21 @@ import {
 } from "../assets/Svg";
 import Footer from "../shared/Footer/Footer";
 import AddToCart from "../shared/Buttons/Buttons";
-import { useState, useEffect } from "react";
+import { useProducts } from "../context/ProductContext"; // düz yol ver
+import { useBasket } from "../context/AddToBasket";
+import Suggestions from "../shared/SuggestionsProducts/Suggestions";
+import { useWishlist } from "../context/WishlistContext";
 
 const Details = () => {
-  const { state } = useLocation();
   const { id } = useParams();
-  const product = state?.product;
+  const { products, loading } = useProducts(); // context-dən gələn data
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
 
-  const [loading, setLoading] = useState(true);
+  const product = products.find((p) => p.id?.toString() === id);
 
-  useEffect(() => {
-    if (product) {
-      setLoading(false);
-    }
-  }, [product]);
+  if (loading) return <div className="spinner"></div>;
+  if (!product) return <div>Bu məhsul tapılmadı.</div>;
 
   const getPackageUnit = (lang, product) => {
     if (lang === "az") {
@@ -56,11 +55,22 @@ const Details = () => {
   );
   const bonus = product?.Price?.toFixed(2);
 
+  const { addToBasket } = useBasket();
+
+  const {addToWishlist}=useWishlist()
+
+  console.log(product.id, "DETAILS");
+
   return (
     <>
-      {loading ? (
-        <div className="spinner"></div>
-      ) : (
+      {" "}
+      <div
+        style={{
+          backgroundColor: "var(--container-bg)",
+          color: "var(--textColor)",
+          padding: "50px 0px",
+        }}
+      >
         <div className={styles.image_and_description}>
           <div className={styles.image_container}>
             <img src={product?.İmage} alt="product" />
@@ -163,76 +173,6 @@ const Details = () => {
                   title: lang === "az" ? "İtin ölçüsü" : "Размер собаки",
                   value: lang === "az" ? product.DogSizeAz : product.DogSizeRu,
                 },
-                {
-                  key: "CookieTypeAz",
-                  title: lang === "az" ? "Oyuncaqın növü" : "Тип игрушки",
-                  value:
-                    lang === "az" ? product.CookieTypeAz : product.CookieTypeRu,
-                },
-                {
-                  key: "ColorAz",
-                  title: lang === "az" ? "Rəng" : "Цвет",
-                  value: lang === "az" ? product.ColorAz : product.ColorRu,
-                },
-                {
-                  key: "AromaAz",
-                  title: lang === "az" ? "Dad" : "Вкус",
-                  value: lang === "az" ? product.AromaAz : product.AromaRu,
-                },
-                {
-                  key: "MaterialAz",
-                  title: lang === "az" ? "Material" : "Материал",
-                  value:
-                    lang === "az" ? product.MaterialAz : product.Materialru,
-                },
-                {
-                  key: "DietAndPreventionAz",
-                  title:
-                    lang === "az"
-                      ? "Pəhriz və qarşısının alınması"
-                      : "Диета и профилактика",
-                  value:
-                    lang === "az"
-                      ? product.DietAndPreventionAz
-                      : product.DietAndPreventionRu,
-                },
-                {
-                  key: "TypeOfAccessoriesAz",
-                  title: lang === "az" ? "Oyuncaqın növü" : "Тип аксессуара",
-                  value:
-                    lang === "az"
-                      ? product.TypeOfAccessoriesAz
-                      : product.TypeOfAccessoriesRu,
-                },
-                {
-                  key: "TypeOfCareProductsAz",
-                  title:
-                    lang === "az" ? "Baxım məhsulları" : "Средства по уходу",
-                  value:
-                    lang === "az"
-                      ? product.TypeOfCareProductsAz
-                      : product.TypeOfCareProductsRu,
-                },
-                {
-                  key: "PharmacyAppointmentKey",
-                  title:
-                    lang === "az"
-                      ? "Aptekın təyinatı"
-                      : "Запись на прием в аптеке",
-                  value:
-                    lang === "az"
-                      ? product.PharmacyAppointmentAz
-                      : product.PharmacyAppointmentRu,
-                },
-                {
-                  key: "BaytarlıqPəhriziAz",
-                  title:
-                    lang === "az" ? "Baytarlıq pəhrizi" : "Ветеринарная диета",
-                  value:
-                    lang === "az"
-                      ? product.BaytarlıqPəhriziAz
-                      : product.BaytarlıqPəhriziRu,
-                },
               ]
                 .filter((item) => product[item.key])
                 .map((item, index) => (
@@ -286,15 +226,17 @@ const Details = () => {
                 )}
               </div>
               <div className={styles.button_and_heart}>
-                <AddToCart />
-                <div className={styles.view_like}>
+                <AddToCart onClick={() => addToBasket(product)} />
+
+                <div onClick={()=>addToWishlist(product.id)} className={styles.view_like}>
                   <Heart />
                 </div>
               </div>
             </div>
           </div>
         </div>
-      )}
+      </div>
+      <Suggestions />
     </>
   );
 };

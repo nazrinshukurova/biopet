@@ -264,5 +264,8 @@
   "gender": "Cins",
   "male": "Erkək",
   "female": "Dişi",
-  "Home": "Ana səhifə"
+  "Home": "Ana səhifə",
+  "search": {
+    "noResults": "Nəticə tapılmadı."
+  }
 }

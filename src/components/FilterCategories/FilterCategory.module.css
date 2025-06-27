@@ -2,6 +2,9 @@
   display: flex;
   gap: 20px;
   height: auto;
+  background-color: var(--container-bg);
+  color: var(---textColor);
+  padding: 25px;
 }
 
 .left_filter {
@@ -239,6 +242,11 @@
   -webkit-box-orient: vertical;
   display: -webkit-box;
   overflow: hidden;
+  transition: all 0.3s ease-in;
+}
+
+.item_title:hover{
+  color: #00b5a4;
 }
 
 .priceForFilter {
@@ -430,3 +438,5 @@
   gap: 2px;
   margin-bottom: 2px;
 }
+
+

@@ -6,12 +6,15 @@ import { useTranslation } from "react-i18next";
 import styles from "../styles/Discounted.module.css";
 import Footer from "../shared/Footer/Footer";
 import AddToCart from "../shared/Buttons/Buttons";
+import { useBasket } from "../context/AddToBasket";
 
 const DiscountedProducts = () => {
   const { products, loading } = useProducts();
   const [discountedProducts, setDiscountedProducts] = useState([]);
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
+
+  const { addToBasket } = useBasket();
 
   useEffect(() => {
     if (products?.length) {
@@ -51,13 +54,7 @@ const DiscountedProducts = () => {
           </div>
         ) : (
           discountedProducts.map((item) => (
-            <div
-              onClick={() =>
-                navigate(`/product/${item.id}`, { state: { product: item } })
-              }
-              key={item.id}
-              className={styles.filtered_item}
-            >
+            <div key={item.id} className={styles.filtered_item}>
               <div
                 style={{ position: "relative" }}
                 className={styles.item_image}
@@ -105,7 +102,14 @@ const DiscountedProducts = () => {
                     <p className={styles.prices}>{item.Price.toFixed(2)} AZN</p>
                   )}
                 </div>
-                <div className={styles.item_title}>
+                <div
+                  onClick={() =>
+                    navigate(`/product/${item.id}`, {
+                      state: { product: item },
+                    })
+                  }
+                  className={styles.item_title}
+                >
                   {i18n.language === "az" ? item.NameAz : item.NameRu}
                 </div>
                 <div className={styles.rating}>
@@ -124,7 +128,7 @@ const DiscountedProducts = () => {
                   </div>
                 )}
               </div>
-              <AddToCart product={item} />
+              <AddToCart onClick={() => addToBasket(item)} />
             </div>
           ))
         )}

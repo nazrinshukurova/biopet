@@ -83,20 +83,18 @@ const CustomRightArrow = ({ onClick }) => (
 );
 
 const BrandSlider = () => {
-
-  const {t}=useTranslation()
+  const { t } = useTranslation();
 
   return (
     <div className={styles.sliderContainer}>
-    <p className={styles.title}>{t("brands.brands")}</p>
-      <p className={styles.text}>
-       {t("brands.brands_title")}
-      </p>
+      <p style={{ color: "var(--textColor)" }}>{t("brands.brands")}</p>
+      <p style={{ color: "var(--textColor)" }}>{t("brands.brands_title")}</p>
+
       <Carousel
-      className={styles.carousel}
+        className={styles.carousel}
         responsive={responsive}
         infinite
-        arrows
+        arrows={false}
         autoPlay
         autoPlaySpeed={3000}
         customLeftArrow={<CustomLeftArrow />}

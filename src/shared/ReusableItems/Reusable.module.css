@@ -7,8 +7,8 @@
 }
 
 .blog_img {
-  height: 240px;
-  width: 370px;
+  height: 220px;
+  width: 100%;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }

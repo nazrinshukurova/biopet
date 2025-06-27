@@ -14,12 +14,18 @@ import master from "../../assets/svg/master.svg";
 import g_pay from "../../assets/svg/g-pay.svg";
 import apple_pay from "../../assets/svg/apple-pay.svg";
 import visa from "../../assets/svg/visa.svg";
+import { useTheme } from "../../context/ThemeContext";
 
 const Footer = () => {
   const { t } = useTranslation();
+  const { theme } = useTheme();
 
   return (
-    <footer className={styles.footer}>
+    <footer
+      className={`${styles.footer} ${
+        theme === "dark" ? "dark-mode" : "light-mode"
+      }`}
+    >
       <div className={styles.container}>
         <div>
           <div className={styles.contactBox}>
@@ -49,7 +55,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Biopet mağazası */}
         <div className={styles.column}>
           <h3 className={styles.columnTitle}>{t("biopetStore")}</h3>
           <ul className={styles.linkList}>
@@ -61,7 +66,6 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Popular Categories */}
         <div className={styles.column}>
           <h3 className={styles.columnTitle}>{t("popularCategories")}</h3>
           <ul className={styles.linkList}>
@@ -78,7 +82,6 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Popular Brands */}
         <div className={styles.column}>
           <h3 className={styles.columnTitle}>{t("popularBrands")}</h3>
           <ul className={styles.linkList}>
@@ -93,7 +96,6 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Help */}
         <div className={styles.column}>
           <h3 className={styles.columnTitle}>{t("help")}</h3>
           <ul className={styles.linkList}>
@@ -109,16 +111,16 @@ const Footer = () => {
         </div>
         <div className={styles.cards}>
           <div className={styles.card_item}>
-            <img src={visa}></img>
+            <img src={visa} alt="Visa" />
           </div>
           <div className={styles.card_item}>
-            <img src={master}></img>
+            <img src={master} alt="MasterCard" />
           </div>
           <div className={styles.card_item}>
-            <img src={g_pay}></img>
+            <img src={g_pay} alt="Google Pay" />
           </div>
           <div className={styles.card_item}>
-            <img src={apple_pay}></img>
+            <img src={apple_pay} alt="Apple Pay" />
           </div>
         </div>
       </div>

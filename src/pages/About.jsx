@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import Footer from "../shared/Footer/Footer";
+import Suggestions from "../shared/SuggestionsProducts/Suggestions";
 
 const About = () => {
   const { t, i18n } = useTranslation();
@@ -8,7 +9,13 @@ const About = () => {
   return (
     <>
       {" "}
-      <div>
+      <div
+        style={{
+          backgroundColor: "var(--container-bg)",
+          color: "var(--textColor)",
+          padding: "80px",
+        }}
+      >
         <div className="about">{t("about_title")}</div>
 
         <div className="about_text_box">
@@ -60,6 +67,7 @@ const About = () => {
           </div>
         </div>
       </div>
+      <Suggestions />
     </>
   );
 };

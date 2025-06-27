@@ -11,13 +11,22 @@ import AddToCart, { ClearAll } from "../../shared/Buttons/Buttons";
 import { useWishlist } from "../../context/WishlistContext";
 import { useTranslation } from "react-i18next";
 import { FiHeart } from "react-icons/fi";
+import { useBasket } from "../../context/AddToBasket";
 
 const WishlistComp = () => {
   const { wishlist, removeFromWishlist, clearWishlist } = useWishlist();
   const { i18n } = useTranslation();
 
+  const {addToBasket}=useBasket()
+  
+
   return (
-    <div>
+    <div
+      style={{
+        backgroundColor: "var(--container-bg)",
+      
+      }}
+    >
       <div className={styles.clear_and_wishlist}>
         {" "}
         <h1 className={styles.title}>
@@ -108,7 +117,11 @@ const WishlistComp = () => {
                 )}
               </div>
 
-              <AddToCart product={item} />
+              <AddToCart onClick={()=>addToBasket(item)} />
+
+              {console.log(item)}
+
+              {}
             </div>
           ))
         )}

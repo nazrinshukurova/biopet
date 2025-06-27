@@ -5,18 +5,20 @@ import { Cart2 } from "../../assets/Svg";
 import { useBasket } from "../../context/AddToBasket";
 import { Link } from "react-router-dom";
 
-const AddToCart = ({ product }) => {
+const AddToCart = ({ onClick }) => {
   const { t, i18n } = useTranslation();
   const { addToBasket, showSuccessAlert } = useBasket();
 
   return (
     <div>
-      <button onClick={() => addToBasket(product)} className={styles.addToCart}>
+      <button onClick={onClick} className={styles.addToCart}>
         <p className={styles.addToCart_desc}>
           <Cart2 className={styles.cart} />{" "}
           {i18n.language === "az" ? "Səbətə at" : "В корзину"}
         </p>
       </button>
+
+      {showSuccessAlert}
     </div>
   );
 };
@@ -68,11 +70,15 @@ export const ClearAll = ({ clickFunction }) => {
   );
 };
 
-export const SaveMemory = ({disabled,onClick}) => {
+export const SaveMemory = ({ disabled, onClick }) => {
   const { i18n } = useTranslation();
 
   return (
-    <button disabled={disabled} onClick={onClick} className={styles.save_memory}>
+    <button
+      disabled={disabled}
+      onClick={onClick}
+      className={styles.save_memory}
+    >
       {i18n.language === "az"
         ? "Yadda saxla və davam et"
         : "Сохранить и продолжить"}
@@ -80,10 +86,17 @@ export const SaveMemory = ({disabled,onClick}) => {
   );
 };
 
-export const PayButton = ({color,text,textColor,type,onClick}) => {
+export const PayButton = ({ color, text, textColor, type, onClick }) => {
   return (
     <>
-      <button type={type} onClick={onClick} style={{ backgroundColor: color,color:textColor }} className={styles.pay}>{text}</button>
+      <button
+        type={type}
+        onClick={onClick}
+        style={{ backgroundColor: color, color: textColor }}
+        className={styles.pay}
+      >
+        {text}
+      </button>
     </>
   );
 };

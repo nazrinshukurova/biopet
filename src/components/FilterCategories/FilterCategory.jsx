@@ -25,7 +25,7 @@ import {
 } from "../../assets/Svg";
 import RangeSlider from "../../assets/sliders/RangeSlider";
 import IOSSwitch from "../../assets/sliders/Toggle";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import SortSelect from "../../shared/Selects/Select";
 import AddToCart from "../../shared/Buttons/Buttons";
 import Footer from "../../shared/Footer/Footer";
@@ -614,17 +614,7 @@ const FilterCategory = () => {
             {loading ? (
               Array.from({ length: 8 }).map((_, index) => (
                 <div key={index} className={styles.filtered_item}>
-                  <div className={`${styles.item_image} ${styles.skeleton}`} />
-                  <div className={styles.item_desc}>
-                    <div className={`${styles.price} ${styles.skeleton}`} />
-                    <div
-                      className={`${styles.item_title} ${styles.skeleton}`}
-                    />
-                    <div className={`${styles.rating} ${styles.skeleton}`} />
-                    <div
-                      className={`${styles.item_package} ${styles.skeleton}`}
-                    />
-                  </div>
+                  {/* Skeleton loading */}
                 </div>
               ))
             ) : filteredData.length === 0 ? (
@@ -637,24 +627,23 @@ const FilterCategory = () => {
               </div>
             ) : (
               currentItems.map((item) => (
-                <div className={styles.filtered_item}>
+                <div key={item.id} className={styles.filtered_item}>
                   <div
-                    key={item.id}
-                    style={{ position: "relative", cursor: "pointer" }}
                     className={styles.item_image}
+                    style={{ position: "relative" }}
                   >
-                    {item.isDiscount ? (
+                    {item.isDiscount && (
                       <div
+                        className={styles.discount_box}
                         style={{
                           position: "absolute",
                           left: "10px",
                           top: "10px",
                         }}
-                        className={styles.discount_box}
                       >
                         -{item.PercentOfDiscount}%
                       </div>
-                    ) : null}
+                    )}
                     <div
                       style={{
                         display: "flex",
@@ -664,7 +653,6 @@ const FilterCategory = () => {
                         top: "10px",
                       }}
                     >
-                      {" "}
                       <div
                         style={{ cursor: "pointer" }}
                         onClick={() => addToWishlist(item)}
@@ -672,28 +660,38 @@ const FilterCategory = () => {
                         {isInWishlist(item.id) ? <Wished /> : <Wish />}
                       </div>
                     </div>
+
                     <img
                       height="172px"
                       width="172px"
                       src={item.İmage}
                       alt={item.NameAz}
+                      style={{ cursor: "pointer" }}
                     />
                   </div>
+
                   <div className={styles.item_desc}>
                     <div className={styles.priceForFilter}>
                       {item.Price} AZN
                     </div>
-                    <div className={styles.item_title}>
-                      {i18n.language === "az" ? item.NameAz : item.NameRu}
-                    </div>
+
+                    <Link style={{textDecoration:"none"}} to={`/product/${item.id}`}>
+                      {" "}
+                      <div className={styles.item_title}>
+                        {" "}
+                        {i18n.language === "az" ? item.NameAz : item.NameRu}
+                      </div>
+                    </Link>
+
                     <div className={styles.rating}>
                       {item?.Rating === 0 ? (
                         <EmptyStarSvg />
                       ) : (
                         <FullFilledStarSvg />
-                      )}
+                      )}{" "}
                       {item.Rating}
                     </div>
+
                     {item.Package && (
                       <div className={styles.item_package}>
                         {i18n.language === "az"
@@ -702,7 +700,8 @@ const FilterCategory = () => {
                       </div>
                     )}
                   </div>
-                  <AddToCart product={item} />
+
+                  <AddToCart  onClick={()=>addToBasket(item)} />
                 </div>
               ))
             )}

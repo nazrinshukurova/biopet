@@ -42,14 +42,15 @@ import MyPet from "./pages/MyPet";
 import PickAnimal from "./components/PickAnimal/PickAnimal";
 import AboutInfoForPet from "./components/AboutInfoForPet/AboutInfoForPet";
 import UXPinLayout from "./pages/Dashboard";
+import { ThemeProvider } from "./context/ThemeContext";
+import GlobalSearch from "./components/GlobalSearch/GlobalSearch";
+import SearchResults from "./components/SearchResults/SearchResults";
 
 // Protected route ümumi yoxlama
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuth();
   return user ? children : <Navigate to="/login" replace />;
 };
-
-
 
 // Dashboard üçün xüsusi qoruma — yalnız "nazrin@gmail.com" istifadəçisi daxil ola bilər
 const DashboardProtectedRoute = ({ children }) => {
@@ -70,6 +71,7 @@ const Layout = ({ children, lang }) => {
       {!hideNavbar && (
         <>
           <Navbar lang={lang} />
+         
           <Dropdown />
           <NavbarMobile />
         </>
@@ -103,75 +105,68 @@ const App = () => {
   const language = savedLang;
 
   return (
-    <ProductProvider>
-      <AuthProvider>
-        <WishlistProvider>
-          <BasketProvider>
-            <BrowserRouter>
-              <Layout lang={language}>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/products" element={<Products />} />
-                  <Route path="/product/:id" element={<Details />} />
-                  <Route
-                    path="/products/discounted_products"
-                    element={<DiscountedProducts />}
-                  />
-                  <Route path="/faq" element={<FAQ />} />
-                  <Route path="/blogs" element={<Blogs />} />
-                  <Route path="/blogs/:id" element={<BlogsDetails />} />
-                  <Route
-                    path="/register"
-                    element={
-                        <Registration />
-                    }
-                  />
-                  <Route
-                    path="/login"
-                    element={
-                        <LoginPage />
-                    }
-                  />
-                  <Route path="/basket" element={<Basket />} />
-                  <Route path="/wishlist" element={<Wishlist />} />
-                  <Route path="/checkout" element={<Checkout />} />
-                  <Route path="/payment" element={<PaymentPage />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/pickanimal" element={<PickAnimal />} />
-                  {/* Dashboard üçün xüsusi qoruma tətbiq olunur */}
-                  <Route
-                    path="/dashboard"
-                    element={
-                      <DashboardProtectedRoute>
-                        <UXPinLayout />
-                      </DashboardProtectedRoute>
-                    }
-                  />
-                  <Route path="/infopet" element={<AboutInfoForPet />} />
-                  <Route
-                    path="/account"
-                    element={
-                      <ProtectedRoute>
-                        <Account />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/mypet"
-                    element={
-                      <ProtectedRoute>
-                        <MyPet />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </Layout>
-            </BrowserRouter>
-          </BasketProvider>
-        </WishlistProvider>
-      </AuthProvider>
-    </ProductProvider>
+    <ThemeProvider>
+      {" "}
+      <ProductProvider>
+        <AuthProvider>
+          <WishlistProvider>
+            <BasketProvider>
+              <BrowserRouter>
+                <Layout lang={language}>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/products" element={<Products />} />
+                    <Route path="/product/:id" element={<Details />} />
+                    <Route
+                      path="/products/discounted_products"
+                      element={<DiscountedProducts />}
+                    />
+                    <Route path="/faq" element={<FAQ />} />
+                    <Route path="/blogs" element={<Blogs />} />
+                    <Route path="/blogs/:id" element={<BlogsDetails />} />
+                    <Route path="/register" element={<Registration />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/basket" element={<Basket />} />
+                    <Route path="/wishlist" element={<Wishlist />} />
+                    <Route path="/checkout" element={<Checkout />} />
+                    <Route path="/payment" element={<PaymentPage />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/pickanimal" element={<PickAnimal />} />
+                    {/* Dashboard üçün xüsusi qoruma tətbiq olunur */}
+                    <Route
+                      path="/dashboard"
+                      element={
+                        <DashboardProtectedRoute>
+                          <UXPinLayout />
+                        </DashboardProtectedRoute>
+                      }
+                    />
+                    <Route path="/infopet" element={<AboutInfoForPet />} />
+                    <Route
+                      path="/account"
+                      element={
+                        <ProtectedRoute>
+                          <Account />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/mypet"
+                      element={
+                        <ProtectedRoute>
+                          <MyPet />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </Layout>
+              </BrowserRouter>
+            </BasketProvider>
+          </WishlistProvider>
+        </AuthProvider>
+      </ProductProvider>
+    </ThemeProvider>
   );
 };
 

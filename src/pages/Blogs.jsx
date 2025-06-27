@@ -4,6 +4,7 @@ import { Blog } from "../shared/ReusableItems/Reusable";
 import Footer from "../shared/Footer/Footer";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { useTheme } from "../context/ThemeContext";
 
 const Blogs = () => {
   const { t, i18n } = useTranslation();
@@ -54,9 +55,16 @@ const Blogs = () => {
     }
   };
 
+  const { theme } = useTheme();
+
   return (
     <>
-      <div>
+      <div
+        style={{
+          backgroundColor: "var(--container-bg)",
+          color: "var(--textColor)",
+        }}
+      >
         {loading && !error && <div className="spinner"></div>}
 
         {!loading && blogs.length === 0 && !error && <p>No blogs available</p>}
@@ -67,7 +75,7 @@ const Blogs = () => {
             flexWrap: "wrap",
             alignItems: "center",
             justifyContent: "center",
-            marginBottom: "40px",
+            paddingBottom: "80px",
           }}
         >
           {blogs.map((blog) => (

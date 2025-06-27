@@ -1,3 +1,4 @@
+// Navbar.jsx
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./Navbar.module.css";
 import logo from "../../assets/svg/biopet_blue_logo.svg";
@@ -16,21 +17,14 @@ import { DarkMode, LightMode, Manat, RedManat } from "../../assets/Svg";
 import { FinishTheOrder, ViewBasket } from "../Buttons/Buttons";
 import { useWishlist } from "../../context/WishlistContext";
 import { useAuth } from "../../context/AuthContext";
+import { useTheme } from "../../context/ThemeContext";
+import { useProducts } from "../../context/ProductContext";
+import SearchResults from "../../components/SearchResults/SearchResults";
 
 const Navbar = ({ lang }) => {
-  const {
-    totalDiscount,
-    basketItems,
-    basketCount,
-    totalQuantity,
-    quantity,
-    totalPrice,
-  } = useBasket();
-
+  const { totalDiscount, basketItems, basketCount, totalQuantity, totalPrice } =
+    useBasket();
   const { wishlist } = useWishlist();
-
-  console.log(wishlist);
-
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -39,59 +33,59 @@ const Navbar = ({ lang }) => {
     i18n.changeLanguage(myLang);
   };
 
-  const handleClick = () => {
-    setIsOpen(!isOpen);
-  };
+  const handleClick = () => setIsOpen(!isOpen);
 
-  // Bağlama funksiyası (çöldə klik ediləndə dropdown bağlansın)
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const { user, login, isLogin, logout } = useAuth();
-
-  console.log(user, "USER");
-  console.log(isLogin, "LOGIN");
-  console.log(user, "USER");
-  console.log(isLogin, "LOGIN");
-
-  const [theme, setTheme] = useState("light");
-
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    document.body.setAttribute("data-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
-  };
-
-  console.log(theme);
+  const { user, isLogin, logout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
+  const { searchTerm, setSearchTerm } = useProducts();
 
   return (
     <>
       <div className={styles.common_navbar_container}>
         <nav className={styles.nav_container}>
           <Link to="/">
-            {" "}
             <img className={styles.logo} src={logo} alt="logo" />
-          </Link>{" "}
+          </Link>
           <img className={styles.phone} src={phone} alt="phone" />
-          <div className={styles.search_container}>
-            <span>
-              <img width="16" height="16" src={search} alt="search icon" />
-            </span>
-            <input
-              className={styles.search_input}
-              type="text"
-              placeholder={t("navbar.searchPlaceholder")}
-            />
+
+          <div className={styles.search_box}>
+            {searchTerm.trim() !== "" && (
+              <div
+                className={styles.overlay}
+                onClick={() => setSearchTerm("")}
+              ></div>
+            )}
+
+            <div className={styles.search_container}>
+              <span>
+                <img width="16" height="16" src={search} alt="search icon" />
+              </span>
+              <input
+                className={styles.search_input}
+                type="text"
+                placeholder={t("navbar.searchPlaceholder") || "Axtar..."}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+
+            {searchTerm.trim() !== "" && (
+              <div className={styles.search_results}>
+                <SearchResults />
+              </div>
+            )}
           </div>
+
           <div className={styles.language_box}>
             <div className={styles.selected_language}>
               <div className={styles.az_flag_and_name}>
@@ -103,14 +97,8 @@ const Navbar = ({ lang }) => {
                 />
                 <span>{lang === "az" ? "Az" : "Ru"}</span>
               </div>
-              <IoIosArrowDown
-                style={{
-                  fontWeight: "400",
-                  color: "#1d2123",
-                }}
-              />
+              <IoIosArrowDown style={{ fontWeight: "400", color: "#1d2123" }} />
             </div>
-
             <div
               className={styles.selected_language_2}
               onClick={() => changeLang(lang === "az" ? "ru" : "az")}
@@ -126,6 +114,7 @@ const Navbar = ({ lang }) => {
               </div>
             </div>
           </div>
+
           <div className={styles.header}>
             <div onClick={handleClick} ref={dropdownRef}>
               <FiUser className={styles.user} />
@@ -139,10 +128,11 @@ const Navbar = ({ lang }) => {
                 >
                   {isLogin ? (
                     <div>
-                      {" "}
                       <div className={styles.standart}>
-                        <Link style={{ textDecoration: "none" }} to="/account">
-                          {" "}
+                        <Link
+                          style={{ textDecoration: "none", color: "#1d2123" }}
+                          to="/account"
+                        >
                           <div
                             className={styles.user_name}
                           >{`${user.name} ${user.surname}`}</div>
@@ -169,29 +159,28 @@ const Navbar = ({ lang }) => {
                 </div>
               )}
             </div>
+
             <div className={styles.wish_and_count}>
               <Link
                 style={{ textDecoration: "none", color: "#1d2123" }}
                 to="/wishlist"
               >
-                {" "}
                 <FaRegHeart className={styles.heart} />
               </Link>
               <div className={styles.wishlist_count}>
                 <span>{wishlist.length}</span>
               </div>
             </div>
+
             <div className={styles.basket_and_count}>
               <LuShoppingCart className={styles.shopping_cart} />
               <div className={styles.hidden_box}>
                 <div>
-                  {" "}
                   {i18n.language === "az" ? "Səbət" : "Корзина"}:
                   {basketItems.length}{" "}
                   {i18n.language === "az" ? "məhsul" : "продукт"}
                 </div>
                 <div className={styles.all_basket_products}>
-                  {" "}
                   {basketItems &&
                     basketItems.map((prod) => (
                       <div key={prod.id} className={styles.basket_item}>
@@ -250,7 +239,7 @@ const Navbar = ({ lang }) => {
                   className={styles.total}
                 >
                   <div style={{ fontSize: "14px" }}>
-                    {i18n.language === "az" ? "Total məbləğ" : "Всего мэблэг"}{" "}
+                    {i18n.language === "az" ? "Total məbləğ" : "Всего мэблэг"}
                   </div>
                   <div
                     style={{
@@ -267,7 +256,6 @@ const Navbar = ({ lang }) => {
                     <RedManat height="14px" width="14px" color="#1d2123" />
                   </div>
                 </div>
-                {/* Sebete kec sifarisi tamamla hissesi */}
                 <div
                   style={{
                     display: "flex",
@@ -299,66 +287,65 @@ const Navbar = ({ lang }) => {
           <ul>
             <li>
               <Link
-                className={styles.link}
-                to={`/`}
                 style={{ textDecoration: "none", color: "#1d2123" }}
+                className={styles.link}
+                to="/"
               >
                 {t("Home")}
               </Link>
             </li>
             <li>
               <Link
-                className={styles.link}
-                to={`/products`}
                 style={{ textDecoration: "none", color: "#1d2123" }}
+                className={styles.link}
+                to="/products"
               >
                 {t("navbarLinks.Məhsullar")}
               </Link>
             </li>
-            {user?.email === "nazrin@gmail.com" ? (
+            {user?.email === "nazrin@gmail.com" && (
               <li>
-                {" "}
                 <Link
-                  className={styles.link}
-                  to={`/dashboard`}
                   style={{ textDecoration: "none", color: "#1d2123" }}
+                  className={styles.link}
+                  to="/dashboard"
                 >
                   Dashboard
                 </Link>
               </li>
-            ) : null}
+            )}
             <li>
               <Link
-                className={styles.link}
-                to={`/blogs`}
                 style={{ textDecoration: "none", color: "#1d2123" }}
+                className={styles.link}
+                to="/blogs"
               >
                 {t("navbarLinks.Bloqlar")}
               </Link>
             </li>
             <li>
               <Link
-                className={styles.link}
-                to={`/faq`}
                 style={{ textDecoration: "none", color: "#1d2123" }}
+                className={styles.link}
+                to="/faq"
               >
                 {t("navbarLinks.FAQ")}
               </Link>
             </li>
             <li>
               <Link
-                className={styles.link}
-                to={`/products/discounted_products`}
                 style={{ textDecoration: "none", color: "#1d2123" }}
+                className={styles.link}
+                to="/products/discounted_products"
               >
                 {t("navbarLinks.Endirimlər")}
               </Link>
             </li>
             <li>
               <Link
-                className={styles.link}
-                to={`/about`}
                 style={{ textDecoration: "none", color: "#1d2123" }}
+                className={styles.link}
+                to="/about"
               >
                 {t("about_title")}
               </Link>

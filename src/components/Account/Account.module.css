@@ -2,7 +2,7 @@
   font-size: 24px;
   margin-bottom: 24px;
   font-weight: 500;
-  color: #1d2123;
+  color: var(--text);
 }
 
 .profile_body {
@@ -54,7 +54,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 32px;
+  padding: 32px;
   gap: 32px;
 }
 

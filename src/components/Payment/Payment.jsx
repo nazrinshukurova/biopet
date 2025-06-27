@@ -114,7 +114,7 @@ const Payment = () => {
   };
 
   return (
-    <div>
+    <div >
       {showConfetti && <Confetti width={width} height={height} />}
       <form onSubmit={handleSubmit} className={styles.payment_container}>
         {showAlert && <SuccesAlert text={t("succes_message_about_payment")} />}
@@ -195,8 +195,8 @@ const Payment = () => {
             />
 
             <div className={styles.cart_types}>
-              <img style={{ height: "38px" }} src={idCheck} alt="id check" />
-              <img style={{ height: "38px" }} src={visa} alt="visa" />
+              <img style={{ height: "38px",width:"59px"  }} src={idCheck} alt="id check" />
+              <img style={{ height: "38px",width:"69px" }} src={visa} alt="visa" />
             </div>
           </div>
         </div>

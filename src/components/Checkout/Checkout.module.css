@@ -25,8 +25,9 @@
   display: flex;
   align-items: flex-start;
   gap: 22px;
-  margin: 50px 30px;
+  padding: 50px 30px;
   min-height: 300px;
+ 
 }
 
 .order_title {
@@ -84,6 +85,8 @@
   gap: 32px;
   width: 100%;
   padding: 42px;
+  background-color: var(--container-bg);
+  color: var(--text);
 }
 
 .delivery_type {

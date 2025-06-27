@@ -11,6 +11,7 @@ import { supabase } from "../../client";
 import { useTranslation } from "react-i18next";
 import Footer from "../shared/Footer/Footer";
 import { BonusPopUp } from "../shared/ReusableItems/Reusable";
+import Suggestions from "../shared/SuggestionsProducts/Suggestions";
 
 const FAQ = () => {
   const [faq, setFAQ] = useState([]);
@@ -38,7 +39,12 @@ const FAQ = () => {
   }, []);
 
   return (
-    <>
+ <>   <div
+      style={{
+        backgroundColor: "var(--container-bg)",
+        color: "var(--textColor)",padding:"50px"
+      }}
+    >
       <div className={styles.faqContainer}>
         <h2 className={styles.faqTitle}>
           {i18n.language === "az"
@@ -78,6 +84,8 @@ const FAQ = () => {
           </div>
         )}
       </div>
+    </div>
+    <Suggestions/>
     </>
   );
 };

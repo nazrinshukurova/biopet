@@ -6,7 +6,7 @@
 
 body {
   font-family: "Euclid Circular A", sans-serif;
-  background-color: #f8f8f8;
+  /* background-color: #f8f8f8; */
 }
 
 .react-multi-carousel-dot-list .react-multi-carousel-dot button {
@@ -132,11 +132,10 @@ input[type="number"]::-webkit-outer-spin-button {
 .about {
   text-align: center;
   font-size: 34px;
-  margin-top: 40px;
-  margin-bottom: 48px;
   text-align: center;
   font-weight: 500;
-  color: #1d2123;
+  color: var(--text);
+  padding-bottom: 30px;
 }
 
 .about_text_box {
@@ -225,11 +224,30 @@ input[type="number"]::-webkit-outer-spin-button {
   margin-bottom: 7px !important;
 }
 
-/* Global CSS-də yaz */
-body[data-theme="light"] {
-  background-color: white;
+:root {
+  --footer-bg: #00242d;
+  --footer-text: #ffffff;
+  --contact-bg: #04393f;
+  --social-icon-bg: #04393f;
+  --link-color: rgba(255, 255, 255, 0.8);
+  --border-color: rgba(255, 255, 255, 0.2);
+  --text-color: #ffffff;
+  --container-bg: #f8f8f8;
+  --text: rgb(102, 102, 102);
+  --subtext:#1d2123
 }
 
-body[data-theme="dark"] {
-  background-color: #00242de0;
+/* Dark mode */
+[data-theme="dark"] {
+  --footer-bg: #ffffff;
+  --footer-text: #1d2123;
+  --contact-bg: #f0f0f0;
+  --social-icon-bg: #e0e0e0;
+  --link-color: rgba(0, 0, 0, 0.8);
+  --border-color: rgba(0, 0, 0, 0.2);
+  --text-color: #1d2123;
+  --container-bg: #00242d;
+  --text: #f0f0f0;
+  --subtext:#ffff
 }
+

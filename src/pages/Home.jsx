@@ -28,17 +28,24 @@ import category6 from "../assets/images/home/categoriesİtem/hp-category-cat-sna
 import category7 from "../assets/images/home/categoriesİtem/hp-category-cat-accessories.png";
 import category8 from "../assets/images/home/categoriesİtem/hp-category-cat-care-products.png";
 import { useProducts } from "../context/ProductContext";
+import { useTheme } from "../context/ThemeContext";
+import "../index.css";
+import Suggestions from "../shared/SuggestionsProducts/Suggestions";
 
 const Home = () => {
   const { t } = useTranslation();
 
-  const {products}=useProducts()
+  const { products } = useProducts();
 
-  console.log(products)
+  console.log(products);
 
+  const { theme } = useTheme();
+
+  const bgColor = theme === "dark" ? "#00242d" : "#fafafa";
+  const color = theme === "dark" ? "#fafafa" : "#1d2123";
 
   return (
-    <div style={{ backgroundColor: "#fafafa", minHeight: "100vh" }}>
+    <div style={{ backgroundColor: bgColor, minHeight: "100vh", color: color }}>
       <Banner />
       <div
         style={{
@@ -83,6 +90,7 @@ const Home = () => {
         <SmallGroups title={t("small_groups.rabbits")} src={group2} />
         <SmallGroups title={t("small_groups.other_animals")} src={group3} />
       </div>
+      <Suggestions/>
       <Advertising />
       <div className="service_container">
         <Service

@@ -47,7 +47,12 @@ const AccountCom = () => {
   };
 
   return (
-    <div className={styles.profile_container}>
+    <div
+      style={{
+        backgroundColor: "var(--container-bg)",
+      }}
+      className={styles.profile_container}
+    >
       <div className={styles.profile_menu_container}>
         {" "}
         <LeftProfile />

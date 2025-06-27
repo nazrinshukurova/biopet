@@ -1,7 +1,9 @@
 .profile {
   display: flex;
   gap: 32px;
-  margin: 32px;
+  padding: 32px;
+  background-color: var(--container-bg);
+  color: var(--subtext);
 }
 
 .profile_body {
