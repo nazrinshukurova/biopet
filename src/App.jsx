@@ -43,7 +43,6 @@ import PickAnimal from "./components/PickAnimal/PickAnimal";
 import AboutInfoForPet from "./components/AboutInfoForPet/AboutInfoForPet";
 import UXPinLayout from "./pages/Dashboard";
 import { ThemeProvider } from "./context/ThemeContext";
-import GlobalSearch from "./components/GlobalSearch/GlobalSearch";
 import SearchResults from "./components/SearchResults/SearchResults";
 
 // Protected route ümumi yoxlama
@@ -55,7 +54,7 @@ const ProtectedRoute = ({ children }) => {
 // Dashboard üçün xüsusi qoruma — yalnız "nazrin@gmail.com" istifadəçisi daxil ola bilər
 const DashboardProtectedRoute = ({ children }) => {
   const { user } = useAuth();
-  return user && user.email === "nazrin@gmail.com" ? (
+  return user && user.email === "nazrins@gmail.com" ? (
     children
   ) : (
     <Navigate to="/" replace />
@@ -64,14 +63,15 @@ const DashboardProtectedRoute = ({ children }) => {
 
 const Layout = ({ children, lang }) => {
   const location = useLocation();
-  const hideNavbar = location.pathname === "/dashboard";
+  const hideNavbar =
+    location.pathname === "/dashboard" || location.pathname === "/payment";
 
   return (
     <>
       {!hideNavbar && (
         <>
-          <Navbar lang={lang} />
-         
+          {/* <Navbar lang={lang} /> */}
+
           <Dropdown />
           <NavbarMobile />
         </>

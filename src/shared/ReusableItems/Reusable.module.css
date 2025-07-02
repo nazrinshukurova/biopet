@@ -99,3 +99,13 @@
   font-size: 16px;
   gap: 5px;
 }
+
+@media (max-width: 530px) {
+  .blog_container {
+    width: 100%;
+    height: 382px;
+    background-color: white;
+    border-radius: 8px;
+    margin-top: 40px;
+  }
+}

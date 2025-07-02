@@ -303,7 +303,7 @@ const Navbar = ({ lang }) => {
                 {t("navbarLinks.Məhsullar")}
               </Link>
             </li>
-            {user?.email === "nazrin@gmail.com" && (
+            {user?.email === "nazrins@gmail.com" && (
               <li>
                 <Link
                   style={{ textDecoration: "none", color: "#1d2123" }}

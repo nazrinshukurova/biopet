@@ -41,9 +41,20 @@ export const ProductProvider = ({ children }) => {
 
   console.log(filteredProducts, "PRODUCT");
 
+  const discountedProducts = products
+    .filter((product) => product.isDiscount === true)
+    .slice(0, 4);
+
   return (
     <ProductContext.Provider
-      value={{ products, loading, searchTerm, setSearchTerm, filteredProducts }}
+      value={{
+        products,
+        loading,
+        searchTerm,
+        setSearchTerm,
+        filteredProducts,
+        discountedProducts,
+      }}
     >
       {children}
     </ProductContext.Provider>

@@ -13,9 +13,28 @@
 
 .image_container .advertise_img {
   width: 100%;
-
   display: block;
   height: 100%;
   border-radius: 16px;
   overflow: hidden;
+}
+
+@media (max-width: 680px) {
+  .advertises {
+    flex-direction: column;
+  }
+
+  .image_container {
+    width: 100%;
+    padding: 16px;
+  }
+}
+
+
+
+@media (max-width: 450px) {
+
+  .image_container {
+    padding: 0;
+  }
 }

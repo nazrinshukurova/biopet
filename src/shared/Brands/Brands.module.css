@@ -36,3 +36,10 @@
   font-size: 20px;
   font-weight: 500;
 }
+
+@media (max-width: 600px) {
+  .sliderContainer {
+    margin: 10px;
+    padding: 20px;
+  }
+}

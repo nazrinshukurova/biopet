@@ -247,9 +247,9 @@ export const Delete = () => {
         <path
           d="M.9 4.545h16.2"
           stroke="#E21E4C"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M15.3 4.546v12.727c0 .482-.19.945-.527 1.285a1.791 1.791 0 01-1.273.533h-9c-.477 0-.935-.192-1.273-.533a1.828 1.828 0 01-.527-1.285V4.546h12.6zm-9.9 0V2.727c0-.482.19-.944.527-1.285A1.791 1.791 0 017.2.909h3.6c.478 0 .935.192 1.273.533.338.34.527.803.527 1.285v1.819"
@@ -258,9 +258,9 @@ export const Delete = () => {
         <path
           d="M5.4 4.546V2.727c0-.482.19-.944.527-1.285A1.791 1.791 0 017.2.909h3.6c.478 0 .935.192 1.273.533.338.34.527.803.527 1.285v1.819m2.7 0v12.727c0 .482-.19.945-.527 1.285a1.791 1.791 0 01-1.273.533h-9c-.477 0-.935-.192-1.273-.533a1.828 1.828 0 01-.527-1.285V4.546h12.6zM7.2 9.09v5.455m3.6-5.455v5.455"
           stroke="#E21E4C"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </>
@@ -296,7 +296,7 @@ export const Dashed = () => {
         height="1"
         fill="none"
       >
-        <path stroke="#E0E0E0" stroke-dasharray="6 6" d="M0 .5h248" />
+        <path stroke="#E0E0E0" strokeDasharray="6 6" d="M0 .5h248" />
       </svg>
     </>
   );
@@ -308,7 +308,7 @@ export const Shopping = () => {
       <svg
         stroke="#8f9bb3"
         fill="none"
-        stroke-width="0"
+        strokeWidth="0"
         viewBox="0 0 24 24"
         height="77px"
         width="77px"
@@ -339,10 +339,10 @@ export const ExternalLink = () => {
       <svg
         stroke="#00BEAA"
         fill="none"
-        stroke-width="2"
+        strokeWidth="2"
         viewBox="0 0 24 24"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         height="20px"
         width="20px"
         xmlns="http://www.w3.org/2000/svg"
@@ -434,9 +434,9 @@ export const Wish = () => {
           d="M19.458 2.591a5.255 5.255 0 00-1.708-1.177 5.122 5.122 0 00-4.028 0 5.255 5.255 0 00-1.708 1.177L11 3.638 9.986 2.59A5.183 5.183 0 006.264 1a5.183 5.183 0 00-3.722 1.59A5.52 5.52 0 001 6.431a5.52 5.52 0 001.542 3.841l1.014 1.047L11 19l7.444-7.681 1.014-1.047a5.445 5.445 0 001.141-1.762 5.58 5.58 0 000-4.157 5.445 5.445 0 00-1.141-1.762z"
           fill="#fff"
           stroke="#AFAFAF"
-          stroke-width="1.4"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </>
@@ -456,9 +456,9 @@ export const Wished = () => {
           d="M19.458 2.591a5.255 5.255 0 00-1.708-1.177 5.122 5.122 0 00-4.028 0 5.255 5.255 0 00-1.708 1.177L11 3.638 9.986 2.59A5.183 5.183 0 006.264 1a5.183 5.183 0 00-3.722 1.59A5.52 5.52 0 001 6.431a5.52 5.52 0 001.542 3.841l1.014 1.047L11 19l7.444-7.681 1.014-1.047a5.445 5.445 0 001.141-1.762 5.58 5.58 0 000-4.157 5.445 5.445 0 00-1.141-1.762z"
           fill="#ed0036"
           stroke="#ed0036"
-          stroke-width="1.4"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </>
@@ -507,13 +507,13 @@ export const Check = () => {
         height="20"
         fill="none"
       >
-        <circle cx="10.5" cy="10" r="9.25" stroke="#fff" stroke-width="1.5" />
+        <circle cx="10.5" cy="10" r="9.25" stroke="#fff" strokeWidth="1.5" />
         <path
           d="M15.106 7.104L8.76 13.272 5.875 10.47"
           stroke="#fff"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </>
@@ -526,10 +526,10 @@ export const BigHeart = () => {
       <svg
         stroke="currentColor"
         fill="none"
-        stroke-width="2"
+        strokeWidth="2"
         viewBox="0 0 24 24"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         height="86px"
         width="83px"
         xmlns="http://www.w3.org/2000/svg"
@@ -552,9 +552,9 @@ export const Checked = () => {
       <path
         d="M10.444 1.539L4.332 7.462 1.555 4.769"
         stroke="#00b5a4"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
@@ -593,16 +593,16 @@ export const Money = () => {
         <path
           d="M20.692 9H9.922c-1.189 0-2.153.895-2.153 2v6c0 1.105.964 2 2.154 2h10.77c1.189 0 2.153-.895 2.153-2v-6c0-1.105-.964-2-2.154-2z"
           stroke="#1D2123"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M15.307 16c1.19 0 2.154-.895 2.154-2s-.964-2-2.154-2-2.154.895-2.154 2 .965 2 2.154 2zm3.231-7V7c0-.53-.227-1.04-.63-1.414A2.24 2.24 0 0016.383 5H5.615c-.571 0-1.119.21-1.523.586A1.93 1.93 0 003.462 7v6c0 .53.226 1.04.63 1.414A2.24 2.24 0 005.615 15H7.77"
           stroke="#1D2123"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </>
@@ -654,7 +654,7 @@ export const Paw = () => {
     <svg
       stroke="currentColor"
       fill="currentColor"
-      stroke-width="0"
+      strokeWidth="0"
       viewBox="0 0 512 512"
       height="16px"
       width="16px"
@@ -677,9 +677,9 @@ export const AccountHeart = () => {
       <path
         d="M17.3979 2.33064C16.973 1.87659 16.4684 1.5164 15.9131 1.27066C15.3578 1.02492 14.7626 0.898437 14.1615 0.898438C13.5604 0.898437 12.9651 1.02492 12.4098 1.27066C11.8545 1.5164 11.3499 1.87659 10.925 2.33064L10.0431 3.2725L9.16117 2.33064C8.30281 1.41392 7.13862 0.898913 5.92471 0.898913C4.7108 0.898913 3.54661 1.41392 2.68824 2.33064C1.82988 3.24735 1.34766 4.49069 1.34766 5.78712C1.34766 7.08355 1.82988 8.32689 2.68824 9.2436L3.57016 10.1855L10.0431 17.0984L16.516 10.1855L17.3979 9.2436C17.8231 8.78977 18.1603 8.25092 18.3904 7.65784C18.6205 7.06477 18.739 6.42909 18.739 5.78712C18.739 5.14515 18.6205 4.50947 18.3904 3.91639C18.1603 3.32332 17.8231 2.78447 17.3979 2.33064V2.33064Z"
         stroke="#1D2123"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
@@ -700,17 +700,17 @@ export const AccountLocation = () => {
             id="Vector"
             d="M16.1496 8.33325C16.1496 14.1666 8.49961 19.1666 8.49961 19.1666C8.49961 19.1666 0.849609 14.1666 0.849609 8.33325C0.849609 6.34413 1.65559 4.43647 3.09024 3.02995C4.5249 1.62343 6.4707 0.833252 8.49961 0.833252C10.5285 0.833252 12.4743 1.62343 13.909 3.02995C15.3436 4.43647 16.1496 6.34413 16.1496 8.33325Z"
             stroke="#1D2123"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             id="Vector_2"
             d="M8.49922 10.8333C9.90754 10.8333 11.0492 9.71396 11.0492 8.33325C11.0492 6.95254 9.90754 5.83325 8.49922 5.83325C7.09089 5.83325 5.94922 6.95254 5.94922 8.33325C5.94922 9.71396 7.09089 10.8333 8.49922 10.8333Z"
             stroke="#1D2123"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </g>
       </svg>
@@ -730,9 +730,9 @@ export const Logout = () => {
         <path
           d="M7 19H3a2 2 0 01-2-2V3a2 2 0 012-2h4m7 14l5-5-5-5m5 5H7"
           stroke="#1D2123"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </>
@@ -754,25 +754,25 @@ export const Ball = () => {
             id="Vector"
             d="M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z"
             stroke="#1D2123"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             id="Vector_2"
             d="M4 3.30005C4.94113 4.14414 5.69387 5.17702 6.20919 6.33143C6.72451 7.48583 6.99084 8.73585 6.99084 10C6.99084 11.2642 6.72451 12.5143 6.20919 13.6687C5.69387 14.8231 4.94113 15.856 4 16.7"
             stroke="#1D2123"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             id="Vector_3"
             d="M16.0006 3.30005C15.0595 4.14414 14.3067 5.17702 13.7914 6.33143C13.2761 7.48583 13.0098 8.73585 13.0098 10C13.0098 11.2642 13.2761 12.5143 13.7914 13.6687C14.3067 14.8231 15.0595 15.856 16.0006 16.7"
             stroke="#1D2123"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </g>
         <defs>
@@ -791,7 +791,7 @@ export const Plus = () => {
       <svg
         stroke="currentColor"
         fill="#00b89f"
-        stroke-width="0"
+        strokeWidth="0"
         viewBox="0 0 448 512"
         height="12px"
         width="13px"
@@ -853,7 +853,7 @@ export const LightMode = () => {
     <svg
       stroke="currentColor"
       fill="currentColor"
-      stroke-width="0"
+      strokeWidth="0"
       viewBox="0 0 24 24"
       height="20px"
       width="20px"

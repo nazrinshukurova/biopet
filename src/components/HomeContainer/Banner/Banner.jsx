@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import slider1 from "../../../assets/images/home/slider2/elanco-advantage-multi-1000x1000.jpg";
 import styles from "./Banner.module.css";
 import { LuShoppingCart } from "react-icons/lu";
 import { useTranslation } from "react-i18next";
+import { useProducts } from "../../../context/ProductContext";
+import { useBasket } from "../../../context/AddToBasket";
 
 const Banner = () => {
   const { t, i18n } = useTranslation();
+  const { discountedProducts } = useProducts();
   const [selectedLang, setSelectedLang] = useState("az");
 
-  // Countdown Setup
   const targetTime =
     new Date().getTime() +
     4 * 24 * 60 * 60 * 1000 +
@@ -23,7 +24,6 @@ const Banner = () => {
     const difference = targetTime - now;
 
     let timeLeft = {};
-
     if (difference > 0) {
       timeLeft = {
         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
@@ -72,9 +72,17 @@ const Banner = () => {
     },
   };
 
+  console.log(discountedProducts);
+
+  const calcDiscountedPrice = (price, percent) => {
+    return (price - (price / 100) * percent).toFixed();
+  };
+
+  const { addToBasket, showSuccessAlert } = useBasket();
+
   return (
     <div className={styles.carousels}>
-      {/* Main Banner Carousel */}
+      {/* Banner Carousel */}
       <div className={styles.carousel}>
         <Carousel
           swipeable={false}
@@ -114,7 +122,7 @@ const Banner = () => {
         </Carousel>
       </div>
 
-      {/* Weekly Discount Carousel */}
+      {/* Weekly Discount Section */}
       <div className={styles.weeklyDiscount}>
         <div className={styles.header}>
           <p>{t("slider2.discountOfweek")}</p>
@@ -149,44 +157,59 @@ const Banner = () => {
               <div className={styles.timer}>{t("slider2.minute")}</div>
             </div>
 
-            <div className={styles.count_container_last}>
+            <div className={styles.count_container}>
               <div className={styles.count}>
-                <span className={styles.time}>
+                <div className={styles.time}>
                   {String(timeLeft.seconds).padStart(2, "0")}
-                </span>
+                </div>
+                <div></div>
               </div>
               <div className={styles.timer}>{t("slider2.second")}</div>
             </div>
           </div>
         </div>
 
+        {/* Discount Products Carousel */}
         <Carousel responsive={responsive} arrows={true} infinite={true}>
-          <div className={styles.productCard}>
-            <div className={styles.discountBadge}>21%</div>
-            <div className={styles.img_container}>
-              <img
-                className={styles.slider_1_image}
-                src={slider1}
-                alt="Elanco Advantage Multi"
-              />
-            </div>
-
-            <div className={styles.productInfo}>
-              <p className={styles.productName}>
-                Elanco Advantage Multi İt üçün birə, qoturluq gənəsi və
-                helmintlərə qarşı damcı (25-40 kq)
-              </p>
-              <div className={styles.productPricingContainer}>
-                <div className={styles.productPricing}>
-                  <span className={styles.discountedPrice}>28 ₼</span>
-                  <span className={styles.originalPrice}>35.5 ₼</span>
+          {discountedProducts.map((product, index) => (
+            <div key={index} className={styles.productCard}>
+              <div className={styles.discountBadge}>
+                {product.PercentOfDiscount}%
+              </div>
+              <div className={styles.img_container}>
+                <img
+                  className={styles.slider_1_image}
+                  src={product.İmage || "/default.jpg"}
+                  alt={product[`Name${i18n.language.toUpperCase()}`]}
+                />
+              </div>
+              <div className={styles.productInfo}>
+                <p className={styles.productName}>
+                  {i18n.language === "az" ? product.NameAz : product.NameRu}
+                </p>
+                <div className={styles.productPricingContainer}>
+                  <div className={styles.productPricing}>
+                    <span className={styles.discountedPrice}>
+                      {calcDiscountedPrice(
+                        product.Price,
+                        product.PercentOfDiscount
+                      )}
+                      ₼
+                    </span>
+                    <span className={styles.originalPrice}>
+                      {product.Price} ₼
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => addToBasket(product)}
+                    className={styles.addToCart}
+                  >
+                    <LuShoppingCart style={{ fontSize: "20px" }} />
+                  </button>
                 </div>
-                <button className={styles.addToCart}>
-                  <LuShoppingCart style={{ fontSize: "20px" }} />
-                </button>
               </div>
             </div>
-          </div>
+          ))}
         </Carousel>
       </div>
     </div>

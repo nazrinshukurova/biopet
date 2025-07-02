@@ -10,10 +10,10 @@ const About = () => {
     <>
       {" "}
       <div
+        className="about_container"
         style={{
           backgroundColor: "var(--container-bg)",
           color: "var(--textColor)",
-          padding: "80px",
         }}
       >
         <div className="about">{t("about_title")}</div>
@@ -67,7 +67,6 @@ const About = () => {
           </div>
         </div>
       </div>
-      <Suggestions />
     </>
   );
 };

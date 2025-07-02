@@ -12,7 +12,6 @@
   border-radius: 0 0 8px 8px;
   width: 100%;
   transition: all 0.3s ease-in;
-  
 }
 
 .category:hover {
@@ -32,4 +31,29 @@
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
+}
+
+@media (max-width: 550px) {
+  .category_title {
+    font-size: 13px;
+  }
+
+  .category_image {
+    height: 50px;
+  }
+}
+
+@media (max-width: 550px) {
+  .category {
+    height: 100px;
+  }
+
+  .category_title {
+    font-size: 11px;
+    line-height: 15px;
+  }
+
+  .category_image {
+    height: 40px;
+  }
 }

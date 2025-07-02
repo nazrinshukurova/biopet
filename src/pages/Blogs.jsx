@@ -68,16 +68,7 @@ const Blogs = () => {
         {loading && !error && <div className="spinner"></div>}
 
         {!loading && blogs.length === 0 && !error && <p>No blogs available</p>}
-        <div
-          style={{
-            display: "flex",
-            gap: "25px",
-            flexWrap: "wrap",
-            alignItems: "center",
-            justifyContent: "center",
-            paddingBottom: "80px",
-          }}
-        >
+        <div className="blogs">
           {blogs.map((blog) => (
             <Link
               to={`/blogs/${blog.id}`}

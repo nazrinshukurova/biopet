@@ -41,3 +41,33 @@
 .blog_details_desc_container {
   padding: 16px 24px 40px;
 }
+
+
+@media (max-width:800px) {
+  .blog_title{
+    font-size: 24px;
+  }
+}
+
+@media (max-width:550px) {
+  .blog_details_desc{
+    font-size: 14px;
+  }
+
+  .blog_title{
+    font-size: 20px;
+  }
+
+  .date_and_view{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 15px;
+  }
+}
+
+@media (max-width:410px){
+  .blog_title{
+    font-size: 18px;
+  }
+}

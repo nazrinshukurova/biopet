@@ -45,16 +45,12 @@ const Home = () => {
   const color = theme === "dark" ? "#fafafa" : "#1d2123";
 
   return (
-    <div style={{ backgroundColor: bgColor, minHeight: "100vh", color: color }}>
+    <div
+      className="home_page"
+      style={{ backgroundColor: bgColor, minHeight: "100vh", color: color }}
+    >
       <Banner />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          padding: "0 26px",
-        }}
-      >
+      <div className="categories_container">
         <CategoriesItem
           category_1={t("category.category_1")}
           category_2={t("category.category_2")}
@@ -76,21 +72,12 @@ const Home = () => {
           sub_category_4={category8}
         />
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: "32px",
-          margin: "0 32px",
-          padding: "0 26px",
-        }}
-      >
+      <div className="small_groups_container">
         <SmallGroups title={t("small_groups.birds")} src={group1} />
         <SmallGroups title={t("small_groups.rabbits")} src={group2} />
         <SmallGroups title={t("small_groups.other_animals")} src={group3} />
       </div>
-      <Suggestions/>
+      {/* <Suggestions/> */}
       <Advertising />
       <div className="service_container">
         <Service

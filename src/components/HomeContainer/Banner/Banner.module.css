@@ -3,13 +3,14 @@
 }
 
 .carousel {
-  width: 66.6666666667%;
-  margin: 20px;
+  width: 65%;
+  margin: 20px 20px;
+  height: 432px;
 }
 
 .carousel img {
   width: 100%;
-  height: auto;
+  height: 432px;
   object-fit: cover;
   border-radius: 12px;
 }
@@ -17,13 +18,13 @@
 .weeklyDiscount {
   box-shadow: 0 0 17px 8px rgba(0, 0, 0, 0.03);
   border-radius: 12px;
-  max-height: 412px;
+  height: 432px;
   padding: 12px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
   max-width: 30%;
-  margin: 20px 20px 0 0;
+  margin: 20px 50px 0 0;
 }
 
 .header {
@@ -54,6 +55,7 @@
 .countdown {
   display: flex;
   gap: 10px;
+  align-items: flex-end; /* ✅ Əlavə et */
 }
 
 .count_container {
@@ -61,25 +63,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.count_container_last {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  margin-top: 3px;
+  gap: 5px;
+  height: 70px;
 }
 
 .time {
   font-size: 16px;
   font-weight: 500;
-  line-height: 2.6rem;
-  letter-spacing: -0.3000000119px;
+  line-height: 26px;
+  letter-spacing: -0.3px;
   color: #00b5a4;
-  width: 3.4rem;
-  height: 3rem;
   background-color: #fff;
   border-radius: 6px;
   display: flex;
@@ -92,7 +85,7 @@
 .time_last {
   font-size: 16px;
   font-weight: 500;
-  letter-spacing: -0.3000000119px;
+  letter-spacing: -0.3px;
   color: #00b5a4;
   background-color: #fff;
   border-radius: 6px;
@@ -105,24 +98,23 @@
 
 .two_dots {
   font-size: 26px;
-  line-height: 2.6rem;
+  line-height: 26px;
   margin: 0;
   color: rgba(255, 255, 255, 0.6);
 }
 
 .timer {
-  width: auto;
-  height: auto;
-  background: 0 0;
-  border-radius: 0;
-  border: 0;
-  margin: 0;
   font-size: 10px;
   font-weight: 500;
-  line-height: 1.4rem;
-  letter-spacing: -0.400000006px;
+  line-height: 14px;
+  letter-spacing: -0.4px;
   color: #fff;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  margin: 0;
   gap: 2px;
+  width: auto;
 }
 
 .productCard {
@@ -291,6 +283,11 @@
     font-size: 12px;
   }
 
+  .productName {
+    font-size: 14px;
+    text-align: center;
+  }
+
   .time {
     font-size: 12px;
     width: 25px;
@@ -333,7 +330,7 @@
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .carousels {
     display: flex;
     flex-direction: column;
@@ -356,5 +353,11 @@
     align-items: center;
     justify-content: space-between;
     padding-top: 10px;
+  }
+}
+
+@media (max-width: 550px) {
+  .productName {
+    font-size: 12px;
   }
 }

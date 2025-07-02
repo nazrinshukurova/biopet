@@ -37,6 +37,8 @@ export const WishlistProvider = ({ children }) => {
     return wishlist.some((item) => item.id === productId);
   };
 
+  
+
   return (
     <WishlistContext.Provider
       value={{

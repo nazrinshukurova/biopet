@@ -43,6 +43,11 @@ const responsive = {
     breakpoint: { max: 768, min: 0 },
     items: 2,
   },
+
+    mini_mobile: {
+    breakpoint: { max: 600, min: 0 },
+    items: 1,
+  },
 };
 
 const CustomLeftArrow = ({ onClick }) => (
