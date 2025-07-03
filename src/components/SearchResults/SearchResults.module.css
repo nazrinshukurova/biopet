@@ -73,3 +73,53 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   width: 420px;
 }
+
+@media (max-width: 768px) {
+  .full_container {
+    width: 100%;
+    max-height: 70vh;
+    padding: 16px;
+    border-radius: 8px;
+  }
+
+  .search_pop_up {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .img_box {
+    width: 72px;
+    height: 72px;
+  }
+
+  .product_name {
+    font-size: 11px;
+    line-height: 14px;
+    max-width: 100%;
+  }
+
+  .search_title {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .empty_message {
+    font-size: 14px;
+    padding: 20px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .search_pop_up {
+    grid-template-columns: 1fr;
+  }
+
+  .img_box {
+    width: 64px;
+    height: 64px;
+  }
+
+  .full_container {
+    padding: 12px;
+  }
+}

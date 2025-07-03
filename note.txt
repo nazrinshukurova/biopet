@@ -16,3 +16,6 @@ pickanimal+
 discounted products+
 not found+
 details+
+
+contact sehifesini hazirla
+routes qoru

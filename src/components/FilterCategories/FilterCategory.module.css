@@ -563,6 +563,11 @@
 
 /* === Mobil görünüş üçün === */
 @media (max-width: 768px) {
+
+  .category_title{
+    font-size: 14px;
+  }
+
   .common_container {
     flex-direction: column;
   }
@@ -583,6 +588,7 @@
     max-width: 100%;
     margin-top: 0;
     border-radius: 0;
+    font-size: 13px;
   }
 
   .left_filter.mobile_open {

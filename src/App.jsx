@@ -44,6 +44,7 @@ import AboutInfoForPet from "./components/AboutInfoForPet/AboutInfoForPet";
 import UXPinLayout from "./pages/Dashboard";
 import { ThemeProvider } from "./context/ThemeContext";
 import SearchResults from "./components/SearchResults/SearchResults";
+import Contact from "./pages/Contact";
 
 // Protected route ümumi yoxlama
 const ProtectedRoute = ({ children }) => {
@@ -123,6 +124,7 @@ const App = () => {
                     />
                     <Route path="/faq" element={<FAQ />} />
                     <Route path="/blogs" element={<Blogs />} />
+                    <Route path="/contact" element={<Contact />} />
                     <Route path="/blogs/:id" element={<BlogsDetails />} />
                     <Route path="/register" element={<Registration />} />
                     <Route path="/login" element={<LoginPage />} />

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useProducts } from "../../context/ProductContext";
 import styles from "./SearchResults.module.css";
@@ -8,18 +9,34 @@ const SearchResults = () => {
     useProducts();
   const { i18n, t } = useTranslation();
   const navigate = useNavigate();
+  const containerRef = useRef(null);
 
   if (loading) return <p>Loading...</p>;
-
   if (!searchTerm.trim()) return null;
 
   const handleProductClick = (id) => {
     setSearchTerm(""); // popup-ı bağla
-    navigate(`/product/${id}`); // yönləndir
+    navigate(`/product/${id}`);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
+        setSearchTerm(""); // kənara klikləyəndə popup bağlansın
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [setSearchTerm]);
+
   return (
-    <div className={styles.full_container}>
+    <div className={styles.full_container} ref={containerRef}>
       <div className={styles.search_title}>
         {i18n.language === "az"
           ? "Tövsiyə olunan məhsullar"

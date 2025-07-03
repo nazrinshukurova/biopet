@@ -399,3 +399,11 @@ input[type="number"]::-webkit-outer-spin-button {
     grid-template-rows: auto;
   }
 }
+
+.contact_page {
+  background-color: var(--container-bg);
+  color: var(--subtext);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
