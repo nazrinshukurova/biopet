@@ -1,0 +1,17 @@
+.sort_select {
+  width: 200px;
+}
+
+@media (max-width: 768px) {
+  .sort_select {
+    width: 150px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 500px) {
+  .sort_select {
+    width: 100%;
+    font-size: 12px;
+  }
+}

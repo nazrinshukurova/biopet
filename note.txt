@@ -2,3 +2,17 @@ about sehifesinin responsiveliyi+
 home+
 blogs+
 blogs details+
+login+
+register+
+wishlist+
+basket+
+checkout+
+account+
+paymentpage+
+faq+
+suggestions+
+mypet+
+pickanimal+
+discounted products+
+not found+
+details+

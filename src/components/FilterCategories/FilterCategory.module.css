@@ -1,23 +1,32 @@
+/* === Ümumi konteyner === */
 .common_container {
   display: flex;
   gap: 20px;
   height: auto;
   background-color: var(--container-bg);
-  color: var(---textColor);
+  color: var(--textColor); /* Düzəltdim --- yerinə -- yazdım */
   padding: 25px;
+  position: relative;
 }
 
+/* === Sol filter panel === */
 .left_filter {
   margin-top: 50px;
   background-color: #fff;
   border-radius: 8px;
-  padding: 16px;
-  flex: 1;
-  max-width: 20.13%;
-  overflow-y: auto;
+  padding: 16px 20px;
+  flex-shrink: 0;
+  max-width: 300px; /* daha məntiqli sabit genişlik */
+  width: 100%;
   height: 100%;
+  overflow-y: auto;
+  position: sticky;
+  top: 0;
+  border-right: 1px solid #e0e0e0;
+  box-sizing: border-box;
 }
 
+/* === Filter siyahısı və kateqoriyalar === */
 .filter_list {
   display: flex;
   flex-direction: column;
@@ -32,12 +41,12 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
-  transition: all 0.3s ease-in;
+  transition: color 0.3s ease-in;
+  cursor: pointer;
 }
 
 .category:hover {
   color: #00b5a4;
-  cursor: pointer;
 }
 
 .category_title {
@@ -48,18 +57,20 @@
   color: #1d2123;
 }
 
+/* === Axtarış sahəsi === */
 .filter__search {
   background-color: #f6f6f8;
   border: 1px solid #f7f9fc;
   border-radius: 4px;
   width: 100%;
+  max-width: 175px;
   padding: 6px 12px;
   font-size: 14px;
   margin-bottom: 12px;
   outline: none;
-  max-width: 175px;
 }
 
+/* === Brands və aromas siyahıları === */
 .brands_list,
 .aromas_list {
   display: flex;
@@ -68,6 +79,7 @@
   margin-top: 16px;
 }
 
+/* === Filtrlər siyahısı - skroll bar ilə === */
 .filter__list {
   max-height: 158px;
   overflow-y: auto;
@@ -99,6 +111,7 @@
   background-color: #f7f9fc;
 }
 
+/* === Checkbox stili === */
 .form_group label {
   display: flex;
   align-items: center;
@@ -116,9 +129,9 @@
   border: 1px solid #e0e0e0;
   border-radius: 4px;
   margin-right: 12px;
-  transition: 0.3s ease-in-out;
   position: relative;
   box-sizing: border-box;
+  transition: border 0.3s ease-in-out;
 }
 
 .check_box::after {
@@ -134,121 +147,116 @@
   background-repeat: no-repeat;
   background-size: 65%;
   opacity: 0;
-  transition: 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .hidden_checkbox:checked + .check_box {
-  border: 1px solid #36f;
+  border-color: #36f;
 }
 
 .hidden_checkbox:checked + .check_box::after {
   opacity: 1;
-  color: #36f;
 }
 
+/* === Label text === */
 .label_text {
   font-size: 14px;
   color: #111;
 }
 
+/* === Məhsul nəticələri grid === */
 .filtered_result {
   display: grid;
   grid-template-columns: repeat(4, auto);
-  grid-template-rows: repeat(auto, auto);
+  grid-auto-rows: auto;
   gap: 10px;
-  /* max-width: 100%; */
 }
 
-.go_to_top {
-  display: flex;
-  flex-direction: row-reverse;
+@media (max-width: 1200px) {
+  .filtered_result {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-.go_to_top button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 80px;
-  height: 40px;
-  margin-right: 40px;
-  cursor: pointer;
-  background-color: #00b5a4;
-  border: none;
-  border-radius: 10px;
+@media (max-width: 940px) {
+  .filtered_result {
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    place-content: center;
+  }
 }
 
-.up_button {
-  font-size: 18px;
-  color: white;
+@media (max-width: 700px) {
+  .filtered_result {
+    grid-template-columns: auto;
+  }
 }
 
-.pagination {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.page_button {
-  padding: 6px 12px;
-  background-color: #eee;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.page_button:hover {
-  background-color: #ccc;
-}
-
-.active {
-  background-color: #636b57;
-  color: white;
-}
-
+/* === Məhsul kartı === */
 .filtered_item {
-  border-radius: 8px;
   background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid transparent;
   padding: 6px;
   display: flex;
   flex-direction: column;
   gap: 20px;
   position: relative;
-  border: 1px solid transparent;
-  height: 100%;
   height: 486px;
   max-width: 230px;
+  box-sizing: border-box;
 }
 
+@media (max-width: 700px) {
+  .filtered_item {
+    max-width: 100%;
+    width: 90%;
+    height: auto;
+    padding: 12px;
+    gap: 16px;
+  }
+}
+
+/* Məhsul şəkli */
 .item_image {
   border-radius: 4px;
+  border: 1px solid #f4f4f4;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 217px;
   max-width: 217px;
   margin-bottom: 6px;
-  border: 1px solid #f4f4f4;
 }
 
+@media (max-width: 700px) {
+  .item_image {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+  }
+}
+
+/* Məhsul başlığı */
 .item_title {
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
   color: #1d2123;
   margin-bottom: 10px;
+  display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  display: -webkit-box;
   overflow: hidden;
-  transition: all 0.3s ease-in;
+  transition: color 0.3s ease-in;
+  cursor: pointer;
 }
 
-.item_title:hover{
+.item_title:hover {
   color: #00b5a4;
 }
 
+/* Qiymət */
 .priceForFilter {
   font-size: 20px;
   font-weight: 500;
@@ -256,10 +264,18 @@
   color: #ed0036;
 }
 
+.price {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #1d2123;
+}
+
+/* Digər elementlər */
 .item_desc {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  flex: 1;
   padding: 0 4px;
 }
 
@@ -270,36 +286,37 @@
   font-size: 12px;
   font-weight: 500;
   line-height: 14px;
-  text-align: left;
   margin-bottom: 10px;
+  color: inherit;
+  text-align: left;
+}
+
+.rating_text {
+  color: #828282;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
 }
 
 .item_package {
+  cursor: pointer;
   border: 1px solid #00bda7;
   background-color: rgba(0, 214, 143, 0.08);
   color: #00bda7;
-  cursor: pointer;
   border-radius: 4px;
   text-align: center;
   font-size: 12px;
-  font-style: normal;
   font-weight: 500;
   line-height: 16px;
+  width: 50px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  width: 50px;
-  height: 30px;
 }
 
-.price {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-  color: #1d2123;
-}
-
+/* Qiymət diapazonu inputları */
 .input_prices {
   display: flex;
   justify-content: space-between;
@@ -332,23 +349,121 @@
   outline: none;
 }
 
-.rating_text {
-  color: #828282;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 18px;
-}
-
-.rating_desc_box {
+/* Boş mesaj qutusu */
+.empty_message_box {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  padding-bottom: 16px;
-  margin-bottom: 24px;
-  border-bottom: 1px solid #f7f9fc;
 }
 
+.empty_message {
+  padding: 20px;
+  color: #888;
+  font-size: 22px;
+}
+
+/* Seçim və nəticə bölməsi */
+.select_and_result {
+  flex: 1;
+  width: 79%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0; /* overflow-un qarşısını almaq üçün */
+}
+
+.select_sort_options {
+  display: flex;
+  flex-direction: row-reverse;
+  padding-right: 25px;
+}
+
+/* Endirim işarəsi */
+.discount_box {
+  background-color: #ed0036;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 12px;
+  color: #fff;
+  border-radius: 24px;
+  width: 41px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  margin-bottom: 2px;
+}
+
+@media (max-width: 700px) {
+  .discount_box {
+    width: 34px;
+    height: 18px;
+    font-size: 10px;
+    border-radius: 16px;
+  }
+}
+
+/* Səhifələmə */
+.pagination {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.page_button {
+  padding: 6px 12px;
+  background-color: #eee;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.page_button:hover {
+  background-color: #ccc;
+}
+
+.active {
+  background-color: #636b57;
+  color: white;
+}
+
+/* "Yuxarı" düyməsi */
+.go_to_top {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.go_to_top button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 40px;
+  margin-right: 40px;
+  cursor: pointer;
+  background-color: #00b5a4;
+  border: none;
+  border-radius: 10px;
+}
+
+.up_button {
+  font-size: 18px;
+  color: white;
+}
+
+@media (max-width: 700px) {
+  .go_to_top button {
+    width: 60px;
+    height: 35px;
+    margin: 0 auto;
+  }
+}
+
+/* Skeleton animasiyası */
 .skeleton {
   background-color: #e0e0e0;
   border-radius: 8px;
@@ -368,6 +483,7 @@
   }
 }
 
+/* Skeleton elementlər */
 .item_image.skeleton {
   width: 90%;
   height: 90%;
@@ -397,46 +513,169 @@
   height: 20px;
 }
 
-.empty_message_box {
-  height: 100vh;
-  justify-content: center;
+/* Mobil filter düyməsi */
+.mobile_filter_button {
+  display: none; /* Desktopda gizli */
+  background-color: #fff;
+  color: #1d2123;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
   align-items: center;
+  justify-content: center;
+  max-width: 160px;
+  max-height: 40px;
+  font-weight: 600;
+  margin-right: 10px;
+  width: 70px;
+  height: 35px;
 }
 
-.empty_message {
-  padding: 20px;
-  color: #888;
-  font-size: 22px;
-}
-
-.select_and_result {
-  width: 79%;
+/* Close button for mobile filter */
+.close_mobile_filter {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: #666;
+  width: 40px;
+  height: 40px;
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #f5f5f5;
+  transition: background-color 0.3s;
 }
 
-.select_sort_options {
+.close_mobile_filter:hover {
+  background-color: #e0e0e0;
+}
+
+/* === Mobil görünüş üçün === */
+@media (max-width: 768px) {
+  .common_container {
+    flex-direction: column;
+  }
+
+  .left_filter {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 100vh;
+    z-index: 1000;
+    background-color: #fff;
+    padding: 20px;
+    overflow-y: auto;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    margin-top: 0;
+    border-radius: 0;
+  }
+
+  .left_filter.mobile_open {
+    transform: translateX(0);
+  }
+
+  .mobile_filter_button {
+    display: flex;
+
+    gap: 3px;
+  }
+
+  .close_mobile_filter {
+    display: flex;
+  }
+
+  .select_and_result {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Overlay arxa fonu */
+  .common_container::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  /* Overlay göstər */
+  .common_container:has(.left_filter.mobile_open)::before {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* Desktopda mobil elementləri gizlət */
+@media (min-width: 769px) {
+  .mobile_filter_button,
+  .close_mobile_filter {
+    display: none !important;
+  }
+}
+
+.reset_button_container {
   display: flex;
-  flex-direction: row-reverse;
-  padding-right: 25px;
+  justify-content: center;
+  margin-top: 24px;
+  padding: 0 16px;
 }
 
-.discount_box {
-  background-color: #ed0036;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 12px;
-  text-align: center;
+.reset_button {
+  background-color: #00b5a4;
   color: #fff;
-  border-radius: 24px;
-  width: 41px;
-  height: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  margin-bottom: 2px;
+  padding: 10px 24px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 181, 164, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  max-width: 280px;
+  text-align: center;
 }
 
+.reset_button:hover {
+  background-color: #01988d;
+  transform: scale(1.02);
+}
 
+/* Responsive */
+@media (max-width: 768px) {
+  .reset_button {
+    font-size: 13px;
+    padding: 10px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .reset_button_container {
+    padding: 0 12px;
+  }
+
+  .reset_button {
+    font-size: 12px;
+    padding: 10px 14px;
+    max-width: 100%;
+  }
+}

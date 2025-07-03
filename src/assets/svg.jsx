@@ -881,3 +881,17 @@ export const DarkMode = () => {
     </svg>
   );
 };
+
+export const FilterSvg = () => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="none">
+      <path
+        d="M2.689 8.089a1.8 1.8 0 100-3.6 1.8 1.8 0 000 3.6zm.001-7.2v3.6m0 3.6v7.2m5.4-1.8a1.8 1.8 0 10-.001-3.6 1.8 1.8 0 000 3.6zm0-12.6v9m0 3.6v1.8m5.4-9.9a1.8 1.8 0 100-3.6 1.8 1.8 0 000 3.6zm-.002-4.5v.9m0 3.6v9.9"
+        stroke="#1D2123"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};

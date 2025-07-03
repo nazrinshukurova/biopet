@@ -17,6 +17,7 @@ import FilterSection from "../SelectedProducts/FilterSection";
 import {
   EmptyStarSvg,
   ExternalLink,
+  FilterSvg,
   FullFilledStarSvg,
   Heart,
   Manat,
@@ -43,6 +44,7 @@ const FilterCategory = () => {
   const navigate = useNavigate();
 
   const { addToBasket, showSuccessAlert } = useBasket();
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
   const [filteredData, setFilteredData] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
@@ -362,6 +364,65 @@ const FilterCategory = () => {
 
   console.log(isInWishlist(), "WISLISTDE VARSA YOXLA");
 
+  // Add this useEffect to your FilterCategory component
+  // Add it after your existing useEffects
+
+  useEffect(() => {
+    // Close filter when clicking outside on mobile
+    const handleClickOutside = (event) => {
+      if (
+        isMobileFilterOpen &&
+        !event.target.closest(`.${styles.left_filter}`) &&
+        !event.target.closest(`.${styles.mobile_filter_button}`)
+      ) {
+        setIsMobileFilterOpen(false);
+      }
+    };
+
+    // Prevent body scroll when filter is open
+    if (isMobileFilterOpen) {
+      document.body.style.overflow = "hidden";
+      document.addEventListener("click", handleClickOutside);
+    } else {
+      document.body.style.overflow = "unset";
+      document.removeEventListener("click", handleClickOutside);
+    }
+
+    // Cleanup
+    return () => {
+      document.body.style.overflow = "unset";
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [isMobileFilterOpen]);
+
+  // Also add this function to handle escape key
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === "Escape" && isMobileFilterOpen) {
+        setIsMobileFilterOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [isMobileFilterOpen]);
+
+  const handleResetAllFilters = () => {
+    setSelectedBrands([]);
+    setSelectedSizes([]);
+    setSelectedIngredients([]);
+    setSelectedSterilized([]);
+    setSelectedIsAvailable([]);
+    setSelectedAgeGroups([]);
+    setSelectedFoodTypes([]);
+    setSelectedAnimalTypes([]);
+    setSelectedVetDiets([]);
+    setSelectedProductType([]);
+    setPriceRange([0, maxPrice]);
+    setShowFiltered(false);
+    handleResetSearch();
+  };
+
   return (
     <>
       <div className={styles.common_container}>
@@ -374,7 +435,17 @@ const FilterCategory = () => {
             }
           />
         )}{" "}
-        <div className={styles.left_filter}>
+        <div
+          className={`${styles.left_filter} ${
+            isMobileFilterOpen ? styles.mobile_open : ""
+          }`}
+        >
+          <button
+            className={styles.close_mobile_filter}
+            onClick={() => setIsMobileFilterOpen(false)}
+          >
+            ✕
+          </button>
           <div className={styles.filter_list}>
             <span className={styles.category_title}>
               {loading ? (
@@ -605,10 +676,29 @@ const FilterCategory = () => {
               </>
             )}
           </div>
+          <div className={styles.reset_button_container}>
+            <button
+              className={styles.reset_button}
+              onClick={handleResetAllFilters}
+            >
+              {i18n.language === "az"
+                ? "Filtrləri sıfırla"
+                : "Сбросить фильтры"}
+            </button>
+          </div>
         </div>
         <div className={styles.select_and_result}>
           <div className={styles.select_sort_options}>
             <SortSelect products={filteredData} onSorted={setFilteredData} />
+            <div classname={styles.filters_button_box}>
+              {" "}
+              <div
+                className={styles.mobile_filter_button}
+                onClick={() => setIsMobileFilterOpen(true)}
+              >
+                <FilterSvg />
+              </div>
+            </div>
           </div>{" "}
           <div className={styles.filtered_result}>
             {loading ? (
@@ -675,7 +765,10 @@ const FilterCategory = () => {
                       {item.Price} AZN
                     </div>
 
-                    <Link style={{textDecoration:"none"}} to={`/product/${item.id}`}>
+                    <Link
+                      style={{ textDecoration: "none" }}
+                      to={`/product/${item.id}`}
+                    >
                       {" "}
                       <div className={styles.item_title}>
                         {" "}
@@ -701,7 +794,7 @@ const FilterCategory = () => {
                     )}
                   </div>
 
-                  <AddToCart  onClick={()=>addToBasket(item)} />
+                  <AddToCart onClick={() => addToBasket(item)} />
                 </div>
               ))
             )}

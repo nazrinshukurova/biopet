@@ -70,7 +70,7 @@ const Layout = ({ children, lang }) => {
     <>
       {!hideNavbar && (
         <>
-          {/* <Navbar lang={lang} /> */}
+          <Navbar lang={lang} />
 
           <Dropdown />
           <NavbarMobile />

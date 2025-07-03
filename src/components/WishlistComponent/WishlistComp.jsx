@@ -5,42 +5,35 @@ import {
   Delete,
   EmptyStarSvg,
   FullFilledStarSvg,
-  Wished,
 } from "../../assets/Svg";
 import AddToCart, { ClearAll } from "../../shared/Buttons/Buttons";
 import { useWishlist } from "../../context/WishlistContext";
 import { useTranslation } from "react-i18next";
-import { FiHeart } from "react-icons/fi";
 import { useBasket } from "../../context/AddToBasket";
 
 const WishlistComp = () => {
   const { wishlist, removeFromWishlist, clearWishlist } = useWishlist();
   const { i18n } = useTranslation();
-
-  const {addToBasket}=useBasket()
-  
+  const { addToBasket } = useBasket();
 
   return (
-    <div
-      style={{
-        backgroundColor: "var(--container-bg)",
-      
-      }}
-    >
-      <div className={styles.clear_and_wishlist}>
-        {" "}
-        <h1 className={styles.title}>
-          {i18n.language === "az" ? "İstək listim" : "Избранное"}
-        </h1>
-        {wishlist.length !== 0 ? (
-          <ClearAll clickFunction={clearWishlist} />
-        ) : null}
-      </div>
+    <div className={styles.wishlist_wrapper}>
+      <h1 className={styles.title}>
+        {i18n.language === "az" ? "İstək listim" : "Избранное"}
+      </h1>
+
+      {wishlist.length !== 0 && (
+        <div className={styles.clear_and_wishlist}>
+          <div className={styles.clear_all_button_div}>
+            <ClearAll clickFunction={clearWishlist} />
+          </div>
+        </div>
+      )}
+
       <div className={styles.filtered_result}>
         {wishlist.length === 0 ? (
           <div className={styles.empty_message_box}>
             <div className={styles.heart}>
-              {" "}
               <BigHeart />
             </div>
             <p className={styles.empty_message}>
@@ -52,39 +45,18 @@ const WishlistComp = () => {
         ) : (
           wishlist.map((item) => (
             <div key={item.id} className={styles.filtered_item}>
-              <div
-                style={{ position: "relative", cursor: "pointer" }}
-                className={styles.item_image}
-              >
+              <div className={styles.item_image}>
                 {item.isDiscount && (
-                  <div
-                    style={{
-                      position: "absolute",
-                      left: "10px",
-                      top: "10px",
-                    }}
-                    className={styles.discount_box}
-                  >
+                  <div className={styles.discount_box}>
                     -{item.PercentOfDiscount}%
                   </div>
                 )}
 
                 <div
-                  style={{
-                    display: "flex",
-                    gap: "10px",
-                    position: "absolute",
-                    right: "10px",
-                    top: "10px",
-                  }}
+                  className={styles.delete_icon}
+                  onClick={() => removeFromWishlist(item.id)}
                 >
-                  <div
-                    style={{ cursor: "pointer" }}
-                    onClick={() => removeFromWishlist(item.id)}
-                  >
-                    <Delete />{" "}
-                    {/* İstəyirsənsə başqa bir "Remove" ikonu da qoya bilərsən */}
-                  </div>
+                  <Delete />
                 </div>
 
                 <img
@@ -117,11 +89,7 @@ const WishlistComp = () => {
                 )}
               </div>
 
-              <AddToCart onClick={()=>addToBasket(item)} />
-
-              {console.log(item)}
-
-              {}
+              <AddToCart onClick={() => addToBasket(item)} />
             </div>
           ))
         )}

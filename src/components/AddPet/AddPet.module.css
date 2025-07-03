@@ -38,3 +38,37 @@
   font-size: 14px;
   color: #1d2123;
 }
+
+@media (max-width: 1024px) {
+  .profile {
+    flex-direction: column;
+    padding: 24px;
+    gap: 24px;
+  }
+
+  .profile_body {
+    padding: 32px 20px 50px;
+  }
+}
+
+@media (max-width: 600px) {
+  .plus_and_title {
+    font-size: 13px;
+  }
+
+  .plus {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    margin-right: 8px;
+  }
+
+  .profile {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .profile_body {
+    padding: 24px 16px 40px;
+  }
+}

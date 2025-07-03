@@ -166,3 +166,36 @@
   margin-top: 4px;
   margin-left: 4px;
 }
+
+@media (max-width: 550px) {
+  .phoneInput {
+    width: 300px;
+  }
+
+  .checkbox {
+    width: 300px;
+  }
+
+  .registerButton {
+    width: 300px;
+  }
+
+  .footer {
+    display: flex;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 440px) {
+  .phoneInput {
+    width: 270px;
+  }
+
+  .checkbox {
+    width: 270px;
+  }
+
+  .registerButton {
+    width: 270px;
+  }
+}

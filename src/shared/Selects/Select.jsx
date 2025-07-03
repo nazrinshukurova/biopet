@@ -1,8 +1,9 @@
 import React from "react";
 import { Select } from "antd";
 import { useTranslation } from "react-i18next";
+import styles from "./Selects.module.css"; // yeni CSS faylı
 
-const SortSelect = ({ products, onSorted,value }) => {
+const SortSelect = ({ products, onSorted, value }) => {
   const { t } = useTranslation();
 
   const sortOptions = [
@@ -13,9 +14,6 @@ const SortSelect = ({ products, onSorted,value }) => {
   ];
 
   const lang = localStorage.getItem("i18nextLng");
-  console.log(lang);
-
-  console.log(products);
 
   const handleChange = (value) => {
     const sorted = [...products];
@@ -45,16 +43,15 @@ const SortSelect = ({ products, onSorted,value }) => {
         break;
     }
 
-    onSorted(sorted); // parent-ə göndəririk
+    onSorted(sorted);
   };
 
   return (
     <Select
-      style={{ width: 200 }}
+      className={styles.sort_select}
       placeholder={t("select_values.priceWithIncrease")}
       options={sortOptions}
       onChange={handleChange}
-      // value={value}
     />
   );
 };

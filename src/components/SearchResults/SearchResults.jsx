@@ -1,16 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useProducts } from "../../context/ProductContext";
 import styles from "./SearchResults.module.css";
 import { useTranslation } from "react-i18next";
 
 const SearchResults = () => {
-  const { filteredProducts, loading, searchTerm } = useProducts();
+  const { filteredProducts, loading, searchTerm, setSearchTerm } =
+    useProducts();
   const { i18n, t } = useTranslation();
+  const navigate = useNavigate();
 
   if (loading) return <p>Loading...</p>;
 
-  // Axtarış boşdursa heç nə göstərməsin
   if (!searchTerm.trim()) return null;
+
+  const handleProductClick = (id) => {
+    setSearchTerm(""); // popup-ı bağla
+    navigate(`/product/${id}`); // yönləndir
+  };
 
   return (
     <div className={styles.full_container}>
@@ -35,14 +41,13 @@ const SearchResults = () => {
                   alt="product"
                 />
               </div>
-              <Link
-                style={{ textDecoration: "none" }}
-                to={`/product/${product.id}`}
+              <div
+                className={styles.product_name}
+                onClick={() => handleProductClick(product.id)}
+                style={{ cursor: "pointer", textDecoration: "none" }}
               >
-                <div className={styles.product_name}>
-                  {i18n.language === "az" ? product.NameAz : product.NameRu}
-                </div>
-              </Link>
+                {i18n.language === "az" ? product.NameAz : product.NameRu}
+              </div>
             </div>
           ))
         )}

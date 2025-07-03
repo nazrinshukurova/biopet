@@ -3,6 +3,7 @@
   margin-bottom: 24px;
   font-weight: 500;
   color: var(--text);
+  text-align: center;
 }
 
 .profile_body {
@@ -30,7 +31,7 @@
 .form_container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: auto;
   gap: 32px;
 }
 
@@ -43,6 +44,7 @@
 
 .button {
   margin-top: 32px;
+  text-align: center;
 }
 
 .phone_input_wrapper {
@@ -56,12 +58,64 @@
   justify-content: center;
   padding: 32px;
   gap: 32px;
+  background-color: var(--container-bg);
+  flex-wrap: wrap;
 }
 
 .profile_body_container {
   flex: 3;
+  width: 100%;
 }
 
 .profile_menu_container {
   flex: 1;
+  width: 100%;
+}
+
+/* Tablet ölçüsü üçün */
+@media (max-width: 1024px) {
+  .form_container {
+    grid-template-columns: 1fr;
+  }
+
+  .profile_container {
+    flex-direction: column;
+    padding: 24px;
+    gap: 24px;
+  }
+
+  .profile_body {
+    padding: 32px 20px 50px;
+  }
+
+  .title {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+}
+
+/* Mobil ölçü üçün */
+@media (max-width: 600px) {
+  .profile_container {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .profile_body {
+    padding: 24px 16px 40px;
+  }
+
+  .form_container {
+    gap: 20px;
+  }
+
+  .title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .input {
+    font-size: 13px;
+    padding: 10px 14px;
+  }
 }

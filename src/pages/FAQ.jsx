@@ -39,53 +39,57 @@ const FAQ = () => {
   }, []);
 
   return (
- <>   <div
-      style={{
-        backgroundColor: "var(--container-bg)",
-        color: "var(--textColor)",padding:"50px"
-      }}
-    >
-      <div className={styles.faqContainer}>
-        <h2 className={styles.faqTitle}>
-          {i18n.language === "az"
-            ? "FAQ - Tez-tez verilən suallar"
-            : "FAQ – Часто задаваемые вопросы"}
-        </h2>
-
-        {loading && !error && <div className="spinner"></div>}
-
-        {!loading && !error && (
-          <div className={styles.faqAccordion}>
-            {faq.map((item) => (
-              <Accordion key={item.id} className={styles.faqItem}>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  className={styles.faqQuestion}
-                >
-                  <Typography>
-                    {i18n.language === "az" ? item.questionAz : item.questionRu}
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails className={styles.faqAnswer}>
-                  <Typography>
-                    {i18n.language === "az" ? item.answerAz : item.answerRu}
-                  </Typography>
-                </AccordionDetails>
-              </Accordion>
-            ))}
-          </div>
-        )}
-
-        {error && (
-          <div className={styles.error}>
+    <>
+      {" "}
+      <div
+        style={{
+          backgroundColor: "var(--container-bg)",
+          color: "var(--textColor)",padding:"20px"
+        }}
+      >
+        <div className={styles.faqContainer}>
+          <h2 className={styles.faqTitle}>
             {i18n.language === "az"
-              ? "Məlumat yüklənərkən xəta baş verdi."
-              : "Произошла ошибка при загрузке данных."}
-          </div>
-        )}
+              ? "FAQ - Tez-tez verilən suallar"
+              : "FAQ – Часто задаваемые вопросы"}
+          </h2>
+
+          {loading && !error && <div className="spinner"></div>}
+
+          {!loading && !error && (
+            <div className={styles.faqAccordion}>
+              {faq.map((item) => (
+                <Accordion key={item.id} className={styles.faqItem}>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    className={styles.faqQuestion}
+                  >
+                    <Typography>
+                      {i18n.language === "az"
+                        ? item.questionAz
+                        : item.questionRu}
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails className={styles.faqAnswer}>
+                    <Typography>
+                      {i18n.language === "az" ? item.answerAz : item.answerRu}
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+              ))}
+            </div>
+          )}
+
+          {error && (
+            <div className={styles.error}>
+              {i18n.language === "az"
+                ? "Məlumat yüklənərkən xəta baş verdi."
+                : "Произошла ошибка при загрузке данных."}
+            </div>
+          )}
+        </div>
       </div>
-    </div>
-    <Suggestions/>
+      <Suggestions />
     </>
   );
 };

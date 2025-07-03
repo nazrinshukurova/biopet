@@ -251,3 +251,59 @@
   line-height: 40px;
   color: #828282;
 }
+
+/* Kiçik ekranlarda (mobil) - sütun istiqaməti və ölçülər */
+@media (max-width: 900px) {
+  .image_and_description {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 16px;
+  }
+
+  .image_container {
+    width: 100%;
+    margin: 8px 0;
+  }
+
+  .image_container img {
+    width: 100%;
+    height: auto;
+    max-width: 320px;
+  }
+
+  .view_details {
+    width: 100%;
+    margin: 12px 0;
+    padding: 16px;
+  }
+
+  .price_and_buttons {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .button_and_heart {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+/* Orta ölçülü ekranlar üçün (tablet) */
+@media (min-width: 901px) and (max-width: 1200px) {
+  .image_and_description {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .image_container,
+  .view_details {
+    width: 48%;
+  }
+
+  .image_container img {
+    width: 100%;
+    height: auto;
+    max-width: none;
+  }
+}

@@ -4,7 +4,8 @@
   justify-content: space-around;
   background-color: #feeac1;
   padding: 12px 8px;
-  gap: 20px;
+  gap: 10px;
+  position: relative;
 }
 
 .burger_menu {
@@ -27,27 +28,92 @@
   outline: none;
   border-radius: 8px;
   height: 40px;
-  margin-right: 5px;
   font-size: 10px;
+  position: relative;
 }
 
 .search_container span {
   padding: 12px 16px 12px 24px;
 }
 
-.search_container .search_input {
+.search_input {
   outline: none;
   width: 100%;
   border: none;
-  display: flex;
-  align-items: center;
   font-size: 12px;
+  padding: 10px;
   font-weight: 400;
   line-height: 16px;
-  padding-left: 16px;
+  background-color: transparent;
 }
 
-@media (max-width: 800px) {
+.icons_box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon_wrapper {
+  position: relative;
+  font-size: 18px;
+  color: #1d2123;
+  cursor: pointer;
+}
+
+.counter {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: red;
+  color: white;
+  font-size: 10px;
+  padding: 2px 5px;
+  border-radius: 50%;
+}
+
+.lang_toggle {
+  position: relative;
+  cursor: pointer;
+}
+
+.lang_dropdown {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  z-index: 999;
+  padding: 4px 8px;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+.search_results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 101;
+  width: 100%;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 900px) {
   .navbar_mobile_container {
     display: flex;
   }

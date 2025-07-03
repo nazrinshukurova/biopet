@@ -27,7 +27,6 @@
   gap: 22px;
   padding: 50px 30px;
   min-height: 300px;
- 
 }
 
 .order_title {
@@ -233,3 +232,116 @@
   border: 1px solid #00b5a4;
 }
 
+@media (max-width: 1200px) {
+  .payment {
+    flex-direction: column;
+    padding: 32px;
+  }
+
+  .payment_section,
+  .basket_right {
+    width: 100%;
+  }
+
+  .basket_right {
+    margin-top: 32px;
+  }
+
+  .order_total {
+    width: 100%;
+    padding: 16px;
+  }
+
+  .payment_with_taksit {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .payment {
+    padding: 24px;
+  }
+
+  .payment_container {
+    padding: 24px 16px;
+  }
+
+  .address {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .map_title {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .delivery_type_text {
+    font-size: 13px;
+    padding: 12px;
+    gap: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .payment_methods_box {
+    flex-direction: column;
+  }
+
+  .payment_method {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .order_total {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .order_title {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .payment_with_taksit {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section_title {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .address_input {
+    font-size: 13px;
+    padding: 10px 14px;
+  }
+
+  .payment_head {
+    font-size: 16px;
+  }
+
+  .birbank_container {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .birbank {
+    width: 18px;
+    height: 26px;
+  }
+
+  .delivery_condition {
+    font-size: 11px;
+  }
+
+  .delivery_policy {
+    font-size: 11px;
+    max-width: 100%;
+    padding: 0 12px;
+  }
+}

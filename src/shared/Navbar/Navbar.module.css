@@ -12,13 +12,14 @@
   align-items: center;
   justify-content: space-around;
   padding: 16px 0 0;
-  align-items: center;
   margin-bottom: 24px;
+  height: 70px;
+  gap: 7px;
 }
 
 .search_box {
   height: 40px;
-  flex: 0 0 46%;
+  flex: 0 0 40%;
 }
 
 .search_container {
@@ -359,7 +360,7 @@
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .common_navbar_container {
     display: none;
   }
@@ -493,4 +494,57 @@
   width: 100%;
   left: 0;
   top: 100%;
+}
+
+/* Container-lar position: relative olmalıdır ki, badge düzgün yerləşsin */
+.wish_and_count,
+.basket_and_count {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+}
+
+/* Count üçün badge stili */
+.wishlist_count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 11px;
+  background-color: #e21e4c;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  font-weight: 600;
+  user-select: none;
+  pointer-events: none; /* Badge kliklənməsin */
+}
+
+/* İkon ölçüləri */
+.heart.shopping_cart,
+.user {
+  font-size: 20px;
+}
+
+/* Responsive üçün */
+@media (max-width: 768px) {
+  .wishlist_count {
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+    top: -6px;
+    right: -6px;
+  }
+
+  .heart.shopping_cart,
+  .user {
+    font-size: 16px;
+  }
 }

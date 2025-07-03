@@ -280,20 +280,14 @@ const Navbar = ({ lang }) => {
                 <span>{totalQuantity}</span>
               </div>
             </div>
+            <div onClick={toggleTheme}>
+              {theme === "dark" ? <LightMode /> : <DarkMode />}
+            </div>
           </div>
         </nav>
 
         <div className={styles.navbar_down_part}>
           <ul>
-            <li>
-              <Link
-                style={{ textDecoration: "none", color: "#1d2123" }}
-                className={styles.link}
-                to="/"
-              >
-                {t("Home")}
-              </Link>
-            </li>
             <li>
               <Link
                 style={{ textDecoration: "none", color: "#1d2123" }}
@@ -349,9 +343,6 @@ const Navbar = ({ lang }) => {
               >
                 {t("about_title")}
               </Link>
-            </li>
-            <li onClick={toggleTheme}>
-              {theme === "dark" ? <LightMode /> : <DarkMode />}
             </li>
           </ul>
         </div>

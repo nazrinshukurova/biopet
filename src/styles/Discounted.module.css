@@ -253,3 +253,74 @@
   line-height: 40px;
   color: #828282;
 }
+
+/* Kiçik ekranlarda (telefonlar) */
+@media (max-width: 600px) {
+  .filtered_result {
+    flex-direction: column;
+    padding: 30px 10px;
+  }
+
+  .filtered_item {
+    width: 100% !important; /* Maksimum eni doldurur */
+    max-width: 100% !important;
+    height: auto !important; /* Dinamik hündürlük */
+    margin-bottom: 20px;
+  }
+
+  .item_image {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  .item_title {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .priceForFilter,
+  .price,
+  .allOfPrices {
+    font-size: 18px;
+  }
+}
+
+/* Orta ekranlar (planşetlər və kiçik noutbuklar) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .filtered_result {
+    justify-content: center;
+    gap: 12px;
+    padding: 60px 15px;
+  }
+
+  .filtered_item {
+    max-width: 45%;
+    width: 100%;
+    height: auto !important;
+  }
+
+  .item_image {
+    max-width: 100%;
+    height: 200px;
+  }
+}
+
+/* Böyük ekranlar (noutbuk və desktop) */
+@media (min-width: 901px) {
+  .filtered_result {
+    padding: 90px 0px;
+    gap: 16px;
+  }
+
+  .filtered_item {
+    max-width: 230px;
+    width: auto;
+    height: 486px;
+  }
+
+  .item_image {
+    max-width: 217px;
+    height: 217px;
+  }
+}
