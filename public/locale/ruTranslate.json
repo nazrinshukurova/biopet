@@ -24,12 +24,12 @@
     "Bonus mağaza": "Бонусный магазин"
   },
   "slider1": {
-    "firstImage": "/src/assets/images/home/slider1Ru/acana-mehsullar-site-ru.png",
-    "secondImage": "/src/assets/images/home/slider1Ru/biokats-tofu-desk-slider-ru.png",
-    "thirdImage": "/src/assets/images/home/slider1Ru/703250040-web-banner-blue-ru.jpg",
-    "fourthImage": "/src/assets/images/home/slider1Ru/mehsul-econature-plus-site-ru.png",
-    "fifthImage": "/src/assets/images/home/slider1Ru/slider-web-ru.jpg",
-    "sixthImage": "/src/assets/images/home/slider1Ru/orijen-mehsullar-site-ru.png"
+    "firstImage": "/slider1Ru/acana-mehsullar-site-ru.png",
+    "secondImage": "/slider1Ru/biokats-tofu-desk-slider-ru.png",
+    "thirdImage": "/slider1Ru/703250040-web-banner-blue-ru.jpg",
+    "fourthImage": "/slider1Ru/mehsul-econature-plus-site-ru.png",
+    "fifthImage": "/slider1Ru/slider-web-ru.jpg",
+    "sixthImage": "/slider1Ru/orijen-mehsullar-site-ru.png"
   },
   "slider2": {
     "discountOfweek": "Скидка недели",
@@ -60,7 +60,7 @@
     "other_animals": "Другие животные"
   },
   "advertising": {
-    "advertise1": "../../src/assets/images/home/categoriesİtem/rus-cover-1-yeni-ev-heyvani-sahibinin-beledcisi.png",
+    "advertise1": "../../categoriesİtem/rus-cover-1-yeni-ev-heyvani-sahibinin-beledcisi.png",
     "advertise2": "../../src/assets/images/home/categoriesİtem/rus-cover-1-ev-heyvani-cinsleri-1-1.png"
   },
   "services": {

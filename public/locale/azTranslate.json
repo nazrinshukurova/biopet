@@ -26,12 +26,12 @@
     "Bonus mağaza": "Bonus mağaza"
   },
   "slider1": {
-    "firstImage": "../src/assets/images/home/slider1Az/acana-mehsullar-site-az.png",
-    "secondImage": "./src/assets/images/home/slider1Az/orijen-mehsullar-site-az.png",
-    "thirdImage": "./src/assets/images/home/slider1Az/biokats-tofu-desk-slider-az.png",
-    "fourthImage": "./src/assets/images/home/slider1Az/slider-web-az.jpg",
-    "fifthImage": "./src/assets/images/home/slider1Az/mehsul-econature-plus-site-az.png",
-    "sixthImage": "./src/assets/images/home/slider1Az/703242558-web-banner-blue.jpg"
+    "firstImage": "/slider1Az/acana-mehsullar-site-az.png",
+    "secondImage": "slider1Az/orijen-mehsullar-site-az.png",
+    "thirdImage": "slider1Az/biokats-tofu-desk-slider-az.png",
+    "fourthImage": "slider1Az/slider-web-az.jpg",
+    "fifthImage": "slider1Az/mehsul-econature-plus-site-az.png",
+    "sixthImage": "slider1Az/703242558-web-banner-blue.jpg"
   },
   "slider2": {
     "discountOfweek": "Həftənin endirimi",
