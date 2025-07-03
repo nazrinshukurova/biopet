@@ -60,8 +60,8 @@
     "other_animals": "Другие животные"
   },
   "advertising": {
-    "advertise1": "../../categoriesİtem/rus-cover-1-yeni-ev-heyvani-sahibinin-beledcisi.png",
-    "advertise2": "../../src/assets/images/home/categoriesİtem/rus-cover-1-ev-heyvani-cinsleri-1-1.png"
+    "advertise1": "../categoriesİtem/rus-cover-1-yeni-ev-heyvani-sahibinin-beledcisi.png",
+    "advertise2": "../categoriesİtem/rus-cover-1-ev-heyvani-cinsleri-1-1.png"
   },
   "services": {
     "card_title": "Удобство оплаты",
