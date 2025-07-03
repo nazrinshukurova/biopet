@@ -62,8 +62,8 @@
     "other_animals": "Digər heyvanlar"
   },
   "advertising": {
-    "advertise1": "../../src/assets/images/home/categoriesİtem/aze-cover-1-yeni-ev-heyvani-sahibinin-beledcisi-1-0.png",
-    "advertise2": "../../src/assets/images/home/categoriesİtem/rus-cover-1-ev-heyvani-cinsleri-1.png"
+    "advertise1": "../categoriesİtem/aze-cover-1-yeni-ev-heyvani-sahibinin-beledcisi-1-0.png",
+    "advertise2": "../categoriesİtem/rus-cover-1-ev-heyvani-cinsleri-1.png"
   },
   "services": {
     "card_title": "Ödəniş rahatlığı",
