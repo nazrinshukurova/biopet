@@ -1,12 +1,29 @@
-# React + Vite
+# 🐾 Biopet – Pet E-commerce Website Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a full-featured and responsive clone of the **Biopet** website – a pet product e-commerce platform. Built with modern tools like **React**, **Vite**, **Supabase**, and **Ant Design**, the project supports multiple languages, responsive design, real-time filtering, and map-based address selection.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔧 Tech Stack
 
-## Expanding the ESLint configuration
+- ⚛️ **React 19** + **Vite** – Fast and modern frontend setup
+- 🛠️ **Supabase** – Backend services (Auth & Realtime Database)
+- 🌐 **i18next + react-i18next** – Multilingual support
+- 📦 **Ant Design**, **MUI**, **AOS** – Sleek UI & animations
+- 🗺️ **React Leaflet** & **@react-google-maps/api** – Map integration
+- 🛒 **React Router**, **React Slick**, **Toastify**, **Confetti**
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## ✨ Features
+
+- 🐶 Browse & filter products by type, brand, age, ingredients, etc.
+- 🛍️ Add to cart and wishlist functionality
+- 🧭 Multilingual interface (auto language detection)
+- 📍 Map-based address selection at checkout
+- 📱 Fully responsive on mobile, tablet, and desktop
+- 📊 Charts and visualizations with **MUI X Charts**
+
+
+
+
