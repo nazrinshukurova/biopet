@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./PickAnimal.module.css";
 import LeftProfile from "../LeftProfile/LeftProfile";
 import { useTranslation } from "react-i18next";
@@ -11,13 +11,31 @@ import { Link } from "react-router-dom";
 
 const PickAnimal = () => {
   const { t, i18n } = useTranslation();
-  const [selectedAnimal, setSelectedAnimal] = useState("");
+
+  // localStorage-dan başlanğıc dəyəri oxu
+  const [selectedAnimal, setSelectedAnimal] = useState(() => {
+    return localStorage.getItem("selectedAnimal") || "";
+  });
 
   const handleSelectAnimal = (animal) => {
     setSelectedAnimal(animal);
+    localStorage.setItem("selectedAnimal", animal);
   };
 
-  console.log(selectedAnimal);
+  // Əgər selectedAnimal boşalarsa, localStorage-dan sil
+  useEffect(() => {
+    if (!selectedAnimal) {
+      localStorage.removeItem("selectedAnimal");
+    }
+  }, [selectedAnimal]);
+
+  // Məsələn logout funksiyası burada olmaya bilər,
+  // amma logout zamanı bu çağırılsın:
+  const logout = () => {
+    localStorage.removeItem("selectedAnimal");
+    // digər logout əməliyyatları, məsələn redirect və s.
+    console.log("User logged out, selectedAnimal cleared from localStorage");
+  };
 
   return (
     <div>
@@ -68,9 +86,9 @@ const PickAnimal = () => {
           <div>
             <Link
               to="/infopet"
-              style={{ textDecoration: "none", color: "1d2123" }}
+              style={{ textDecoration: "none", color: "#1d2123" }}
             >
-              <SaveMemory disabled={!selectedAnimal || selectedAnimal === ""} />
+              <SaveMemory disabled={!selectedAnimal} />
             </Link>
           </div>
         </div>

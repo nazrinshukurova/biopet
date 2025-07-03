@@ -6,6 +6,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const { t } = useTranslation();
+
   const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem("user");
     return storedUser ? JSON.parse(storedUser) : null;
@@ -17,7 +18,6 @@ export const AuthProvider = ({ children }) => {
   });
 
   const register = async ({ phone, name, surname, email, password, terms }) => {
-    // Trim all inputs
     phone = phone.trim();
     name = name.trim();
     surname = surname.trim();
@@ -45,14 +45,22 @@ export const AuthProvider = ({ children }) => {
       return false;
     }
 
-    const { error } = await supabase
+    const { data, error } = await supabase
       .from("Users")
-      .insert([{ phone, name, surname, email, password, terms }]);
+      .insert([{ phone, name, surname, email, password, terms }])
+      .select()
+      .single();
 
     if (error) {
       setAuthErrors({ general: t("register_error") });
       return false;
     }
+
+    // Yeni istifadəçi məlumatını həm state-ə, həm localStorage-a yaz
+    setUser(data);
+    setIsLogin(true);
+    localStorage.setItem("user", JSON.stringify(data));
+    localStorage.setItem("isLogin", "true");
 
     setAuthErrors({});
     return true;
@@ -102,9 +110,15 @@ export const AuthProvider = ({ children }) => {
     window.location.href = "/";
   };
 
+  // **İstifadəçi məlumatını yeniləmək üçün funksiya**
+  const updateUser = (newUserData) => {
+    setUser(newUserData);
+    localStorage.setItem("user", JSON.stringify(newUserData));
+  };
+
   return (
     <AuthContext.Provider
-      value={{ user, authErrors, isLogin, register, login, logout }}
+      value={{ user, authErrors, isLogin, register, login, logout, updateUser }}
     >
       {children}
     </AuthContext.Provider>

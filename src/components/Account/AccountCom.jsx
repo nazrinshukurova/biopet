@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Account.module.css";
 import { useTranslation } from "react-i18next";
 import { FinishTheOrder } from "../../shared/Buttons/Buttons";
@@ -8,7 +8,7 @@ import LeftProfile from "../LeftProfile/LeftProfile";
 
 const AccountCom = () => {
   const { t, i18n } = useTranslation();
-  const { user, logout } = useAuth();
+  const { user, logout, updateUser } = useAuth();
 
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
@@ -18,6 +18,17 @@ const AccountCom = () => {
     phone: user?.phone || "",
   });
 
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        name: user.name || "",
+        surname: user.surname || "",
+        email: user.email || "",
+        phone: user.phone || "",
+      });
+    }
+  }, [user]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -25,7 +36,7 @@ const AccountCom = () => {
 
   const handleEdit = async () => {
     if (isEditing) {
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from("Users")
         .update({
           name: formData.name,
@@ -33,12 +44,17 @@ const AccountCom = () => {
           email: formData.email,
           phone: formData.phone,
         })
-        .eq("id", user.id);
+        .eq("id", user.id)
+        .select()
+        .single();
 
       if (error) {
         console.error("Error updating user:", error);
       } else {
         console.log("User updated successfully.");
+
+        // Yeni istifadəçi məlumatını kontekstdə və localStorage-da yenilə
+        updateUser(data);
       }
     }
     setIsEditing(!isEditing);
@@ -52,7 +68,6 @@ const AccountCom = () => {
       className={styles.profile_container}
     >
       <div className={styles.profile_menu_container}>
-        {" "}
         <LeftProfile />
       </div>
       <div className={styles.profile_body_container}>
@@ -102,7 +117,7 @@ const AccountCom = () => {
               <label>{t("phone")}</label>
               <input
                 className={styles.input}
-                type="email"
+                type="text"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}

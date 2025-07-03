@@ -9,7 +9,7 @@ const AddPet = () => {
   const { t, i18n } = useTranslation();
 
   return (
-    <div className={styles.profile}>
+    <div  className={styles.profile}>
       <div className={styles.profile_menu_container}>
         <LeftProfile />
       </div>

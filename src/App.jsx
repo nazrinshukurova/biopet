@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   BrowserRouter,
   Route,
   Routes,
   Navigate,
   useLocation,
+  useNavigate,
 } from "react-router-dom";
 import i18next from "i18next";
 
@@ -25,6 +26,12 @@ import Account from "./pages/Account";
 import Registration from "./pages/Registration";
 import LoginPage from "./pages/LoginPage";
 import NotFound from "./pages/NotFound";
+import MyPet from "./pages/MyPet";
+import PickAnimal from "./components/PickAnimal/PickAnimal";
+import AboutInfoForPet from "./components/AboutInfoForPet/AboutInfoForPet";
+import UXPinLayout from "./pages/Dashboard";
+import SearchResults from "./components/SearchResults/SearchResults";
+import Contact from "./pages/Contact";
 
 // Components
 import Navbar from "./shared/Navbar/Navbar";
@@ -37,14 +44,8 @@ import { ProductProvider } from "./context/ProductContext";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { BasketProvider } from "./context/AddToBasket";
 import { WishlistProvider } from "./context/WishlistContext";
-
-import MyPet from "./pages/MyPet";
-import PickAnimal from "./components/PickAnimal/PickAnimal";
-import AboutInfoForPet from "./components/AboutInfoForPet/AboutInfoForPet";
-import UXPinLayout from "./pages/Dashboard";
 import { ThemeProvider } from "./context/ThemeContext";
-import SearchResults from "./components/SearchResults/SearchResults";
-import Contact from "./pages/Contact";
+import PetInfoContext, { PetInfoProvider } from "./context/PetInfoContext";
 
 // Protected route ümumi yoxlama
 const ProtectedRoute = ({ children }) => {
@@ -52,7 +53,7 @@ const ProtectedRoute = ({ children }) => {
   return user ? children : <Navigate to="/login" replace />;
 };
 
-// Dashboard üçün xüsusi qoruma — yalnız "nazrin@gmail.com" istifadəçisi daxil ola bilər
+// Dashboard üçün xüsusi qoruma — yalnız "nazrins@gmail.com" istifadəçisi daxil ola bilər
 const DashboardProtectedRoute = ({ children }) => {
   const { user } = useAuth();
   return user && user.email === "nazrins@gmail.com" ? (
@@ -72,7 +73,6 @@ const Layout = ({ children, lang }) => {
       {!hideNavbar && (
         <>
           <Navbar lang={lang} />
-
           <Dropdown />
           <NavbarMobile />
         </>
@@ -80,6 +80,80 @@ const Layout = ({ children, lang }) => {
       {children}
       {!hideNavbar && <Footer />}
     </>
+  );
+};
+
+// Wrapper component to handle navigation logic with petInfo
+const AppRoutes = ({ language }) => {
+  const navigate = useNavigate();
+
+  const { petInfo, setPetInfo } = useContext(PetInfoContext);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (petInfo && petInfo.name) {
+      if (
+        location.pathname === "/mypet" ||
+        location.pathname === "/pickanimal"
+      ) {
+        navigate("/infopet", { replace: true });
+      }
+    }
+  }, [petInfo, navigate, location]);
+  console.log(petInfo);
+
+  return (
+    <Layout lang={language}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/product/:id" element={<Details />} />
+        <Route
+          path="/products/discounted_products"
+          element={<DiscountedProducts />}
+        />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/blogs/:id" element={<BlogsDetails />} />
+        <Route path="/register" element={<Registration />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/basket" element={<Basket />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/payment" element={<PaymentPage />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/pickanimal" element={<PickAnimal />} />
+        {/* Dashboard üçün xüsusi qoruma tətbiq olunur */}
+        <Route
+          path="/dashboard"
+          element={
+            <DashboardProtectedRoute>
+              <UXPinLayout />
+            </DashboardProtectedRoute>
+          }
+        />
+        <Route path="/infopet" element={<AboutInfoForPet />} />
+        <Route
+          path="/account"
+          element={
+            <ProtectedRoute>
+              <Account />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/mypet"
+          element={
+            <ProtectedRoute>
+              <MyPet />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Layout>
   );
 };
 
@@ -101,72 +175,22 @@ const App = () => {
     };
   }, []);
 
-  if (!savedLang) return null;
-
-  const language = savedLang;
+  if (!savedLang) return null; // or loading spinner
 
   return (
     <ThemeProvider>
-      {" "}
       <ProductProvider>
-        <AuthProvider>
-          <WishlistProvider>
-            <BasketProvider>
-              <BrowserRouter>
-                <Layout lang={language}>
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/products" element={<Products />} />
-                    <Route path="/product/:id" element={<Details />} />
-                    <Route
-                      path="/products/discounted_products"
-                      element={<DiscountedProducts />}
-                    />
-                    <Route path="/faq" element={<FAQ />} />
-                    <Route path="/blogs" element={<Blogs />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/blogs/:id" element={<BlogsDetails />} />
-                    <Route path="/register" element={<Registration />} />
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="/basket" element={<Basket />} />
-                    <Route path="/wishlist" element={<Wishlist />} />
-                    <Route path="/checkout" element={<Checkout />} />
-                    <Route path="/payment" element={<PaymentPage />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/pickanimal" element={<PickAnimal />} />
-                    {/* Dashboard üçün xüsusi qoruma tətbiq olunur */}
-                    <Route
-                      path="/dashboard"
-                      element={
-                        <DashboardProtectedRoute>
-                          <UXPinLayout />
-                        </DashboardProtectedRoute>
-                      }
-                    />
-                    <Route path="/infopet" element={<AboutInfoForPet />} />
-                    <Route
-                      path="/account"
-                      element={
-                        <ProtectedRoute>
-                          <Account />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route
-                      path="/mypet"
-                      element={
-                        <ProtectedRoute>
-                          <MyPet />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
-                </Layout>
-              </BrowserRouter>
-            </BasketProvider>
-          </WishlistProvider>
-        </AuthProvider>
+        <PetInfoProvider>
+          <AuthProvider>
+            <WishlistProvider>
+              <BasketProvider>
+                <BrowserRouter>
+                  <AppRoutes language={savedLang} />
+                </BrowserRouter>
+              </BasketProvider>
+            </WishlistProvider>
+          </AuthProvider>
+        </PetInfoProvider>
       </ProductProvider>
     </ThemeProvider>
   );

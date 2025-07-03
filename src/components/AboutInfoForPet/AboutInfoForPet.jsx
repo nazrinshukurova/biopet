@@ -1,27 +1,30 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import styles from "./AboutInfoForPet.module.css";
 import LeftProfile from "../LeftProfile/LeftProfile";
 import { useTranslation } from "react-i18next";
 import { BigPaw, Camera } from "../../assets/icons/Svg.jsx";
 import Radio from "@mui/material/Radio";
 import { ClearAll, SaveMemory } from "../../shared/Buttons/Buttons";
+import PetInfoContext from "../../context/PetInfoContext"; // Yolunu özünə görə düzəlt
 
 const AboutInfoForPet = () => {
   const { t, i18n } = useTranslation();
+  const { petInfo, setPetInfo } = useContext(PetInfoContext);
+
   const [selectedGender, setSelectedGender] = useState("");
   const [backgroundImage, setBackgroundImage] = useState(null);
   const [petName, setPetName] = useState("");
   const fileInputRef = useRef(null);
 
-  // LocalStorage-dan məlumatı oxumaq
   useEffect(() => {
     const savedData = JSON.parse(localStorage.getItem("petInfo"));
     if (savedData) {
       setPetName(savedData.name || "");
       setSelectedGender(savedData.gender || "");
       setBackgroundImage(savedData.image || null);
+      setPetInfo(savedData);
     }
-  }, []);
+  }, [setPetInfo]);
 
   const handleChange = (event) => {
     setSelectedGender(event.target.value);
@@ -43,12 +46,13 @@ const AboutInfoForPet = () => {
   };
 
   const handleSave = () => {
-    const petInfo = {
+    const updatedPetInfo = {
       name: petName,
       gender: selectedGender,
       image: backgroundImage,
     };
-    localStorage.setItem("petInfo", JSON.stringify(petInfo));
+    setPetInfo(updatedPetInfo);
+    localStorage.setItem("petInfo", JSON.stringify(updatedPetInfo));
     alert(
       i18n.language === "az"
         ? "Məlumatlar yadda saxlanıldı"
@@ -59,7 +63,8 @@ const AboutInfoForPet = () => {
   const handleReset = () => {
     setPetName("");
     setSelectedGender("");
-    setBackgroundImage("");
+    setBackgroundImage(null);
+    setPetInfo(null);
   };
 
   return (
