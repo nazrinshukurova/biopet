@@ -23,7 +23,7 @@ import {
   Manat,
   Wish,
   Wished,
-} from "../../assets/Svg";
+} from "../../assets/icons/Svg.jsx";
 import RangeSlider from "../../assets/sliders/RangeSlider";
 import IOSSwitch from "../../assets/sliders/Toggle";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";

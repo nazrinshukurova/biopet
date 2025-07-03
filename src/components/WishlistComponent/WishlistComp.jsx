@@ -5,7 +5,7 @@ import {
   Delete,
   EmptyStarSvg,
   FullFilledStarSvg,
-} from "../../assets/Svg";
+} from "../../assets/icons/Svg.jsx";
 import AddToCart, { ClearAll } from "../../shared/Buttons/Buttons";
 import { useWishlist } from "../../context/WishlistContext";
 import { useTranslation } from "react-i18next";

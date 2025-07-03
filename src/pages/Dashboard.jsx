@@ -32,7 +32,7 @@ import { useAuth } from "../context/AuthContext";
 import { supabase } from "../../client";
 import { useProducts } from "../context/ProductContext";
 import moment from "moment";
-import logo from "../assets/Svg/biopet_blue_logo.svg";
+import logo from "../assets/svg/biopet_blue_logo.svg";
 import { Link } from "react-router-dom";
 import { Checkbox } from "@mui/material";
 
@@ -1485,7 +1485,7 @@ const Dashboard = () => {
               <Form.Item
                 name="isDiscount"
                 label="Is Discount?"
-                rules={[{  message: "Please select yes or no" }]}
+                rules={[{ message: "Please select yes or no" }]}
               >
                 <Radio.Group>
                   <Radio value={true}>Yes</Radio>
@@ -1550,7 +1550,7 @@ const Dashboard = () => {
               <Form.Item
                 name="AgeRu"
                 label="AgeRu"
-                rules={[{  message: "AgeRu is required" }]}
+                rules={[{ message: "AgeRu is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1582,9 +1582,7 @@ const Dashboard = () => {
               <Form.Item
                 name="BaytarlıqPəhriziAz"
                 label="BaytarlıqPəhriziAz"
-                rules={[
-                  {  message: "BaytarlıqPəhriziAz is required" },
-                ]}
+                rules={[{ message: "BaytarlıqPəhriziAz is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1600,9 +1598,7 @@ const Dashboard = () => {
               <Form.Item
                 name="BaytarlıqPəhriziRu"
                 label="BaytarlıqPəhriziRu"
-                rules={[
-                  {  message: "BaytarlıqPəhriziRu is required" },
-                ]}
+                rules={[{ message: "BaytarlıqPəhriziRu is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1610,7 +1606,7 @@ const Dashboard = () => {
               <Form.Item
                 name="XəstəlikRu"
                 label="XəstəlikRu"
-                rules={[{  message: "XəstəlikRu is required" }]}
+                rules={[{ message: "XəstəlikRu is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1669,7 +1665,7 @@ const Dashboard = () => {
               <Form.Item
                 name="AromaAz"
                 label="AromaAz"
-                rules={[{  message: "AromaAz is required" }]}
+                rules={[{ message: "AromaAz is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1685,9 +1681,7 @@ const Dashboard = () => {
               <Form.Item
                 name="TypeOfSandAz"
                 label="TypeOfSandAz"
-                rules={[
-                  {  message: "TypeOfSandAz is required" },
-                ]}
+                rules={[{ message: "TypeOfSandAz is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1703,7 +1697,7 @@ const Dashboard = () => {
               <Form.Item
                 name="AromaRu"
                 label="AromaRu"
-                rules={[{message: "AromaRu is required" }]}
+                rules={[{ message: "AromaRu is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1711,9 +1705,7 @@ const Dashboard = () => {
               <Form.Item
                 name="TypeOfSandRu"
                 label="TypeOfSandRu"
-                rules={[
-                  {message: "TypeOfSandRu is required" },
-                ]}
+                rules={[{ message: "TypeOfSandRu is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1721,9 +1713,7 @@ const Dashboard = () => {
               <Form.Item
                 name="CookieTypeAz"
                 label="CookieTypeAz"
-                rules={[
-                  {  message: "CookieTypeAz is required" },
-                ]}
+                rules={[{ message: "CookieTypeAz is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1731,9 +1721,7 @@ const Dashboard = () => {
               <Form.Item
                 name="CookieTypeRu"
                 label="CookieTypeRu"
-                rules={[
-                  { message: "CookieTypeRu is required" },
-                ]}
+                rules={[{ message: "CookieTypeRu is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1741,7 +1729,7 @@ const Dashboard = () => {
               <Form.Item
                 name="DogSizeAz"
                 label="DogSizeAz"
-                rules={[{  message: "DogSizeAz is required" }]}
+                rules={[{ message: "DogSizeAz is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1749,7 +1737,7 @@ const Dashboard = () => {
               <Form.Item
                 name="DogSizeRu"
                 label="DogSizeRu"
-                rules={[{  message: "DogSizeRu is required" }]}
+                rules={[{ message: "DogSizeRu is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1757,7 +1745,7 @@ const Dashboard = () => {
               <Form.Item
                 name="ColorAz"
                 label="ColorAz"
-                rules={[{  message: "ColorAz is required" }]}
+                rules={[{ message: "ColorAz is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1765,7 +1753,7 @@ const Dashboard = () => {
               <Form.Item
                 name="ColorRu"
                 label="ColorRu"
-                rules={[{  message: "ColorRu is required" }]}
+                rules={[{ message: "ColorRu is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1775,7 +1763,6 @@ const Dashboard = () => {
                 label="TypeOfAccessoriesAz"
                 rules={[
                   {
-                    
                     message: "TypeOfAccessoriesAz is required",
                   },
                 ]}
@@ -1788,7 +1775,6 @@ const Dashboard = () => {
                 label="TypeOfCareProductsAz"
                 rules={[
                   {
-                    
                     message: "TypeOfCareProductsAz is required",
                   },
                 ]}
@@ -1799,7 +1785,7 @@ const Dashboard = () => {
               <Form.Item
                 name="ProductSize"
                 label="ProductSize"
-                rules={[{  message: "ProductSize is required" }]}
+                rules={[{ message: "ProductSize is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1809,7 +1795,6 @@ const Dashboard = () => {
                 label="TypeOfAccessoriesRu"
                 rules={[
                   {
-                    
                     message: "TypeOfAccessoriesRu is required",
                   },
                 ]}
@@ -1840,9 +1825,7 @@ const Dashboard = () => {
               <Form.Item
                 name="IngredientsKey"
                 label="IngredientsKey"
-                rules={[
-                  {  message: "IngredientsKey is required" },
-                ]}
+                rules={[{ message: "IngredientsKey is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1868,7 +1851,7 @@ const Dashboard = () => {
               <Form.Item
                 name="AgeKey"
                 label="AgeKey"
-                rules={[{  message: "AgeKey is required" }]}
+                rules={[{ message: "AgeKey is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1884,7 +1867,7 @@ const Dashboard = () => {
               <Form.Item
                 name="BrandKey"
                 label="BrandKey"
-                rules={[{  message: "BrandKey is required" }]}
+                rules={[{ message: "BrandKey is required" }]}
               >
                 <Input />
               </Form.Item>
@@ -1936,10 +1919,7 @@ const Dashboard = () => {
               >
                 <InputNumber min={0} style={{ width: "100%" }} />
               </Form.Item>
-              <Form.Item
-                name="BrandAz"
-                label="BrandAz"
-              >
+              <Form.Item name="BrandAz" label="BrandAz">
                 <Input />
               </Form.Item>
               <Form.Item

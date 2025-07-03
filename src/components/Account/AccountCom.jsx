@@ -4,8 +4,6 @@ import { useTranslation } from "react-i18next";
 import { FinishTheOrder } from "../../shared/Buttons/Buttons";
 import { useAuth } from "../../context/AuthContext";
 import { supabase } from "../../../client";
-import { AccountHeart, AccountLocation, Logout } from "../../assets/Svg";
-import { Link } from "react-router-dom";
 import LeftProfile from "../LeftProfile/LeftProfile";
 
 const AccountCom = () => {

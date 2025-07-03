@@ -13,7 +13,12 @@ import { IoIosArrowDown } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useBasket } from "../../context/AddToBasket";
-import { DarkMode, LightMode, Manat, RedManat } from "../../assets/Svg";
+import {
+  DarkMode,
+  LightMode,
+  Manat,
+  RedManat,
+} from "../../assets/icons/Svg.jsx";
 import { FinishTheOrder, ViewBasket } from "../Buttons/Buttons";
 import { useWishlist } from "../../context/WishlistContext";
 import { useAuth } from "../../context/AuthContext";

@@ -10,7 +10,7 @@ import {
   Location,
   Money,
   Percent,
-} from "../../assets/Svg";
+} from "../../assets/icons/Svg.jsx";
 import { useBasket } from "../../context/AddToBasket";
 import {
   MapContainer,
@@ -390,7 +390,7 @@ const CheckoutComp = () => {
               </div>
             )}
 
-            <Link to="/payment" style={{textDecoration:"none"}}>
+            <Link to="/payment" style={{ textDecoration: "none" }}>
               {" "}
               <div className={styles.payment_button}>
                 <FinishTheOrder

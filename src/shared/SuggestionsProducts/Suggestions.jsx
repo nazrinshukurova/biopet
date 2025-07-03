@@ -1,6 +1,6 @@
 import React from "react";
 import { useProducts } from "../../context/ProductContext";
-import { EmptyStarSvg, FullFilledStarSvg } from "../../assets/Svg";
+import { EmptyStarSvg, FullFilledStarSvg } from "../../assets/icons/Svg.jsx";
 import { useNavigate } from "react-router-dom";
 import AddToCart from "../Buttons/Buttons";
 import styles from "./Suggestions.module.css";

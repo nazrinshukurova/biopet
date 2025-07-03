@@ -1,5 +1,12 @@
 import { useTranslation } from "react-i18next";
-import { Car, Cart2, Dashed, Delete, RedManat, Shopping } from "../assets/Svg";
+import {
+  Car,
+  Cart2,
+  Dashed,
+  Delete,
+  RedManat,
+  Shopping,
+} from "../assets/icons/Svg.jsx";
 import { useBasket } from "../context/AddToBasket";
 import styles from "../styles/Basket.module.css";
 import { HiOutlineMinusSm, HiOutlineTruck } from "react-icons/hi";
@@ -37,8 +44,7 @@ const Basket = () => {
     }
   };
 
-  
-  console.log(basketItems)
+  console.log(basketItems);
 
   if (!basketItems || basketItems.length === 0) {
     return (
@@ -65,7 +71,7 @@ const Basket = () => {
     );
   }
 
-console.log(basketItems)
+  console.log(basketItems);
 
   return (
     <>

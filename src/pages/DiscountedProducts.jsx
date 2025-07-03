@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useProducts } from "../context/ProductContext";
-import { EmptyStarSvg, FullFilledStarSvg } from "../assets/Svg";
+import { EmptyStarSvg, FullFilledStarSvg } from "../assets/icons/Svg.jsx";
 import { useTranslation } from "react-i18next";
 import styles from "../styles/Discounted.module.css";
 import Footer from "../shared/Footer/Footer";

@@ -1,6 +1,11 @@
 import React from "react";
 import styles from "./LeftProfile.module.css";
-import { AccountHeart, AccountLocation, Ball, Logout } from "../../assets/Svg";
+import {
+  AccountHeart,
+  AccountLocation,
+  Ball,
+  Logout,
+} from "../../assets/icons/Svg.jsx";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";

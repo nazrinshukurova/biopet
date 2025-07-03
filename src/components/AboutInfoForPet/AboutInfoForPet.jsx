@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "./AboutInfoForPet.module.css";
 import LeftProfile from "../LeftProfile/LeftProfile";
 import { useTranslation } from "react-i18next";
-import { BigPaw, Camera } from "../../assets/Svg";
+import { BigPaw, Camera } from "../../assets/icons/Svg.jsx";
 import Radio from "@mui/material/Radio";
 import { ClearAll, SaveMemory } from "../../shared/Buttons/Buttons";
 

@@ -1,5 +1,3 @@
-import React from "react";
-import image from "../../assets/svg/car.svg";
 import styles from "./Service.module.css";
 
 const Service = ({ src, text, title }) => {

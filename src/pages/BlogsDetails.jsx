@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { supabase } from "../../client";
 import styles from "../styles/BlogsDetails.module.css";
-import { Date, View } from "../assets/Svg";
+import { Date, View } from "../assets/icons/Svg.jsx";
 import Footer from "../shared/Footer/Footer";
 
 const BlogDetails = () => {

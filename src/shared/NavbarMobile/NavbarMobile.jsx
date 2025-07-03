@@ -16,7 +16,7 @@ import { useBasket } from "../../context/AddToBasket";
 import { useWishlist } from "../../context/WishlistContext";
 import { useTheme } from "../../context/ThemeContext";
 import { useProducts } from "../../context/ProductContext";
-import { DarkMode, LightMode } from "../../assets/Svg";
+import { DarkMode, LightMode } from "../../assets/icons/Svg.jsx";
 
 import Dropdown from "../Dropdown/Dropdown";
 import SearchResults from "../../components/SearchResults/SearchResults";

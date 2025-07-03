@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import styles from "./Buttons.module.css";
-import { Cart2 } from "../../assets/Svg";
+import { Cart2 } from "../../assets/icons/Svg";
 import { useBasket } from "../../context/AddToBasket";
 import { Link } from "react-router-dom";
 

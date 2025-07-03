@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./AddPet.module.css";
 import LeftProfile from "../LeftProfile/LeftProfile";
-import { Plus } from "../../assets/Svg";
+import { Plus } from "../../assets/icons/Svg.jsx";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
@@ -9,7 +9,7 @@ const AddPet = () => {
   const { t, i18n } = useTranslation();
 
   return (
-    <div  className={styles.profile}>
+    <div className={styles.profile}>
       <div className={styles.profile_menu_container}>
         <LeftProfile />
       </div>

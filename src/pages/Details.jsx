@@ -8,7 +8,7 @@ import {
   HalfStarSvg,
   Heart,
   Info,
-} from "../assets/Svg";
+} from "../assets/icons/Svg.jsx";
 import Footer from "../shared/Footer/Footer";
 import AddToCart from "../shared/Buttons/Buttons";
 import { useProducts } from "../context/ProductContext"; // düz yol ver
@@ -57,7 +57,7 @@ const Details = () => {
 
   const { addToBasket } = useBasket();
 
-  const {addToWishlist}=useWishlist()
+  const { addToWishlist } = useWishlist();
 
   console.log(product.id, "DETAILS");
 
@@ -228,7 +228,10 @@ const Details = () => {
               <div className={styles.button_and_heart}>
                 <AddToCart onClick={() => addToBasket(product)} />
 
-                <div onClick={()=>addToWishlist(product.id)} className={styles.view_like}>
+                <div
+                  onClick={() => addToWishlist(product.id)}
+                  className={styles.view_like}
+                >
                   <Heart />
                 </div>
               </div>

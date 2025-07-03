@@ -1,5 +1,5 @@
 import { t } from "i18next";
-import { Check, Date, Gift, Paw, View } from "../../assets/Svg";
+import { Check, Date, Gift, Paw, View } from "../../assets/icons/Svg.jsx";
 import styles from "./Reusable.module.css";
 import { useTranslation } from "react-i18next";
 import image2 from "../../assets/images/home/categoriesİtem/heyvan-yetisdiren-satan-biopet-sablon-removebg-preview.png";
@@ -55,7 +55,10 @@ export const BonusPopUp = ({ bonus }) => {
           <div className={styles.bonus_popup}>
             <img style={{ width: "100px", height: "100px" }} src={image2}></img>
             <div className={styles.paw_and_text}>
-              <p>Siz {bonus} <Gift/> bonus qazandınız</p> <Paw />
+              <p>
+                Siz {bonus} <Gift /> bonus qazandınız
+              </p>{" "}
+              <Paw />
             </div>
           </div>
         </div>

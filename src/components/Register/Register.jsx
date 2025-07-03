@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Register.module.css";
 import { useTranslation } from "react-i18next";
-import { Facebook, Google } from "../../assets/Svg";
 import Footer from "../../shared/Footer/Footer";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
