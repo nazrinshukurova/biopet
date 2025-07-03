@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import styles from "./PickAnimal.module.css";
 import LeftProfile from "../LeftProfile/LeftProfile";
 import { useTranslation } from "react-i18next";
-import dog from "../../assets/images/home/categoriesİtem/dog.png";
-import cat from "../../assets/images/home/categoriesİtem/cat.png";
-import bird from "../../assets/images/home/categoriesİtem/bird.png";
-import rabbit from "../../assets/images/home/categoriesİtem/rabbit.png";
+import dog from "../../../public/categoriesİtem/dog.png";
+import cat from "../../../public/categoriesİtem/cat.png";
+import bird from "../../../public/categoriesİtem/bird.png";
+import rabbit from "../../../public/categoriesİtem/rabbit.png";
 import { SaveMemory } from "../../shared/Buttons/Buttons";
 import { Link } from "react-router-dom";
 
@@ -66,7 +66,10 @@ const PickAnimal = () => {
             </div>
           </div>
           <div>
-            <Link to="/infopet" style={{ textDecoration: "none", color: "1d2123" }}>
+            <Link
+              to="/infopet"
+              style={{ textDecoration: "none", color: "1d2123" }}
+            >
               <SaveMemory disabled={!selectedAnimal || selectedAnimal === ""} />
             </Link>
           </div>

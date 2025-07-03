@@ -2,7 +2,7 @@ import { t } from "i18next";
 import { Check, Date, Gift, Paw, View } from "../../assets/icons/Svg.jsx";
 import styles from "./Reusable.module.css";
 import { useTranslation } from "react-i18next";
-import image2 from "../../assets/images/home/categoriesİtem/heyvan-yetisdiren-satan-biopet-sablon-removebg-preview.png";
+import image2 from "../../../public/categoriesİtem/heyvan-yetisdiren-satan-biopet-sablon-removebg-preview.png";
 
 export const Blog = ({ src, title, date, view }) => {
   return (

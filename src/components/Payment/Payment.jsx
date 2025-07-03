@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Payment.module.css";
-import image1 from "../../assets/images/home/categoriesİtem/HppImage-Banner-Flex.png";
-import image2 from "../../assets/images/home/categoriesİtem/HppImage-Logo-Flex.png";
+import image1 from "../../../public/categoriesİtem/HppImage-Banner-Flex.png";
+import image2 from "../../../public/categoriesİtem/HppImage-Logo-Flex.png";
 import { useTranslation } from "react-i18next";
 import { useBasket } from "../../context/AddToBasket";
 import { PayButton } from "../../shared/Buttons/Buttons";
 import { BonusPopUp, SuccesAlert } from "../../shared/ReusableItems/Reusable";
-import visa from "../../assets/images/home/categoriesİtem/visa.png";
-import idCheck from "../../assets/images/home/categoriesİtem/idcheck.png";
+import visa from "../../../public/categoriesİtem/visa.png";
+import idCheck from "../../../public/categoriesİtem/idcheck.png";
 import Confetti from "react-confetti";
 import { useWindowSize } from "@react-hook/window-size";
 
