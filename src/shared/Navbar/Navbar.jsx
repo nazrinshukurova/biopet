@@ -349,6 +349,15 @@ const Navbar = ({ lang }) => {
                 {t("about_title")}
               </Link>
             </li>
+            <li>
+              <Link
+                style={{ textDecoration: "none", color: "#1d2123" }}
+                className={styles.link}
+                to="/contact"
+              >
+                {t("contact_title")}
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
