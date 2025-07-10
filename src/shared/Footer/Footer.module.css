@@ -42,8 +42,13 @@
   transition: color 0.3s;
 }
 
-.linkItem:hover {
+.linkItem a:hover {
   color: var(--footer-text);
+}
+
+.linkItem a {
+  text-decoration: none;
+  color: var(--link-color);
 }
 
 .contactBox {

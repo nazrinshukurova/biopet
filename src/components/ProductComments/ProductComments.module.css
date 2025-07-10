@@ -1,0 +1,140 @@
+.comments_wrapper {
+  padding: 1rem;
+
+  border-radius: 12px;
+}
+
+.comment_card {
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.comment_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.comment_form {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment_form textarea {
+  resize: vertical;
+  padding: 0.5rem;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  min-height: 80px;
+}
+
+.comment_actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  align-items: center;
+}
+
+.comment_actions select,
+.comment_actions button {
+  padding: 0.4rem 1rem;
+  font-size: 16px;
+  border-radius: 6px;
+}
+
+.comment_container {
+  border-radius: 2px;
+  border: 1px solid #ececec;
+  display: flex;
+  padding: 14px 8px;
+  margin: 0;
+  outline: none;
+  width: 326px;
+  max-height: 50px;
+}
+
+textarea {
+  resize: none;
+  outline: none;
+}
+
+.comment_title {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 36px;
+  margin-bottom: 20px;
+}
+
+.commentsSection {
+  background-color: var(--container-bg);
+  color: var(--subtext);
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.comment {
+  padding: 16px 20px 20px;
+  border-radius: 12px;
+  background-color: #fff;
+  margin-bottom: 12px;
+  width: 600px;
+  max-width: 700px;
+}
+
+.stars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.date_and_star {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #9c9c9c;
+}
+
+.top_of_comment {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #1d2123;
+}
+
+@media (max-width: 950px) {
+  .commentsSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 650px) {
+  .comment{
+    width: 400px;
+  }
+}
+
+@media (max-width: 430px) {
+  .comment{
+    width: 350px;
+  }
+}

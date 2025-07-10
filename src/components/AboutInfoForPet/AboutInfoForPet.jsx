@@ -6,6 +6,8 @@ import { BigPaw, Camera } from "../../assets/icons/Svg.jsx";
 import Radio from "@mui/material/Radio";
 import { ClearAll, SaveMemory } from "../../shared/Buttons/Buttons";
 import PetInfoContext from "../../context/PetInfoContext"; // Yolunu özünə görə düzəlt
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AboutInfoForPet = () => {
   const { t, i18n } = useTranslation();
@@ -53,7 +55,8 @@ const AboutInfoForPet = () => {
     };
     setPetInfo(updatedPetInfo);
     localStorage.setItem("petInfo", JSON.stringify(updatedPetInfo));
-    alert(
+
+    toast.success(
       i18n.language === "az"
         ? "Məlumatlar yadda saxlanıldı"
         : "Данные сохранены"
@@ -65,10 +68,15 @@ const AboutInfoForPet = () => {
     setSelectedGender("");
     setBackgroundImage(null);
     setPetInfo(null);
+
+    toast.info(
+      i18n.language === "az" ? "Məlumatlar sıfırlandı" : "Данные сброшены"
+    );
   };
 
   return (
     <div>
+      <ToastContainer position="top-right" autoClose={3000} />
       <div className={styles.profile}>
         <div className={styles.profile_menu_container}>
           <LeftProfile />

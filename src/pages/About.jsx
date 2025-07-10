@@ -2,6 +2,8 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import Footer from "../shared/Footer/Footer";
 import Suggestions from "../shared/SuggestionsProducts/Suggestions";
+import { Link } from "react-router-dom";
+import { Breadcrumbs } from "../assets/icons/Svg";
 
 const About = () => {
   const { t, i18n } = useTranslation();
@@ -16,6 +18,18 @@ const About = () => {
           color: "var(--textColor)",
         }}
       >
+        <div className="breadcrumbs">
+          <Link to="/" className="breadcrumb_link">
+            Biopet
+          </Link>{" "}
+          <Breadcrumbs />
+          <span className="breadcrumb_current">
+            {i18n.language === "az"
+              ? "Haqqımızda"
+              : "О компании"}
+          </span>
+        </div>
+
         <div className="about">{t("about_title")}</div>
 
         <div className="about_text_box">

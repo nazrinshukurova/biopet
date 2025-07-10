@@ -142,6 +142,20 @@ const Navbar = ({ lang }) => {
                             className={styles.user_name}
                           >{`${user.name} ${user.surname}`}</div>
                         </Link>
+                        {user?.email === "nazrins@gmail.com" && (
+                          <div>
+                            <Link
+                              style={{
+                                textDecoration: "none",
+                                color: "#fff",
+                              }}
+                              className={styles.user_name}
+                              to="/dashboard"
+                            >
+                              Dashboard
+                            </Link>
+                          </div>
+                        )}
                         <div
                           className={styles.logout}
                           onClick={logout}
@@ -285,7 +299,7 @@ const Navbar = ({ lang }) => {
                 <span>{totalQuantity}</span>
               </div>
             </div>
-            <div onClick={toggleTheme}>
+            <div style={{ cursor: "pointer" }} onClick={toggleTheme}>
               {theme === "dark" ? <LightMode /> : <DarkMode />}
             </div>
           </div>
@@ -302,17 +316,7 @@ const Navbar = ({ lang }) => {
                 {t("navbarLinks.Məhsullar")}
               </Link>
             </li>
-            {user?.email === "nazrins@gmail.com" && (
-              <li>
-                <Link
-                  style={{ textDecoration: "none", color: "#1d2123" }}
-                  className={styles.link}
-                  to="/dashboard"
-                >
-                  Dashboard
-                </Link>
-              </li>
-            )}
+
             <li>
               <Link
                 style={{ textDecoration: "none", color: "#1d2123" }}

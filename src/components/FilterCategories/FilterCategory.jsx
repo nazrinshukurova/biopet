@@ -15,6 +15,7 @@ import {
 } from "../../constants/filterOptions";
 import FilterSection from "../SelectedProducts/FilterSection";
 import {
+  Breadcrumbs,
   EmptyStarSvg,
   ExternalLink,
   FilterSvg,
@@ -355,6 +356,7 @@ const FilterCategory = () => {
   const {
     addToWishlist,
     wishlist,
+    removeFromWishlist,
     clearWishlist,
     isInWishlist,
     loadingWishlistId,
@@ -423,8 +425,18 @@ const FilterCategory = () => {
     handleResetSearch();
   };
 
+
   return (
-    <>
+    <div className={styles.products_container}>
+      <div className="breadcrumbs">
+        <Link to="/" className="breadcrumb_link">
+          Biopet
+        </Link>{" "}
+        <Breadcrumbs />
+        <span className="breadcrumb_current">
+          {i18n.language === "az" ? "Məhsullar" : "Продукция"}
+        </span>
+      </div>
       <div className={styles.common_container}>
         {showSuccessAlert && (
           <SuccesAlert
@@ -480,6 +492,7 @@ const FilterCategory = () => {
               </div>
             ))}
           </div>
+
 
           {renderFilter(
             "animalTypes.title",
@@ -690,7 +703,7 @@ const FilterCategory = () => {
         <div className={styles.select_and_result}>
           <div className={styles.select_sort_options}>
             <SortSelect products={filteredData} onSorted={setFilteredData} />
-            <div classname={styles.filters_button_box}>
+            <div className={styles.filters_button_box}>
               {" "}
               <div
                 className={styles.mobile_filter_button}
@@ -745,7 +758,12 @@ const FilterCategory = () => {
                     >
                       <div
                         style={{ cursor: "pointer" }}
-                        onClick={() => addToWishlist(item)}
+                        onClick={
+                          () =>
+                            isInWishlist(item.id)
+                              ? removeFromWishlist(item.id) // əgər varsa, çıxar
+                              : addToWishlist(item) // yoxdursa, əlavə et
+                        }
                       >
                         {isInWishlist(item.id) ? <Wished /> : <Wish />}
                       </div>
@@ -794,7 +812,7 @@ const FilterCategory = () => {
                     )}
                   </div>
 
-                  <AddToCart onClick={() => addToBasket(item)} />
+                  <AddToCart item={item} onClick={() => addToBasket(item)} />
                 </div>
               ))
             )}
@@ -823,7 +841,7 @@ const FilterCategory = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

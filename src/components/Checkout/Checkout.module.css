@@ -345,3 +345,63 @@
     padding: 0 12px;
   }
 }
+
+.promocode_wrapper {
+  margin-top: 16px;
+}
+
+.promocode_link {
+  color: #e21e4c;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.promocode_input_area {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.promocode_input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.promocode_button {
+  background-color: #e21e4c;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.promo_error {
+  color: red;
+  font-size: 14px;
+}
+
+.promo_success {
+  color: green;
+  font-size: 14px;
+}
+
+.promocode_link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.promocode_input {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+  color: #1d2123;
+  font-size: 12px;
+  padding: 8px 12px;
+  -webkit-appearance: none;
+  outline: none;
+}

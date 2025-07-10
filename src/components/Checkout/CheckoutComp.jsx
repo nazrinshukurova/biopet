@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./Checkout.module.css";
 import { useTranslation } from "react-i18next";
 import { HiOutlineTruck } from "react-icons/hi";
+import { PiTagChevron } from "react-icons/pi";
 import {
   Card,
   Checked,
@@ -28,6 +29,7 @@ import { FinishTheOrder, SaveMemory } from "../../shared/Buttons/Buttons";
 import { SuccesAlert } from "../../shared/ReusableItems/Reusable";
 import birbank from "../../assets/Brands/birbank.png";
 import { Link } from "react-router-dom";
+import { supabase } from "../../../client.js";
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -73,6 +75,37 @@ const LocationMarker = ({ setSelectedAddress }) => {
 const CheckoutComp = () => {
   const { t, i18n } = useTranslation();
   const { totalPrice, totalDiscount } = useBasket();
+
+  const [showPromoInput, setShowPromoInput] = useState(false);
+  const [promoCode, setPromoCode] = useState("");
+  const [promoApplied, setPromoApplied] = useState(false);
+  const [promoError, setPromoError] = useState("");
+  const [discountFromPromo, setDiscountFromPromo] = useState(0);
+
+  const handleApplyPromo = async () => {
+    setPromoError("");
+    let { data, error } = await supabase
+      .from("Promocode")
+      .select("*")
+      .eq("name", promoCode.trim())
+      .maybeSingle();
+
+    if (error || !data) {
+      setPromoError(t("invalid_promocode"));
+      setPromoApplied(false);
+      setDiscountFromPromo(0);
+      return;
+    }
+
+    const { percent } = data;
+
+    let calculatedDiscount = 0;
+
+    calculatedDiscount = (totalPrice / 100) * percent;
+
+    setDiscountFromPromo(calculatedDiscount);
+    setPromoApplied(true);
+  };
 
   const [selectedAddress, setSelectedAddress] = useState("");
   const [formData, setFormData] = useState({
@@ -391,9 +424,9 @@ const CheckoutComp = () => {
             )}
 
             <Link to="/payment" style={{ textDecoration: "none" }}>
-              {" "}
               <div className={styles.payment_button}>
                 <FinishTheOrder
+                  disabled={!selectedMethod} // burada yoxlayırsan
                   text={
                     i18n.language === "az"
                       ? "Ödənişi təsdiqlə"
@@ -423,7 +456,7 @@ const CheckoutComp = () => {
 
         <div className={styles.order_total}>
           <div>{t("total_discount")}</div>
-          <div>-{totalDiscount.toFixed(2)} man</div>
+          <div>-{(totalDiscount + discountFromPromo).toFixed(2)} man</div>
         </div>
 
         <Dashed style={{ margin: "24px 0 28px", paddingBottom: "32px" }} />
@@ -439,10 +472,48 @@ const CheckoutComp = () => {
 
         <div className={styles.order_total}>
           <div>{t("total")}</div>
-          <div>{(totalPrice - totalDiscount).toFixed(2)} man</div>
+          <div>
+            {" "}
+            {(totalPrice - totalDiscount - discountFromPromo).toFixed(2)} man
+          </div>
         </div>
 
         <Dashed style={{ margin: "24px 28px", paddingBottom: "32px" }} />
+        <div className={styles.promocode_wrapper}>
+          {!showPromoInput ? (
+            <div
+              onClick={() => setShowPromoInput(true)}
+              className={styles.promocode_link}
+            >
+              <PiTagChevron style={{ marginRight: 6 }} />
+              {t("have_promocode")}
+            </div>
+          ) : (
+            <div className={styles.promocode_input_area}>
+              <input
+                type="text"
+                placeholder={t("enter_promocode")}
+                value={promoCode}
+                onChange={(e) => setPromoCode(e.target.value)}
+                className={styles.promocode_input}
+              />
+              <button
+                onClick={handleApplyPromo}
+                className={styles.promocode_button}
+              >
+                {t("apply")}
+              </button>
+              {promoError && (
+                <div className={styles.promo_error}>{promoError}</div>
+              )}
+              {promoApplied && (
+                <div className={styles.promo_success}>
+                  {t("discount_applied")}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
 
         <div className={styles.delivery_policy}>{t("delivery_policy")}</div>
       </div>

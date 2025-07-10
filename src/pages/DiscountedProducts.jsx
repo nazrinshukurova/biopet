@@ -1,20 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useProducts } from "../context/ProductContext";
-import { EmptyStarSvg, FullFilledStarSvg } from "../assets/icons/Svg.jsx";
+import {
+  Breadcrumbs,
+  EmptyStarSvg,
+  FullFilledStarSvg,
+  Wish,
+  Wished,
+} from "../assets/icons/Svg.jsx";
 import { useTranslation } from "react-i18next";
 import styles from "../styles/Discounted.module.css";
 import Footer from "../shared/Footer/Footer";
 import AddToCart from "../shared/Buttons/Buttons";
 import { useBasket } from "../context/AddToBasket";
+import { useWishlist } from "../context/WishlistContext.jsx";
+import { Breadcrumb } from "antd";
 
 const DiscountedProducts = () => {
   const { products, loading } = useProducts();
   const [discountedProducts, setDiscountedProducts] = useState([]);
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
-
   const { addToBasket } = useBasket();
+  const { isInWishlist, removeFromWishlist, addToWishlist } = useWishlist();
 
   useEffect(() => {
     if (products?.length) {
@@ -42,7 +50,19 @@ const DiscountedProducts = () => {
   }
 
   return (
-    <div>
+    <div className={styles.discounted_products_container}>
+      {/* Breadcrumbs */}
+      <div className={styles.breadcrumbs}>
+        <Link to="/" className={styles.breadcrumb_link}>
+          Biopet
+        </Link>{" "}
+        <Breadcrumbs />
+        <span className={styles.breadcrumb_current}>
+          {i18n.language === "az" ? "Endirimlər" : "Скидки"}
+        </span>
+      </div>
+
+      {/* Product List */}
       <div className={styles.filtered_result}>
         {discountedProducts.length === 0 ? (
           <div className={styles.empty_message_box}>
@@ -59,14 +79,14 @@ const DiscountedProducts = () => {
                 style={{ position: "relative" }}
                 className={styles.item_image}
               >
-                {item.isDiscount ? (
+                {item.isDiscount && (
                   <div
                     style={{ position: "absolute", left: "10px", top: "10px" }}
                     className={styles.discount_box}
                   >
                     -{item.PercentOfDiscount}%
                   </div>
-                ) : null}
+                )}
                 <img
                   height="172px"
                   width="172px"
@@ -74,6 +94,23 @@ const DiscountedProducts = () => {
                   alt={item.NameAz}
                 />
               </div>
+
+              <div
+                style={{
+                  cursor: "pointer",
+                  position: "absolute",
+                  right: "14px",
+                  top: "17px",
+                }}
+                onClick={() =>
+                  isInWishlist(item.id)
+                    ? removeFromWishlist(item.id)
+                    : addToWishlist(item)
+                }
+              >
+                {isInWishlist(item.id) ? <Wished /> : <Wish />}
+              </div>
+
               <div className={styles.item_desc}>
                 <div className={styles.price_container}>
                   {item?.isDiscount ? (
@@ -102,6 +139,7 @@ const DiscountedProducts = () => {
                     <p className={styles.prices}>{item.Price.toFixed(2)} AZN</p>
                   )}
                 </div>
+
                 <div
                   onClick={() =>
                     navigate(`/product/${item.id}`, {
@@ -112,6 +150,7 @@ const DiscountedProducts = () => {
                 >
                   {i18n.language === "az" ? item.NameAz : item.NameRu}
                 </div>
+
                 <div className={styles.rating}>
                   {item?.Rating === 0 ? (
                     <EmptyStarSvg />
@@ -120,6 +159,7 @@ const DiscountedProducts = () => {
                   )}
                   {item.Rating}
                 </div>
+
                 {item.Package && (
                   <div className={styles.item_package}>
                     {i18n.language === "az"
@@ -128,7 +168,8 @@ const DiscountedProducts = () => {
                   </div>
                 )}
               </div>
-              <AddToCart onClick={() => addToBasket(item)} />
+
+              <AddToCart item={item} onClick={() => addToBasket(item)} />
             </div>
           ))
         )}

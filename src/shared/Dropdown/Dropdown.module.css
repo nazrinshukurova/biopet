@@ -35,6 +35,7 @@
   display: block;
   color: #1d2123;
   font-size: 14px;
+  text-decoration: none !important;
 }
 
 .link_container {

@@ -12,6 +12,8 @@ import { useTranslation } from "react-i18next";
 import Footer from "../shared/Footer/Footer";
 import { BonusPopUp } from "../shared/ReusableItems/Reusable";
 import Suggestions from "../shared/SuggestionsProducts/Suggestions";
+import { Breadcrumbs } from "../assets/icons/Svg";
+import { Link } from "react-router-dom";
 
 const FAQ = () => {
   const [faq, setFAQ] = useState([]);
@@ -44,9 +46,21 @@ const FAQ = () => {
       <div
         style={{
           backgroundColor: "var(--container-bg)",
-          color: "var(--textColor)",padding:"20px"
+          color: "var(--textColor)",
+          padding: "20px",
         }}
       >
+        <div className={styles.breadcrumbs}>
+          <Link to="/" className={styles.breadcrumb_link}>
+            Biopet
+          </Link>{" "}
+          <Breadcrumbs />
+          <span className={styles.breadcrumb_current}>
+            {i18n.language === "az"
+              ? "Tez-tez soruşulan suallar"
+              : "Часто задаваемые вопросы"}
+          </span>
+        </div>
         <div className={styles.faqContainer}>
           <h2 className={styles.faqTitle}>
             {i18n.language === "az"

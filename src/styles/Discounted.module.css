@@ -6,7 +6,11 @@
   flex-wrap: wrap;
   max-width: 100%;
   background-color: var(--container-bg);
-  padding: 90px 0px;
+}
+
+.discounted_products_container {
+  background-color: var(--container-bg);
+  padding: 50px 0px;
 }
 
 .filtered_item {
@@ -309,7 +313,7 @@
 /* Böyük ekranlar (noutbuk və desktop) */
 @media (min-width: 901px) {
   .filtered_result {
-    padding: 90px 0px;
+    padding: 50px 0px;
     gap: 16px;
   }
 
@@ -323,4 +327,27 @@
     max-width: 217px;
     height: 217px;
   }
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 46px;
+}
+
+.breadcrumb_link {
+  color: #4f4f4f;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.breadcrumb_current {
+  margin-left: 10px;
+  color: #1d2123;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 14px;
 }

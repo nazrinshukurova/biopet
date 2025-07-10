@@ -274,5 +274,9 @@
     "message2": "email ünvanına göndərə, və ya",
     "message3": "qısa nömrəsinə zəng edərək bildirə bilərsiniz."
   },
-  "contact_title": "Əlaqə"
+  "contact_title": "Əlaqə",
+  "have_promocode": "Promokod varmı?",
+  "enter_promocode": "Promo kodu daxil edin",
+  "apply": "Tətbiq edin",
+  "discount_applied": "Endirim tətbiq olundu"
 }

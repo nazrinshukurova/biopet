@@ -407,3 +407,37 @@ input[type="number"]::-webkit-outer-spin-button {
   align-items: center;
   justify-content: center;
 }
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 46px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.breadcrumb_link {
+  color: #4f4f4f;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.breadcrumb_current {
+  margin-left: 10px;
+  color: #1d2123;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/* .ant-modal-root .ant-modal {
+  position: relative;
+  top: 50px;
+} */
+
+.ant-btn-variant-solid:hover{
+  background-color: #1b9b8e !important;
+}

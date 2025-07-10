@@ -81,3 +81,27 @@
     padding: 8px 14px;
   }
 }
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 46px;
+  padding-bottom: 50px;
+}
+
+.breadcrumb_link {
+  color: #4f4f4f;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.breadcrumb_current {
+  margin-left: 10px;
+  color: #1d2123;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 14px;
+}

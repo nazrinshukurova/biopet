@@ -5,8 +5,8 @@ export const EmptyStarSvg = () => {
     <div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="14"
-        height="14"
+        width="13"
+        height="13"
         fill="none"
       >
         <path
@@ -159,6 +159,23 @@ export const Heart = () => {
     </svg>
   );
 };
+
+export const DetailsHeart = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      width="20px"
+      height="20px"
+    >
+      <path
+        fill="#E21E4C"
+        d="M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8v-3.3c0-70.4 50-130.8 119.2-144 39.4-7.6 79.7 1.5 111.8 24.1 9 6.4 17.4 13.8 25 22.3 4.2-4.8 8.7-9.2 13.5-13.3 3.7-3.2 7.5-6.2 11.5-9 32.1-22.6 72.4-31.7 111.8-24.2C462 58.6 512 119.1 512 189.5v3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20-.1-.1c-23.1-25.9-58-37.7-92-31.2-46.6 8.9-80.2 49.5-80.2 96.9v3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268a102.7 102.7 0 0032.8-75.2v-3.3c0-47.3-33.6-88-80.1-96.9-34-6.5-69 5.4-92 31.2l-.1.1-.1.1-17.8 20c-.3.4-.7.7-1 1.1-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z"
+      />
+    </svg>
+  );
+};
+
 
 export const Google = () => {
   return (
@@ -888,9 +905,27 @@ export const FilterSvg = () => {
       <path
         d="M2.689 8.089a1.8 1.8 0 100-3.6 1.8 1.8 0 000 3.6zm.001-7.2v3.6m0 3.6v7.2m5.4-1.8a1.8 1.8 0 10-.001-3.6 1.8 1.8 0 000 3.6zm0-12.6v9m0 3.6v1.8m5.4-9.9a1.8 1.8 0 100-3.6 1.8 1.8 0 000 3.6zm-.002-4.5v.9m0 3.6v9.9"
         stroke="#1D2123"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const Breadcrumbs = () => {
+  return (
+    <svg
+      style={{ width: "8px", height: "10px" }}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 10 18"
+      fill="none"
+    >
+      <path
+        d="M1.25 16.714L8.75 9l-7.5-7.714"
+        stroke="#1D2123"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

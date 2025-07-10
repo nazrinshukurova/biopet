@@ -428,6 +428,7 @@
   align-items: center;
   justify-content: center;
   gap: 7px;
+  white-space: nowrap;
 }
 
 .user_name {
@@ -459,12 +460,11 @@
   background-size: contain;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 16px;
   z-index: 1200;
-  max-height: 102px;
+  min-height: 102px;
   width: 190px;
   transition: all 0.3s ease;
-  padding: 32px 24px;
+  padding: 20px 24px;
 }
 
 .search_box {

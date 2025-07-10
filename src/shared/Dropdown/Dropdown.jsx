@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import arrow from "../../assets/svg/arrow-right.svg";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Link } from "react-router-dom";
 
 const Dropdown = ({ visibility, setVisibility }) => {
   const { t, i18n } = useTranslation();
@@ -41,35 +42,44 @@ const Dropdown = ({ visibility, setVisibility }) => {
 
       <div className={styles.navbar_scroll}>
         <div className={styles.link_container}>
-          <div className={styles.link}>{t("navbarLinks.Pişiklər")}</div>
+          <Link className={styles.link} to="/products">
+            {t("navbarLinks.Məhsullar")}
+          </Link>
           <img className={styles.arrow} src={arrow} alt="arrow" />
         </div>
+
         <div className={styles.link_container}>
-          <div className={styles.link}>{t("navbarLinks.İtlər")}</div>
+          <Link className={styles.link} to="/blogs">
+            {t("navbarLinks.Bloqlar")}
+          </Link>
           <img className={styles.arrow} src={arrow} alt="arrow" />
         </div>
+
         <div className={styles.link_container}>
-          <div className={styles.link}>{t("navbarLinks.Digər heyvanlar")}</div>
+          <Link className={styles.link} to="/faq">
+            {t("navbarLinks.FAQ")}
+          </Link>
           <img className={styles.arrow} src={arrow} alt="arrow" />
         </div>
+
         <div className={styles.link_container}>
-          <div className={styles.link}>{t("navbarLinks.Brendlər")}</div>
+          <Link className={styles.link} to="/products/discounted_products">
+            {t("navbarLinks.Endirimlər")}
+          </Link>
           <img className={styles.arrow} src={arrow} alt="arrow" />
         </div>
+
         <div className={styles.link_container}>
-          <div className={styles.link}>{t("navbarLinks.Bloqlar")}</div>
+          <Link className={styles.link} to="/about">
+            {t("about_title")}
+          </Link>
           <img className={styles.arrow} src={arrow} alt="arrow" />
         </div>
+
         <div className={styles.link_container}>
-          <div className={styles.link}>{t("navbarLinks.FAQ")}</div>
-          <img className={styles.arrow} src={arrow} alt="arrow" />
-        </div>
-        <div className={styles.link_container}>
-          <div className={styles.link}>{t("navbarLinks.Endirimlər")}</div>
-          <img className={styles.arrow} src={arrow} alt="arrow" />
-        </div>
-        <div className={styles.link_container}>
-          <div className={styles.link}>{t("navbarLinks.Bonus mağaza")}</div>
+          <Link className={styles.link} to="/contact">
+            {t("contact_title")}
+          </Link>
           <img className={styles.arrow} src={arrow} alt="arrow" />
         </div>
       </div>
@@ -94,8 +104,14 @@ const Dropdown = ({ visibility, setVisibility }) => {
       </div>
 
       <div className={styles.header__nav__btns}>
-        <div className={styles.login}>{t("buttons.login")}</div>
-        <div className={styles.register}>{t("buttons.register")}</div>
+        <Link to="/login">
+          {" "}
+          <div className={styles.login}>{t("buttons.login")}</div>
+        </Link>
+        <Link style={{textDecoration:"none"}} to="/register">
+          {" "}
+          <div className={styles.register}>{t("buttons.register")}</div>
+        </Link>
       </div>
     </div>
   ) : null;

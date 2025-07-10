@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useProducts } from "../../context/ProductContext";
 import styles from "./SearchResults.module.css";
 import { useTranslation } from "react-i18next";
@@ -8,32 +8,10 @@ const SearchResults = () => {
   const { filteredProducts, loading, searchTerm, setSearchTerm } =
     useProducts();
   const { i18n, t } = useTranslation();
-  const navigate = useNavigate();
   const containerRef = useRef(null);
 
   if (loading) return <p>Loading...</p>;
   if (!searchTerm.trim()) return null;
-
-  const handleProductClick = (id) => {
-    setSearchTerm(""); // popup-ı bağla
-    navigate(`/product/${id}`);
-  };
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target)
-      ) {
-        setSearchTerm(""); // kənara klikləyəndə popup bağlansın
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [setSearchTerm]);
 
   return (
     <div className={styles.full_container} ref={containerRef}>
@@ -49,7 +27,13 @@ const SearchResults = () => {
           </div>
         ) : (
           filteredProducts.map((product) => (
-            <div key={product.id} className={styles.product_card}>
+            <Link
+              key={product.id}
+              to={`/product/${product.id}`}
+              className={styles.product_card}
+              style={{ textDecoration: "none", color: "inherit" }}
+              onClick={() => setTimeout(() => setSearchTerm(""), 0)}
+            >
               <div className={styles.img_box}>
                 <img
                   width="100%"
@@ -58,14 +42,10 @@ const SearchResults = () => {
                   alt="product"
                 />
               </div>
-              <div
-                className={styles.product_name}
-                onClick={() => handleProductClick(product.id)}
-                style={{ cursor: "pointer", textDecoration: "none" }}
-              >
+              <div className={styles.product_name}>
                 {i18n.language === "az" ? product.NameAz : product.NameRu}
               </div>
-            </div>
+            </Link>
           ))
         )}
       </div>

@@ -1,12 +1,24 @@
 import React from "react";
 import styles from "./Contact.module.css";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import { Breadcrumbs } from "../../assets/icons/Svg";
 
 const ContactComp = () => {
   const { t, i18n } = useTranslation();
 
   return (
     <div className={styles.contact_wrapper}>
+      <div className="breadcrumbs">
+        <Link to="/" className="breadcrumb_link">
+          Biopet
+        </Link>{" "}
+        <Breadcrumbs />
+        <span className="breadcrumb_current">
+          {i18n.language === "az" ? "Bizimlə əlaqə" : "Связаться с нами"}
+        </span>
+      </div>
+
       <h1 className={styles.section_title}>
         {i18n.language === "az" ? "Bizimlə əlaqə" : "Связаться с нами"}
       </h1>
@@ -33,7 +45,7 @@ const ContactComp = () => {
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           title="Biopet xəritəsi"
-          style={{ border: 0, width: "100%"}}
+          style={{ border: 0, width: "100%" }}
         ></iframe>
       </div>
     </div>

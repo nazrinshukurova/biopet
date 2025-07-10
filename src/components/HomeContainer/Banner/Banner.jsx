@@ -6,6 +6,7 @@ import { LuShoppingCart } from "react-icons/lu";
 import { useTranslation } from "react-i18next";
 import { useProducts } from "../../../context/ProductContext";
 import { useBasket } from "../../../context/AddToBasket";
+import { SuccesAlert } from "../../../shared/ReusableItems/Reusable";
 
 const Banner = () => {
   const { t, i18n } = useTranslation();
@@ -71,8 +72,6 @@ const Banner = () => {
       items: 1,
     },
   };
-
-  console.log(discountedProducts);
 
   const calcDiscountedPrice = (price, percent) => {
     return (price - (price / 100) * percent).toFixed();
@@ -200,6 +199,7 @@ const Banner = () => {
                       {product.Price} ₼
                     </span>
                   </div>
+                  
                   <button
                     onClick={() => addToBasket(product)}
                     className={styles.addToCart}

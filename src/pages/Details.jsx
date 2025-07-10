@@ -2,23 +2,26 @@ import { useParams } from "react-router-dom";
 import styles from "../styles/Details.module.css";
 import { useTranslation } from "react-i18next";
 import {
+  DetailsHeart,
   EmptyStarSvg,
   FullFilledStarSvg,
   Gift,
   HalfStarSvg,
   Heart,
   Info,
+  Wish,
+  Wished,
 } from "../assets/icons/Svg.jsx";
-import Footer from "../shared/Footer/Footer";
 import AddToCart from "../shared/Buttons/Buttons";
-import { useProducts } from "../context/ProductContext"; // düz yol ver
+import { useProducts } from "../context/ProductContext";
 import { useBasket } from "../context/AddToBasket";
 import Suggestions from "../shared/SuggestionsProducts/Suggestions";
 import { useWishlist } from "../context/WishlistContext";
+import ProductComments from "../components/ProductComments/ProductComments.jsx";
 
 const Details = () => {
   const { id } = useParams();
-  const { products, loading } = useProducts(); // context-dən gələn data
+  const { products, loading } = useProducts();
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
 
@@ -33,13 +36,11 @@ const Details = () => {
         ? `${product?.Package}L`
         : `${product.Package}q`;
     }
-
     if (lang === "ru") {
       return product?.ProductTypeKey === "litter"
         ? `${product.Package}л`
         : `${product.Package}г`;
     }
-
     return `${product.Package}`;
   };
 
@@ -56,14 +57,10 @@ const Details = () => {
   const bonus = product?.Price?.toFixed(2);
 
   const { addToBasket } = useBasket();
-
-  const { addToWishlist } = useWishlist();
-
-  console.log(product.id, "DETAILS");
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
 
   return (
     <>
-      {" "}
       <div
         style={{
           backgroundColor: "var(--container-bg)",
@@ -226,13 +223,20 @@ const Details = () => {
                 )}
               </div>
               <div className={styles.button_and_heart}>
-                <AddToCart onClick={() => addToBasket(product)} />
+                <AddToCart
+                  item={product}
+                  onClick={() => addToBasket(product)}
+                />
 
                 <div
-                  onClick={() => addToWishlist(product.id)}
+                  onClick={
+                    !isInWishlist(product.id)
+                      ? () => addToWishlist(product)
+                      : () => removeFromWishlist(product.id)
+                  }
                   className={styles.view_like}
                 >
-                  <Heart />
+                  {isInWishlist(product.id) ? <Wished /> : <Wish />}
                 </div>
               </div>
             </div>
@@ -240,6 +244,7 @@ const Details = () => {
         </div>
       </div>
       <Suggestions />
+      <ProductComments />
     </>
   );
 };

@@ -140,7 +140,7 @@ const Suggestions = () => {
                       </div>
                     )}
                   </div>
-                  <AddToCart onClick={() => addToBasket(item)} />
+                  <AddToCart item={item} onClick={() => addToBasket(item)} />
                 </div>
               ))}
             </div>

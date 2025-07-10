@@ -10,6 +10,7 @@ import {
   FaLinkedinIn,
 } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import master from "../../assets/svg/master.svg";
 import g_pay from "../../assets/svg/g-pay.svg";
 import apple_pay from "../../assets/svg/apple-pay.svg";
@@ -58,53 +59,110 @@ const Footer = () => {
         <div className={styles.column}>
           <h3 className={styles.columnTitle}>{t("biopetStore")}</h3>
           <ul className={styles.linkList}>
-            <li className={styles.linkItem}>{t("about")}</li>
-            <li className={styles.linkItem}>{t("delivery")}</li>
-            <li className={styles.linkItem}>{t("privacy")}</li>
-            <li className={styles.linkItem}>{t("agreement")}</li>
-            <li className={styles.linkItem}>{t("feedback")}</li>
+            <li className={styles.linkItem}>
+              <Link to="/about">{t("about")}</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link to="/delivery">{t("delivery")}</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link to="/privacy">{t("privacy")}</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link to="/agreement">{t("agreement")}</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link to="/contact">{t("feedback")}</Link>
+            </li>
           </ul>
         </div>
 
         <div className={styles.column}>
           <h3 className={styles.columnTitle}>{t("popularCategories")}</h3>
           <ul className={styles.linkList}>
-            <li className={styles.linkItem}>{t("catFood")}</li>
-            <li className={styles.linkItem}>{t("catLitter")}</li>
-            <li className={styles.linkItem}>{t("sterilizedCatFood")}</li>
-            <li className={styles.linkItem}>{t("deworming")}</li>
-            <li className={styles.linkItem}>{t("carriers")}</li>
-            <li className={styles.linkItem}>{t("dogFood")}</li>
-            <li className={styles.linkItem}>{t("dogToys")}</li>
-            <li className={styles.linkItem}>{t("dogVitamins")}</li>
-            <li className={styles.linkItem}>{t("catBreeds")}</li>
-            <li className={styles.linkItem}>{t("dogBreeds")}</li>
+            <li className={styles.linkItem}>
+              <Link to="/products?category=cat_food">{t("catFood")}</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link to="/products?category=cat_litter">{t("catLitter")}</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link to="/products?category=sterilized">
+                {t("sterilizedCatFood")}
+              </Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link to="/products?category=deworming">{t("deworming")}</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link to="/products?category=carriers">{t("carriers")}</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link to="/products?category=dog_food">{t("dogFood")}</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link to="/products?category=dog_toys">{t("dogToys")}</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link to="/products?category=dog_vitamins">
+                {t("dogVitamins")}
+              </Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link to="/blogs?tag=cat">{t("catBreeds")}</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link to="/blogs?tag=dog">{t("dogBreeds")}</Link>
+            </li>
           </ul>
         </div>
 
         <div className={styles.column}>
           <h3 className={styles.columnTitle}>{t("popularBrands")}</h3>
           <ul className={styles.linkList}>
-            <li className={styles.linkItem}>Royal Canin</li>
-            <li className={styles.linkItem}>ACANA</li>
-            <li className={styles.linkItem}>Orijen</li>
-            <li className={styles.linkItem}>Proplan</li>
-            <li className={styles.linkItem}>Feliks</li>
-            <li className={styles.linkItem}>Canina</li>
-            <li className={styles.linkItem}>Monge</li>
-            <li className={styles.linkItem}>Gemon</li>
+            <li className={styles.linkItem}>
+              <Link to="/products?brand=royal-canin">Royal Canin</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link to="/products?brand=acana">ACANA</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link to="/products?brand=orijen">Orijen</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link to="/products?brand=proplan">Proplan</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link to="/products?brand=feliks">Feliks</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link to="/products?brand=canina">Canina</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link to="/products?brand=monge">Monge</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link to="/products?brand=gemon">Gemon</Link>
+            </li>
           </ul>
         </div>
 
         <div className={styles.column}>
           <h3 className={styles.columnTitle}>{t("help")}</h3>
           <ul className={styles.linkList}>
-            <li className={styles.linkItem}>{t("faq")}</li>
-            <li className={styles.linkItem}>{t("pricing")}</li>
-            <li className={styles.linkItem}>{t("branches")}</li>
+            <li className={styles.linkItem}>
+              <Link to="/faq">{t("faq")}</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link to="/pricing">{t("pricing")}</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link to="/branches">{t("branches")}</Link>
+            </li>
           </ul>
         </div>
       </div>
+
       <div className={styles.footer_bottom}>
         <div className={styles.copyright}>
           © 2025 Biopet Shop &nbsp;<span>VÖEN: 2006199541</span>

@@ -46,14 +46,15 @@ import { BasketProvider } from "./context/AddToBasket";
 import { WishlistProvider } from "./context/WishlistContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import PetInfoContext, { PetInfoProvider } from "./context/PetInfoContext";
+import ScrollToTop from "./shared/ScrollToTop/ScrollToTop";
 
-// Protected route ümumi yoxlama
+// Qorunan route: yalnız login olmuş istifadəçilər üçün
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuth();
   return user ? children : <Navigate to="/login" replace />;
 };
 
-// Dashboard üçün xüsusi qoruma — yalnız "nazrins@gmail.com" istifadəçisi daxil ola bilər
+// Dashboard üçün xüsusi qoruma: yalnız müəyyən email üçün
 const DashboardProtectedRoute = ({ children }) => {
   const { user } = useAuth();
   return user && user.email === "nazrins@gmail.com" ? (
@@ -61,6 +62,12 @@ const DashboardProtectedRoute = ({ children }) => {
   ) : (
     <Navigate to="/" replace />
   );
+};
+
+// Login/Register səhifələrinə yalnız login OLMAMIŞ istifadəçilər keçə bilər
+const GuestRoute = ({ children }) => {
+  const { user } = useAuth();
+  return !user ? children : <Navigate to="/" replace />;
 };
 
 const Layout = ({ children, lang }) => {
@@ -83,12 +90,9 @@ const Layout = ({ children, lang }) => {
   );
 };
 
-// Wrapper component to handle navigation logic with petInfo
 const AppRoutes = ({ language }) => {
   const navigate = useNavigate();
-
-  const { petInfo, setPetInfo } = useContext(PetInfoContext);
-
+  const { petInfo } = useContext(PetInfoContext);
   const location = useLocation();
 
   useEffect(() => {
@@ -101,10 +105,10 @@ const AppRoutes = ({ language }) => {
       }
     }
   }, [petInfo, navigate, location]);
-  console.log(petInfo);
 
   return (
     <Layout lang={language}>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
@@ -115,25 +119,44 @@ const AppRoutes = ({ language }) => {
         />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/blogs" element={<Blogs />} />
-        <Route path="/contact" element={<Contact />} />
         <Route path="/blogs/:id" element={<BlogsDetails />} />
-        <Route path="/register" element={<Registration />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/basket" element={<Basket />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/payment" element={<PaymentPage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/pickanimal" element={<PickAnimal />} />
-        {/* Dashboard üçün xüsusi qoruma tətbiq olunur */}
+        <Route path="/contact" element={<Contact />} />
         <Route
-          path="/dashboard"
+          path="/register"
           element={
-            <DashboardProtectedRoute>
-              <UXPinLayout />
-            </DashboardProtectedRoute>
+            <GuestRoute>
+              <Registration />
+            </GuestRoute>
           }
         />
+        <Route
+          path="/login"
+          element={
+            <GuestRoute>
+              <LoginPage />
+            </GuestRoute>
+          }
+        />
+        <Route path="/basket" element={<Basket />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute>
+              <Checkout />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/payment"
+          element={
+            <ProtectedRoute>
+              <PaymentPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/about" element={<About />} />
+        <Route path="/pickanimal" element={<PickAnimal />} />
         <Route path="/infopet" element={<AboutInfoForPet />} />
         <Route
           path="/account"
@@ -149,6 +172,14 @@ const AppRoutes = ({ language }) => {
             <ProtectedRoute>
               <MyPet />
             </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <DashboardProtectedRoute>
+              <UXPinLayout />
+            </DashboardProtectedRoute>
           }
         />
         <Route path="*" element={<NotFound />} />
@@ -175,7 +206,8 @@ const App = () => {
     };
   }, []);
 
-  if (!savedLang) return null; // or loading spinner
+  if (!savedLang) return null; // loading göstərə bilərsən
+  
 
   return (
     <ThemeProvider>

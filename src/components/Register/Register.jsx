@@ -4,7 +4,8 @@ import { useTranslation } from "react-i18next";
 import Footer from "../../shared/Footer/Footer";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import { SuccesAlert } from "../../shared/ReusableItems/Reusable";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Telefon nömrəsini formatlayan funksiya
 const formatPhoneNumber = (value) => {
@@ -33,12 +34,11 @@ const RegisterForm = () => {
   const [password, setPassword] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
 
   const handleRegister = async () => {
     const phoneRegex = /^\d{2} \d{3} \d{2} \d{2}$/;
     if (!phoneRegex.test(phone)) {
-      alert(
+      toast.error(
         "Telefon nömrəsini düzgün formatda daxil edin. Məsələn: 50 555 12 34"
       );
       return;
@@ -56,7 +56,7 @@ const RegisterForm = () => {
     setLoading(false);
 
     if (success) {
-      setShowAlert(true);
+      toast.success(t("register_success"));
       setPhone("");
       setName("");
       setSurname("");
@@ -66,13 +66,15 @@ const RegisterForm = () => {
 
       setTimeout(() => {
         window.location.href = "/login";
-      }, 1000);
+      }, 1500);
+    } else {
+      toast.error(t("register_failed") || "Qeydiyyat uğursuz oldu");
     }
   };
 
   return (
     <div className={styles.full_container}>
-      {showAlert && <SuccesAlert  text={t("register_success")} />}
+      <ToastContainer position="top-right" autoClose={3000} />
 
       <div className={styles.container}>
         <div className={styles.form_container}>
@@ -198,12 +200,6 @@ const RegisterForm = () => {
           >
             {loading ? <div className="spinner2"></div> : t("register_button")}
           </button>
-
-          {/* <p className={styles.or}>{t("other_methods")}</p>
-          <div className={styles.socials}>
-            <button className={styles.google}><Google /></button>
-            <button className={styles.facebook}><Facebook /></button>
-          </div> */}
 
           <p className={styles.footer}>
             {t("already_registered")} <Link to="/login">{t("login")}</Link>

@@ -54,6 +54,7 @@ export const ProductProvider = ({ children }) => {
         setSearchTerm,
         filteredProducts,
         discountedProducts,
+        setProducts,
       }}
     >
       {children}

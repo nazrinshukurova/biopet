@@ -5,6 +5,7 @@ import Footer from "../shared/Footer/Footer";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
+import { Breadcrumbs } from "../assets/icons/Svg";
 
 const Blogs = () => {
   const { t, i18n } = useTranslation();
@@ -67,7 +68,15 @@ const Blogs = () => {
       >
         {loading && !error && <div className="spinner"></div>}
 
-        {!loading && blogs.length === 0 && !error && <p>No blogs available</p>}
+        <div className="breadcrumbs">
+          <Link to="/" className="breadcrumb_link">
+            Biopet
+          </Link>{" "}
+          <Breadcrumbs />
+          <span className="breadcrumb_current">
+            {i18n.language === "az" ? "Bloqlar" : "Блоги"}
+          </span>
+        </div>
         <div className="blogs">
           {blogs.map((blog) => (
             <Link

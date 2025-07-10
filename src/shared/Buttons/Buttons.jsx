@@ -4,21 +4,35 @@ import styles from "./Buttons.module.css";
 import { Cart2 } from "../../assets/icons/Svg";
 import { useBasket } from "../../context/AddToBasket";
 import { Link } from "react-router-dom";
+import { useProducts } from "../../context/ProductContext";
 
-const AddToCart = ({ onClick }) => {
+const AddToCart = ({ onClick, item }) => {
   const { t, i18n } = useTranslation();
-  const { addToBasket, showSuccessAlert } = useBasket();
+  const { showSuccessAlert } = useBasket();
 
   return (
     <div>
-      <button onClick={onClick} className={styles.addToCart}>
+      <button
+        onClick={onClick}
+        disabled={!item?.InStock}
+        className={`${styles.addToCart} ${
+          !item?.InStock ? styles.disabled : ""
+        }`}
+      >
         <p className={styles.addToCart_desc}>
-          <Cart2 className={styles.cart} />{" "}
-          {i18n.language === "az" ? "Səbətə at" : "В корзину"}
+          {item.InStock && <Cart2 className={styles.cart} />}
+          {!item.InStock
+            ? i18n.language === "az"
+              ? "Tükənib"
+              : "Распроданный"
+            : i18n.language === "az"
+            ? "Səbətə at"
+            : "В корзину"}{" "}
         </p>
       </button>
 
-      {showSuccessAlert}
+      {/* Əgər bu alert JSX komponentidirsə, onu belə göstərmək olar: */}
+      {showSuccessAlert && <div>{showSuccessAlert}</div>}
     </div>
   );
 };
@@ -50,10 +64,14 @@ export const ViewBasket = () => {
 //   );
 // };
 
-export const FinishTheOrder = ({ text }) => {
+export const FinishTheOrder = ({ text, disabled }) => {
   const { i18n } = useTranslation();
 
-  return <div className={styles.finish_the_order}>{text}</div>;
+  return (
+    <button disabled={disabled} className={styles.finish_the_order}>
+      {text}
+    </button>
+  );
 };
 
 export const ClearAll = ({ clickFunction }) => {

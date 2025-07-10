@@ -18,6 +18,11 @@
   cursor: pointer;
 }
 
+.addToCart:disabled {
+  cursor: not-allowed;
+  background-color: #828282d6;
+}
+
 .addToCart_desc {
   display: flex;
   align-items: center;
@@ -70,6 +75,11 @@
   color: #00b5a4;
   border: 1px solid #00b5a4;
   background-color: #fff;
+}
+
+.finish_the_order:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .clear_all_button {
