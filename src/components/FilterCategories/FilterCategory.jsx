@@ -830,15 +830,7 @@ const FilterCategory = () => {
               </button>
             ))}
           </div>
-          <div className={styles.go_to_top}>
-            {" "}
-            <button
-              className={styles.up_button}
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            >
-              <FaArrowUp style={{ fontWeight: "400px" }} />
-            </button>
-          </div>
+        
         </div>
       </div>
     </div>

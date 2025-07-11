@@ -10,14 +10,16 @@ import AddToCart, { ClearAll } from "../../shared/Buttons/Buttons";
 import { useWishlist } from "../../context/WishlistContext";
 import { useTranslation } from "react-i18next";
 import { useBasket } from "../../context/AddToBasket";
+import { SuccesAlert } from "../../shared/ReusableItems/Reusable.jsx";
 
 const WishlistComp = () => {
   const { wishlist, removeFromWishlist, clearWishlist } = useWishlist();
   const { i18n } = useTranslation();
-  const { addToBasket } = useBasket();
+  const { addToBasket, showSuccessAlert } = useBasket();
 
   return (
     <div className={styles.wishlist_wrapper}>
+      <div style={{zIndex:1728238329832}}> {showSuccessAlert && <SuccesAlert />}</div>
       <h1 className={styles.title}>
         {i18n.language === "az" ? "İstək listim" : "Избранное"}
       </h1>

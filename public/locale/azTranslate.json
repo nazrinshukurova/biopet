@@ -278,5 +278,6 @@
   "have_promocode": "Promokod varmı?",
   "enter_promocode": "Promo kodu daxil edin",
   "apply": "Tətbiq edin",
-  "discount_applied": "Endirim tətbiq olundu"
+  "discount_applied": "Endirim tətbiq olundu",
+  "invalid_promocode": "Daxil etdiyiniz promo kod yanlışdır!"
 }

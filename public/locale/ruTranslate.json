@@ -274,5 +274,6 @@
   "have_promocode": "У вас есть промокод?",
   "enter_promocode": "Введите промокод",
   "apply": "Применять",
-  "discount_applied": "Скидка применена"
+  "discount_applied": "Скидка применена",
+  "invalid_promocode": "Введённый промокод недействителен!"
 }
